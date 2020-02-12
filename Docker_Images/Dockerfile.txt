@@ -1,0 +1,2 @@
+FROM nodered/node-red
+RUN apt-get -y install nodejs

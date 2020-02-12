@@ -1,0 +1,970 @@
+[
+    {
+        "Addr": "2a2",
+        "RSSI": "b'\\x0c\\x0b\\xffL"
+    },
+    {
+        "Addr": "64",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'c",
+        "RSSI": "b'\\xffL"
+    },
+    {
+        "Addr": "6",
+        "RSSI": "\\x1e\\xff\\x06"
+    },
+    {
+        "Addr": "",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'c",
+        "RSSI": "b'\\xffL"
+    },
+    {
+        "Addr": "6",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'8bL",
+        "RSSI": "-79"
+    },
+    {
+        "Addr": "bu",
+        "RSSI": "-88"
+    },
+    {
+        "Addr": "e6",
+        "RSSI": "-89"
+    },
+    {
+        "Addr": "e6",
+        "RSSI": "-67"
+    },
+    {
+        "Addr": "2a2",
+        "RSSI": "b'\\x0c"
+    },
+    {
+        "Addr": "b'L",
+        "RSSI": "-81"
+    },
+    {
+        "Addr": "2a2",
+        "RSSI": "b'\\x0c\\x0b\\xffL"
+    },
+    {
+        "Addr": "2",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'c",
+        "RSSI": "b'\\xffL"
+    },
+    {
+        "Addr": "66",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'8bL",
+        "RSSI": "-79"
+    },
+    {
+        "Addr": "e6",
+        "RSSI": "-89"
+    },
+    {
+        "Addr": "bu",
+        "RSSI": "-88"
+    },
+    {
+        "Addr": "2a2",
+        "RSSI": "b'\\x0c\\x0b\\xffL"
+    },
+    {
+        "Addr": "3",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'c",
+        "RSSI": "b'\\xffL"
+    },
+    {
+        "Addr": "66",
+        "RSSI": "\\x1e\\xff\\x06"
+    },
+    {
+        "Addr": "5",
+        "RSSI": "\\x1e\\xff\\x06"
+    },
+    {
+        "Addr": "",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'8bL",
+        "RSSI": "-79"
+    },
+    {
+        "Addr": "2a2",
+        "RSSI": "b'\\x0c\\x0b\\xffL"
+    },
+    {
+        "Addr": "2",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'c",
+        "RSSI": "b'\\xffL"
+    },
+    {
+        "Addr": "58",
+        "RSSI": "\\x1b\\xffu"
+    },
+    {
+        "Addr": "8",
+        "RSSI": "\\x1b\\xffu"
+    },
+    {
+        "Addr": "2",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'8bL",
+        "RSSI": "-75"
+    },
+    {
+        "Addr": "e6",
+        "RSSI": "-67"
+    },
+    {
+        "Addr": "bu",
+        "RSSI": "-88"
+    },
+    {
+        "Addr": "2a2",
+        "RSSI": "b'\\x0c"
+    },
+    {
+        "Addr": "b'L",
+        "RSSI": "-68"
+    },
+    {
+        "Addr": "2a2",
+        "RSSI": "b'\\x0c"
+    },
+    {
+        "Addr": "b'L",
+        "RSSI": "-66"
+    },
+    {
+        "Addr": "e6",
+        "RSSI": "-89"
+    },
+    {
+        "Addr": "e6",
+        "RSSI": "-93"
+    },
+    {
+        "Addr": "2a2",
+        "RSSI": "b'\\x0c\\x0b\\xffL"
+    },
+    {
+        "Addr": "66",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'c",
+        "RSSI": "b'\\xffL"
+    },
+    {
+        "Addr": "5",
+        "RSSI": "\\x1e\\xff\\x06"
+    },
+    {
+        "Addr": "",
+        "RSSI": "\\x1b\\xffu"
+    },
+    {
+        "Addr": "8",
+        "RSSI": "\\x1e\\xff\\x06"
+    },
+    {
+        "Addr": "",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'8bL",
+        "RSSI": "-79"
+    },
+    {
+        "Addr": "2a2",
+        "RSSI": "b'\\x0c"
+    },
+    {
+        "Addr": "b'L",
+        "RSSI": "-67"
+    },
+    {
+        "Addr": "2a2",
+        "RSSI": "b'\\x0c\\x0b\\xffL"
+    },
+    {
+        "Addr": "66",
+        "RSSI": "\\x1b\\xffu"
+    },
+    {
+        "Addr": "5",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'8bL",
+        "RSSI": "-75"
+    },
+    {
+        "Addr": "bu",
+        "RSSI": "-88"
+    },
+    {
+        "Addr": "2a2",
+        "RSSI": "b'\\x0c"
+    },
+    {
+        "Addr": "b'L",
+        "RSSI": "-66"
+    },
+    {
+        "Addr": "2a2",
+        "RSSI": "b'\\x0c\\x0b\\xffL"
+    },
+    {
+        "Addr": "65",
+        "RSSI": "\\x1e\\xff\\x06"
+    },
+    {
+        "Addr": "8",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'c",
+        "RSSI": "b'\\xffL"
+    },
+    {
+        "Addr": "68",
+        "RSSI": "\\x1e\\xff\\x06"
+    },
+    {
+        "Addr": "6",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'cbL",
+        "RSSI": "-71"
+    },
+    {
+        "Addr": "2a2",
+        "RSSI": "b'\\x0c"
+    },
+    {
+        "Addr": "b'L",
+        "RSSI": "-66"
+    },
+    {
+        "Addr": "2a2",
+        "RSSI": "b'\\x08\\x0b\\xffL"
+    },
+    {
+        "Addr": "5",
+        "RSSI": "\\x1e\\xff\\x06"
+    },
+    {
+        "Addr": "",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'c",
+        "RSSI": "b'\\xffL"
+    },
+    {
+        "Addr": "6",
+        "RSSI": "\\x1e\\xff\\x06"
+    },
+    {
+        "Addr": "8",
+        "RSSI": "\\x1b\\xffu"
+    },
+    {
+        "Addr": "8",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'c",
+        "RSSI": "b'\\xffL"
+    },
+    {
+        "Addr": "6",
+        "RSSI": "\\x1e\\xff\\x06"
+    },
+    {
+        "Addr": "6",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'8bL",
+        "RSSI": "-74"
+    },
+    {
+        "Addr": "2a2",
+        "RSSI": "b'\\x0c\\x0b\\xffL"
+    },
+    {
+        "Addr": "68",
+        "RSSI": "\\x1b\\xffu"
+    },
+    {
+        "Addr": "88",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'c",
+        "RSSI": "b'\\xffL"
+    },
+    {
+        "Addr": "66",
+        "RSSI": "\\x1e\\xff\\x06"
+    },
+    {
+        "Addr": "",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'c",
+        "RSSI": "b'\\xffL"
+    },
+    {
+        "Addr": "66",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'cbL",
+        "RSSI": "-67"
+    },
+    {
+        "Addr": "e6",
+        "RSSI": "-77"
+    },
+    {
+        "Addr": "2a2",
+        "RSSI": "b'\\x0c"
+    },
+    {
+        "Addr": "b'L",
+        "RSSI": "-60"
+    },
+    {
+        "Addr": "2a2",
+        "RSSI": "b'\\x08\\x0b\\xffL"
+    },
+    {
+        "Addr": "8",
+        "RSSI": "\\x1e\\xff\\x06"
+    },
+    {
+        "Addr": "8",
+        "RSSI": "\\x1b\\xffu"
+    },
+    {
+        "Addr": "8",
+        "RSSI": "\\x1b\\xffu"
+    },
+    {
+        "Addr": "4",
+        "RSSI": "\\x1e\\xff\\x06"
+    },
+    {
+        "Addr": "6",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'8bL",
+        "RSSI": "-71"
+    },
+    {
+        "Addr": "2a2",
+        "RSSI": "b'\\x0c\\x0b\\xffL"
+    },
+    {
+        "Addr": "6",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'c",
+        "RSSI": "b'\\xffL"
+    },
+    {
+        "Addr": "66",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'c",
+        "RSSI": "b'\\xffL"
+    },
+    {
+        "Addr": "68",
+        "RSSI": "\\x1e\\xff\\x06"
+    },
+    {
+        "Addr": "",
+        "RSSI": "\\x1b\\xffu"
+    },
+    {
+        "Addr": "8",
+        "RSSI": "\\x1e\\xff\\x06"
+    },
+    {
+        "Addr": "",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'c",
+        "RSSI": "b'\\xffL"
+    },
+    {
+        "Addr": "66",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'cbL",
+        "RSSI": "-65"
+    },
+    {
+        "Addr": "2a2",
+        "RSSI": "b'\\x08\\x0b\\xffL"
+    },
+    {
+        "Addr": "5",
+        "RSSI": "\\x1b\\xffu"
+    },
+    {
+        "Addr": "88",
+        "RSSI": "\\x1e\\xff\\x06"
+    },
+    {
+        "Addr": "",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'c",
+        "RSSI": "b'\\xffL"
+    },
+    {
+        "Addr": "6",
+        "RSSI": "\\x1e\\xff\\x06"
+    },
+    {
+        "Addr": "6",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'c",
+        "RSSI": "b'\\xffL"
+    },
+    {
+        "Addr": "66",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'cbL",
+        "RSSI": "-73"
+    },
+    {
+        "Addr": "2a2",
+        "RSSI": "b'\\x0c"
+    },
+    {
+        "Addr": "b'L",
+        "RSSI": "-71"
+    },
+    {
+        "Addr": "2a2",
+        "RSSI": "b'\\x08\\x0b\\xffL"
+    },
+    {
+        "Addr": "4",
+        "RSSI": "\\x1b\\xffu"
+    },
+    {
+        "Addr": "8",
+        "RSSI": "\\x1e\\xff\\x06"
+    },
+    {
+        "Addr": "8",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'c",
+        "RSSI": "b'\\xffL"
+    },
+    {
+        "Addr": "66",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'c",
+        "RSSI": "b'\\xffL"
+    },
+    {
+        "Addr": "6",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'8bL",
+        "RSSI": "-71"
+    },
+    {
+        "Addr": "e6",
+        "RSSI": "-77"
+    },
+    {
+        "Addr": "e6",
+        "RSSI": "-90"
+    },
+    {
+        "Addr": "bu",
+        "RSSI": "-93"
+    },
+    {
+        "Addr": "2a2",
+        "RSSI": "b'\\x0c\\x0b\\xffL"
+    },
+    {
+        "Addr": "66",
+        "RSSI": "\\x1b\\xffu"
+    },
+    {
+        "Addr": "88",
+        "RSSI": "\\x1e\\xff\\x06"
+    },
+    {
+        "Addr": "8",
+        "RSSI": "\\x1e\\xff\\x06"
+    },
+    {
+        "Addr": "",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'c",
+        "RSSI": "b'\\xffL"
+    },
+    {
+        "Addr": "66",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'cbL",
+        "RSSI": "-66"
+    },
+    {
+        "Addr": "2a2",
+        "RSSI": "b'\\x0c"
+    },
+    {
+        "Addr": "b'L",
+        "RSSI": "-60"
+    },
+    {
+        "Addr": "2a2",
+        "RSSI": "b'\\x08\\x0b\\xffL"
+    },
+    {
+        "Addr": "6",
+        "RSSI": "\\x1b\\xffu"
+    },
+    {
+        "Addr": "8",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'c",
+        "RSSI": "b'\\xffL"
+    },
+    {
+        "Addr": "",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'cbL",
+        "RSSI": "-68"
+    },
+    {
+        "Addr": "2a2",
+        "RSSI": "b'\\x0c"
+    },
+    {
+        "Addr": "b'L",
+        "RSSI": "-66"
+    },
+    {
+        "Addr": "e6",
+        "RSSI": "-77"
+    },
+    {
+        "Addr": "2a2",
+        "RSSI": "b'\\x08\\x0b\\xffL"
+    },
+    {
+        "Addr": "8",
+        "RSSI": "\\x1e\\xff\\x06"
+    },
+    {
+        "Addr": "8",
+        "RSSI": "\\x1b\\xffu"
+    },
+    {
+        "Addr": "8",
+        "RSSI": "\\x1e\\xff\\x06"
+    },
+    {
+        "Addr": "6",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'cbL",
+        "RSSI": "-67"
+    },
+    {
+        "Addr": "2a2",
+        "RSSI": "b'\\x0c"
+    },
+    {
+        "Addr": "b'L",
+        "RSSI": "-66"
+    },
+    {
+        "Addr": "2a2",
+        "RSSI": "b'\\x0c"
+    },
+    {
+        "Addr": "b'L",
+        "RSSI": "-67"
+    },
+    {
+        "Addr": "bu",
+        "RSSI": "-89"
+    },
+    {
+        "Addr": "e6",
+        "RSSI": "-89"
+    },
+    {
+        "Addr": "2a2",
+        "RSSI": "b'\\x08\\x0b\\xffL"
+    },
+    {
+        "Addr": "4",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'c",
+        "RSSI": "b'\\xffL"
+    },
+    {
+        "Addr": "6",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'cbL",
+        "RSSI": "-67"
+    },
+    {
+        "Addr": "2a2",
+        "RSSI": "b'\\x0c"
+    },
+    {
+        "Addr": "b'L",
+        "RSSI": "-67"
+    },
+    {
+        "Addr": "e6",
+        "RSSI": "-67"
+    },
+    {
+        "Addr": "e6",
+        "RSSI": "-89"
+    },
+    {
+        "Addr": "2a2",
+        "RSSI": "b'\\x08\\x0b\\xffL"
+    },
+    {
+        "Addr": "8",
+        "RSSI": "\\x1b\\xffu"
+    },
+    {
+        "Addr": "88",
+        "RSSI": "\\x1e\\xff\\x06"
+    },
+    {
+        "Addr": "4",
+        "RSSI": "\\x1e\\xff\\x06"
+    },
+    {
+        "Addr": "6",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'8bL",
+        "RSSI": "-81"
+    },
+    {
+        "Addr": "2a2",
+        "RSSI": "b'\\x0c\\x0b\\xffL"
+    },
+    {
+        "Addr": "6",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'c",
+        "RSSI": "b'\\xffL"
+    },
+    {
+        "Addr": "66",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'c",
+        "RSSI": "b'\\xffL"
+    },
+    {
+        "Addr": "",
+        "RSSI": "\\x1e\\xff\\x06"
+    },
+    {
+        "Addr": "",
+        "RSSI": "\\x1b\\xffu"
+    },
+    {
+        "Addr": "8",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'c",
+        "RSSI": "b'\\xffL"
+    },
+    {
+        "Addr": "66",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'cbL",
+        "RSSI": "-66"
+    },
+    {
+        "Addr": "e6",
+        "RSSI": "-91"
+    },
+    {
+        "Addr": "2a2",
+        "RSSI": "b'\\x0c"
+    },
+    {
+        "Addr": "b'L",
+        "RSSI": "-71"
+    },
+    {
+        "Addr": "e6",
+        "RSSI": "-68"
+    },
+    {
+        "Addr": "2a2",
+        "RSSI": "b'\\x08\\x0b\\xffL"
+    },
+    {
+        "Addr": "83",
+        "RSSI": "\\x1b\\xffu"
+    },
+    {
+        "Addr": "88",
+        "RSSI": "\\x1e\\xff\\x06"
+    },
+    {
+        "Addr": "6",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'8bL",
+        "RSSI": "-75"
+    },
+    {
+        "Addr": "2a2",
+        "RSSI": "b'\\x0c"
+    },
+    {
+        "Addr": "b'L",
+        "RSSI": "-66"
+    },
+    {
+        "Addr": "2a2",
+        "RSSI": "b'\\x0c\\x0b\\xffL"
+    },
+    {
+        "Addr": "66",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'c",
+        "RSSI": "b'\\xffL"
+    },
+    {
+        "Addr": "6",
+        "RSSI": "\\x1e\\xff\\x06"
+    },
+    {
+        "Addr": "",
+        "RSSI": "\\x1b\\xffu"
+    },
+    {
+        "Addr": "88",
+        "RSSI": "\\x1b\\xffu"
+    },
+    {
+        "Addr": "3",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'cbL",
+        "RSSI": "-94"
+    },
+    {
+        "Addr": "2a2",
+        "RSSI": "b'\\x0c\\x0b\\xffL"
+    },
+    {
+        "Addr": "6",
+        "RSSI": "\\x1e\\xff\\x06"
+    },
+    {
+        "Addr": "68",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'c",
+        "RSSI": "b'\\xffL"
+    },
+    {
+        "Addr": "6",
+        "RSSI": "\\x1b\\xffu"
+    },
+    {
+        "Addr": "88",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'8bL",
+        "RSSI": "-81"
+    },
+    {
+        "Addr": "2a2",
+        "RSSI": "b'\\x0c"
+    },
+    {
+        "Addr": "b'L",
+        "RSSI": "-68"
+    },
+    {
+        "Addr": "e6",
+        "RSSI": "-90"
+    },
+    {
+        "Addr": "e6",
+        "RSSI": "-73"
+    },
+    {
+        "Addr": "2a2",
+        "RSSI": "b'\\x0c"
+    },
+    {
+        "Addr": "b'L",
+        "RSSI": "-68"
+    },
+    {
+        "Addr": "2a2",
+        "RSSI": "b'\\x0c\\x0b\\xffL"
+    },
+    {
+        "Addr": "6",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'8bL",
+        "RSSI": "-76"
+    },
+    {
+        "Addr": "e6",
+        "RSSI": "-91"
+    },
+    {
+        "Addr": "bu",
+        "RSSI": "-88"
+    },
+    {
+        "Addr": "2a2",
+        "RSSI": "b'\\x0c"
+    },
+    {
+        "Addr": "b'L",
+        "RSSI": "-72"
+    },
+    {
+        "Addr": "2a2",
+        "RSSI": "b'\\x0c"
+    },
+    {
+        "Addr": "b'L",
+        "RSSI": "-66"
+    },
+    {
+        "Addr": "2a2",
+        "RSSI": "b'\\x0c\\x0b\\xffL"
+    },
+    {
+        "Addr": "65",
+        "RSSI": "\\x1e\\xff\\x06"
+    },
+    {
+        "Addr": "6",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'c",
+        "RSSI": "b'\\xffL"
+    },
+    {
+        "Addr": "6",
+        "RSSI": "\\x02\\x01\\x1a\\x02"
+    },
+    {
+        "Addr": "b'8bL",
+        "RSSI": "-87"
+    },
+    {
+        "Addr": "2a2",
+        "RSSI": "b'\\x0c\\x0b\\xffL"
+    },
+    {
+        "Addr": "4",
+        "RSSI": "\\x1b\\xffu"
+    },
+    {
+        "Addr": "8",
+        "RSSI": "\\x1e\\xff\\x06"
+    },
+    {
+        "Addr": "",
+        "RSSI": "\\x1b\\xffu"
+    }
+]

@@ -1,0 +1,6 @@
+CREATE TABLE data (
+  id VARCHAR(16) PRIMARY KEY,
+  devName VARCHAR(128) NOT NULL,
+  rssi VARCHAR(4),
+  ustime VARCHAR(16)
+);

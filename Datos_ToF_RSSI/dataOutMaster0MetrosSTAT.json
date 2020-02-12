@@ -1,0 +1,524 @@
+{
+    "dataArray": [
+        {
+            "originator": "Nwp",
+            "type": "AsyncReq",
+            "subsystem": "RTLS",
+            "command": "RTLS_CMD_TOF_RESULT_STAT",
+            "payload": {
+                "stats": [
+                    {
+                        "freq": 2422,
+                        "tick": 499.2,
+                        "tickVariance": 0.16,
+                        "rssi": -29,
+                        "numOk": 20
+                    },
+                    {
+                        "freq": 2424,
+                        "tick": 500.27777777777777,
+                        "tickVariance": 0.31172839506172845,
+                        "rssi": -29,
+                        "numOk": 18
+                    },
+                    {
+                        "freq": 2448,
+                        "tick": 499.94117647058823,
+                        "tickVariance": 0.29065743944636685,
+                        "rssi": -29,
+                        "numOk": 17
+                    },
+                    {
+                        "freq": 2450,
+                        "tick": 500.1875,
+                        "tickVariance": 0.40234375,
+                        "rssi": -29,
+                        "numOk": 16
+                    },
+                    {
+                        "freq": 2472,
+                        "tick": 499.235294117647,
+                        "tickVariance": 0.41522491349480967,
+                        "rssi": -29,
+                        "numOk": 17
+                    },
+                    {
+                        "freq": 2470,
+                        "tick": 498.0833333333333,
+                        "tickVariance": 0.7430555555555555,
+                        "rssi": -29,
+                        "numOk": 12
+                    }
+                ]
+            }
+        },
+        {
+            "originator": "Nwp",
+            "type": "AsyncReq",
+            "subsystem": "RTLS",
+            "command": "RTLS_CMD_TOF_RESULT_STAT",
+            "payload": {
+                "stats": [
+                    {
+                        "freq": 2422,
+                        "tick": 499.1428571428571,
+                        "tickVariance": 0.40816326530612257,
+                        "rssi": -29,
+                        "numOk": 21
+                    },
+                    {
+                        "freq": 2424,
+                        "tick": 500.0454545454545,
+                        "tickVariance": 0.3161157024793388,
+                        "rssi": -29,
+                        "numOk": 22
+                    },
+                    {
+                        "freq": 2448,
+                        "tick": 499.4117647058823,
+                        "tickVariance": 0.24221453287197234,
+                        "rssi": -29,
+                        "numOk": 17
+                    },
+                    {
+                        "freq": 2450,
+                        "tick": 499.875,
+                        "tickVariance": 0.359375,
+                        "rssi": -29,
+                        "numOk": 16
+                    },
+                    {
+                        "freq": 2472,
+                        "tick": 498.8125,
+                        "tickVariance": 0.52734375,
+                        "rssi": -29,
+                        "numOk": 16
+                    },
+                    {
+                        "freq": 2470,
+                        "tick": 497.5625,
+                        "tickVariance": 0.49609375,
+                        "rssi": -29,
+                        "numOk": 16
+                    }
+                ]
+            }
+        },
+        {
+            "originator": "Nwp",
+            "type": "AsyncReq",
+            "subsystem": "RTLS",
+            "command": "RTLS_CMD_TOF_RESULT_STAT",
+            "payload": {
+                "stats": [
+                    {
+                        "freq": 2422,
+                        "tick": 499.3181818181818,
+                        "tickVariance": 0.21694214876033044,
+                        "rssi": -29,
+                        "numOk": 22
+                    },
+                    {
+                        "freq": 2424,
+                        "tick": 499.95454545454544,
+                        "tickVariance": 0.22520661157024785,
+                        "rssi": -29,
+                        "numOk": 22
+                    },
+                    {
+                        "freq": 2448,
+                        "tick": 499.95,
+                        "tickVariance": 0.4475,
+                        "rssi": -29,
+                        "numOk": 20
+                    },
+                    {
+                        "freq": 2450,
+                        "tick": 499.8125,
+                        "tickVariance": 0.52734375,
+                        "rssi": -29,
+                        "numOk": 16
+                    },
+                    {
+                        "freq": 2472,
+                        "tick": 499.3125,
+                        "tickVariance": 0.58984375,
+                        "rssi": -29,
+                        "numOk": 16
+                    },
+                    {
+                        "freq": 2470,
+                        "tick": 498.3333333333333,
+                        "tickVariance": 0.8888888888888887,
+                        "rssi": -29,
+                        "numOk": 15
+                    }
+                ]
+            }
+        },
+        {
+            "originator": "Nwp",
+            "type": "AsyncReq",
+            "subsystem": "RTLS",
+            "command": "RTLS_CMD_TOF_RESULT_STAT",
+            "payload": {
+                "stats": [
+                    {
+                        "freq": 2422,
+                        "tick": 499.1428571428571,
+                        "tickVariance": 0.21768707482993208,
+                        "rssi": -29,
+                        "numOk": 21
+                    },
+                    {
+                        "freq": 2424,
+                        "tick": 500.0,
+                        "tickVariance": 0.2857142857142857,
+                        "rssi": -29,
+                        "numOk": 21
+                    },
+                    {
+                        "freq": 2448,
+                        "tick": 499.2857142857143,
+                        "tickVariance": 0.5850340136054423,
+                        "rssi": -29,
+                        "numOk": 21
+                    },
+                    {
+                        "freq": 2450,
+                        "tick": 499.94117647058823,
+                        "tickVariance": 0.40830449826989634,
+                        "rssi": -29,
+                        "numOk": 17
+                    },
+                    {
+                        "freq": 2472,
+                        "tick": 498.7333333333333,
+                        "tickVariance": 0.5955555555555554,
+                        "rssi": -29,
+                        "numOk": 15
+                    },
+                    {
+                        "freq": 2470,
+                        "tick": 498.0,
+                        "tickVariance": 0.42857142857142855,
+                        "rssi": -29,
+                        "numOk": 14
+                    }
+                ]
+            }
+        },
+        {
+            "originator": "Nwp",
+            "type": "AsyncReq",
+            "subsystem": "RTLS",
+            "command": "RTLS_CMD_TOF_RESULT_STAT",
+            "payload": {
+                "stats": [
+                    {
+                        "freq": 2422,
+                        "tick": 499.2857142857143,
+                        "tickVariance": 0.20408163265306112,
+                        "rssi": -30,
+                        "numOk": 21
+                    },
+                    {
+                        "freq": 2424,
+                        "tick": 500.0952380952381,
+                        "tickVariance": 0.2766439909297052,
+                        "rssi": -30,
+                        "numOk": 21
+                    },
+                    {
+                        "freq": 2448,
+                        "tick": 499.9,
+                        "tickVariance": 0.3899999999999998,
+                        "rssi": -30,
+                        "numOk": 20
+                    },
+                    {
+                        "freq": 2450,
+                        "tick": 499.84210526315786,
+                        "tickVariance": 0.23822714681440438,
+                        "rssi": -30,
+                        "numOk": 19
+                    },
+                    {
+                        "freq": 2472,
+                        "tick": 499.4,
+                        "tickVariance": 0.24000000000000005,
+                        "rssi": -30,
+                        "numOk": 15
+                    },
+                    {
+                        "freq": 2470,
+                        "tick": 497.9230769230769,
+                        "tickVariance": 0.532544378698225,
+                        "rssi": -30,
+                        "numOk": 13
+                    }
+                ]
+            }
+        },
+        {
+            "originator": "Nwp",
+            "type": "AsyncReq",
+            "subsystem": "RTLS",
+            "command": "RTLS_CMD_TOF_RESULT_STAT",
+            "payload": {
+                "stats": [
+                    {
+                        "freq": 2422,
+                        "tick": 499.0,
+                        "tickVariance": 0.2727272727272727,
+                        "rssi": -29,
+                        "numOk": 22
+                    },
+                    {
+                        "freq": 2424,
+                        "tick": 499.90476190476187,
+                        "tickVariance": 0.18140589569161006,
+                        "rssi": -29,
+                        "numOk": 21
+                    },
+                    {
+                        "freq": 2448,
+                        "tick": 499.52631578947364,
+                        "tickVariance": 0.4598337950138503,
+                        "rssi": -29,
+                        "numOk": 19
+                    },
+                    {
+                        "freq": 2450,
+                        "tick": 499.65,
+                        "tickVariance": 0.4275000000000001,
+                        "rssi": -29,
+                        "numOk": 20
+                    },
+                    {
+                        "freq": 2472,
+                        "tick": 498.8333333333333,
+                        "tickVariance": 0.36111111111111094,
+                        "rssi": -29,
+                        "numOk": 18
+                    },
+                    {
+                        "freq": 2470,
+                        "tick": 497.6111111111111,
+                        "tickVariance": 0.34876543209876537,
+                        "rssi": -29,
+                        "numOk": 18
+                    }
+                ]
+            }
+        },
+        {
+            "originator": "Nwp",
+            "type": "AsyncReq",
+            "subsystem": "RTLS",
+            "command": "RTLS_CMD_TOF_RESULT_STAT",
+            "payload": {
+                "stats": [
+                    {
+                        "freq": 2422,
+                        "tick": 499.04761904761904,
+                        "tickVariance": 0.331065759637188,
+                        "rssi": -29,
+                        "numOk": 21
+                    },
+                    {
+                        "freq": 2424,
+                        "tick": 500.0454545454545,
+                        "tickVariance": 0.2252066115702478,
+                        "rssi": -29,
+                        "numOk": 22
+                    },
+                    {
+                        "freq": 2448,
+                        "tick": 500.1578947368421,
+                        "tickVariance": 0.4487534626038781,
+                        "rssi": -29,
+                        "numOk": 19
+                    },
+                    {
+                        "freq": 2450,
+                        "tick": 499.84999999999997,
+                        "tickVariance": 0.3275,
+                        "rssi": -29,
+                        "numOk": 20
+                    },
+                    {
+                        "freq": 2472,
+                        "tick": 499.06666666666666,
+                        "tickVariance": 0.3288888888888889,
+                        "rssi": -29,
+                        "numOk": 15
+                    },
+                    {
+                        "freq": 2470,
+                        "tick": 498.30769230769226,
+                        "tickVariance": 0.5207100591715975,
+                        "rssi": -29,
+                        "numOk": 13
+                    }
+                ]
+            }
+        },
+        {
+            "originator": "Nwp",
+            "type": "AsyncReq",
+            "subsystem": "RTLS",
+            "command": "RTLS_CMD_TOF_RESULT_STAT",
+            "payload": {
+                "stats": [
+                    {
+                        "freq": 2422,
+                        "tick": 499.09090909090907,
+                        "tickVariance": 0.35537190082644626,
+                        "rssi": -30,
+                        "numOk": 22
+                    },
+                    {
+                        "freq": 2424,
+                        "tick": 500.19047619047615,
+                        "tickVariance": 0.24943310657596365,
+                        "rssi": -30,
+                        "numOk": 21
+                    },
+                    {
+                        "freq": 2448,
+                        "tick": 499.6363636363636,
+                        "tickVariance": 0.6859504132231403,
+                        "rssi": -30,
+                        "numOk": 22
+                    },
+                    {
+                        "freq": 2450,
+                        "tick": 499.95,
+                        "tickVariance": 0.24750000000000008,
+                        "rssi": -30,
+                        "numOk": 20
+                    },
+                    {
+                        "freq": 2472,
+                        "tick": 499.0,
+                        "tickVariance": 0.75,
+                        "rssi": -30,
+                        "numOk": 16
+                    },
+                    {
+                        "freq": 2470,
+                        "tick": 497.79999999999995,
+                        "tickVariance": 0.6600000000000001,
+                        "rssi": -30,
+                        "numOk": 20
+                    }
+                ]
+            }
+        },
+        {
+            "originator": "Nwp",
+            "type": "AsyncReq",
+            "subsystem": "RTLS",
+            "command": "RTLS_CMD_TOF_RESULT_STAT",
+            "payload": {
+                "stats": [
+                    {
+                        "freq": 2422,
+                        "tick": 498.95454545454544,
+                        "tickVariance": 0.22520661157024785,
+                        "rssi": -30,
+                        "numOk": 22
+                    },
+                    {
+                        "freq": 2424,
+                        "tick": 500.09090909090907,
+                        "tickVariance": 0.08264462809917356,
+                        "rssi": -30,
+                        "numOk": 22
+                    },
+                    {
+                        "freq": 2448,
+                        "tick": 499.95,
+                        "tickVariance": 0.1475000000000001,
+                        "rssi": -30,
+                        "numOk": 20
+                    },
+                    {
+                        "freq": 2450,
+                        "tick": 500.09999999999997,
+                        "tickVariance": 0.08999999999999997,
+                        "rssi": -30,
+                        "numOk": 20
+                    },
+                    {
+                        "freq": 2472,
+                        "tick": 499.2222222222222,
+                        "tickVariance": 0.5061728395061728,
+                        "rssi": -30,
+                        "numOk": 18
+                    },
+                    {
+                        "freq": 2470,
+                        "tick": 498.0625,
+                        "tickVariance": 0.43359375,
+                        "rssi": -30,
+                        "numOk": 16
+                    }
+                ]
+            }
+        },
+        {
+            "originator": "Nwp",
+            "type": "AsyncReq",
+            "subsystem": "RTLS",
+            "command": "RTLS_CMD_TOF_RESULT_STAT",
+            "payload": {
+                "stats": [
+                    {
+                        "freq": 2422,
+                        "tick": 498.9523809523809,
+                        "tickVariance": 0.14058956916099774,
+                        "rssi": -30,
+                        "numOk": 21
+                    },
+                    {
+                        "freq": 2424,
+                        "tick": 500.0454545454545,
+                        "tickVariance": 0.13429752066115702,
+                        "rssi": -30,
+                        "numOk": 22
+                    },
+                    {
+                        "freq": 2448,
+                        "tick": 499.5,
+                        "tickVariance": 0.7045454545454546,
+                        "rssi": -30,
+                        "numOk": 22
+                    },
+                    {
+                        "freq": 2450,
+                        "tick": 500.0588235294117,
+                        "tickVariance": 0.17301038062283733,
+                        "rssi": -30,
+                        "numOk": 17
+                    },
+                    {
+                        "freq": 2472,
+                        "tick": 498.7894736842105,
+                        "tickVariance": 0.37673130193905807,
+                        "rssi": -30,
+                        "numOk": 19
+                    },
+                    {
+                        "freq": 2470,
+                        "tick": 497.77777777777777,
+                        "tickVariance": 0.7283950617283947,
+                        "rssi": -30,
+                        "numOk": 18
+                    }
+                ]
+            }
+        }
+    ]
+}
