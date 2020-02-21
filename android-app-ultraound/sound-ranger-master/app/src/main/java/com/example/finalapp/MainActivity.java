@@ -14,6 +14,7 @@ import android.bluetooth.le.AdvertisingSet;
 import android.bluetooth.le.AdvertisingSetCallback;
 import android.bluetooth.le.AdvertisingSetParameters;
 import android.bluetooth.le.BluetoothLeAdvertiser;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.media.AudioFormat;
 import android.media.AudioRecord;
@@ -29,12 +30,37 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 import java.util.UUID;
+
+import static java.net.Proxy.Type.HTTP;
 
 
 public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCompletionListener {
@@ -51,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
     private static final int RECORDER_SAMPLERATE = 44100;
     private static final int RECORDER_CHANNELS = AudioFormat.CHANNEL_IN_MONO;
     private static final int RECORDER_AUDIO_ENCODING = AudioFormat.ENCODING_PCM_16BIT;
+    private static final String IP_ADDR = "192.168.1.130"; //HAY QUE MODIFICAR LA DIRECCION IP CADA VEZ QUE SE CONECTAN LOS DISPOSITIVOS A LA RED LOCAL!
 
 
     private AudioRecord recorder = null;
@@ -86,7 +113,13 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
     public void setBleAdvertising(){
 
         BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        bluetoothAdapter.setName("motorola1");
+        String devname = null;
+        try {
+            devname = getAdvertisingDeviceName();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        bluetoothAdapter.setName(devname);
         BluetoothLeAdvertiser advertiser = bluetoothAdapter.getBluetoothLeAdvertiser();
 
         AdvertisingSetParameters parameters = (new AdvertisingSetParameters.Builder())
@@ -124,10 +157,92 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
 
         advertiser.startAdvertisingSet(parameters, data, null, null, null, callback);
 
-
-        //advertiser.stopAdvertisingSet(callback);
-
     }
+
+    /** Gets or generates a device name for advertising
+     *
+     * @return the device name.
+     */
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    private String getAdvertisingDeviceName() throws IOException {
+        File file = new File(this.getFilesDir(), "devName");
+
+        if (file.exists()){//if the file already exists, get the device name.
+
+            FileInputStream fis = this.openFileInput("devName");
+            InputStreamReader inputStreamReader =
+                    new InputStreamReader(fis, StandardCharsets.UTF_8);
+            StringBuilder stringBuilder = new StringBuilder();
+            try (BufferedReader reader = new BufferedReader(inputStreamReader)) {
+                String line = reader.readLine();
+                return line;
+            } catch (IOException e) {
+                // Error occurred when opening raw file for reading.
+            } finally {
+                String contents = stringBuilder.toString();
+            }
+        }
+        else { //if the file doesn't exist yet
+
+            String PREFIX = "TARGETDEV-";
+
+            String NUMBER = "0123456789";
+            String CHAR_LOWER = "abcdefghijklmnopqrstuvwxyz";
+            String DATA_FOR_RANDOM_STRING = CHAR_LOWER + NUMBER;
+
+            StringBuilder sb = new StringBuilder(6);
+            Random random = new Random(System.currentTimeMillis());
+
+            for (int i = 0; i < 6; i++) {
+
+                // 0-62 (exclusive), random returns 0-61
+                int rndCharAt = random.nextInt(DATA_FOR_RANDOM_STRING.length());
+                char rndChar = DATA_FOR_RANDOM_STRING.charAt(rndCharAt);
+
+                // debug
+                System.out.format("%d\t:\t%c%n", rndCharAt, rndChar);
+
+                sb.append(rndChar);
+            }
+            Log.d("STRING: ", PREFIX + sb.toString());
+            String filename = "devName";
+            String fileContents = PREFIX + sb.toString();
+            try (FileOutputStream fos = this.openFileOutput(filename, Context.MODE_PRIVATE)) {
+                fos.write(fileContents.getBytes());
+            }
+        }
+        return null;
+    }
+
+    public void sendDataToNodeRED () throws IOException {
+
+        HttpsTrustManager.allowAllSSL();
+        RequestQueue MyRequestQueue;
+        MyRequestQueue = Volley.newRequestQueue(this);
+
+        String url = "http://192.168.1.130:1880/query";
+        StringRequest MyStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d("RESPONSE: ", response);
+            }
+        }, new Response.ErrorListener() { //Create an error listener to handle errors appropriately.
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("error: ", error.toString());
+            }
+        }){
+               protected Map<String, String> getParams(){
+                Map<String, String> MyData = new HashMap<>();
+                MyData.put("devname", "motorolaX"); //Add the data you'd like to send to the server.
+                MyData.put("ustime", "345");
+                return MyData;
+               }
+        };
+        MyRequestQueue.add(MyStringRequest);
+    }
+
+
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -141,7 +256,11 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
         }
 
         setBleAdvertising();
-
+        try {
+            sendDataToNodeRED();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         detect = findViewById(R.id.detection);
         problem = findViewById(R.id.problem);
         play = findViewById(R.id.play);
@@ -323,11 +442,13 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
         int ble_result = ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH);
         int ble_admin_result = ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_ADMIN);
         int acces_fine_loc_result = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
+        int internet_permission = ContextCompat.checkSelfPermission(this, Manifest.permission.INTERNET);
         return  (result_from_storage_permission == PackageManager.PERMISSION_GRANTED) &&
                 (record_audio_result == PackageManager.PERMISSION_GRANTED) &&
                 (ble_result == PackageManager.PERMISSION_GRANTED) &&
                 (ble_admin_result == PackageManager.PERMISSION_GRANTED) &&
-                (acces_fine_loc_result == PackageManager.PERMISSION_GRANTED);
+                (acces_fine_loc_result == PackageManager.PERMISSION_GRANTED) &&
+                (internet_permission == PackageManager.PERMISSION_GRANTED);
     }
 
     private void RequestPermission(){
@@ -336,7 +457,8 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.BLUETOOTH,
                 Manifest.permission.BLUETOOTH_ADMIN,
-                Manifest.permission.ACCESS_FINE_LOCATION
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.INTERNET
         }, REQUEST_PERMISSION_CODE);
     }
 

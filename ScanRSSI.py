@@ -8,23 +8,17 @@ import re
 
 import unicodedata, re
 
-# or equivalently and much more efficiently
-#control_chars = ''.join(map(unichr, range(0,32) + range(127,160)))
-control_char_re = re.compile('[%s]' % re.escape('\\x00-\\x1f\\x7f-\\x9f'))
-
-def remove_control_chars(s):
-    return control_char_re.sub('', s)
 
 def sendToNodeRed():
     with open("data_example.json", "r") as file:
         dataJS = json.load(file)
         for obj in dataJS:
-            t = req.post("http://localhost:1880/query", data=obj)
+            t = req.post("http://192.168.1.130:1880/query", data=obj)
 
         threading.Timer(5.0, sendToNodeRed).start()
 
 
-ser = serial.Serial('/dev/ttyACM1', 115200)  # open serial port
+ser = serial.Serial('/dev/ttyACM0', 115200)  # open serial port
 
 
 def cleanAddr(addr):
@@ -40,30 +34,28 @@ def cleanRssi(rssi):
 
 
 # checks if addrRaw is already in dataJS.
-def addrAlreadyAdded(addrRaw, dataJS):
+def addrAlreadyAdded(devName, dataJS):
     for i in dataJS:
-        if i['Addr'] == addrRaw:
+        if i['devname'] == devName:
             return True
     return False
 
 
-def updateRssi(addrRaw, rssiRaw, dataJS):
+def updateRssi(devName, rssiRaw, dataJS):
     for i in dataJS:
-        if i["Addr"] == addrRaw:
+        if i["devname"] == devName:
             i["RSSI"] = rssiRaw
 
 
-def addDataToJSON(addrRaw, rssiRaw):
-    print(addrRaw)
-    _addrRaw = remove_control_chars(addrRaw)
+def addDataToJSON(devName, rssiRaw):
 
     with open("data_example.json", mode='r') as file:
         dataJS = json.load(file)
 
         # check if addr is already in dataJS. If not, add it
-        if not addrAlreadyAdded(addrRaw, dataJS):
+        if not addrAlreadyAdded(devName, dataJS):
             frame = {
-                "Addr": _addrRaw,
+                "devname": devName,
                 "RSSI": rssiRaw
                 # añadir aqui más parámetros (ToF, Microfono...)
             }
@@ -72,7 +64,7 @@ def addDataToJSON(addrRaw, rssiRaw):
 
         # if yes, update associated rssi
         else:
-            updateRssi(_addrRaw, rssiRaw, dataJS)
+            updateRssi(devName, rssiRaw, dataJS)
 
     with open("data_example.json", "w") as file:
         json.dump(dataJS, file, indent=4)
@@ -87,20 +79,20 @@ def main():
         json.dump(dataJS, file, indent=4)
     while True:
         # Obtenemos el valor de la direccion y el rssi del Serial Port
-        addrRaw = ser.readline()
+        devName = ser.readline()
         rssiRaw = ser.readline()
 
         # Eliminamos los datos inútiles
 
-        addrRaw = cleanAddr(addrRaw)
+        devName = cleanAddr(devName)
         rssiRaw = cleanRssi(rssiRaw)
         frame = {
-            'Addr': addrRaw,
+            'devname': devName,
             'RSSI': rssiRaw
         }
 
         # Obtenemos el valor de la RSSI que hay en el Serial Port
-        addDataToJSON(addrRaw, rssiRaw)
+        addDataToJSON(devName, rssiRaw)
 
     ser.close()
 
