@@ -24,39 +24,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="866a644b-5f24-4aa8-b1eb-8a1ca2a7e05b" name="Default Changelist" comment="new version">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_volley_volley_1_1_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/finalapp/HttpsTrustManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/xml/network_security_config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Docker_Images/nodered_data/data/lib/flows/flows.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../Docker_Images/nodered_data/data/lib/flows/flows.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ScanRSSI.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../ScanRSSI.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/fileChanges/last-build.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/fileContent/fileContent.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/resourceHashesCache.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/gc.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/classAnalysis.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/javaCompile.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/taskHistory.bin" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/finalapp/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/finalapp/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../data_example.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../data_example.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -67,7 +42,7 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="ZY323NNPHL" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="ZY3265LLHZ" />
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
@@ -83,42 +58,15 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/finalapp/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="268">
-              <caret line="121" column="42" lean-forward="true" selection-start-line="121" selection-start-column="42" selection-end-line="121" selection-end-column="42" />
+            <state relative-caret-position="-284">
+              <caret line="366" lean-forward="true" selection-start-line="366" selection-end-line="366" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#8539#8910#0" expanded="true" />
-                <element signature="e#8909#8910#0" expanded="true" />
-                <element signature="e#9002#9185#0" expanded="true" />
-                <element signature="e#9184#9185#0" expanded="true" />
+                <element signature="e#10117#10488#0" expanded="true" />
+                <element signature="e#10487#10488#0" expanded="true" />
+                <element signature="e#10580#10763#0" expanded="true" />
+                <element signature="e#10762#10763#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file:///programs/Sdk/sources/android-29/java/io/File.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="667">
-              <caret line="804" column="19" selection-start-line="804" selection-start-column="19" selection-end-line="804" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file:///programs/Sdk/sources/android-29/android/bluetooth/le/BluetoothLeAdvertiser.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="606">
-              <caret line="353" selection-start-line="353" selection-end-line="353" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file:///programs/Sdk/sources/android-29/java/util/function/IntPredicate.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="49" column="12" selection-start-line="49" selection-start-column="12" selection-end-line="49" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -185,7 +133,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -211,14 +160,19 @@
             </path>
             <path>
               <item name="sound-ranger-master" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+              <item name="raw" type="ddeffd01:AndroidResFolderTypeNode" />
+            </path>
+            <path>
+              <item name="sound-ranger-master" type="1abcf292:AndroidViewProjectNode" />
               <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -226,8 +180,8 @@
     <property name="DEBUGGABLE_DEVICE" value="motorola-moto_g_7__power-ZY323NNPHL" />
     <property name="DEBUGGABLE_PROCESS" value="com.example.finalapp" />
     <property name="DEBUGGER_ID" value="Auto" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="ZY323NNPHL" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-02-21T10:26:56.534Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="ZY3265LLHZ" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-02-24T08:07:27.011Z" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SHOW_ALL_PROCESSES" value="false" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
@@ -409,10 +363,11 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1366" y="-2" width="1920" height="1082" extended-state="6" />
+    <frame x="1920" y="-2" width="1600" height="902" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.55299056" visible="true" weight="0.16221985" />
-      <window_info id="Captures" order="1" sideWeight="0.44700944" side_tool="true" visible="true" weight="0.16221985" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.5508346" visible="true" weight="0.16216215" />
+      <window_info id="Captures" order="1" sideWeight="0.4491654" side_tool="true" visible="true" weight="0.16216215" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" sideWeight="0.37638375" side_tool="true" weight="0.16823465" />
       <window_info id="Build Variants" order="4" side_tool="true" />
@@ -421,14 +376,14 @@
       <window_info id="simpleUML" order="7" weight="0.21093248" />
       <window_info id="Resources Explorer" order="8" weight="0.32947233" />
       <window_info id="Capture Tool" order="9" />
-      <window_info anchor="bottom" id="Run" order="0" sideWeight="0.4997233" weight="0.34942287" />
+      <window_info anchor="bottom" id="Run" order="0" sideWeight="0.4997233" weight="0.22121604" />
       <window_info anchor="bottom" id="TODO" order="1" weight="0.32844576" />
       <window_info anchor="bottom" id="Debug" order="2" sideWeight="0.4964029" weight="0.44071352" />
       <window_info anchor="bottom" x="395" y="154" width="610" height="926" id="Logcat" order="3" sideWeight="0.6458218" weight="0.44596013" />
       <window_info anchor="bottom" id="Terminal" order="4" sideWeight="0.4991699" weight="0.32738718" />
       <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.3541782" side_tool="true" weight="0.33801296" />
       <window_info anchor="bottom" id="Version Control" order="6" weight="0.32974428" />
-      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.4986165" weight="0.3578174" />
+      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.4986165" visible="true" weight="0.14747736" />
       <window_info anchor="bottom" id="Android Profiler" order="8" weight="0.32974428" />
       <window_info anchor="bottom" id="Find" order="9" weight="0.52859133" />
       <window_info anchor="bottom" id="Sequence" order="10" weight="0.42222223" />
@@ -454,18 +409,6 @@
           <line>154</line>
           <properties class="com.jjoe64.graphview.series.BarGraphSeries" method="draw" />
           <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/finalapp/MainActivity.java</url>
-          <line>259</line>
-          <properties />
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/finalapp/MainActivity.java</url>
-          <line>167</line>
-          <properties />
-          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -560,12 +503,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="34" selection-start-line="6" selection-start-column="34" selection-end-line="6" selection-end-column="34" />
         </state>
       </provider>
+      <provider selected="true" editor-type-id="android-designer2" />
     </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.volley/volley/1.1.0/65ed7df4af0e83a626f383ff49c3403342659aa9/volley-1.1.0-sources.jar!/com/android/volley/toolbox/StringRequest.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -582,12 +525,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/xml/network_security_config.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
           <caret line="4" column="54" selection-start-line="4" selection-start-column="54" selection-end-line="4" selection-end-column="54" />
         </state>
       </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/finalapp/HttpsTrustManager.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -633,20 +576,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///programs/Sdk/sources/android-29/java/util/function/IntPredicate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="49" column="12" selection-start-line="49" selection-start-column="12" selection-end-line="49" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///programs/Sdk/sources/android-29/android/bluetooth/le/BluetoothLeAdvertiser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="606">
-          <caret line="353" selection-start-line="353" selection-end-line="353" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///programs/Sdk/sources/android-29/android/bluetooth/le/AdvertiseData.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="548">
@@ -665,24 +594,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/finalapp/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-284">
+          <caret line="366" lean-forward="true" selection-start-line="366" selection-end-line="366" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#10117#10488#0" expanded="true" />
+            <element signature="e#10487#10488#0" expanded="true" />
+            <element signature="e#10580#10763#0" expanded="true" />
+            <element signature="e#10762#10763#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file:///programs/Sdk/sources/android-29/java/io/File.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="667">
+        <state relative-caret-position="11445">
           <caret line="804" column="19" selection-start-line="804" selection-start-column="19" selection-end-line="804" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/finalapp/MainActivity.java">
+    <entry file="file:///programs/Sdk/sources/android-29/android/bluetooth/le/BluetoothLeAdvertiser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="121" column="42" lean-forward="true" selection-start-line="121" selection-start-column="42" selection-end-line="121" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#8539#8910#0" expanded="true" />
-            <element signature="e#8909#8910#0" expanded="true" />
-            <element signature="e#9002#9185#0" expanded="true" />
-            <element signature="e#9184#9185#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="4890">
+          <caret line="353" selection-start-line="353" selection-end-line="353" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///programs/Sdk/sources/android-29/java/util/function/IntPredicate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="49" column="12" selection-start-line="49" selection-start-column="12" selection-end-line="49" selection-end-column="12" />
         </state>
       </provider>
     </entry>

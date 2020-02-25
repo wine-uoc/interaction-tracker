@@ -23,7 +23,6 @@ import android.media.MediaRecorder;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.ParcelUuid;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -38,33 +37,23 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
-import java.util.UUID;
-
-import static java.net.Proxy.Type.HTTP;
 
 
 public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCompletionListener {
 
+    private static String DEVNAME = null;
     //xml init
     private TextView detect;
     private Button play;
@@ -115,11 +104,11 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
         BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         String devname = null;
         try {
-            devname = getAdvertisingDeviceName();
+            DEVNAME = getAdvertisingDeviceName();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        bluetoothAdapter.setName(devname);
+        bluetoothAdapter.setName(DEVNAME);
         BluetoothLeAdvertiser advertiser = bluetoothAdapter.getBluetoothLeAdvertiser();
 
         AdvertisingSetParameters parameters = (new AdvertisingSetParameters.Builder())
@@ -214,13 +203,13 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
         return null;
     }
 
-    public void sendDataToNodeRED () throws IOException {
+    public void sendDataToNodeRED(final String s) throws IOException {
 
         HttpsTrustManager.allowAllSSL();
         RequestQueue MyRequestQueue;
         MyRequestQueue = Volley.newRequestQueue(this);
 
-        String url = "http://192.168.1.130:1880/query";
+        String url = "http://192.168.0.120:1880/query";
         StringRequest MyStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -234,8 +223,8 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
         }){
                protected Map<String, String> getParams(){
                 Map<String, String> MyData = new HashMap<>();
-                MyData.put("devname", "motorolaX"); //Add the data you'd like to send to the server.
-                MyData.put("ustime", "345");
+                MyData.put("devname", DEVNAME); //Add the data you'd like to send to the server.
+                MyData.put("ustime", s);
                 return MyData;
                }
         };
@@ -256,11 +245,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
         }
 
         setBleAdvertising();
-        try {
-            sendDataToNodeRED();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
         detect = findViewById(R.id.detection);
         problem = findViewById(R.id.problem);
         play = findViewById(R.id.play);
@@ -335,7 +320,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
 
         while (Play) { //this device sent the 19 khz signal
 
-            while (!detection20(frequency2, a, boucle)) {
+            while (!detection20(frequency2, a)) {
                 //ES LA RESPUESTA DEL RECEPTOR. HAY QUE MOSTRAR EL TIEMPO.
                 setUpdatedFFT();
             }
@@ -349,10 +334,15 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
             problem.setText("");
             problem.setText("RECEIVED 20 KHZ SIGNAL");
             Log.d("tiempoTotal", Long.toString(timer));
+            try {
+                sendDataToNodeRED(String.valueOf(timer));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             time.setText("time: " + timer + "ms");
 
-            while (detection19(frequency1, a, boucle)) {
-                //ES LA RESPUESTA DEL RECEPTOR. HAY QUE MOSTRAR EL TIEMPO.
+            while (detection19(frequency1, a)) {
+
                 playAudio();
                 a = new FFT(1024, RECORDER_SAMPLERATE);
                 a.noAverages();
@@ -375,8 +365,8 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
 
         setUpdatedFFT();
 
-        while (!detection19(frequency1, a , boucle) && !Play) {
-            //ES LA PREGUNTA DEL EMISOR. HAY QUE RESPONDERLE CON 22KHZ
+        while (!detection19(frequency1, a) && !Play) {
+            //ES LA PREGUNTA DEL EMISOR. HAY QUE RESPONDERLE CON 20KHZ
            setUpdatedFFT();
         }
 
@@ -392,8 +382,8 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
             problem.setText("SENT 20 KHZ SIGNAL");
             play20();
 
-            while (detection20(frequency2, a, boucle)) {
-                //ES LA PREGUNTA DEL EMISOR. HAY QUE RESPONDERLE CON 22KHZ
+            while (detection20(frequency2, a)) {
+
                setUpdatedFFT();
             }
         }
@@ -401,7 +391,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
 
     }
 
-    private boolean detection19(int frequency, FFT a, int boucle) {
+    private boolean detection19(int frequency, FFT a) {
 
         int aff = Math.round(a.getFreq(frequency));
         if (aff >= 100000) {
@@ -411,7 +401,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
         }
     }
 
-    private boolean detection20(int frequency, FFT a, int boucle) {
+    private boolean detection20(int frequency, FFT a) {
 
         int aff = Math.round(a.getFreq(frequency));
         if (aff >= 70000) {
