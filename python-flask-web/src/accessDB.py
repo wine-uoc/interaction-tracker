@@ -40,13 +40,13 @@ class DB:
         self.result = dict()
 
         self.cur.execute(
-            "SELECT rssi FROM data WHERE devname='" + devname + "'AND launchpadId='" + self.lId_1 + "' ORDER BY id DESC LIMIT 10")
+            "SELECT rssi FROM data WHERE devname='" + devname + "'AND launchpadId='" + self.lId_1 + "' ORDER BY id DESC LIMIT 30")
         self.result[self.lId_1] = self.cur.fetchall()
         self.cur.execute(
-            "SELECT rssi FROM data WHERE devname='" + devname + "'AND launchpadId='" + self.lId_2 + "' ORDER BY id DESC LIMIT 10")
+            "SELECT rssi FROM data WHERE devname='" + devname + "'AND launchpadId='" + self.lId_2 + "' ORDER BY id DESC LIMIT 30")
         self.result[self.lId_2] = self.cur.fetchall()
         self.cur.execute(
-            "SELECT rssi FROM data WHERE devname='" + devname + "'AND launchpadId='" + self.lId_3 + "' ORDER BY id DESC LIMIT 10")
+            "SELECT rssi FROM data WHERE devname='" + devname + "'AND launchpadId='" + self.lId_3 + "' ORDER BY id DESC LIMIT 30")
         self.result[self.lId_3] = self.cur.fetchall()
         return self.result
 
