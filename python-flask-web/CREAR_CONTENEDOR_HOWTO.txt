@@ -1,0 +1,4 @@
+ejecutar los siguientes comandos en MODO PRIVILEGIADO
+
+docker build -t flaskapp .        ### CREA LA IMAGEN
+docker run -it -p 7000:4000 flaskapp

@@ -1,0 +1,7 @@
+<!DOCTYPE html>
+<html>
+<label for="name">567999333479218.0 </label><br>
+<label for="name">0.3443154587924974</label><br>
+<label for="name">154571.86066083345 </label><br>
+<input type="submit" id="update" name="update" value="Actualizar" />
+</html>

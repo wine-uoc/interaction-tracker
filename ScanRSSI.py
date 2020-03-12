@@ -8,39 +8,26 @@ import re
 import sys
 import glob
 import serial
+import socket
+import socket
+import fcntl
+import struct
+
+
+def get_ip_address(ifname):
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    return socket.inet_ntoa(fcntl.ioctl(
+        s.fileno(),
+        0x8915,  # SIOCGIFADDR
+        struct.pack('256s', bytes(ifname[:15],'utf-8'))
+    )[20:24])
+
 
 # Specify which serial ports are used by the launchpads
-SP_NAMES = ['ttyACM0', 'ttyACM2', 'ttyACM4']
+SP_NAMES = ['ttyACM0', 'ttyACM1', 'ttyACM4']
+IP_ADDR = get_ip_address('wlo1')
 launchpadsInfo = []
-""" Lists serial port names
-
-    :raises EnvironmentError:
-      On unsupported or unknown platforms
-    :returns:
-      A list of the serial ports available on the system
-"""
-
-
-def serial_ports():
-    if sys.platform.startswith('win'):
-        ports = ['COM%s' % (i + 1) for i in range(256)]
-    elif sys.platform.startswith('linux') or sys.platform.startswith('cygwin'):
-        # this excludes your current terminal "/dev/tty"
-        ports = glob.glob('/dev/tty[A-Za-z]*')
-    elif sys.platform.startswith('darwin'):
-        ports = glob.glob('/dev/tty.*')
-    else:
-        raise EnvironmentError('Unsupported platform')
-
-    result = []
-    for port in ports:
-        try:
-            s = serial.Serial(port)
-            s.close()
-            result.append(port)
-        except (OSError, serial.SerialException):
-            pass
-    return result
+TIMER = 2.0
 
 
 # initialize data structures to store data related to each launchpad
@@ -65,15 +52,14 @@ def sendToNodeRed():
         with open(launchpadsInfo[i]['json_filename'], "r") as file:
             dataJS = json.load(file)
             for obj in dataJS:
-                t = req.post("http://192.168.0.120:1880/query", data=obj)
+                t = req.post("http://"+IP_ADDR+":1880/query", data=obj)
         i += 1
-    threading.Timer(5.0, sendToNodeRed).start()
+    threading.Timer(TIMER, sendToNodeRed).start()
 
 
 def cleanAddr(addr):
     addr = str(addr).rpartition('TARGETDEV-')[1]+str(addr).rpartition('TARGETDEV-')[2]
     addr = addr[:len(addr) - 3]
-    print(addr)
     return addr
 
 
@@ -81,6 +67,11 @@ def cleanRssi(rssi):
     rssi = str(rssi).rpartition('2K')[2]
     rssi = rssi[:len(rssi) - 3]
     return rssi
+
+def cleanLaunchpadId(lp_id):
+    lp_id = str(lp_id).rpartition('2K')[2]
+    lp_id = lp_id[:len(lp_id) - 3]
+    return lp_id
 
 
 # checks if addrRaw is already in dataJS.
@@ -97,14 +88,14 @@ def updateRssi(devName, rssiRaw, dataJS):
             i["RSSI"] = rssiRaw
 
 
-def addDataToJSON(devName, rssiRaw, lp_idx):
+def addDataToJSON(launchpadId, devName, rssiRaw, lp_idx):
     with open(launchpadsInfo[lp_idx]['json_filename'], mode='r') as file:
         dataJS = json.load(file)
 
         # check if addr is already in dataJS. If not, add it
         if not addrAlreadyAdded(devName, dataJS):
             frame = {
-                "launchpadId": launchpadsInfo[lp_idx]['sp_name'],
+                "launchpadId": launchpadId,
                 "devname": devName,
                 "RSSI": rssiRaw
                 # añadir aqui más parámetros (ToF, Microfono...)
@@ -120,6 +111,34 @@ def addDataToJSON(devName, rssiRaw, lp_idx):
 
     print(dataJS)
 
+def readingLaunchpadData():
+
+    # LOOP READING RSSI OF LAUNCHPADS' DETECTED DEVICES AND PREPARING TO SEND THEM TO NODERED
+    i = 0
+    while i < len(SP_NAMES):
+        # open serial port
+        ser = serial.Serial('/dev/' + launchpadsInfo[i]['sp_name'], 115200)
+
+        # get launchpadId, devName and RSSI from serial port
+        launchpadId = ser.readline()
+        devName = ser.readline()
+        rssiRaw = ser.readline()
+
+        if (len(devName) > 11):  # lectura valida
+
+            # clean data from serial port
+            launchpadId = cleanLaunchpadId(launchpadId)
+            devName = cleanAddr(devName)
+            rssiRaw = cleanRssi(rssiRaw)
+
+            if "TARGETDEV-" in devName:  # if devName is clean and it's logical
+                # add read data to JSON
+
+                addDataToJSON(launchpadId, devName, rssiRaw, i)
+
+        # close serial port
+        ser.close()
+        i += 1
 
 def main():
     # initialize DS's
@@ -127,31 +146,15 @@ def main():
     initialize_DS()
 
     # set a timer for sending data to NodeRED periodically
-    threading.Timer(5.0, sendToNodeRed).start()
+    threading.Timer(TIMER, sendToNodeRed).start()
 
     while True:
-        i = 0
-        while i < len(SP_NAMES):
-            # open serial port
-            ser = serial.Serial('/dev/' + launchpadsInfo[i]['sp_name'], 115200)
+        # every TIMER secs, read data from Launchpads is sent to NodeRED
+        readingLaunchpadData()
+        time.sleep(0.5)
 
-            # get devName and rssi from serial port
-            devName = ser.readline()
-            rssiRaw = ser.readline()
 
-            if (len(devName) > 11): #lectura valida
 
-                # clean data from serial port
-                devName = cleanAddr(devName)
-                rssiRaw = cleanRssi(rssiRaw)
-
-                if "TARGETDEV-" in devName: #if devName is clean and it's logical
-                    # add read data to JSON
-                    addDataToJSON(devName, rssiRaw, i)
-
-            # close serial port
-            ser.close()
-            i += 1
 
 
 if __name__ == '__main__':

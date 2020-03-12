@@ -114,11 +114,11 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
         AdvertisingSetParameters parameters = (new AdvertisingSetParameters.Builder())
                 .setLegacyMode(true) // True by default, but set here as a reminder.
                 .setConnectable(false)
-                .setInterval(AdvertisingSetParameters.INTERVAL_HIGH)
-                .setTxPowerLevel(AdvertisingSetParameters.TX_POWER_MEDIUM)
+                .setInterval(AdvertisingSetParameters.INTERVAL_LOW)
+                .setTxPowerLevel(AdvertisingSetParameters.TX_POWER_HIGH)
                 .build();
 
-        AdvertiseData data = (new AdvertiseData.Builder()).setIncludeDeviceName(true).build();
+        AdvertiseData data = (new AdvertiseData.Builder()).setIncludeDeviceName(true).setIncludeTxPowerLevel(true).build();
 
         AdvertisingSetCallback callback = new AdvertisingSetCallback() {
             @Override

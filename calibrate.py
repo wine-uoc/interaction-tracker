@@ -1,62 +1,75 @@
 import serial
 import json
+import time
+import os
 
 # CONSTANTES
-TARGET_ADDR = '0x5C45F7F6E79C' #DIRECCION DEL DISPOSITIVO QUE QUEREMOS CALIBRAR
-NUM_SAMPLES = 50 # numero de muestras
-DIST = 4 # en metros
+NUM_SAMPLES = 20 # numero de muestras
+DIST_INI = 1 # en metros
+DIST_FIN = 10 # en metros
 
-ser = serial.Serial('COM11', 115200)  # open serial port
 
-def cleanAddr (addr) :
-    addr = str(addr).rpartition('2K')[2]
-    addr = addr[:len(addr) - 3]
-    return addr
+ser = serial.Serial('/dev/ttyACM0', 115200)  # open serial port
 
-def cleanRssi (rssi) :
+def cleanAddr(devName):
+    devName = str(devName).rpartition('TARGETDEV-')[1]+str(devName).rpartition('TARGETDEV-')[2]
+    devName = devName[:len(devName) - 3]
+    return devName
+
+
+def cleanRssi(rssi):
     rssi = str(rssi).rpartition('2K')[2]
     rssi = rssi[:len(rssi) - 3]
     return rssi
 
-
 def main():
-    dataJS = []
+    duration = 0.15  # seconds
+    freq_ini = 750  # Hz
+    freq_fin = 440
 
-    try:
+    j = DIST_INI
+    while (j <= DIST_FIN):
+        dataJS = []
+        try:
+            with open("calibrationFiles/calib_"+str(j)+"_.json", "r") as file:
+                dataJS = json.load(file)
+        except FileNotFoundError:
+            with open("calibrationFiles/calib_"+str(j)+"_.json", "w") as file:
+                json.dump(dataJS, file, indent=4)
 
-        with open("calib_data_"+str(DIST)+".json", "r") as file:
-            dataJS = json.load(file)
+        i = 0
+        os.system('play -nq -t alsa synth {} sine {}'.format(duration, freq_ini))
+        while i < NUM_SAMPLES:
+            # Obtenemos el valor de la direccion y el rssi del Serial Port
+            ak = ser.readline()
+            devName = ser.readline()
+            rssiRaw = ser.readline()
 
-    except FileNotFoundError:
+            # Eliminamos los datos inútiles
+            if (len(devName) > 11):  # lectura valida
 
-        with open("calib_data_"+str(DIST)+".json", "w") as file:
+                # clean data from serial port
+                devName = cleanAddr(devName)
+                rssiRaw = cleanRssi(rssiRaw)
+
+                if "TARGETDEV-" in devName:  # if devName is clean and it's logical
+                    # add read data to JSON
+                    frame = {
+                        "devName": devName,
+                        "RSSI": rssiRaw
+                    }
+                    dataJS.append(frame)
+            time.sleep(0.5)
+            print('sample no. '+str(i))
+            i+=1
+
+        with open("calibrationFiles/calib_"+str(j)+"_.json", "w") as file:
             json.dump(dataJS, file, indent=4)
 
-    i = 0
+        j+=1
+        os.system('play -nq -t alsa synth {} sine {}'.format(duration, freq_fin))
+        time.sleep(5)
 
-    while i < NUM_SAMPLES:
-        # Obtenemos el valor de la direccion y el rssi del Serial Port
-        addrRaw = ser.readline()
-        rssiRaw = ser.readline()
-
-        # Eliminamos los datos inútiles
-
-        addrRaw = cleanAddr(addrRaw)
-        rssiRaw = cleanRssi(rssiRaw)
-
-        # Guardamos el valor de la RSSI  a la distancia escogida del dispositivo adecuado
-        if addrRaw == TARGET_ADDR:
-            frame = {
-                "RSSI": rssiRaw,
-                "dist": DIST
-            }
-            dataJS.append(frame)
-            i += 1
-            print(i)
-
-    with open("calib_data_"+str(DIST)+".json", "w") as file:
-        json.dump(dataJS, file, indent=4)
-    ser.close()
 
 main()
 

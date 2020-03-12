@@ -1,8 +1,7 @@
 CREATE TABLE data (
-  id VARCHAR(16) SERIAL NOT NULL,
+  id SERIAL PRIMARY KEY,
   launchpadId VARCHAR(32) NOT NULL,
   devName VARCHAR(128) NOT NULL,
   rssi VARCHAR(4),
-  ustime VARCHAR(16),
-  PRIMARY KEY(id)
+  ustime VARCHAR(16)
 );
