@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+</head>
+<body>
+
+    <img id="myImg" src="{{url_for('positions_img')}}" width="400" height="400"></img>
+    <script>
+        function doGetRequest(){
+            $.get("{{url_for('positions_img')}}",undefined,function(data){
+                document.getElementById("myImg").src = "{{url_for('positions_img')}}";
+            }).fail(function(){});
+        }
+        
+        var interval = setInterval(doGetRequest,1000);
+    </script>
+</body>
+
+</html>

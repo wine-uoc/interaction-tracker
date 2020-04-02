@@ -1,18 +1,10 @@
 
 El usuario ha de introducir:
     
-    2nd approach
-        -Posicion de los 3 anchors (x,y)
-        
-    1st & 2nd approach
-        -El nombre del dispositivo del que quiere saber la posición.
+     - identificador de cada anchor (escrito en cada uno en un adhesivo)
+     -Posicion de los 3 anchors (x,y)
+ 
     
 El sistema devolverá:
     
-    1st approach:
-
-    -La distancia estimada del dispositivo a cada uno de los 3 anchors (con error)
-    
-    2nd approach:
-    
-    -La posición en el plano del dispositivo (con error)
+    -La posición en el plano de los dispositivos moviles (con error) cada x segundos.

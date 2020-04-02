@@ -17,10 +17,10 @@ class DB:
 
         # get the 3 different launchpad identifiers in order to build the queries later
         self.cur.execute("SELECT DISTINCT launchpadId FROM data")
-        ids_list = self.cur.fetchall()
-        self.lId_1 = ids_list[0][0]
-        self.lId_2 = ids_list[1][0]
-        self.lId_3 = ids_list[2][0]
+        anchor_list_names = self.cur.fetchall()
+        self.anchor1_name = anchor_list_names[0][0]
+        self.anchor2_name = anchor_list_names[1][0]
+        self.anchor3_name = anchor_list_names[2][0]
 
         # get the devices names and store them in a list
 
@@ -30,29 +30,47 @@ class DB:
         for dev_tup in self.cur.fetchall():
             self.devicesList.append(dev_tup[0])
 
-    """
-        Get the last 30 RSSI measurements for each different launchpad
-        
-        :return Dictionary of three keys, one for each launchpad. Values for each key are lists with the respective query result  
-    """
 
-    def getDataOfDevice(self, devname):
-        self.result = dict()
+    def getRssiOfDeviceFromAnchor(self, devname, anchor_name, num_results=30):
+        """
+            gets a list of the last num_results RSSI measures of the device with devname
+            from anchor anchor_name. By default, num_results is 30.
+        """
+        result = dict()
+        self.cur.execute(
+            "SELECT rssi FROM data WHERE devname='" + devname + "'AND launchpadId='" + anchor_name + "' ORDER BY id DESC LIMIT "+str(num_results))
+        aux = self.cur.fetchall()
+        result[anchor_name] = list(map(lambda x: int(x[0]), aux))
+        return result[anchor_name]
+
+    def getRssiOfDevice(self, devname, num_results=30):
+        """
+            gets a list of the last num_results RSSI measures of the device with devname
+            from all anchors. By default, num_results is 30.
+
+            returns a dictionary with 3 elements, one for each anchor, and every element has a list
+            of the last num_results RSSI values for the device devname.
+        """
+
+        result = dict()
 
         self.cur.execute(
-            "SELECT rssi FROM data WHERE devname='" + devname + "'AND launchpadId='" + self.lId_1 + "' ORDER BY id DESC LIMIT 30")
-        self.result[self.lId_1] = self.cur.fetchall()
+            "SELECT rssi FROM data WHERE devname='" + devname + "'AND launchpadId='" + self.anchor1_name + "' ORDER BY id DESC LIMIT "+str(num_results))
+        aux = self.cur.fetchall()
+        result[self.anchor1_name] = list(map(lambda x: int(x[0]), aux))
         self.cur.execute(
-            "SELECT rssi FROM data WHERE devname='" + devname + "'AND launchpadId='" + self.lId_2 + "' ORDER BY id DESC LIMIT 30")
-        self.result[self.lId_2] = self.cur.fetchall()
+            "SELECT rssi FROM data WHERE devname='" + devname + "'AND launchpadId='" + self.anchor2_name + "' ORDER BY id DESC LIMIT "+str(num_results))
+        aux = self.cur.fetchall()
+        result[self.anchor2_name] = list(map(lambda x: int(x[0]), aux))
         self.cur.execute(
-            "SELECT rssi FROM data WHERE devname='" + devname + "'AND launchpadId='" + self.lId_3 + "' ORDER BY id DESC LIMIT 30")
-        self.result[self.lId_3] = self.cur.fetchall()
-        return self.result
+            "SELECT rssi FROM data WHERE devname='" + devname + "'AND launchpadId='" + self.anchor3_name + "' ORDER BY id DESC LIMIT "+str(num_results))
+        aux = self.cur.fetchall()
+        result[self.anchor3_name] = list(map(lambda x: int(x[0]), aux))
+        return result
 
     def getDevicesList(self):
         return self.devicesList
 
 
-    def getLaunchpadIds(self):
-        return [self.lId_1, self.lId_2, self.lId_3]
+    def getAnchorNames(self):
+        return [self.anchor1_name, self.anchor2_name, self.anchor3_name]
