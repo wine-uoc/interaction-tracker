@@ -16,15 +16,10 @@ class ModelController:
         self.devices = []
         self.db_manager = DB()
         self.model = RSSI_Distance_Model()
-
-        #if form_data['roomInfo']['X'] != "" and form_data['roomInfo']['Y'] != "":
         self.plot_settings = PlotSettings(float(form_data['roomInfo']['X_min']),
                                           float(form_data['roomInfo']['X_max']),
                                           float(form_data['roomInfo']['Y_min']),
                                           float(form_data['roomInfo']['Y_max']))
-       # else :
-       #     self.plot_settings = PlotSettings()
-
 
         # set Anchor data from form_data
         for anc in form_data['anchorsInfo']:
@@ -61,6 +56,12 @@ class ModelController:
         rssi_list = self.db_manager.getRssiOfDeviceFromAnchor(device_name, anchor_name, num_results=30)
         rssi_mean = np.mean(rssi_list)
         return self.model.calculateDistance(rssi_mean)
+
+    # returns the value of the RSSI from anchor anchor_name to device device_name
+    def getRssiFromAnchorOfDevice(self, anchor_name, device_name):
+        rssi_list = self.db_manager.getRssiOfDeviceFromAnchor(device_name, anchor_name, num_results=30)
+        rssi_mean = np.mean(rssi_list)
+        return int(rssi_mean)
 
      #returns a dictionary with 3 keys. Keys are anchor names and values are the distances from this anchor to the device.
     def getDistancesToDevice(self, devname):
@@ -109,6 +110,8 @@ class ModelController:
     def setShowCircles(self, show_circles):
         self.plot_settings.setShowCircles(show_circles)
 
+    def triggerDeleteFromDBoldestData(self):
+        self.db_manager.keepLastXResultsInDB(300)
 
 
 class RSSI_Distance_Model:
@@ -117,7 +120,7 @@ class RSSI_Distance_Model:
         self.n = 5#-0.827
 
     def get_A(self):
-        return self.a
+        return self.A
 
     def get_n(self):
         return self.n
@@ -130,6 +133,8 @@ class RSSI_Distance_Model:
 
     def calculateDistance(self, rssi_mean):
         return np.power(10,(rssi_mean - self.A)/(-10*self.n))
+
+
 
 
     #if position is computable, returns 2-tuple (X, Y) with the position
@@ -225,12 +230,13 @@ class Device:
 
 class PlotSettings:
 
-    def __init__(self, x_min=None, x_max = None, y_min=None, y_max=None, show_circles=False):
+    def __init__(self, x_min=None, x_max = None, y_min=None, y_max=None, show_circles=False, show_RSSI=False):
         self.x_min = x_min
         self.x_max = x_max
         self.y_min = y_min
         self.y_max = y_max
         self.show_circles = show_circles
+        self.show_RSSI = show_RSSI
 
     def getXMax(self):
         return self.x_max
@@ -249,3 +255,5 @@ class PlotSettings:
 
     def setShowCircles(self, show_circles):
         self.show_circles = show_circles
+
+

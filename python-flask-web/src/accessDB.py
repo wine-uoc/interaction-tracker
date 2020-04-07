@@ -74,3 +74,11 @@ class DB:
 
     def getAnchorNames(self):
         return [self.anchor1_name, self.anchor2_name, self.anchor3_name]
+
+    #se encarga de eliminar los resultados de la BD mas antiguos que ya no son utiles.
+    def keepLastXResultsInDB(self, keepNRows):
+        self.cur.execute("SELECT MAX(id) FROM data")
+        res = self.cur.fetchall()
+        res = res[0][0] - keepNRows
+        self.cur.execute("DELETE FROM data WHERE id < %(res)s", {'res':str(res)})
+        self.conn.commit()

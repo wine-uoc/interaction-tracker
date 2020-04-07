@@ -6,17 +6,41 @@
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 </head>
 <body>
+    <div>
+        <img id="myImg" style="float:left" src="{{url_for('positions_img')}}" width="400" height="400"></img>
+        
+    </div>
+    <div>
+        <form action="/positions_img" method="POST" id="form2">
 
-    <img id="myImg" src="{{url_for('positions_img')}}" width="400" height="400"></img>
+            {%if circles%}
+            <input type="checkbox"  name="plotopt" id="opt1" value="Circles" style="float:initial;margin-left:10pt;" checked/>
+            {%else%}
+            <input type="checkbox"  name="plotopt" id="opt1" value="Circles" style="float:initial;margin-left:10pt;"/>
+            {% endif %}
+            <label for="show-circles"> Mostrar circulos </label><br>
+
+            {%if rssi%}
+            <input type="checkbox"  name="plotopt" id="opt2" value="RSSI" style="float:initial;margin-left:10pt;" checked/>
+            {%else%}
+            <input type="checkbox"  name="plotopt" id="opt2" value="RSSI" style="float:initial;margin-left:10pt;"/>
+            {% endif %}
+            <label for="show-circles"> Mostrar RSSI </label><br><br>
+
+            <input type="submit" id="send-signup" name="signup" value="Actualizar" style="float:initial; margin-left: 10pt;" />
+        </form>
+    </div>
     <script>
+
         function doGetRequest(){
             $.get("{{url_for('positions_img')}}",undefined,function(data){
                 document.getElementById("myImg").src = "{{url_for('positions_img')}}";
-            }).fail(function(){});
+            }).fail(function(){ console.log("ha fallado :/")});
         }
-        
         var interval = setInterval(doGetRequest,1000);
     </script>
+    
+    
 </body>
 
 </html>

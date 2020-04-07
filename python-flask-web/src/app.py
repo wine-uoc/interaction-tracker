@@ -1,7 +1,10 @@
+import threading
+
 from flask import Flask, jsonify, render_template, request, redirect, url_for, make_response
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 import io
+import sched, time
 from models import ModelController
 from processData import ProcessData
 import matplotlib
@@ -11,7 +14,13 @@ COUNT = 0
 last_img = ''
 
 ctrl = ModelController()
+show_circles = False
+show_rssi = False
+s = sched.scheduler(time.time, time.sleep)
 
+def triggerDeleteOldestDBdata():
+    ctrl.triggerDeleteFromDBoldestData()
+    s.enter(5, 2, triggerDeleteOldestDBdata)
 
 def extract_form_data():
 
@@ -46,7 +55,7 @@ def extract_form_data():
 
 @app.route("/plot_positions", methods=["GET"])
 def plot_positions():
-    return render_template('/layouts/get_data.html')
+    return render_template('/layouts/get_data.html', circles=show_circles, rssi=show_rssi)
 
 #ESTA FUNCION DEVOLVERÁ UN JSON CON LAS POSICIONES DE LOS MOVILES.
 #ESTA FUNCION SERÁ LLAMADA POR EL JAVASCRIPT ENCASTADO EN EL HTML DE get_data.html
@@ -55,110 +64,140 @@ def get_devices_positions():
     result = pd.estimatePosition()
     return result
 
-'''
-#ESTA FUNCION DEVOLVERA UN JSON CON LAS POSICIONES DE LOS ANCHORS
-#ESTA FUNCION SERÁ LLAMADA POR EL JAVASCRIPT ENCASTADO EN EL HTML DE get_data.html
-
-def get_anchors_position():
-    with open("position.yml", 'r') as posfile:
-        anchor_pos = yaml.load(posfile)
-        result = dict()
-        name_anchor_1 = anchor_pos["anchorsInfo"]["anchor1"]["name"]
-        result[name_anchor_1] = dict()
-        result[name_anchor_1]['X'] = anchor_pos["anchorsInfo"]["anchor1"]['X']
-        result[name_anchor_1]['Y'] = anchor_pos["anchorsInfo"]["anchor1"]['Y']
-
-        name_anchor_2 = anchor_pos["anchorsInfo"]["anchor2"]["name"]
-        result[name_anchor_2] = dict()
-        result[name_anchor_2]['X'] = anchor_pos["anchorsInfo"]["anchor2"]['X']
-        result[name_anchor_2]['Y'] = anchor_pos["anchorsInfo"]["anchor2"]['Y']
-
-        name_anchor_3 = anchor_pos["anchorsInfo"]["anchor3"]["name"]
-        result[name_anchor_3] = dict()
-        result[name_anchor_3]['X'] = anchor_pos["anchorsInfo"]["anchor3"]['X']
-        result[name_anchor_3]['Y'] = anchor_pos["anchorsInfo"]["anchor3"]['Y']
-
-        return result
-
-'''
-
-@app.route("/positions_img", methods=["GET"])
+@app.route("/positions_img", methods=["GET", "POST"])
 def positions_img():
     global last_img
+    global show_circles
+    global show_rssi
+
+    if request.method == 'POST':
+        plotopts = request.form.getlist('plotopt')
+        print(plotopts)
+        if "Circles" in plotopts:
+            show_circles = True
+        else:
+            show_circles = False
+
+        if "RSSI" in plotopts:
+            show_rssi = True
+        else:
+            show_rssi = False
+
+        return redirect(url_for('plot_positions'))
+
     # creamos la imagen. Será un plot de matplotlib con los anchors y los devices. retorna un png
+    if request.method == 'GET':
+        dev_pos = ctrl.getDevicesPositions()
+        anchors_pos = ctrl.getAnchorsPositions()
+        print(dev_pos)
+        print()
+        print(anchors_pos)
 
-    dev_pos = ctrl.getDevicesPositions()
-    anchors_pos = ctrl.getAnchorsPositions()
-    print(dev_pos)
-    print()
-    print(anchors_pos)
+        #imprimimos los anchors (launchpads) primeramente.
 
-    #imprimimos los anchors (launchpads) primeramente.
+        x_anc = []
+        y_anc = []
+        anc_names = []
+        for a in anchors_pos:
+            x_anc.append(float(anchors_pos[a]['X']))
+            y_anc.append(float(anchors_pos[a]['Y']))
+            anc_names.append(a)
 
-    x = []
-    y = []
-    anc_names = []
-    for a in anchors_pos:
-        x.append(float(anchors_pos[a]['X']))
-        y.append(float(anchors_pos[a]['Y']))
-        anc_names.append(a)
+        fig, ax = plt.subplots()
+        plt.xlim((ctrl.getRoomXMin(), ctrl.getRoomXMax()))
+        plt.ylim((ctrl.getRoomYMin(), ctrl.getRoomYMax()))
+        color_array = ["green", "yellow", "purple"]
+        ax.scatter(x_anc,y_anc,c=color_array)
 
-    fig, ax = plt.subplots()
-    plt.xlim((ctrl.getRoomXMin(), ctrl.getRoomXMax()))
-    plt.ylim((ctrl.getRoomYMin(), ctrl.getRoomYMax()))
-    ax.scatter(x,y,c='r')
-
-    for i, txt in enumerate(anc_names):
-        ax.annotate(txt, (x[i],y[i]))
-
-    # imprimimos los devices (móviles) a continuación.
-
-    x = []
-    y = []
-    dev_names = []
-    try:
-        for d in dev_pos:
-            x.append(float(dev_pos[d]['X']))
-            y.append(float(dev_pos[d]['Y']))
-            dev_names.append(d)
+        for i, txt in enumerate(anc_names):
+            ax.text(x_anc[i],y_anc[i],txt, fontsize=14)
+           # ax.annotate(txt, (x_anc[i],y_anc[i]))
 
 
-        ax.scatter(x, y, c='b')
+        # imprimimos los devices (móviles) a continuación.
 
-        for i, txt in enumerate(dev_names):
-            ax.annotate(txt, (x[i], y[i]))
+        x_dev = []
+        y_dev = []
+        dev_names = []
+        try:
+            for d in dev_pos:
+                x_dev.append(float(dev_pos[d]['X']))
+                y_dev.append(float(dev_pos[d]['Y']))
+                dev_names.append(d)
 
-        ax.set(xlabel='distance (m)', ylabel='distance (m)',
-               title='Positions')
-        ax.grid()
 
-    except KeyError:
-        return last_img
+            ax.scatter(x_dev, y_dev, c='b')
+
+            for i, txt in enumerate(dev_names):
+                ax.text(x_dev[i], y_dev[i],txt,fontsize=14)
+                #ax.annotate(txt, (x_dev[i], y_dev[i]))
+
+            ax.set(xlabel='distance (m)', ylabel='distance (m)',
+                   title='Positions')
+            ax.grid()
+
+            # imprimimos los circulos de alcance de los anchors. Miramos si el usuario lo pide.
+            #DE MOMENTO SUPONEMOS QUE SOLO HAY 1 DEVICE. PARA MAS DE UNO, HABRÁ QUE DAR A ESCOGER AL USUARIO
+            #DE CUAL QUIERE VER LOS CIRCULOS Y LA RSSI.
+
+            if show_circles:  # usuario pide que se muestren los circulos
+                res = list(zip(x_anc, y_anc, anc_names))
+                i = 0
+                for x, y, name in res:
+                    ax.add_artist(plt.Circle((x, y), ctrl.getDistanceFromAnchorToDevice(name, dev_names[0]), color=color_array[i], alpha=0.25))
+                    i+=1
+
+            if show_rssi:
+
+                for devname in dev_names:
+                    for i, anc_name in enumerate(anc_names):
+                        rssi = ctrl.getRssiFromAnchorOfDevice(anc_name, devname)
+                        ax.text(x_anc[i], y_anc[i]-0.15, 'RSSI: '+str(rssi), weight="bold")
+                        #ax.annotate('RSSI: '+str(rssi), (x_anc[i], y_anc[i]-0.15))
+
+        except KeyError:
+            return last_img
 
 
-    #NO TOCAR A PARTIR DE AQUI!
-    canvas = FigureCanvas(fig)
-    plt.close(fig)
-    output = io.BytesIO()
-    canvas.print_png(output)
-    response = make_response(output.getvalue())
-    response.mimetype = 'image/png'
-    last_img = response
-    return response
+        #NO TOCAR A PARTIR DE AQUI!
+        canvas = FigureCanvas(fig)
+        plt.close(fig)
+        output = io.BytesIO()
+        canvas.print_png(output)
+        response = make_response(output.getvalue())
+        response.mimetype = 'image/png'
+        last_img = response
+        return response
 
 @app.route("/", methods=["GET"])
 def get_data_form():
     return render_template("/layouts/data_form.html")
+
+def setTriggerToDeleteDBdata():
+
+    s.enter(5, 1, triggerDeleteOldestDBdata)
+    s.run()
+
 
 
 @app.route("/", methods=["POST"])
 def post_data_form():
     ret = extract_form_data()
     ctrl.initialize(ret)
-    next = request.args.get('next', None)
+
     return redirect(url_for('plot_positions'))
 
 
-if __name__ == '__main__':
+def main():
+    t1 = threading.Thread(target=setTriggerToDeleteDBdata)
+    t1.daemon = True  # thread dies when main thread (only non-daemon thread) exits.
+    t1.start()
 
     app.run(host="0.0.0.0", port=4000, debug=True)
+
+
+    while True:
+        pass
+
+if __name__ == '__main__':
+    main()
