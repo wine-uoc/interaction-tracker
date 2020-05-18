@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 
 import serial, os
-from serial.serialutil import SerialException
 import json
 import requests as req
 import threading
@@ -25,28 +24,13 @@ def get_ip_address(ifname):
         struct.pack('256s', bytes(ifname[:15],'utf-8'))
     )[20:24])
 
+
 # Specify which serial ports are used by the launchpads
-SP_NAMES = []
+SP_NAMES = ['ttyACM0', 'ttyACM2', 'ttyACM4']
 IP_ADDR = get_ip_address('wlo1')
 launchpadsInfo = []
 SEND_TO_NODERED_INTERVAL = 0.1
 SERIAL_PORT_INTERVAL = 0.1
-
-def set_SerialPorts_ids():
-    global SP_NAMES
-    if len(os.listdir('serialPorts')) == 0: # custom serial ports no han sido creados aun.
-        dirlist = sorted(list(filter(lambda x: (x[len(x) - 1] == '0') and ("Texas_Instruments" in x), os.listdir("/dev/serial/by-id"))))
-        print(dirlist)
-
-        for i, port in enumerate(dirlist):
-            os.symlink("/dev/serial/by-id/" + port, "serialPorts/sp"+str(i))
-            SP_NAMES.append("sp"+str(i))
-
-    for sp in sorted(os.listdir('serialPorts')):
-        SP_NAMES.append(sp)
-
-
-
 
 def initialize_DS():
     i = 0
@@ -142,21 +126,12 @@ def readingLaunchpadData(port, baud, lp_idx):
 
     while True:
         # open serial port
-        ser = serial.Serial('serialPorts/' + port, baud)
+        ser = serial.Serial('/dev/' + port, baud)
 
         # get launchpadId, devName and RSSI from serial port
-        try:
-            launchpadId = ser.readline()
-        except SerialException:
-            pass
-        try:
-            devName = ser.readline()
-        except SerialException:
-            pass
-        try:
-            rssiRaw = ser.readline()
-        except SerialException:
-            pass
+        launchpadId = ser.readline()
+        devName = ser.readline()
+        rssiRaw = ser.readline()
 
 
         if (len(devName) > 11):  # lectura valida
@@ -175,16 +150,14 @@ def readingLaunchpadData(port, baud, lp_idx):
                 addDataToJSON(launchpadId, devName, rssiRaw, lp_idx)
 
         # close serial port
-        #ser.close()
+        ser.close()
         time.sleep(SERIAL_PORT_INTERVAL)
 
 
 def main():
     # initialize DS's
 
-    set_SerialPorts_ids()
     initialize_DS()
-    print(SP_NAMES)
     # Create three threads as follows
 
     try:

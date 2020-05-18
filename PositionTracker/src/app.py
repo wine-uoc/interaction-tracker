@@ -8,6 +8,7 @@ import sched, time
 from models import ModelController
 from processData import ProcessData
 import matplotlib
+
 matplotlib.use('Agg')
 app = Flask(__name__)
 COUNT = 0
@@ -18,12 +19,9 @@ show_circles = False
 show_rssi = False
 s = sched.scheduler(time.time, time.sleep)
 
-def triggerDeleteOldestDBdata():
-    ctrl.triggerDeleteFromDBoldestData()
-    s.enter(5, 2, triggerDeleteOldestDBdata)
+
 
 def extract_form_data():
-
     position_data = dict()
     position_data['anchorsInfo'] = dict()
     position_data['anchorsInfo']['anchor1'] = dict()
@@ -48,21 +46,21 @@ def extract_form_data():
     position_data['roomInfo']['Y_min'] = request.form['room-y-min']
     position_data['roomInfo']['Y_max'] = request.form['room-y-max']
 
-
     return position_data
-
 
 
 @app.route("/plot_positions", methods=["GET"])
 def plot_positions():
     return render_template('/layouts/get_data.html', circles=show_circles, rssi=show_rssi)
 
-#ESTA FUNCION DEVOLVERÁ UN JSON CON LAS POSICIONES DE LOS MOVILES.
-#ESTA FUNCION SERÁ LLAMADA POR EL JAVASCRIPT ENCASTADO EN EL HTML DE get_data.html
+
+# ESTA FUNCION DEVOLVERÁ UN JSON CON LAS POSICIONES DE LOS MOVILES.
+# ESTA FUNCION SERÁ LLAMADA POR EL JAVASCRIPT ENCASTADO EN EL HTML DE get_data.html
 def get_devices_positions():
     pd = ProcessData()
     result = pd.estimatePosition()
     return result
+
 
 @app.route("/positions_img", methods=["GET", "POST"])
 def positions_img():
@@ -91,9 +89,8 @@ def positions_img():
         anchors_pos = ctrl.getAnchorsPositions()
         print(dev_pos)
         print()
-        print(anchors_pos)
 
-        #imprimimos los anchors (launchpads) primeramente.
+        # imprimimos los anchors (launchpads) primeramente.
 
         x_anc = []
         y_anc = []
@@ -107,12 +104,11 @@ def positions_img():
         plt.xlim((ctrl.getRoomXMin(), ctrl.getRoomXMax()))
         plt.ylim((ctrl.getRoomYMin(), ctrl.getRoomYMax()))
         color_array = ["green", "yellow", "purple"]
-        ax.scatter(x_anc,y_anc,c=color_array)
+        ax.scatter(x_anc, y_anc, c=color_array)
 
         for i, txt in enumerate(anc_names):
-            ax.text(x_anc[i],y_anc[i],txt, fontsize=14)
-           # ax.annotate(txt, (x_anc[i],y_anc[i]))
-
+            ax.text(x_anc[i], y_anc[i], txt, fontsize=14)
+        # ax.annotate(txt, (x_anc[i],y_anc[i]))
 
         # imprimimos los devices (móviles) a continuación.
 
@@ -125,41 +121,41 @@ def positions_img():
                 y_dev.append(float(dev_pos[d]['Y']))
                 dev_names.append(d)
 
-
             ax.scatter(x_dev, y_dev, c='b')
 
             for i, txt in enumerate(dev_names):
-                ax.text(x_dev[i], y_dev[i],txt,fontsize=14)
-                #ax.annotate(txt, (x_dev[i], y_dev[i]))
+                ax.text(x_dev[i], y_dev[i], txt, fontsize=14)
+                # ax.annotate(txt, (x_dev[i], y_dev[i]))
 
             ax.set(xlabel='distance (m)', ylabel='distance (m)',
                    title='Positions')
             ax.grid()
 
             # imprimimos los circulos de alcance de los anchors. Miramos si el usuario lo pide.
-            #DE MOMENTO SUPONEMOS QUE SOLO HAY 1 DEVICE. PARA MAS DE UNO, HABRÁ QUE DAR A ESCOGER AL USUARIO
-            #DE CUAL QUIERE VER LOS CIRCULOS Y LA RSSI.
+            # DE MOMENTO SUPONEMOS QUE SOLO HAY 1 DEVICE. PARA MAS DE UNO, HABRÁ QUE DAR A ESCOGER AL USUARIO
+            # DE CUAL QUIERE VER LOS CIRCULOS Y LA RSSI.
 
             if show_circles:  # usuario pide que se muestren los circulos
                 res = list(zip(x_anc, y_anc, anc_names))
                 i = 0
                 for x, y, name in res:
-                    ax.add_artist(plt.Circle((x, y), ctrl.getDistanceFromAnchorToDevice(name, dev_names[0]), color=color_array[i], alpha=0.25))
-                    i+=1
+                    ax.add_artist(
+                        plt.Circle((x, y), ctrl.getDistanceFromAnchorToDevice(name, dev_names[0]), color=color_array[i],
+                                   alpha=0.25))
+                    i += 1
 
             if show_rssi:
 
                 for devname in dev_names:
                     for i, anc_name in enumerate(anc_names):
                         rssi = ctrl.getRssiFromAnchorOfDevice(anc_name, devname)
-                        ax.text(x_anc[i], y_anc[i]-0.15, 'RSSI: '+str(rssi), weight="bold")
-                        #ax.annotate('RSSI: '+str(rssi), (x_anc[i], y_anc[i]-0.15))
+                        ax.text(x_anc[i], y_anc[i] - 0.15, 'RSSI: ' + str(rssi), weight="bold")
+
 
         except KeyError:
             return last_img
 
-
-        #NO TOCAR A PARTIR DE AQUI!
+        # NO TOCAR A PARTIR DE AQUI!
         canvas = FigureCanvas(fig)
         plt.close(fig)
         output = io.BytesIO()
@@ -169,15 +165,10 @@ def positions_img():
         last_img = response
         return response
 
+
 @app.route("/", methods=["GET"])
 def get_data_form():
     return render_template("/layouts/data_form.html")
-
-def setTriggerToDeleteDBdata():
-
-    s.enter(5, 1, triggerDeleteOldestDBdata)
-    s.run()
-
 
 
 @app.route("/", methods=["POST"])
@@ -188,16 +179,29 @@ def post_data_form():
     return redirect(url_for('plot_positions'))
 
 
+###
+### END FLASK APPLICATION
+###
+
+def triggerDeleteOldestDBdata():
+    ctrl.triggerDeleteFromDBoldestData()
+    s.enter(5, 2, triggerDeleteOldestDBdata)
+
+def ThreadDeleteDBdata():
+    s.enter(5, 1, triggerDeleteOldestDBdata)
+    s.run()
+
+
 def main():
-    t1 = threading.Thread(target=setTriggerToDeleteDBdata)
+    t1 = threading.Thread(target=ThreadDeleteDBdata)
     t1.daemon = True  # thread dies when main thread (only non-daemon thread) exits.
     t1.start()
 
-    app.run(host="0.0.0.0", port=4000, debug=True)
-
+    app.run(host="0.0.0.0", port=5000, debug=True)
 
     while True:
         pass
+
 
 if __name__ == '__main__':
     main()

@@ -30,7 +30,6 @@ class DB:
         for dev_tup in self.cur.fetchall():
             self.devicesList.append(dev_tup[0])
 
-
     def getRssiOfDeviceFromAnchor(self, devname, anchor_name, num_results=30):
         """
             gets a list of the last num_results RSSI measures of the device with devname
@@ -38,7 +37,8 @@ class DB:
         """
         result = dict()
         self.cur.execute(
-            "SELECT rssi FROM data WHERE devname='" + devname + "'AND launchpadId='" + anchor_name + "' ORDER BY id DESC LIMIT "+str(num_results))
+            "SELECT rssi FROM data WHERE devname='" + devname + "'AND launchpadId='" + anchor_name + "' ORDER BY id DESC LIMIT " + str(
+                num_results))
         aux = self.cur.fetchall()
         result[anchor_name] = list(map(lambda x: int(x[0]), aux))
         return result[anchor_name]
@@ -55,15 +55,18 @@ class DB:
         result = dict()
 
         self.cur.execute(
-            "SELECT rssi FROM data WHERE devname='" + devname + "'AND launchpadId='" + self.anchor1_name + "' ORDER BY id DESC LIMIT "+str(num_results))
+            "SELECT rssi FROM data WHERE devname='" + devname + "'AND launchpadId='" + self.anchor1_name + "' ORDER BY id DESC LIMIT " + str(
+                num_results))
         aux = self.cur.fetchall()
         result[self.anchor1_name] = list(map(lambda x: int(x[0]), aux))
         self.cur.execute(
-            "SELECT rssi FROM data WHERE devname='" + devname + "'AND launchpadId='" + self.anchor2_name + "' ORDER BY id DESC LIMIT "+str(num_results))
+            "SELECT rssi FROM data WHERE devname='" + devname + "'AND launchpadId='" + self.anchor2_name + "' ORDER BY id DESC LIMIT " + str(
+                num_results))
         aux = self.cur.fetchall()
         result[self.anchor2_name] = list(map(lambda x: int(x[0]), aux))
         self.cur.execute(
-            "SELECT rssi FROM data WHERE devname='" + devname + "'AND launchpadId='" + self.anchor3_name + "' ORDER BY id DESC LIMIT "+str(num_results))
+            "SELECT rssi FROM data WHERE devname='" + devname + "'AND launchpadId='" + self.anchor3_name + "' ORDER BY id DESC LIMIT " + str(
+                num_results))
         aux = self.cur.fetchall()
         result[self.anchor3_name] = list(map(lambda x: int(x[0]), aux))
         return result
@@ -71,14 +74,31 @@ class DB:
     def getDevicesList(self):
         return self.devicesList
 
-
     def getAnchorNames(self):
         return [self.anchor1_name, self.anchor2_name, self.anchor3_name]
 
-    #se encarga de eliminar los resultados de la BD mas antiguos que ya no son utiles.
+    # se encarga de eliminar los resultados de la BD mas antiguos que ya no son utiles. Tanto de la tabla data como de la tabla sensorData.
     def keepLastXResultsInDB(self, keepNRows):
+        # Tabla data
         self.cur.execute("SELECT MAX(id) FROM data")
         res = self.cur.fetchall()
         res = res[0][0] - keepNRows
-        self.cur.execute("DELETE FROM data WHERE id < %(res)s", {'res':str(res)})
+        self.cur.execute("DELETE FROM data WHERE id < %(res)s", {'res': str(res)})
         self.conn.commit()
+
+        # Tabla sensorData
+        self.cur.execute("SELECT MAX(id) FROM sensordata")
+        res = self.cur.fetchall()
+        res = res[0][0] - keepNRows
+        self.cur.execute("DELETE FROM sensordata WHERE id < %(res)s", {'res': str(res)})
+        self.conn.commit()
+
+    def getAccelerationValues(self, devname, num_results):
+        self.cur.execute(
+            "SELECT x_acc, y_acc FROM sensordata WHERE devname='" + devname + "' ORDER BY id DESC LIMIT 1")
+        data_raw = self.cur.fetchall()
+
+        acc_x = list(map(lambda x: float(x[0]), data_raw))
+        acc_y = list(map(lambda x: float(x[1]), data_raw))
+
+        return acc_x[0], acc_y[0]

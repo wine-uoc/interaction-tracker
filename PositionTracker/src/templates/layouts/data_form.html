@@ -1,11 +1,17 @@
 <!doctype html>
-Introduce los identificadores de cada anchor (4 caracteres), sus posiciones en el plano, y el tamaño de la habitacion en METROS:<br><br>
+
 <html>
     <head>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="/static/css/style.css">
         <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
         <script src="/static/js/script.js"></script>
+
+        <p>Type in the following form:</p>
+        <p style = "text-indent : 2em;">-anchors Id. number (4 alphanumeric characters).</p>
+        <p style = "text-indent : 2em;">-their positions on the 2D plane (X, Y).</p>
+        <p style = "text-indent : 2em;">-the room size (height, width).</p>
+        <br>
     </head>
     <body>
         <form action="" method="POST">
@@ -43,7 +49,7 @@ Introduce los identificadores de cada anchor (4 caracteres), sus posiciones en e
             
             
             
-           <b> Tamaño habitacion </b><br><br>
+           <b> Room size </b><br><br>
             
             <label for="name">X min: </label>
             <input type="number" step=".01" id="room-x-min" name="room-x-min" /><br>
@@ -58,7 +64,7 @@ Introduce los identificadores de cada anchor (4 caracteres), sus posiciones en e
             <input type="number" step=".01" id="room-y-max" name="room-y-max" /><br><br>
             
             
-            <input type="submit" id="send-signup" name="signup" value="Enviar" />
+            <input type="submit" id="send-signup" name="signup" value="Done" />
             
         </form>
     </body>

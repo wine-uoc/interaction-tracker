@@ -44,21 +44,24 @@ def loadData():
             row_data = [] # array of RSSI measurements
             for obj in js_data:
                 row_data.append(int(obj["RSSI"]))
+            row_data.sort()
             DATA.append(row_data)
 
     print(np.mean(DATA[1]))
 
-def curveFitting():
+def testNormData():
+    SIGMA = []
+    for i in range(0,10,1):
+        SIGMA.append(np.std(DATA[i]))
+    pyp.hist(SIGMA)
+    pyp.show()
+    '''
+    for i in range(0,10,1):
+        pyp.hist(sorted(DATA[i]))
+        pyp.show()
+    '''
 
-    #establecemos el eje X : las distancias en metros a las que tomamos datos.
-    xdata = np.linspace(1, 10, num=10)  # 1 to 10 meters spaced 1 meter
-
-    # INICIO PARTE ELIMINABLE
-    #np.random.seed(112)
-    #generateDataRandom()
-    # FINAL PARTE ELIMINABLE
-
-
+def dataFiltering():
     # filtramos los datos
     i = 0
     for arr in DATA:
@@ -67,17 +70,24 @@ def curveFitting():
         CURR_ARR_MEAN = np.mean(arr)
         CURR_ARR_STD = np.std(arr)
         DATA[i] = list(filter(filterFunc, arr))
-        i=i+1
+        i = i + 1
 
+
+def curveFitting():
+
+    #establecemos el eje X : las distancias en metros a las que tomamos datos.
+    xdata = np.linspace(1, 10, num=10)  # 1 to 10 meters spaced 1 meter
 
     # hacemos la media de las rssi obtenidas a cada distancia
 
     ydata = [np.mean(arr) for arr in DATA]
+    sigma = [np.std(arr) for arr in DATA]
     print(ydata)
+    print(sigma)
     # Preparamos los parámetros para crear la función que se
     # adecuará al modelo teórico rssi-distancia
     A = ydata[0]
-    n = 0.827
+    n = 4
     y = func_model(xdata, A, n)
 
     pyp.plot(xdata, y, 'g-', label='ideal: A - 10*n*log(x)')
@@ -86,9 +96,9 @@ def curveFitting():
 
     #obtenemos los valores de los parámetros de la funcion óptimos
     #asi como la covariancia de los datos.
-    popt, pcov = curve_fit(func_model, xdata, ydata, bounds=([-100,0],[0,10]))
+    popt, pcov = curve_fit(func_model, xdata, ydata, sigma=sigma, absolute_sigma=True, bounds=([-100,0],[0,10]))
 
-    #obtiene desviacion tipica???
+    #obtiene desviacion tipica
     print(popt)
     print(pcov)
     print(np.sqrt(np.diag(pcov)))
@@ -103,6 +113,9 @@ def curveFitting():
 
 def main():
     loadData()
+    testNormData()
+  #  dataFiltering()
+
     curveFitting()
 
 
