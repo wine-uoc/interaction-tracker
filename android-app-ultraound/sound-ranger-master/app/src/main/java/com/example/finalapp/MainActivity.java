@@ -34,12 +34,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import java.io.BufferedReader;
@@ -56,7 +51,6 @@ import java.net.URLEncoder;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Random;
@@ -84,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
     private static final int RECORDER_SAMPLERATE = 44100;
     private static final int RECORDER_CHANNELS = AudioFormat.CHANNEL_IN_MONO;
     private static final int RECORDER_AUDIO_ENCODING = AudioFormat.ENCODING_PCM_16BIT;
-    private static final String IP_ADDR = "192.168.1.135"; //HAY QUE MODIFICAR LA DIRECCION IP CADA VEZ QUE SE CONECTAN LOS DISPOSITIVOS A LA RED LOCAL!
+    private static final String IP_ADDR = "192.168.1.149"; //HAY QUE MODIFICAR LA DIRECCION IP CADA VEZ QUE SE CONECTAN LOS DISPOSITIVOS A LA RED LOCAL!
     private static final int POST_PERIOD = 100; //in ms
 
 
@@ -112,10 +106,18 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
 
     boolean Play;
     private Thread managementThread;
-
+    private Thread orientationThread;
 
     private SensorManager sensorManager;
-    private Sensor accelerometer;
+    private Sensor linearAccelerometer;
+    private Sensor gravity;
+    private Sensor geomagnetic;
+
+    private final float[] accelerometerReading = new float[3];
+    private final float[] magnetometerReading = new float[3];
+
+    private final float[] rotationMatrix = new float[9];
+    private final float[] orientationAngles = new float[3];
 
 
     private RequestQueue MyRequestQueue;
@@ -129,6 +131,8 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
 
     long INIT_TIME;
     private int num_measurements;
+    private boolean definedAccel = false;
+    private boolean definedMagnet = false;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -183,10 +187,14 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
 // ################# CODIGO NUEVO ##################################
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
+        linearAccelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
+        gravity = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        geomagnetic = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
 
+        sensorManager.registerListener(this, linearAccelerometer, SensorManager.SENSOR_DELAY_GAME);
+        sensorManager.registerListener(this, gravity, SensorManager.SENSOR_DELAY_GAME);
+        sensorManager.registerListener(this, geomagnetic, SensorManager.SENSOR_DELAY_GAME);
 
-        sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_GAME);
         INIT_TIME = System.nanoTime();
         num_measurements = 0;
 
@@ -223,7 +231,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
     public void setBleAdvertising(){
 
         BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        String devname = null;
+
         try {
             DEVNAME = getAdvertisingDeviceName();
         } catch (IOException e) {
@@ -412,14 +420,13 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
     }
 
 
-
-    private void accelerometerThread() {
-       /* accelThread = new Thread(new Runnable() {
+    private void orientationThread() {
+        orientationThread = new Thread(new Runnable() {
             @Override
             public void run() {
 
             }
-        });*/
+        });
 //
     }
 
@@ -679,11 +686,48 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
         }
     }
 
+    // Compute the three orientation angles based on the most recent readings from
+    // the device's accelerometer and magnetometer.
+
+    public void updateOrientationAngles() {
+
+        // Update rotation matrix, which is needed to update orientation angles.
+        if (definedAccel && definedMagnet) {
+            SensorManager.getRotationMatrix(rotationMatrix, null,
+                    accelerometerReading, magnetometerReading);
+
+            // "mRotationMatrix" now has up-to-date information.
+
+            SensorManager.getOrientation(rotationMatrix, orientationAngles);
+
+            dataMapToNodeRED.put("x_ori", orientationAngles[0]);
+            dataMapToNodeRED.put("y_ori", orientationAngles[1]);
+            dataMapToNodeRED.put("z_ori", orientationAngles[2]);
+
+            Log.d("x_ori", String.valueOf((orientationAngles[0]*180.0)/Math.PI));
+            Log.d("y_ori", String.valueOf((orientationAngles[1]*180.0)/Math.PI));
+            Log.d("z_ori", String.valueOf((orientationAngles[2]*180.0)/Math.PI));
+        }
+
+        // "mOrientationAngles" now has up-to-date information.
+    }
 
     @Override
     public void onSensorChanged(SensorEvent event) {
 
-        if (event.sensor.getType() == Sensor.TYPE_LINEAR_ACCELERATION) {
+        if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER){
+            definedAccel = true;
+            System.arraycopy(event.values, 0, accelerometerReading,
+                    0, accelerometerReading.length);
+            updateOrientationAngles();
+        }
+        else if (event.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD) {
+            definedMagnet = true;
+            System.arraycopy(event.values, 0, magnetometerReading,
+                    0, magnetometerReading.length);
+            updateOrientationAngles();
+        }
+        else if (event.sensor.getType() == Sensor.TYPE_LINEAR_ACCELERATION) {
            /* mGravity = event.values.clone();
             // Shake detection
             double x = mGravity[0];
@@ -717,8 +761,8 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
 
 
            float x_acc = Float.parseFloat(String.valueOf(event.values[0]));
-           float y_acc = event.values[1];
-           float z_acc = event.values[2];
+           float y_acc = Float.parseFloat(String.valueOf(event.values[1]));
+           float z_acc = Float.parseFloat(String.valueOf(event.values[2]));
 
            ++NumSensorCalls;
 

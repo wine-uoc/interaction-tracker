@@ -9,17 +9,36 @@ from models import ModelController
 from processData import ProcessData
 import matplotlib
 
+from apscheduler.schedulers.background import BackgroundScheduler
+from apscheduler.executors.pool import ThreadPoolExecutor, ProcessPoolExecutor
+
+
 matplotlib.use('Agg')
 app = Flask(__name__)
 COUNT = 0
 last_img = ''
 
+
 ctrl = ModelController()
 show_circles = False
 show_rssi = False
-s = sched.scheduler(time.time, time.sleep)
+
+# funcion que calcula la posicion de los dispositivos (target)
+def computeDevicesPositions():
+    ctrl.computeDevicesPositions()
+
+def triggerDeleteOldestDBdata():
+    ctrl.triggerDeleteFromDBoldestData()
 
 
+#Inicializa el scheduler para que compute el valor de la posicion cada 100ms
+executors = {
+    'default': ThreadPoolExecutor(16),
+    'processpool': ProcessPoolExecutor(4)
+}
+schedu = BackgroundScheduler(executors=executors)
+schedu.add_job(computeDevicesPositions, 'interval', seconds=0.1) #Thread que computa la posicion del dispositivo
+schedu.add_job(triggerDeleteOldestDBdata, 'interval', seconds=60) #Thread que elimina datos antiguos de la BBDD.
 
 def extract_form_data():
     position_data = dict()
@@ -125,10 +144,8 @@ def positions_img():
 
             for i, txt in enumerate(dev_names):
                 ax.text(x_dev[i], y_dev[i], txt, fontsize=14)
-                # ax.annotate(txt, (x_dev[i], y_dev[i]))
 
-            ax.set(xlabel='distance (m)', ylabel='distance (m)',
-                   title='Positions')
+            ax.set(xlabel='distance (m)', ylabel='distance (m)', title='Positions')
             ax.grid()
 
             # imprimimos los circulos de alcance de los anchors. Miramos si el usuario lo pide.
@@ -175,7 +192,8 @@ def get_data_form():
 def post_data_form():
     ret = extract_form_data()
     ctrl.initialize(ret)
-
+    schedu.start()
+    ctrl.computeDevicesPositions()
     return redirect(url_for('plot_positions'))
 
 
@@ -183,24 +201,21 @@ def post_data_form():
 ### END FLASK APPLICATION
 ###
 
-def triggerDeleteOldestDBdata():
-    ctrl.triggerDeleteFromDBoldestData()
-    s.enter(5, 2, triggerDeleteOldestDBdata)
-
-def ThreadDeleteDBdata():
-    s.enter(5, 1, triggerDeleteOldestDBdata)
-    s.run()
 
 
 def main():
-    t1 = threading.Thread(target=ThreadDeleteDBdata)
-    t1.daemon = True  # thread dies when main thread (only non-daemon thread) exits.
-    t1.start()
+
+    #t1 = threading.Thread(target=ThreadDeleteDBdata)
+    #t1.daemon = True  # thread dies when main thread (only non-daemon thread) exits.
+    #t1.start()
+
+
+    #t2 = threading.Thread(target=ThreadComputeDevicesPositions)
+    #t2.daemon = True  # thread dies when main thread (only non-daemon thread) exits.
+    #t2.start()
+
 
     app.run(host="0.0.0.0", port=5000, debug=True)
-
-    while True:
-        pass
 
 
 if __name__ == '__main__':

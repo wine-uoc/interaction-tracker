@@ -1,6 +1,8 @@
+import time
+
 from accessDB import DB
 import numpy as np
-from scipy.optimize import fsolve
+from scipy.optimize import fsolve, minimize
 from sympy.solvers import solve
 from sympy import Symbol
 from sympy.solvers import linsolve
@@ -37,9 +39,17 @@ class ModelController:
             d = Device(devname)
             self.devices.append(d)
 
-        # Initializes RSSI_Distance_Model object. This will do all positions and distance computations.
+        # Initializes PositioningComputations object. This will do all positions and distance computations.
         self.model = PositioningComputations([anc.getName() for anc in self.anchors],
                                              [dev.getDevName() for dev in self.devices])
+        # Get devices initial orientation.
+        devs_orientation = dict()
+        for dev in self.devices:
+            x_ori = self.db_manager.getOrientationValues(dev.getDevName(), 1)
+            devs_orientation[dev.getDevName()] = x_ori
+
+        self.model.setDevicesInitialOrientation(devs_orientation)
+
 
     # returns anchors positions (dictionary of anchors with dictionary of positions for each one)
     def getAnchorsPositions(self):
@@ -74,29 +84,37 @@ class ModelController:
             result[anc.getName()] = self.getDistanceFromAnchorToDevice(anc.getName(), devname)
         return result
 
-    def getDevicePosition(self, devname):
-        # using the anchors position and the radius for each circle they describe,
-        # we can compute the position of the device devname
-
-        radius_dict = self.getDistancesToDevice(devname)
-        anchor_positions_dict = self.getAnchorsPositions()
-
-        pos = self.model.calculatePosition(anchor_positions_dict, radius_dict)
-        acc_x, acc_y = self.db_manager.getAccelerationValues(devname, 30)
-
-        estimatedPos = self.model.estimatePositionWithKalman(pos, acc_x, acc_y)
-        return estimatedPos
+    def getDevicePosition(self, dev):
+        return dev.getPosition()
 
     def getDevicesPositions(self):
         result = dict()
 
         for dev in self.devices:
-            x, y = self.getDevicePosition(dev.getDevName())
+            self.getDevicePosition(dev)
             result[dev.getDevName()] = dict()
-            result[dev.getDevName()]['X'] = x
-            result[dev.getDevName()]['Y'] = y
+            pos = dev.getPosition()
+            result[dev.getDevName()]['X'] = pos[0]
+            result[dev.getDevName()]['Y'] = pos[1]
 
         return result
+
+    def computeDevicePosition(self, dev):
+        # using the anchors position and the radius for each circle they describe,
+        # we can compute the position of the device devname
+
+        radius_dict = self.getDistancesToDevice(dev.getDevName())
+        anchor_positions_dict = self.getAnchorsPositions()
+        pos = self.model.calculatePosition(anchor_positions_dict, radius_dict)
+       # acc_x, acc_y = self.db_manager.getAccelerationValues(dev.getDevName(), 1)
+       # ori_x = self.db_manager.getOrientationValues(dev.getDevName(),1)
+       # estimatedPos = self.model.estimatePositionWithKalman(pos, acc_x, acc_y, ori_x, dev.getDevName())
+       # dev.setPosition(estimatedPos)
+        dev.setPosition(pos)
+
+    def computeDevicesPositions(self):
+        for dev in self.devices:
+            self.computeDevicePosition(dev)
 
     def getRoomXMin(self):
         return self.plot_settings.getXMin()
@@ -120,6 +138,8 @@ class ModelController:
         self.db_manager.keepLastXResultsInDB(300)
 
 
+
+
 class PositioningComputations:
 
     # implements Kalman Filter
@@ -128,7 +148,7 @@ class PositioningComputations:
         # log-distance path loss model parameters
         self.A = -47.697
         self.n = 5  # -0.827
-
+        self.initial_devs_orientation = dict()
         # necessary information
         self.anchor_names = anchors
         self.device_names = devices
@@ -136,7 +156,7 @@ class PositioningComputations:
         # data needed to filter small variations of RSSI when target is not moving.
         self.last_rssi_means = dict()
         self.last_rssi_std = dict()
-        self.S = 0.5  # sensitivity to changes in RSSI. Lower values, more sensitivity
+        self.S = 0  # sensitivity to changes in RSSI. Lower values, more sensitivity
         for anc_name in self.anchor_names:
             self.last_rssi_means[anc_name] = dict()
             self.last_rssi_std[anc_name] = dict()
@@ -151,37 +171,37 @@ class PositioningComputations:
         self.my_filter = KalmanFilter(dim_x=4, dim_z=2)
 
         self.my_filter.x = np.array([[0.],
-                                    [0.],
-                                    [0.],
-                                    [0.]])
+                                     [0.],
+                                     [0.],
+                                     [0.]])
 
         self.my_filter.B = np.array([[(self.delta_t ** 2) / 2, 0],
-                                    [0, (self.delta_t ** 2) / 2],
-                                    [self.delta_t, 0],
-                                    [0, self.delta_t]])
+                                     [0, (self.delta_t ** 2) / 2],
+                                     [self.delta_t, 0],
+                                     [0, self.delta_t]])
 
         self.my_filter.F = np.array([[1., 0., self.delta_t, 0.],
-                                    [0., 1., 0., self.delta_t],
-                                    [0., 0., 1., 0.],
-                                    [0., 0., 0., 1.]])  # state transition matrix
+                                     [0., 1., 0., self.delta_t],
+                                     [0., 0., 1., 0.],
+                                     [0., 0., 0., 1.]])  # state transition matrix
 
         self.my_filter.H = np.array([[1., 0., 0., 0.],
                                      [0., 1., 0., 0.]])  # Measurement function
 
         self.my_filter.P = np.array([[100., 0., 0., 0.],
-                                    [0., 100., 0., 0.],
-                                    [0., 0., 100., 0.],
-                                    [0., 0., 0., 100.],
-                                    ])  # covariance matrix. The terms along the main diagonal of P are the variances associated with the corresponding terms
+                                     [0., 100., 0., 0.],
+                                     [0., 0., 100., 0.],
+                                     [0., 0., 0., 100.],
+                                     ])  # covariance matrix. The terms along the main diagonal of P are the variances associated with the corresponding terms
         # in the state vector. The off-diagonal terms of P provide the covariances between terms in the state vector. Depends on Q matrix as well.
 
         self.my_filter.Q = [[(self.u_noise ** 2) * ((self.delta_t ** 4) / 4.), 0., 0., 0.],
-                       [0., (self.u_noise ** 2) * ((self.delta_t ** 4) / 4.), 0., 0.],
-                       [0., 0., (self.u_noise ** 2) * (self.delta_t ** 2), 0.],
-                       [0., 0., 0., (self.u_noise ** 2) * (self.delta_t ** 2)]]  # accelerometer error (process noise)
+                            [0., (self.u_noise ** 2) * ((self.delta_t ** 4) / 4.), 0., 0.],
+                            [0., 0., (self.u_noise ** 2) * (self.delta_t ** 2), 0.],
+                            [0., 0., 0.,(self.u_noise ** 2) * (self.delta_t ** 2)]]  # accelerometer error (process noise)
 
         self.my_filter.R = [[1. * (self.z_noise ** 2), 0.],
-                       [0., 1. * (self.z_noise ** 2)]]  # RSSI-distance error (measurement noise)
+                            [0., 1. * (self.z_noise ** 2)]]  # RSSI-distance error (measurement noise)
 
     def get_A(self):
         return self.A
@@ -194,6 +214,9 @@ class PositioningComputations:
 
     def set_n(self, n):
         self.n = n
+
+    def euclideanDistance(self, x1, y1, x2, y2):
+        return np.sqrt(pow(x1 - x2, 2.0) + pow(y1 - y2, 2.0))
 
     # calcula la nueva distancia de una anchor a un device si esta nueva distancia
     # es mayor que la anterior +- st.deviation. Si no, devuelve la distancia del estado anterior.
@@ -222,15 +245,25 @@ class PositioningComputations:
             return np.power(10, (current_rssi_mean - self.A) / (-10 * self.n))
 
     # applies the Kalman Filter. position and acceleration are passed to function (z and u respectively).
-    def estimatePositionWithKalman(self, pos, acc_x, acc_y):
-        #estimatedAcc = sum(x * y for x, y in zip(self.acc_weights, u))
-        u = np.array([[acc_x],
-                      [acc_y]
-                     ])
+    def estimatePositionWithKalman(self, pos, acc_x, acc_y, ori_x, devname):
+
+        # estimatedAcc = sum(x * y for x, y in zip(self.acc_weights, u))
+        curr_orientation = self.initial_devs_orientation[devname]
+        d_theta = curr_orientation - ori_x
+        rotationMatrix = np.array([[np.cos(d_theta), -np.sin(d_theta)],
+                                   [np.sin(d_theta), np.cos(d_theta)]])
+        real_acc = np.matmul(rotationMatrix, np.array([[acc_x],
+                                                       [acc_y]]))
+        print(real_acc)
+        print()
+
+        u = np.array([[-real_acc[0][0]],
+                      [-real_acc[1][0]]
+                      ])
         z = pos
-        self.my_filter.predict(u) #utilizamos la media de las medidas de la aceleracion
+        self.my_filter.predict(u)  # utilizamos la media de las medidas de la aceleracion
         self.my_filter.update(z)
-        return self.my_filter.x.item(0), self.my_filter.x.item(1) #returns position(X,Y)
+        return self.my_filter.x.item(0), self.my_filter.x.item(1)  # returns position(X,Y)
 
     # if position is computable, returns 2-tuple (X, Y) with the position
     # otherwise, returns ValueError
@@ -250,51 +283,28 @@ class PositioningComputations:
         y3 = anchors_positions[anchor_names[2]]['Y']
         r3 = anchors_radius[anchor_names[2]]
 
-        print(r1)
-        print(r2)
-        print(r3)
+        # Computing position using NumPy
 
-        # define the circles with center anchor_position (xi, yi) and radius ri
-        c1 = Circle(Point(x1, y1), r1)
-        c2 = Circle(Point(x2, y2), r2)
-        c3 = Circle(Point(x3, y3), r3)
+        def mse(x, locations, distances):
+            mse = 0.0
+            for location, distance in zip(locations, distances):
+                distance_calculated = self.euclideanDistance(x[0], x[1], location[0], location[1])
+                mse += pow(distance_calculated - distance, 2.0)
+            return mse / len(locations)
 
-        x = Symbol('x')
-        y = Symbol('y')
+        locations = [(x1, y1), (x2, y2), (x3, y3)]
+        distances = [r1, r2, r3]
+        init_guess = np.array([0, 0])
+        t_ini = time.time() * 1000
+        res = minimize(mse, init_guess, args=(locations, distances), method='L-BFGS-B', options={'ftol':1e-5, 'maxiter': 1e9})
+        t_fin = time.time() * 1000
+        print("time elapsed: " + str(t_fin - t_ini))
+        print("estimated position: "+str(res.x))
 
-        # compute the line equations
-        f = solve(c1.equation(x, y) - c2.equation(x, y), [x, y], dict=True)
-        g = solve(c1.equation(x, y) - c3.equation(x, y), [x, y], dict=True)
-        h = solve(c2.equation(x, y) - c3.equation(x, y), [x, y], dict=True)
+        return tuple((res.x[0],res.x[1]))
 
-        # convert the line equations (y = a*x + b) or (x = a*y + b) to (a*y - b*x - c = 0)
-        if y in f[0].keys():
-            eq1 = -y + f[0][y].evalf(2)
-        else:
-            eq1 = -x + f[0][x].evalf(2)
-
-        if y in g[0].keys():
-            eq2 = -y + g[0][y].evalf(2)
-        else:
-            eq2 = -x + g[0][x].evalf(2)
-
-        if y in h[0].keys():
-            eq3 = -y + h[0][y].evalf(2)
-        else:
-            eq3 = -x + h[0][x].evalf(2)
-
-        # get the points of intersection between the three lines
-        point1 = Point(list(linsolve([eq1, eq2], (x, y)))[0])
-        point2 = Point(list(linsolve([eq1, eq3], (x, y)))[0])
-        point3 = Point(list(linsolve([eq2, eq3], (x, y)))[0])
-
-        t = Triangle(point1, point2, point3)
-        if isinstance(t, Triangle):
-            return tuple(t.incenter.evalf(5))
-        elif isinstance(t, Segment2D):
-            return tuple(t.midpoint.evalf(5))
-        else:
-            return tuple(t.evalf(5))
+    def setDevicesInitialOrientation(self, devs_orientation):
+        self.initial_devs_orientation.update(devs_orientation)
 
 
 class Anchor:
@@ -321,6 +331,19 @@ class Device:
 
     def getDevName(self):
         return self.devname
+
+    def setPositionX(self, x):
+        self.x = x
+
+    def setPositionY(self, y):
+        self.y = y
+
+    def setPosition(self, pos):
+        self.x = pos[0]
+        self.y = pos[1]
+
+    def getPosition(self):
+        return self.x, self.y
 
 
 class PlotSettings:

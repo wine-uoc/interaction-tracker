@@ -18,24 +18,21 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="num measurements" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="x_ori" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="debug" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
     <option name="TOOL_WINDOW_REGEXP_FILTER" value="false" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="866a644b-5f24-4aa8-b1eb-8a1ca2a7e05b" name="Default Changelist" comment="new version">
-      <change afterPath="$PROJECT_DIR$/../../PositionTracker/testingKalmanFilter.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../ScanRSSIThreaded-backup.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Understanding the Basis of the Kalman Filter.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../detectedDevs_sp0.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../detectedDevs_sp1.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../detectedDevs_sp2.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../serialPorts/sp0" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../serialPorts/sp1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../serialPorts/sp2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../testListPorts.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Dist_Rssi_Model.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../Dist_Rssi_Model.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PositionTracker/KalmanTestTrajectory.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PositionTracker/trilateration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Diagrama.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PositionTracker/src/accessDB.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../PositionTracker/src/accessDB.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PositionTracker/src/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../PositionTracker/src/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PositionTracker/src/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../PositionTracker/src/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PositionTracker/src/templates/layouts/get_data.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../PositionTracker/src/templates/layouts/get_data.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PositionTracker/testingKalmanFilter.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../PositionTracker/testingKalmanFilter.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../ScanRSSIThreaded.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../ScanRSSIThreaded.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" afterDir="false" />
@@ -48,42 +45,12 @@
       <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/finalapp/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/finalapp/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/xml/network_security_config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/xml/network_security_config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../detectedDevs_ttyACM0.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../detectedDevs_ttyACM2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../detectedDevs_ttyACM4.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/js/prueba.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/js/script.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/prueba.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../python-flask-web/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../python-flask-web/.idea/PositionTracker.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../python-flask-web/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../python-flask-web/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../python-flask-web/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../python-flask-web/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../python-flask-web/CREAR_CONTENEDOR_HOWTO.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../python-flask-web/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../python-flask-web/description.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../python-flask-web/requirements.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../python-flask-web/src/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../python-flask-web/src/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../python-flask-web/src/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../python-flask-web/src/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../python-flask-web/src/.idea/src.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../python-flask-web/src/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../python-flask-web/src/accessDB.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../python-flask-web/src/app.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../python-flask-web/src/db.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../python-flask-web/src/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../python-flask-web/src/position.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../python-flask-web/src/processData.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../python-flask-web/src/templates/layouts/data_form.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../python-flask-web/src/templates/layouts/get_data.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../python-flask-web/src/templates/layouts/update-position.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../python-flask-web/src/templates/static/css/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../python-flask-web/src/test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../tablaPostgres.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../../tablaPostgres.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../detectedDevs_sp0.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../detectedDevs_sp0.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../detectedDevs_sp1.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../detectedDevs_sp1.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../detectedDevs_sp2.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../detectedDevs_sp2.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../serialPorts/sp0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../serialPorts/sp1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../serialPorts/sp2" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -94,7 +61,7 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="ZY3265LLHZ" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="123dcd60" />
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
@@ -110,8 +77,83 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/finalapp/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9609">
-              <caret line="738" column="43" selection-start-line="738" selection-start-column="43" selection-end-line="738" selection-end-column="43" />
+            <state relative-caret-position="225">
+              <caret line="704" column="61" selection-start-line="704" selection-start-column="61" selection-end-line="704" selection-end-column="61" />
+              <folding>
+                <element signature="e#3994#4035#0" />
+                <element signature="e#4239#4283#1" />
+                <element signature="e#5457#5499#0" />
+                <element signature="e#5531#5575#0" />
+                <element signature="e#6189#6448#0" expanded="true" />
+                <element signature="e#6447#6448#0" expanded="true" />
+                <element signature="e#6957#8888#0" />
+                <element signature="e#7189#7250#0" />
+                <element signature="e#7273#7317#0" />
+                <element signature="class#8052:8793" />
+                <element signature="method#onAdvertisingSetStarted#0;class#8052:8793" />
+                <element signature="method#onAdvertisingDataSet#0;class#8052:8793" />
+                <element signature="method#onScanResponseDataSet#0;class#8052:8793" />
+                <element signature="method#onAdvertisingSetStopped#0;class#8052:8793" />
+                <element signature="e#8894#8992#0" />
+                <element signature="e#8894#11012#0" />
+                <element signature="e#9199#9876#1" />
+                <element signature="e#9582#9675#0" />
+                <element signature="e#9791#9866#0" />
+                <element signature="e#9890#10985#1" />
+                <element signature="e#10300#10660#1" />
+                <element signature="e#10908#10975#0" />
+                <element signature="e#11079#12250#0" />
+                <element signature="e#14045#14138#1" />
+                <element signature="e#14353#14409#1" />
+                <element signature="e#14698#14881#0" expanded="true" />
+                <element signature="e#14880#14881#0" expanded="true" />
+                <element signature="e#14952#15302#0" />
+                <element signature="e#15173#15218#1" />
+                <element signature="e#15309#16644#0" />
+                <element signature="e#15362#16637#1" />
+                <element signature="e#15450#15573#1" />
+                <element signature="e#16126#16627#1" />
+                <element signature="e#16308#16395#1" />
+                <element signature="e#16428#16613#1" />
+                <element signature="e#16816#16926#1" />
+                <element signature="e#17000#17356#1" />
+                <element signature="e#17298#17346#1" />
+                <element signature="e#17370#17587#0" />
+                <element signature="e#17502#17538#1" />
+                <element signature="e#17544#17581#1" />
+                <element signature="e#17593#17817#0" />
+                <element signature="e#17724#17760#1" />
+                <element signature="e#17774#17811#1" />
+                <element signature="e#17823#18234#0" />
+                <element signature="e#18116#18198#1" />
+                <element signature="e#18240#19427#0" />
+                <element signature="e#19433#19884#0" />
+                <element signature="e#19890#20411#0" />
+                <element signature="e#20148#20219#1" />
+                <element signature="e#20244#20405#1" />
+                <element signature="e#20416#21045#0" />
+                <element signature="e#20585#21038#0" />
+                <element signature="e#20628#21009#1" />
+                <element signature="e#20729#20852#1" />
+                <element signature="e#20873#20995#1" />
+                <element signature="e#21051#21573#0" />
+                <element signature="e#21117#21338#1" />
+                <element signature="e#21131#21199#0" />
+                <element signature="e#21352#21566#1" />
+                <element signature="e#21366#21395#0" />
+                <element signature="e#21579#21766#0" />
+                <element signature="e#21708#21742#1" />
+                <element signature="e#21772#22129#0" />
+                <element signature="e#21886#21932#1" />
+                <element signature="e#21945#22123#1" />
+                <element signature="e#22135#22438#0" />
+                <element signature="e#22194#22241#1" />
+                <element signature="e#22254#22432#1" />
+                <element signature="e#22444#23204#0" />
+                <element signature="e#22535#22566#0" />
+                <element signature="e#22887#22918#0" />
+                <element signature="e#23359#24360#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -119,48 +161,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file:///programs/Sdk/sources/android-29/java/lang/System.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4425">
-              <caret line="344" column="30" selection-start-line="344" selection-start-column="30" selection-end-line="344" selection-end-column="30" />
+            <state relative-caret-position="2016">
+              <caret line="439" column="30" selection-start-line="439" selection-start-column="30" selection-end-line="439" selection-end-column="30" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file:///programs/Sdk/sources/android-29/android/hardware/SensorManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4365">
-              <caret line="317" column="28" selection-start-line="317" selection-start-column="28" selection-end-line="317" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" column="39" selection-start-line="21" selection-start-column="39" selection-end-line="21" selection-end-column="39" />
-            </state>
-          </provider>
-          <provider editor-type-id="android-manifest" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/xml/network_security_config.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="54" selection-start-line="4" selection-start-column="54" selection-end-line="4" selection-end-column="54" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="34" selection-start-line="6" selection-start-column="34" selection-end-line="6" selection-end-column="34" />
-            </state>
-          </provider>
-          <provider selected="true" editor-type-id="android-designer2" />
         </entry>
       </file>
     </leaf>
@@ -202,6 +206,9 @@
       <find>sendDataToNodeRED</find>
       <find>192</find>
       <find>dataMapToNodeRED</find>
+      <find>getRo</find>
+      <find>advertiser</find>
+      <find>acceler</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -220,10 +227,10 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="y" value="-2" />
-    <option name="width" value="1440" />
-    <option name="height" value="812" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="223" />
+    <option name="width" value="1657" />
+    <option name="height" value="941" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -231,10 +238,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
-      <pane id="Scope" />
       <pane id="AndroidView" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -425,9 +432,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="25" width="1853" height="1055" extended-state="7" />
+    <frame x="0" y="-2" width="1920" height="1082" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5462653" visible="true" weight="0.16270061" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5462653" weight="0.16214721" />
       <window_info id="Captures" order="1" sideWeight="0.45373467" side_tool="true" weight="0.16126418" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" sideWeight="0.37638375" side_tool="true" weight="0.16823465" />
@@ -437,14 +445,14 @@
       <window_info id="simpleUML" order="7" weight="0.21093248" />
       <window_info id="Resources Explorer" order="8" weight="0.32947233" />
       <window_info id="Capture Tool" order="9" />
-      <window_info active="true" anchor="bottom" id="Run" order="0" sideWeight="0.4997233" visible="true" weight="0.2688985" />
+      <window_info anchor="bottom" id="Run" order="0" sideWeight="0.4997233" weight="0.4386149" />
       <window_info anchor="bottom" id="TODO" order="1" weight="0.32721382" />
-      <window_info anchor="bottom" id="Debug" order="2" sideWeight="0.4964029" weight="0.4697624" />
-      <window_info anchor="bottom" x="395" y="154" width="610" height="926" id="Logcat" order="3" sideWeight="0.6458218" weight="0.27105832" />
+      <window_info anchor="bottom" id="Debug" order="2" sideWeight="0.4964029" weight="0.26565874" />
+      <window_info active="true" anchor="bottom" x="395" y="154" width="610" height="926" id="Logcat" order="3" sideWeight="0.6458218" visible="true" weight="0.4029381" />
       <window_info anchor="bottom" id="Terminal" order="4" sideWeight="0.4991699" weight="0.32721382" />
       <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.3541782" side_tool="true" weight="0.33801296" />
       <window_info anchor="bottom" id="Version Control" order="6" weight="0.32974428" />
-      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.4986165" weight="0.36069113" />
+      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.4986165" weight="0.2455404" />
       <window_info anchor="bottom" id="Android Profiler" order="8" weight="0.32974428" />
       <window_info anchor="bottom" id="Find" order="9" weight="0.52859133" />
       <window_info anchor="bottom" id="Sequence" order="10" weight="0.42222223" />
@@ -473,9 +481,15 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/finalapp/MainActivity.java</url>
-          <line>365</line>
+          <line>373</line>
           <properties />
           <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/finalapp/MainActivity.java</url>
+          <line>232</line>
+          <properties />
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -488,7 +502,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-29/java/nio/ByteBuffer.java" />
     <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-29/java/nio/channels/FileChannel.java" />
     <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-29/java/lang/Object.java" />
     <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-29/android/util/Log.java" />
@@ -569,13 +582,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="11445">
           <caret line="804" column="19" selection-start-line="804" selection-start-column="19" selection-end-line="804" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///programs/Sdk/sources/android-29/android/bluetooth/le/BluetoothLeAdvertiser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4890">
-          <caret line="353" selection-start-line="353" selection-end-line="353" />
         </state>
       </provider>
     </entry>
@@ -747,24 +753,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/finalapp/MainActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/xml/network_security_config.xml">
+      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9609">
-          <caret line="738" column="43" selection-start-line="738" selection-start-column="43" selection-end-line="738" selection-end-column="43" />
+        <state relative-caret-position="60">
+          <caret line="4" column="54" selection-start-line="4" selection-start-column="54" selection-end-line="4" selection-end-column="54" />
         </state>
       </provider>
     </entry>
-    <entry file="file:///programs/Sdk/sources/android-29/java/lang/System.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4425">
-          <caret line="344" column="30" selection-start-line="344" selection-start-column="30" selection-end-line="344" selection-end-column="30" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="34" selection-start-line="6" selection-start-column="34" selection-end-line="6" selection-end-column="34" />
         </state>
       </provider>
     </entry>
-    <entry file="file:///programs/Sdk/sources/android-29/android/hardware/SensorManager.java">
+    <entry file="file:///programs/Sdk/sources/android-29/android/bluetooth/le/BluetoothLeAdvertiser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4365">
-          <caret line="317" column="28" selection-start-line="317" selection-start-column="28" selection-end-line="317" selection-end-column="28" />
+        <state relative-caret-position="178">
+          <caret line="235" column="25" lean-forward="true" selection-start-line="235" selection-start-column="25" selection-end-line="235" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -776,21 +784,108 @@
       </provider>
       <provider editor-type-id="android-manifest" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/xml/network_security_config.xml">
+    <entry file="file:///programs/Sdk/sources/android-29/android/bluetooth/BluetoothAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="54" selection-start-line="4" selection-start-column="54" selection-end-line="4" selection-end-column="54" />
+        <state relative-caret-position="186">
+          <caret line="769" column="33" selection-start-line="769" selection-start-column="33" selection-end-line="769" selection-end-column="33" />
         </state>
       </provider>
-      <provider editor-type-id="android-designer2" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="34" selection-start-line="6" selection-start-column="34" selection-end-line="6" selection-end-column="34" />
+    <entry file="file:///programs/Sdk/sources/android-29/android/hardware/SensorManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="489" column="18" selection-start-line="489" selection-start-column="18" selection-end-line="489" selection-end-column="18" />
         </state>
       </provider>
-      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file:///programs/Sdk/sources/android-29/java/lang/System.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2016">
+          <caret line="439" column="30" selection-start-line="439" selection-start-column="30" selection-end-line="439" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/finalapp/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="704" column="61" selection-start-line="704" selection-start-column="61" selection-end-line="704" selection-end-column="61" />
+          <folding>
+            <element signature="e#3994#4035#0" />
+            <element signature="e#4239#4283#1" />
+            <element signature="e#5457#5499#0" />
+            <element signature="e#5531#5575#0" />
+            <element signature="e#6189#6448#0" expanded="true" />
+            <element signature="e#6447#6448#0" expanded="true" />
+            <element signature="e#6957#8888#0" />
+            <element signature="e#7189#7250#0" />
+            <element signature="e#7273#7317#0" />
+            <element signature="class#8052:8793" />
+            <element signature="method#onAdvertisingSetStarted#0;class#8052:8793" />
+            <element signature="method#onAdvertisingDataSet#0;class#8052:8793" />
+            <element signature="method#onScanResponseDataSet#0;class#8052:8793" />
+            <element signature="method#onAdvertisingSetStopped#0;class#8052:8793" />
+            <element signature="e#8894#8992#0" />
+            <element signature="e#8894#11012#0" />
+            <element signature="e#9199#9876#1" />
+            <element signature="e#9582#9675#0" />
+            <element signature="e#9791#9866#0" />
+            <element signature="e#9890#10985#1" />
+            <element signature="e#10300#10660#1" />
+            <element signature="e#10908#10975#0" />
+            <element signature="e#11079#12250#0" />
+            <element signature="e#14045#14138#1" />
+            <element signature="e#14353#14409#1" />
+            <element signature="e#14698#14881#0" expanded="true" />
+            <element signature="e#14880#14881#0" expanded="true" />
+            <element signature="e#14952#15302#0" />
+            <element signature="e#15173#15218#1" />
+            <element signature="e#15309#16644#0" />
+            <element signature="e#15362#16637#1" />
+            <element signature="e#15450#15573#1" />
+            <element signature="e#16126#16627#1" />
+            <element signature="e#16308#16395#1" />
+            <element signature="e#16428#16613#1" />
+            <element signature="e#16816#16926#1" />
+            <element signature="e#17000#17356#1" />
+            <element signature="e#17298#17346#1" />
+            <element signature="e#17370#17587#0" />
+            <element signature="e#17502#17538#1" />
+            <element signature="e#17544#17581#1" />
+            <element signature="e#17593#17817#0" />
+            <element signature="e#17724#17760#1" />
+            <element signature="e#17774#17811#1" />
+            <element signature="e#17823#18234#0" />
+            <element signature="e#18116#18198#1" />
+            <element signature="e#18240#19427#0" />
+            <element signature="e#19433#19884#0" />
+            <element signature="e#19890#20411#0" />
+            <element signature="e#20148#20219#1" />
+            <element signature="e#20244#20405#1" />
+            <element signature="e#20416#21045#0" />
+            <element signature="e#20585#21038#0" />
+            <element signature="e#20628#21009#1" />
+            <element signature="e#20729#20852#1" />
+            <element signature="e#20873#20995#1" />
+            <element signature="e#21051#21573#0" />
+            <element signature="e#21117#21338#1" />
+            <element signature="e#21131#21199#0" />
+            <element signature="e#21352#21566#1" />
+            <element signature="e#21366#21395#0" />
+            <element signature="e#21579#21766#0" />
+            <element signature="e#21708#21742#1" />
+            <element signature="e#21772#22129#0" />
+            <element signature="e#21886#21932#1" />
+            <element signature="e#21945#22123#1" />
+            <element signature="e#22135#22438#0" />
+            <element signature="e#22194#22241#1" />
+            <element signature="e#22254#22432#1" />
+            <element signature="e#22444#23204#0" />
+            <element signature="e#22535#22566#0" />
+            <element signature="e#22887#22918#0" />
+            <element signature="e#23359#24360#0" />
+          </folding>
+        </state>
+      </provider>
     </entry>
   </component>
   <component name="simpleUML.UMLToolWindowPlugin">

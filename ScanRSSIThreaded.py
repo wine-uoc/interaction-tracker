@@ -15,7 +15,7 @@ import socket
 import fcntl
 import struct
 import platform
-
+import signal
 
 def get_ip_address(ifname):
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -142,6 +142,7 @@ def readingLaunchpadData(port, baud, lp_idx):
 
     while True:
         # open serial port
+
         ser = serial.Serial('serialPorts/' + port, baud)
 
         # get launchpadId, devName and RSSI from serial port
@@ -157,6 +158,8 @@ def readingLaunchpadData(port, baud, lp_idx):
             rssiRaw = ser.readline()
         except SerialException:
             pass
+
+
 
 
         if (len(devName) > 11):  # lectura valida
@@ -178,6 +181,11 @@ def readingLaunchpadData(port, baud, lp_idx):
         #ser.close()
         time.sleep(SERIAL_PORT_INTERVAL)
 
+def signal_handler(signal, frame):
+    os.remove("serialPorts/sp0")
+    os.remove("serialPorts/sp1")
+    os.remove("serialPorts/sp2")
+    sys.exit(0)
 
 def main():
     # initialize DS's
@@ -185,6 +193,8 @@ def main():
     set_SerialPorts_ids()
     initialize_DS()
     print(SP_NAMES)
+
+    signal.signal(signal.SIGINT, signal_handler)
     # Create three threads as follows
 
     try:
