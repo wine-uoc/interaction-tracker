@@ -10,6 +10,16 @@ from sympy.geometry.ellipse import Circle
 from sympy.geometry.polygon import Point, Triangle
 from sympy.geometry.line import Segment2D
 from filterpy.kalman import KalmanFilter
+import yaml
+
+file = open('config.yml', 'r')
+cfg = yaml.load(file)
+
+NUM_RESULTS_RSSI = int(cfg['pythonApp']['numResultsDBrssi'])
+NUM_RESULTS_ACCEL = int(cfg['pythonApp']['numResultsDBaccel'])
+NUM_RESULTS_ORIENT = int(cfg['pythonApp']['numResultsDBorient'])
+NUM_ROWS_KEPT_DB = int(cfg['pythonApp']['numRowsKeptDB'])
+ACC_THRESHOLD = float(cfg['pythonApp']['accThreshold'])
 
 
 class ModelController:
@@ -41,15 +51,15 @@ class ModelController:
 
         # Initializes PositioningComputations object. This will do all positions and distance computations.
         self.model = PositioningComputations([anc.getName() for anc in self.anchors],
-                                             [dev.getDevName() for dev in self.devices])
+                                             [dev.getDevName() for dev in self.devices],
+                                             form_data['roomInfo']['orientation'])
         # Get devices initial orientation.
         devs_orientation = dict()
         for dev in self.devices:
-            x_ori = self.db_manager.getOrientationValues(dev.getDevName(), 1)
+            x_ori = self.db_manager.getOrientationValues(dev.getDevName(), NUM_RESULTS_ORIENT)
             devs_orientation[dev.getDevName()] = x_ori
 
         self.model.setDevicesInitialOrientation(devs_orientation)
-
 
     # returns anchors positions (dictionary of anchors with dictionary of positions for each one)
     def getAnchorsPositions(self):
@@ -68,12 +78,12 @@ class ModelController:
 
     # returns the value of the distance from anchor anchor_name to device device_name
     def getDistanceFromAnchorToDevice(self, anchor_name, device_name):
-        rssi_list = self.db_manager.getRssiOfDeviceFromAnchor(device_name, anchor_name, num_results=15)
+        rssi_list = self.db_manager.getRssiOfDeviceFromAnchor(device_name, anchor_name, num_results=NUM_RESULTS_RSSI)
         return self.model.calculateDistance(rssi_list, anchor_name, device_name)
 
     # returns the value of the RSSI from anchor anchor_name of device device_name
     def getRssiFromAnchorOfDevice(self, anchor_name, device_name):
-        rssi_list = self.db_manager.getRssiOfDeviceFromAnchor(device_name, anchor_name, num_results=15)
+        rssi_list = self.db_manager.getRssiOfDeviceFromAnchor(device_name, anchor_name, num_results=NUM_RESULTS_RSSI)
         rssi_mean = np.mean(rssi_list)
         return int(rssi_mean)
 
@@ -105,12 +115,15 @@ class ModelController:
 
         radius_dict = self.getDistancesToDevice(dev.getDevName())
         anchor_positions_dict = self.getAnchorsPositions()
+
         pos = self.model.calculatePosition(anchor_positions_dict, radius_dict)
-       # acc_x, acc_y = self.db_manager.getAccelerationValues(dev.getDevName(), 1)
-       # ori_x = self.db_manager.getOrientationValues(dev.getDevName(),1)
-       # estimatedPos = self.model.estimatePositionWithKalman(pos, acc_x, acc_y, ori_x, dev.getDevName())
-       # dev.setPosition(estimatedPos)
-        dev.setPosition(pos)
+        acc_x, acc_y = self.db_manager.getAccelerationValues(dev.getDevName(), NUM_RESULTS_ACCEL)
+        ori_x = self.db_manager.getOrientationValues(dev.getDevName(), NUM_RESULTS_ORIENT)
+
+        estimatedPos = self.model.estimatePosition(pos, acc_x, acc_y, ori_x, dev.getDevName())
+
+        dev.setPosition(estimatedPos)
+        # dev.setPosition(pos)
 
     def computeDevicesPositions(self):
         for dev in self.devices:
@@ -135,28 +148,33 @@ class ModelController:
         self.plot_settings.setShowCircles(show_circles)
 
     def triggerDeleteFromDBoldestData(self):
-        self.db_manager.keepLastXResultsInDB(300)
-
-
+        self.db_manager.keepLastXResultsInDB(NUM_ROWS_KEPT_DB)
 
 
 class PositioningComputations:
 
     # implements Kalman Filter
-    def __init__(self, anchors, devices):
+    def __init__(self, anchors, devices, room_ori):
 
         # log-distance path loss model parameters
-        self.A = -47.697
-        self.n = 5  # -0.827
+        self.count = 0
+        self.A = cfg['pythonApp']['A']
+        self.n = cfg['pythonApp']['n']
         self.initial_devs_orientation = dict()
         # necessary information
         self.anchor_names = anchors
         self.device_names = devices
+        self.kalman_enabled = False
+        self.room_orientation = room_ori
+
+        self.last_position_x = None
+        self.last_position_y = None
 
         # data needed to filter small variations of RSSI when target is not moving.
         self.last_rssi_means = dict()
         self.last_rssi_std = dict()
-        self.S = 0  # sensitivity to changes in RSSI. Lower values, more sensitivity
+        self.S = cfg['pythonApp']['sensitivityToRSSIChanges']  # sensitivity to changes in RSSI. Lower values, more sensitivity
+
         for anc_name in self.anchor_names:
             self.last_rssi_means[anc_name] = dict()
             self.last_rssi_std[anc_name] = dict()
@@ -165,9 +183,11 @@ class PositioningComputations:
                 self.last_rssi_std[anc_name][dev_name] = 0
 
         # data needed to implement Kalman Filter
-        self.delta_t = 0.1
-        self.u_noise = 0.018  # (accelerometer error) std
-        self.z_noise = 0.48940446  # (RSSI-Distance error) std
+        self.delta_t = cfg['pythonApp']['delta_t']
+        self.u_noise = cfg['pythonApp']['u_noise']  # (accelerometer error) std
+        self.z_noise = cfg['pythonApp']['z_noise']  # (RSSI-Distance error) std
+
+        self.state_var = np.array([[0.], [0.], [0.], [0.]])
         self.my_filter = KalmanFilter(dim_x=4, dim_z=2)
 
         self.my_filter.x = np.array([[0.],
@@ -198,7 +218,8 @@ class PositioningComputations:
         self.my_filter.Q = [[(self.u_noise ** 2) * ((self.delta_t ** 4) / 4.), 0., 0., 0.],
                             [0., (self.u_noise ** 2) * ((self.delta_t ** 4) / 4.), 0., 0.],
                             [0., 0., (self.u_noise ** 2) * (self.delta_t ** 2), 0.],
-                            [0., 0., 0.,(self.u_noise ** 2) * (self.delta_t ** 2)]]  # accelerometer error (process noise)
+                            [0., 0., 0.,
+                             (self.u_noise ** 2) * (self.delta_t ** 2)]]  # accelerometer error (process noise)
 
         self.my_filter.R = [[1. * (self.z_noise ** 2), 0.],
                             [0., 1. * (self.z_noise ** 2)]]  # RSSI-distance error (measurement noise)
@@ -245,25 +266,112 @@ class PositioningComputations:
             return np.power(10, (current_rssi_mean - self.A) / (-10 * self.n))
 
     # applies the Kalman Filter. position and acceleration are passed to function (z and u respectively).
-    def estimatePositionWithKalman(self, pos, acc_x, acc_y, ori_x, devname):
+    def estimatePosition(self, pos, acc_x, acc_y, curr_orientation, devname):
 
-        # estimatedAcc = sum(x * y for x, y in zip(self.acc_weights, u))
-        curr_orientation = self.initial_devs_orientation[devname]
-        d_theta = curr_orientation - ori_x
-        rotationMatrix = np.array([[np.cos(d_theta), -np.sin(d_theta)],
-                                   [np.sin(d_theta), np.cos(d_theta)]])
+        # Computes the orientation of the device in order to
+        # move it on the right direction.
+        ori_x = self.initial_devs_orientation[devname]
+        d_theta = ori_x - curr_orientation
+
+        if d_theta > np.pi:
+            d_theta = d_theta - 2 * np.pi
+        elif d_theta < -np.pi:
+            d_theta = d_theta + 2 * np.pi
+
+        rotationMatrix = np.array([[np.cos(self.room_orientation), -np.sin(self.room_orientation)],
+                                   [np.sin(self.room_orientation), np.cos(self.room_orientation)]])
+
         real_acc = np.matmul(rotationMatrix, np.array([[acc_x],
                                                        [acc_y]]))
+
+        dev_stopped = False
+
+        # Filter small acceleration when device is static
+        if np.sqrt(real_acc[0][0] ** 2 + real_acc[1][0] ** 2) < ACC_THRESHOLD:
+            real_acc[0][0] = real_acc[1][0] = 0
+            dev_stopped = True
+
         print(real_acc)
         print()
 
-        u = np.array([[-real_acc[0][0]],
-                      [-real_acc[1][0]]
-                      ])
-        z = pos
-        self.my_filter.predict(u)  # utilizamos la media de las medidas de la aceleracion
-        self.my_filter.update(z)
-        return self.my_filter.x.item(0), self.my_filter.x.item(1)  # returns position(X,Y)
+        # Device is not moving
+        if dev_stopped:
+            if self.kalman_enabled:
+                self.kalman_enabled = False
+                self.last_position_x = None
+                self.last_position_y = None
+            print("Kalman disabled")
+
+            if (self.last_position_x is None) and (self.last_position_y is None):
+                self.last_position_x = list([pos[0]])
+                self.last_position_y = list([pos[1]])
+            else:
+                self.last_position_x.append(pos[0])
+                self.last_position_y.append(pos[1])
+
+            return tuple((np.mean(self.last_position_x), np.mean(self.last_position_y)))
+
+        # Device is moving
+        else:
+            if not self.kalman_enabled:
+                self.kalman_enabled = True
+                if (self.last_position_x is not None) and (self.last_position_y is not None):
+                    self.my_filter.x = np.array([[np.mean(self.last_position_x)],
+                                                 [np.mean(self.last_position_y)],
+                                                 [0.],
+                                                 [0.]])
+
+            print("Kalman enabled")
+
+            u = np.array([[real_acc[0][0]],
+                          [real_acc[1][0]]
+                          ])
+            z = pos
+            self.my_filter.predict(u)
+            self.my_filter.update(z)
+            self.count += 1
+            print("Num: " + str(self.count))
+            self.last_position_x = list([self.my_filter.x.item(0)])
+            self.last_position_y = list([self.my_filter.x.item(1)])
+            return self.last_position_x[0], self.last_position_y[0]  # returns position(X,Y)
+
+    # SOLO TIENE EN CUENTA ACELERACION
+    def estimatePositionUsingOnlyAcc(self, pos, acc_x, acc_y, curr_orientation, devname):
+
+        # Computes the orientation of the device in order to
+        # move it on the right direction.
+
+
+        rotationMatrix = np.array([[np.cos(self.room_orientation), -np.sin(self.room_orientation)],
+                                   [np.sin(self.room_orientation), np.cos(self.room_orientation)]])
+
+        # rotationMatrix = np.array([[1, 0],
+        #                            [0, 1]])
+
+        real_acc = np.matmul(rotationMatrix, np.array([[acc_x],
+                                                       [acc_y]]))
+
+        # Filter small acceleration when device is static
+        if np.sqrt(real_acc[0][0] ** 2 + real_acc[1][0] ** 2) < ACC_THRESHOLD:
+            real_acc[0][0] = real_acc[1][0] = 0
+            self.state_var[2] = 0.0
+            self.state_var[3] = 0.0
+
+        print(real_acc)
+        print()
+
+        # Device is moving
+
+        print("Kalman enabled")
+
+        self.state_var[0] += ((self.state_var[2] * self.delta_t) + ((real_acc[0][0] * (self.delta_t ** 2)) / 2))
+        self.state_var[1] += ((self.state_var[3] * self.delta_t) + ((real_acc[1][0] * (self.delta_t ** 2)) / 2))
+        self.state_var[2] += ((self.delta_t * real_acc[0][0]))
+        self.state_var[3] += ((self.delta_t * real_acc[1][0]))
+
+        self.last_position_x = list([self.state_var[0]])
+        self.last_position_y = list([self.state_var[1]])
+        return self.last_position_x[0], self.last_position_y[0]  # returns position(X,Y)
 
     # if position is computable, returns 2-tuple (X, Y) with the position
     # otherwise, returns ValueError
@@ -296,12 +404,12 @@ class PositioningComputations:
         distances = [r1, r2, r3]
         init_guess = np.array([0, 0])
         t_ini = time.time() * 1000
-        res = minimize(mse, init_guess, args=(locations, distances), method='L-BFGS-B', options={'ftol':1e-5, 'maxiter': 1e9})
+        res = minimize(mse, init_guess, args=(locations, distances), method='L-BFGS-B',
+                       options={'ftol': 1e-5, 'maxiter': 1e9})
         t_fin = time.time() * 1000
-        print("time elapsed: " + str(t_fin - t_ini))
-        print("estimated position: "+str(res.x))
+        print("estimated position RSSI: " + str(res.x))
 
-        return tuple((res.x[0],res.x[1]))
+        return tuple((res.x[0], res.x[1]))
 
     def setDevicesInitialOrientation(self, devs_orientation):
         self.initial_devs_orientation.update(devs_orientation)

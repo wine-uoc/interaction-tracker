@@ -1,6 +1,0 @@
-postgreSQL:
-  dbname: track
-  user: postgres
-  pass: postgres
-  host: 172.17.0.3
-  port: 5432

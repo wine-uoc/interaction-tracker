@@ -5,7 +5,7 @@ import matplotlib.gridspec as gridspec
 
 # print(gs)
 
-delta_t = 0.05
+delta_t = 0.1
 time = 12.8  # seconds
 max_time = int(time / delta_t)
 ACC_CONST = False
@@ -45,7 +45,7 @@ else:
    # print(list(zip(ax, ay)))
 
 u_noise = 0.018  # (accelerometer error) std
-z_noise = 0.48940446  # (RSSI-Distance error) std
+z_noise = 20#0.48940446  # (RSSI-Distance error) std
 
 # MODELO IDEAL M.U.A.
 

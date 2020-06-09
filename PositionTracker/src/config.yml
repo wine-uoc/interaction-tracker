@@ -1,0 +1,28 @@
+postgreSQL:
+  dbname: track
+  user: postgres
+  pass: postgres
+  host: 172.17.0.3
+  port: 5432
+
+anchorsToNodeRED:
+  sending_period: 0.1
+
+pythonApp:
+  appHost: 0.0.0.0
+  appPort: 5000
+  TDeleteDB: 60 #time between DB deletions (s)
+  numRowsKeptDB: 300 #keep the last X results in DB when deleted (s)
+  TComputePositions: 0.1 #time between postition computations (s)
+  numResultsDBrssi: 5
+  numResultsDBaccel: 1
+  numResultsDBorient: 1
+  #LOG-DISTANCE PATH LOSS MODEL PARAMETERS
+  A: -47.697
+  n: 5 #-0.827
+  sensitivityToRSSIChanges: 1 # 0<x<inf. 0 = no sensitivity
+  #KALMAN FILTER PARAMETERS
+  delta_t: 0.1
+  u_noise: 0.018
+  z_noise: 0.48940446
+  accThreshold: 0.2

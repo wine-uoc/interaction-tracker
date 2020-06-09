@@ -1,6 +1,7 @@
 package com.example.finalapp;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -15,6 +16,7 @@ import android.bluetooth.le.AdvertisingSetCallback;
 import android.bluetooth.le.AdvertisingSetParameters;
 import android.bluetooth.le.BluetoothLeAdvertiser;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -51,6 +53,8 @@ import java.net.URLEncoder;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.charset.StandardCharsets;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Random;
@@ -60,6 +64,7 @@ import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCompletionListener, SensorEventListener
 {
+
 
     private static String DEVNAME = null;
     //xml init
@@ -78,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
     private static final int RECORDER_SAMPLERATE = 44100;
     private static final int RECORDER_CHANNELS = AudioFormat.CHANNEL_IN_MONO;
     private static final int RECORDER_AUDIO_ENCODING = AudioFormat.ENCODING_PCM_16BIT;
-    private static final String IP_ADDR = "192.168.1.149"; //HAY QUE MODIFICAR LA DIRECCION IP CADA VEZ QUE SE CONECTAN LOS DISPOSITIVOS A LA RED LOCAL!
+    private static final String IP_ADDR = "192.168.1.135"; //HAY QUE MODIFICAR LA DIRECCION IP CADA VEZ QUE SE CONECTAN LOS DISPOSITIVOS A LA RED LOCAL!
     private static final int POST_PERIOD = 100; //in ms
 
 
@@ -98,7 +103,6 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
     //fft part
     byte[] music;
     short[] music2Short;
-    int boucle = 0;
 
     //play/stop part
     MediaPlayer mediaPlayer19;
@@ -119,6 +123,11 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
     private final float[] rotationMatrix = new float[9];
     private final float[] orientationAngles = new float[3];
 
+    private float[] R_D_W = new float[4]; //rotation matrix to change dev acc to world acc.
+
+    private int accReadingsForAvg = 0;
+    private ArrayList<Float> accReadingsX;
+    private ArrayList<Float> accReadingsY;
 
     private RequestQueue MyRequestQueue;
     private Map<String,Object> dataMapToNodeRED;
@@ -133,6 +142,17 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
     private int num_measurements;
     private boolean definedAccel = false;
     private boolean definedMagnet = false;
+
+    private boolean controlAcc = false;
+    private long t_ini;
+    private long t_fin;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (resultCode == RESULT_OK){
+            Log.d("Bluetooth: ", "Enabled succesfully!");
+        }
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -191,12 +211,15 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
         gravity = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         geomagnetic = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
 
-        sensorManager.registerListener(this, linearAccelerometer, SensorManager.SENSOR_DELAY_GAME);
-        sensorManager.registerListener(this, gravity, SensorManager.SENSOR_DELAY_GAME);
-        sensorManager.registerListener(this, geomagnetic, SensorManager.SENSOR_DELAY_GAME);
+        sensorManager.registerListener(this, linearAccelerometer, SensorManager.SENSOR_DELAY_FASTEST);
+        sensorManager.registerListener(this, gravity, SensorManager.SENSOR_DELAY_FASTEST);
+        sensorManager.registerListener(this, geomagnetic, SensorManager.SENSOR_DELAY_FASTEST);
 
         INIT_TIME = System.nanoTime();
         num_measurements = 0;
+
+        accReadingsX = new ArrayList<>(10);
+        accReadingsY = new ArrayList<>(10);
 
         MyRequestQueue = Volley.newRequestQueue(this);
 
@@ -231,7 +254,13 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
     public void setBleAdvertising(){
 
         BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        //Enables bluetooth is disabled
 
+        if (!bluetoothAdapter.isEnabled()) {
+            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            final int REQUEST_ENABLE_BT = 1;
+            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+        }
         try {
             DEVNAME = getAdvertisingDeviceName();
         } catch (IOException e) {
@@ -246,7 +275,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
         AdvertisingSetParameters parameters = (new AdvertisingSetParameters.Builder())
                 .setLegacyMode(true) // True by default, but set here as a reminder.
                 .setConnectable(false)
-                .setInterval(AdvertisingSetParameters.INTERVAL_LOW)
+                .setInterval(160) //Advertising interval = 100ms
                 .setTxPowerLevel(AdvertisingSetParameters.TX_POWER_HIGH)
                 .build();
 
@@ -369,7 +398,33 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
         String targetURL = "http://"+IP_ADDR+":1880/query";
         HttpURLConnection connection = null;
 
+
         try {
+
+
+            float acc_x = 0;
+            float acc_y = 0;
+
+            for (float val: accReadingsX){
+                acc_x += val;
+            }
+
+            for (float val: accReadingsY){
+                acc_y += val;
+            }
+
+            acc_x /= accReadingsX.size();
+            acc_y /= accReadingsY.size();
+
+            dataMapToNodeRED.put("x_acc", acc_x);
+            dataMapToNodeRED.put("y_acc", acc_y);
+
+            accReadingsForAvg = 0;
+            accReadingsX.clear();
+            accReadingsY.clear();
+
+            Log.d("num measurements: ", String.valueOf(num_measurements));
+            num_measurements=0;
             StringBuilder postData = new StringBuilder();
             for (Map.Entry<String,Object> dataMapToNodeRED : dataMapToNodeRED.entrySet()) {
                 if (postData.length() != 0) postData.append('&');
@@ -377,6 +432,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
                 postData.append('=');
                 postData.append(URLEncoder.encode(String.valueOf(dataMapToNodeRED.getValue()), "UTF-8"));
             }
+
             String urlParameters = postData.toString();
             //Create connection
             URL url = new URL(targetURL);
@@ -690,6 +746,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
     // the device's accelerometer and magnetometer.
 
     public void updateOrientationAngles() {
+        //Específicamente, este sensor solo es confiable cuando el ángulo roll es 0 (plano del movil paralelo al suelo)
 
         // Update rotation matrix, which is needed to update orientation angles.
         if (definedAccel && definedMagnet) {
@@ -704,22 +761,25 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
             dataMapToNodeRED.put("y_ori", orientationAngles[1]);
             dataMapToNodeRED.put("z_ori", orientationAngles[2]);
 
-            Log.d("x_ori", String.valueOf((orientationAngles[0]*180.0)/Math.PI));
-            Log.d("y_ori", String.valueOf((orientationAngles[1]*180.0)/Math.PI));
-            Log.d("z_ori", String.valueOf((orientationAngles[2]*180.0)/Math.PI));
+           //  Log.d("x_ori", String.valueOf(orientationAngles[0]));
+            /*Log.d("y_ori", String.valueOf(orientationAngles[1]));
+            Log.d("z_ori", String.valueOf(orientationAngles[2]));*/
         }
 
         // "mOrientationAngles" now has up-to-date information.
     }
 
+    @SuppressLint("LongLogTag")
     @Override
     public void onSensorChanged(SensorEvent event) {
 
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER){
+
             definedAccel = true;
             System.arraycopy(event.values, 0, accelerometerReading,
                     0, accelerometerReading.length);
             updateOrientationAngles();
+
         }
         else if (event.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD) {
             definedMagnet = true;
@@ -758,30 +818,57 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
                 hitSum = 0;
                 hitResult = 0;
             }*/
+            if (!controlAcc){
+                t_ini = System.currentTimeMillis();
+                controlAcc = true;
+            }
+            else{
+                t_fin = System.currentTimeMillis();
+               // Log.d("elapsed time btw readings: ", String.valueOf((t_fin-t_ini)));
+                controlAcc = false;
+            }
 
 
-           float x_acc = Float.parseFloat(String.valueOf(event.values[0]));
-           float y_acc = Float.parseFloat(String.valueOf(event.values[1]));
-           float z_acc = Float.parseFloat(String.valueOf(event.values[2]));
+            Double a = 2.85d / 10000;
+            DecimalFormat formatter = new DecimalFormat("0.0000000");
+           // System.out.println(formatter.format(a));
 
+           float x_acc_d = Float.parseFloat(String.valueOf(event.values[0]));
+           float y_acc_d = Float.parseFloat(String.valueOf(event.values[1]));
+           float z_acc_d = Float.parseFloat(String.valueOf(event.values[2]));
+
+           R_D_W[0] = (float) Math.cos((double)orientationAngles[0]);
+           R_D_W[1] = (float) -Math.sin((double)orientationAngles[0]);
+           R_D_W[2] = (float) Math.sin((double)orientationAngles[0]);
+           R_D_W[3] = (float) Math.cos((double)orientationAngles[0]);
+
+           float x_acc_w = x_acc_d*R_D_W[0] + y_acc_d*R_D_W[1];
+           float y_acc_w = x_acc_d*R_D_W[2] + y_acc_d*R_D_W[3];
+
+           ++accReadingsForAvg;
+           accReadingsX.add(x_acc_w);
+           accReadingsY.add(y_acc_w);
+
+          // Log.d("x_acc", formatter.format(Double.parseDouble(String.valueOf(x_acc_w))));
+          // Log.d("y_acc", formatter.format(Double.parseDouble(String.valueOf(y_acc_w))));
            ++NumSensorCalls;
 
-           if (NumSensorCalls > 6){
-               x_acc_view.setText(String.valueOf(x_acc));
-               y_acc_view.setText(String.valueOf(y_acc));
-               z_acc_view.setText(String.valueOf(z_acc));
+           if (NumSensorCalls > 1){
+               x_acc_view.setText(String.valueOf(x_acc_w));
+               y_acc_view.setText(String.valueOf(y_acc_w));
+            //   z_acc_view.setText(String.valueOf(z_acc_d));
                NumSensorCalls = 0;
            }
 
-           Log.i("sensor trigger: ", "OK");
-           dataMapToNodeRED.put("x_acc", x_acc);
-           dataMapToNodeRED.put("y_acc", y_acc);
-           dataMapToNodeRED.put("z_acc", z_acc);
+           //Log.i("sensor trigger: ", "OK");
+          // dataMapToNodeRED.put("x_acc", x_acc_w);
+          // dataMapToNodeRED.put("y_acc", y_acc_w);
+          // dataMapToNodeRED.put("z_acc", z_acc_d);
 
            ++num_measurements;
             long num = System.nanoTime();
             if (num - INIT_TIME > 100000000) {
-                Log.d("num measurements 1s: ", String.valueOf(num_measurements) );
+              //  Log.d("num measurements 1s: ", String.valueOf(num_measurements) );
                 INIT_TIME = System.nanoTime();
                 num_measurements = 0;
             }

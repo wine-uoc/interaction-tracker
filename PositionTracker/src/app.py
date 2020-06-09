@@ -6,8 +6,8 @@ from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 import io
 import sched, time
 from models import ModelController
-from processData import ProcessData
 import matplotlib
+import yaml
 
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.executors.pool import ThreadPoolExecutor, ProcessPoolExecutor
@@ -18,10 +18,12 @@ app = Flask(__name__)
 COUNT = 0
 last_img = ''
 
-
 ctrl = ModelController()
 show_circles = False
 show_rssi = False
+
+file = open('config.yml','r')
+cfg = yaml.load(file)
 
 # funcion que calcula la posicion de los dispositivos (target)
 def computeDevicesPositions():
@@ -37,8 +39,8 @@ executors = {
     'processpool': ProcessPoolExecutor(4)
 }
 schedu = BackgroundScheduler(executors=executors)
-schedu.add_job(computeDevicesPositions, 'interval', seconds=0.1) #Thread que computa la posicion del dispositivo
-schedu.add_job(triggerDeleteOldestDBdata, 'interval', seconds=60) #Thread que elimina datos antiguos de la BBDD.
+schedu.add_job(computeDevicesPositions, 'interval', seconds=cfg['pythonApp']['TComputePositions']) #Thread que computa la posicion del dispositivo
+schedu.add_job(triggerDeleteOldestDBdata, 'interval', seconds=cfg['pythonApp']['TDeleteDB']) #Thread que elimina datos antiguos de la BBDD.
 
 def extract_form_data():
     position_data = dict()
@@ -64,6 +66,7 @@ def extract_form_data():
     position_data['roomInfo']['X_max'] = request.form['room-x-max']
     position_data['roomInfo']['Y_min'] = request.form['room-y-min']
     position_data['roomInfo']['Y_max'] = request.form['room-y-max']
+    position_data['roomInfo']['orientation'] = float(request.form['degree-north'])*(3.141592/180) #degrees to rad.
 
     return position_data
 
@@ -71,14 +74,6 @@ def extract_form_data():
 @app.route("/plot_positions", methods=["GET"])
 def plot_positions():
     return render_template('/layouts/get_data.html', circles=show_circles, rssi=show_rssi)
-
-
-# ESTA FUNCION DEVOLVERÁ UN JSON CON LAS POSICIONES DE LOS MOVILES.
-# ESTA FUNCION SERÁ LLAMADA POR EL JAVASCRIPT ENCASTADO EN EL HTML DE get_data.html
-def get_devices_positions():
-    pd = ProcessData()
-    result = pd.estimatePosition()
-    return result
 
 
 @app.route("/positions_img", methods=["GET", "POST"])
@@ -106,6 +101,7 @@ def positions_img():
     if request.method == 'GET':
         dev_pos = ctrl.getDevicesPositions()
         anchors_pos = ctrl.getAnchorsPositions()
+        print("estimated position RSSI+ACC+ORI: ")
         print(dev_pos)
         print()
 
@@ -215,7 +211,7 @@ def main():
     #t2.start()
 
 
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(host=cfg['pythonApp']['appHost'], port=int(cfg['pythonApp']['appPort']), debug=True)
 
 
 if __name__ == '__main__':

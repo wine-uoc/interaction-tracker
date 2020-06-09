@@ -16,6 +16,7 @@ import fcntl
 import struct
 import platform
 import signal
+import yaml
 
 def get_ip_address(ifname):
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -26,11 +27,12 @@ def get_ip_address(ifname):
     )[20:24])
 
 # Specify which serial ports are used by the launchpads
+file = open('config.yml','r')
+cfg = yaml.load(file)
 SP_NAMES = []
 IP_ADDR = get_ip_address('wlo1')
 launchpadsInfo = []
-SEND_TO_NODERED_INTERVAL = 0.1
-SERIAL_PORT_INTERVAL = 0.1
+SEND_TO_NODERED_INTERVAL = float(cfg['anchorsToNodeRED']['sending_period'])
 
 def set_SerialPorts_ids():
     global SP_NAMES
@@ -160,8 +162,6 @@ def readingLaunchpadData(port, baud, lp_idx):
             pass
 
 
-
-
         if (len(devName) > 11):  # lectura valida
 
 
@@ -174,12 +174,11 @@ def readingLaunchpadData(port, baud, lp_idx):
 
             if "TARGETDEV-" in devName:  # if devName is clean and it's logical
                 # add read data to JSON
-
                 addDataToJSON(launchpadId, devName, rssiRaw, lp_idx)
 
         # close serial port
         #ser.close()
-        time.sleep(SERIAL_PORT_INTERVAL)
+        time.sleep(SEND_TO_NODERED_INTERVAL)
 
 def signal_handler(signal, frame):
     os.remove("serialPorts/sp0")

@@ -8,7 +8,7 @@ class DB:
     def __init__(self):
         # setting the database parameters for accessing later.
 
-        with open('db.yml', 'r') as file:
+        with open('config.yml', 'r') as file:
             cfg = yaml.load(file)
             self.conn = psycopg2.connect(database=cfg['postgreSQL']['dbname'], user=cfg['postgreSQL']['user'],
                                          password=cfg['postgreSQL']['pass'], host=cfg['postgreSQL']['host'],
@@ -27,18 +27,16 @@ class DB:
 
         self.devicesList = []
         self.cur.execute("SELECT DISTINCT devname FROM rssidata")
-
-        for dev_tup in self.cur.fetchall():
+        res = self.cur.fetchall()
+        for dev_tup in res:
             self.devicesList.append(dev_tup[0])
-
-
 
     def getRssiOfDeviceFromAnchor(self, devname, anchor_name, num_results=30):
         """
             gets a list of the last num_results RSSI measures of the device with devname
             from anchor anchor_name. By default, num_results is 30.
         """
-        self.cur = self.conn.cursor()
+
         result = dict()
         self.cur.execute(
             "SELECT rssi FROM rssidata WHERE devname=%(devname)s AND launchpadId=%(anc_name)s ORDER BY id DESC LIMIT %(num_res)s",{'devname':devname, 'anc_name':anchor_name, 'num_res':str(num_results)} )
@@ -59,7 +57,7 @@ class DB:
             returns a dictionary with 3 elements, one for each anchor, and every element has a list
             of the last num_results RSSI values for the device devname.
         """
-        self.cur = self.conn.cursor()
+
         result = dict()
         self.cur.execute(
             "SELECT rssi FROM rssidata WHERE devname='" + devname + "'AND launchpadId='" + self.anchor1_name + "' ORDER BY id DESC LIMIT " + str(
@@ -88,7 +86,7 @@ class DB:
     # se encarga de eliminar los resultados de la BD mas antiguos que ya no son utiles. Tanto de la tabla data como de la tabla sensorData.
     def keepLastXResultsInDB(self, keepNRows):
         # Tabla rssidata
-        self.cur = self.conn.cursor()
+
         self.cur.execute("SELECT MAX(id) FROM rssidata")
         res = self.cur.fetchall()
         res = int(res[0][0]) - keepNRows
@@ -111,24 +109,21 @@ class DB:
 
 
     def getAccelerationValues(self, devname, num_results):
-        self.cur = self.conn.cursor()
         self.cur.execute(
             "SELECT x_acc, y_acc FROM acceldata WHERE devname=%(devname)s ORDER BY id DESC LIMIT %(num_results)s",{'devname':devname, 'num_results':num_results})
         data_raw = self.cur.fetchone()
 
         acc_x = float(data_raw[0])#list(map(lambda x: float(x[0]), data_raw))
         acc_y = float(data_raw[1])#list(map(lambda x: float(x[1]), data_raw))
-        self.conn.commit()
         return acc_x, acc_y
 
     def getOrientationValues(self, devname, num_results):
-        self.cur = self.conn.cursor()
+
         self.cur.execute(
             "SELECT x_ori FROM orientationdata WHERE devname=%(devname)s ORDER BY id DESC LIMIT %(num_results)s",{'devname':devname, 'num_results':num_results})
         data_raw = self.cur.fetchone()
 
         #De momento solo nos interesa la orientacion en x (cuantos grados nos hemos desviado del vector que apunta hacia el norte magnetico)
         ori_x = float(data_raw[0])#list(map(lambda x: float(x[0]), data_raw))
-        self.conn.commit()
         return ori_x
 

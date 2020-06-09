@@ -1,10 +1,17 @@
+PASOS PARA DESPLEGAR EL PROYECTO
 
-El usuario ha de introducir:
-    
-     - identificador de cada anchor (escrito en cada uno en un adhesivo)
-     -Posicion de los 3 anchors (x,y)
- 
-    
-El sistema devolverá:
-    
-    -La posición en el plano de los dispositivos moviles (con error) cada x segundos.
+1. Conectar pc y movil a la misma red.
+
+2. Arrancar contenedores de Docker de postgreSQL y NodeRED.
+	sudo su
+	docker start mynodered mypg
+
+3. Abrir app en el movil.
+
+4. Ejecutar script ScanRSSIThreaded.py para empezar a enviar los beacons recibidos por serial a la BBDD de Docker.
+
+5. Ejecutar app.py para ejecutar la web en Flask.
+
+6. Introducir los datos de la habitacion y de los anchors.
+
+
