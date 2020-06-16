@@ -1,0 +1,2 @@
+-Sustituir Kalman Filter por un EKF.
+-Usar el acelerómetro unicamente para saber si estoy quieto o me estoy moviendo.

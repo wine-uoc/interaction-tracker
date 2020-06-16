@@ -15,6 +15,11 @@ import android.bluetooth.le.AdvertisingSet;
 import android.bluetooth.le.AdvertisingSetCallback;
 import android.bluetooth.le.AdvertisingSetParameters;
 import android.bluetooth.le.BluetoothLeAdvertiser;
+import android.bluetooth.le.BluetoothLeScanner;
+import android.bluetooth.le.ScanCallback;
+import android.bluetooth.le.ScanFilter;
+import android.bluetooth.le.ScanResult;
+import android.bluetooth.le.ScanSettings;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -56,6 +61,7 @@ import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Timer;
@@ -83,10 +89,10 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
     private static final int RECORDER_SAMPLERATE = 44100;
     private static final int RECORDER_CHANNELS = AudioFormat.CHANNEL_IN_MONO;
     private static final int RECORDER_AUDIO_ENCODING = AudioFormat.ENCODING_PCM_16BIT;
-    private static final String IP_ADDR = "192.168.1.135"; //HAY QUE MODIFICAR LA DIRECCION IP CADA VEZ QUE SE CONECTAN LOS DISPOSITIVOS A LA RED LOCAL!
+    private static final String IP_ADDR = "192.168.1.130"; //HAY QUE MODIFICAR LA DIRECCION IP CADA VEZ QUE SE CONECTAN LOS DISPOSITIVOS A LA RED LOCAL!
     private static final int POST_PERIOD = 100; //in ms
 
-
+    //Ultrasound vars
     private AudioRecord recorder = null;
     private int bufferSize = 0;
     private boolean isRecording = false;
@@ -95,6 +101,21 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
     private int frequency2 = 20000;
     private FFT a;
     private int NumSensorCalls = 0;
+
+    //BLE vars
+    BluetoothAdapter bluetoothAdapter;
+
+    //Advertising
+    private BluetoothLeAdvertiser advertiser;
+    private AdvertisingSetParameters parameters;
+    private AdvertiseData data;
+    private AdvertisingSetCallback callback;
+    //Scanning
+    private BluetoothLeScanner scanner;
+    private ScanCallback scanCallback;
+    private ScanSettings scanSettings;
+    private ScanFilter scanFilter;
+    private static final long SCAN_PERIOD = 10000;
 
     //file error statement
     final int REQUEST_PERMISSION_CODE = 1000;
@@ -130,7 +151,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
     private ArrayList<Float> accReadingsY;
 
     private RequestQueue MyRequestQueue;
-    private Map<String,Object> dataMapToNodeRED;
+    private Map<String,Object> bleDetectedDevices;
 
     private Timer t;
 
@@ -164,9 +185,10 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
             RequestPermission();
         }
 
-        dataMapToNodeRED = new LinkedHashMap<>();
-
-        setBleAdvertising();
+        bleDetectedDevices = new LinkedHashMap<>();
+        initializeBluetoothConfig();
+        setBLEAdvertising();
+        setBLEScanning();
 
         detect = findViewById(R.id.detection);
         problem = findViewById(R.id.problem);
@@ -211,9 +233,12 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
         gravity = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         geomagnetic = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
 
+        /* DESACTIVAMOS SENSORES DE MOMENTO.
         sensorManager.registerListener(this, linearAccelerometer, SensorManager.SENSOR_DELAY_FASTEST);
         sensorManager.registerListener(this, gravity, SensorManager.SENSOR_DELAY_FASTEST);
         sensorManager.registerListener(this, geomagnetic, SensorManager.SENSOR_DELAY_FASTEST);
+
+         */
 
         INIT_TIME = System.nanoTime();
         num_measurements = 0;
@@ -249,13 +274,13 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
         });
     }
 
-    //vars relating to BLE
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public void setBleAdvertising(){
 
-        BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        //Enables bluetooth is disabled
 
+    @SuppressLint("NewApi")
+    private void initializeBluetoothConfig() {
+        bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+
+        //Enables bluetooth if disabled
         if (!bluetoothAdapter.isEnabled()) {
             Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             final int REQUEST_ENABLE_BT = 1;
@@ -267,21 +292,70 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
             e.printStackTrace();
         }
 
-        dataMapToNodeRED.put("devname", DEVNAME);
-
+        bleDetectedDevices.put("srcDevice", DEVNAME);
         bluetoothAdapter.setName(DEVNAME);
-        BluetoothLeAdvertiser advertiser = bluetoothAdapter.getBluetoothLeAdvertiser();
+    }
 
-        AdvertisingSetParameters parameters = (new AdvertisingSetParameters.Builder())
-                .setLegacyMode(true) // True by default, but set here as a reminder.
+    @SuppressLint("NewApi")
+    private void setBLEScanning() {
+        scanner = bluetoothAdapter.getBluetoothLeScanner();
+        scanSettings = (new ScanSettings.Builder())
+                .setCallbackType(ScanSettings.CALLBACK_TYPE_ALL_MATCHES)
+                .setMatchMode(ScanSettings.MATCH_MODE_AGGRESSIVE)
+                .setScanMode( ScanSettings.SCAN_MODE_LOW_LATENCY)
+                .setNumOfMatches(ScanSettings.MATCH_NUM_FEW_ADVERTISEMENT)
+                //.setReportDelay(100)
+                .build();
+        scanCallback = new ScanCallback() {
+            @Override
+            public void onScanResult(int callbackType, ScanResult result) {
+                //super.onScanResult(callbackType, result);
+
+                String dstDevName = result.getDevice().getName();
+                int dstDevRSSI = result.getRssi();
+
+                if (dstDevName != null){
+                    //lo añadimos al Map para ser enviado posteriormente a NodeRED
+
+                    bleDetectedDevices.put("dstDevice", dstDevName);
+                    bleDetectedDevices.put("dstDeviceRSSI", dstDevRSSI);
+                    x_acc_view.setText(dstDevName);
+                    y_acc_view.setText(String.valueOf(dstDevRSSI));
+                    z_acc_view.setText("");
+                    Log.d("Scanned results", "Name: "+dstDevName+" RSSI: "+dstDevRSSI);
+                }
+            }
+
+            @Override
+            public void onBatchScanResults(List<ScanResult> results) {
+                super.onBatchScanResults(results);
+            }
+
+            @Override
+            public void onScanFailed(int errorCode) {
+                super.onScanFailed(errorCode);
+            }
+        };
+
+        scanner.startScan(null,  scanSettings, scanCallback);
+        Log.d("startScan!", "OK!");
+    }
+
+    //vars relating to BLE
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void setBLEAdvertising(){
+
+        advertiser = bluetoothAdapter.getBluetoothLeAdvertiser();
+        parameters = (new AdvertisingSetParameters.Builder())
+                .setLegacyMode(true) // No cambiar a false! Si no, deja de funcionar.
                 .setConnectable(false)
                 .setInterval(160) //Advertising interval = 100ms
-                .setTxPowerLevel(AdvertisingSetParameters.TX_POWER_HIGH)
+                .setTxPowerLevel(AdvertisingSetParameters.TX_POWER_MAX)
                 .build();
 
-        AdvertiseData data = (new AdvertiseData.Builder()).setIncludeDeviceName(true).setIncludeTxPowerLevel(true).build();
+        data = (new AdvertiseData.Builder()).setIncludeDeviceName(true).setIncludeTxPowerLevel(true).build();
 
-        AdvertisingSetCallback callback = new AdvertisingSetCallback() {
+        callback = new AdvertisingSetCallback() {
             @Override
             public void onAdvertisingSetStarted(AdvertisingSet advertisingSet, int txPower, int status) {
                 Log.i("test", "onAdvertisingSetStarted(): txPower:" + txPower + " , status: "
@@ -400,7 +474,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
 
 
         try {
-
+            /*
 
             float acc_x = 0;
             float acc_y = 0;
@@ -416,21 +490,23 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
             acc_x /= accReadingsX.size();
             acc_y /= accReadingsY.size();
 
-            dataMapToNodeRED.put("x_acc", acc_x);
-            dataMapToNodeRED.put("y_acc", acc_y);
+            bleDetectedDevices.put("x_acc", acc_x);
+            bleDetectedDevices.put("y_acc", acc_y);
 
             accReadingsForAvg = 0;
             accReadingsX.clear();
             accReadingsY.clear();
 
-            Log.d("num measurements: ", String.valueOf(num_measurements));
+            //Log.d("num measurements: ", String.valueOf(num_measurements));
             num_measurements=0;
+            */
+
             StringBuilder postData = new StringBuilder();
-            for (Map.Entry<String,Object> dataMapToNodeRED : dataMapToNodeRED.entrySet()) {
+            for (Map.Entry<String,Object> dataPair : bleDetectedDevices.entrySet()) {
                 if (postData.length() != 0) postData.append('&');
-                postData.append(URLEncoder.encode(dataMapToNodeRED.getKey(), "UTF-8"));
+                postData.append(URLEncoder.encode(dataPair.getKey(), "UTF-8"));
                 postData.append('=');
-                postData.append(URLEncoder.encode(String.valueOf(dataMapToNodeRED.getValue()), "UTF-8"));
+                postData.append(URLEncoder.encode(String.valueOf(dataPair.getValue()), "UTF-8"));
             }
 
             String urlParameters = postData.toString();
@@ -463,10 +539,10 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
                 response.append('\r');
             }
             rd.close();
-           // return response.toString();
+            // return response.toString();
         } catch (Exception e) {
             e.printStackTrace();
-           // return null;
+            // return null;
         } finally {
             if (connection != null) {
                 connection.disconnect();
@@ -558,7 +634,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
 
         while (!detection19(frequency1, a) && !Play) {
             //ES LA PREGUNTA DEL EMISOR. HAY QUE RESPONDERLE CON 20KHZ
-           setUpdatedFFT();
+            setUpdatedFFT();
         }
 
         if (Play){
@@ -575,7 +651,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
 
             while (detection20(frequency2, a)) {
 
-               setUpdatedFFT();
+                setUpdatedFFT();
             }
         }
 
@@ -757,11 +833,11 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
 
             SensorManager.getOrientation(rotationMatrix, orientationAngles);
 
-            dataMapToNodeRED.put("x_ori", orientationAngles[0]);
-            dataMapToNodeRED.put("y_ori", orientationAngles[1]);
-            dataMapToNodeRED.put("z_ori", orientationAngles[2]);
+            bleDetectedDevices.put("x_ori", orientationAngles[0]);
+            bleDetectedDevices.put("y_ori", orientationAngles[1]);
+            bleDetectedDevices.put("z_ori", orientationAngles[2]);
 
-           //  Log.d("x_ori", String.valueOf(orientationAngles[0]));
+            //  Log.d("x_ori", String.valueOf(orientationAngles[0]));
             /*Log.d("y_ori", String.valueOf(orientationAngles[1]));
             Log.d("z_ori", String.valueOf(orientationAngles[2]));*/
         }
@@ -824,51 +900,51 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
             }
             else{
                 t_fin = System.currentTimeMillis();
-               // Log.d("elapsed time btw readings: ", String.valueOf((t_fin-t_ini)));
+                // Log.d("elapsed time btw readings: ", String.valueOf((t_fin-t_ini)));
                 controlAcc = false;
             }
 
 
             Double a = 2.85d / 10000;
             DecimalFormat formatter = new DecimalFormat("0.0000000");
-           // System.out.println(formatter.format(a));
+            // System.out.println(formatter.format(a));
 
-           float x_acc_d = Float.parseFloat(String.valueOf(event.values[0]));
-           float y_acc_d = Float.parseFloat(String.valueOf(event.values[1]));
-           float z_acc_d = Float.parseFloat(String.valueOf(event.values[2]));
+            float x_acc_d = Float.parseFloat(String.valueOf(event.values[0]));
+            float y_acc_d = Float.parseFloat(String.valueOf(event.values[1]));
+            float z_acc_d = Float.parseFloat(String.valueOf(event.values[2]));
 
-           R_D_W[0] = (float) Math.cos((double)orientationAngles[0]);
-           R_D_W[1] = (float) -Math.sin((double)orientationAngles[0]);
-           R_D_W[2] = (float) Math.sin((double)orientationAngles[0]);
-           R_D_W[3] = (float) Math.cos((double)orientationAngles[0]);
+            R_D_W[0] = (float) Math.cos((double)orientationAngles[0]);
+            R_D_W[1] = (float) -Math.sin((double)orientationAngles[0]);
+            R_D_W[2] = (float) Math.sin((double)orientationAngles[0]);
+            R_D_W[3] = (float) Math.cos((double)orientationAngles[0]);
 
-           float x_acc_w = x_acc_d*R_D_W[0] + y_acc_d*R_D_W[1];
-           float y_acc_w = x_acc_d*R_D_W[2] + y_acc_d*R_D_W[3];
+            float x_acc_w = x_acc_d*R_D_W[0] + y_acc_d*R_D_W[1];
+            float y_acc_w = x_acc_d*R_D_W[2] + y_acc_d*R_D_W[3];
 
-           ++accReadingsForAvg;
-           accReadingsX.add(x_acc_w);
-           accReadingsY.add(y_acc_w);
+            ++accReadingsForAvg;
+            accReadingsX.add(x_acc_w);
+            accReadingsY.add(y_acc_w);
 
-          // Log.d("x_acc", formatter.format(Double.parseDouble(String.valueOf(x_acc_w))));
-          // Log.d("y_acc", formatter.format(Double.parseDouble(String.valueOf(y_acc_w))));
-           ++NumSensorCalls;
+            // Log.d("x_acc", formatter.format(Double.parseDouble(String.valueOf(x_acc_w))));
+            // Log.d("y_acc", formatter.format(Double.parseDouble(String.valueOf(y_acc_w))));
+            ++NumSensorCalls;
 
-           if (NumSensorCalls > 1){
-               x_acc_view.setText(String.valueOf(x_acc_w));
-               y_acc_view.setText(String.valueOf(y_acc_w));
-            //   z_acc_view.setText(String.valueOf(z_acc_d));
-               NumSensorCalls = 0;
-           }
+            if (NumSensorCalls > 1){
+                x_acc_view.setText(String.valueOf(x_acc_w));
+                y_acc_view.setText(String.valueOf(y_acc_w));
+                //   z_acc_view.setText(String.valueOf(z_acc_d));
+                NumSensorCalls = 0;
+            }
 
-           //Log.i("sensor trigger: ", "OK");
-          // dataMapToNodeRED.put("x_acc", x_acc_w);
-          // dataMapToNodeRED.put("y_acc", y_acc_w);
-          // dataMapToNodeRED.put("z_acc", z_acc_d);
+            //Log.i("sensor trigger: ", "OK");
+            // bleDetectedDevices.put("x_acc", x_acc_w);
+            // bleDetectedDevices.put("y_acc", y_acc_w);
+            // bleDetectedDevices.put("z_acc", z_acc_d);
 
-           ++num_measurements;
+            ++num_measurements;
             long num = System.nanoTime();
             if (num - INIT_TIME > 100000000) {
-              //  Log.d("num measurements 1s: ", String.valueOf(num_measurements) );
+                //  Log.d("num measurements 1s: ", String.valueOf(num_measurements) );
                 INIT_TIME = System.nanoTime();
                 num_measurements = 0;
             }

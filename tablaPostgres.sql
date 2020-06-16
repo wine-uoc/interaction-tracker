@@ -1,4 +1,4 @@
-CREATE TABLE rssidata (
+CREATE TABLE rssianchordata (
   id SERIAL PRIMARY KEY,
   launchpadId VARCHAR(32),
   devName VARCHAR(128) NOT NULL,
@@ -6,6 +6,22 @@ CREATE TABLE rssidata (
   ustime VARCHAR(16)
 );
 
+CREATE TABLE rssiphonedata (
+  srcdevice VARCHAR(32),
+  dstdevice VARCHAR(128),
+  rssi VARCHAR(4),
+  ustime VARCHAR(16),
+  PRIMARY KEY (srcdevice, dstdevice)
+);
+
+
+
+
+
+
+
+
+--No usadas de momento
 CREATE TABLE acceldata (
   id SERIAL PRIMARY KEY,
   devName VARCHAR(128) NOT NULL,

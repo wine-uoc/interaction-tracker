@@ -18,8 +18,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="num" />
-    <option name="TOOL_WINDOW_LOG_LEVEL" value="debug" />
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="error" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
     <option name="TOOL_WINDOW_REGEXP_FILTER" value="false" />
   </component>
@@ -28,45 +27,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="866a644b-5f24-4aa8-b1eb-8a1ca2a7e05b" name="Default Changelist" comment="new version">
-      <change afterPath="$PROJECT_DIR$/../../PositionTracker/src/KalmanTestTrajectory.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../PositionTracker/src/ScanRSSIThreaded.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../PositionTracker/src/config.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../PositionTracker/src/detectedDevs_sp0.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../PositionTracker/src/detectedDevs_sp1.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../PositionTracker/src/detectedDevs_sp2.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../PositionTracker/src/serialPorts/sp0" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../PositionTracker/src/serialPorts/sp1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../PositionTracker/src/serialPorts/sp2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../PositionTracker/src/testingKalmanFilter.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../PositionTracker/src/trilateration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../PositionTracker/KalmanTestTrajectory.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../PositionTracker/src/accessDB.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../PositionTracker/src/accessDB.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../PositionTracker/src/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../PositionTracker/src/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../PositionTracker/src/db.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../PositionTracker/src/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../PositionTracker/src/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../PositionTracker/src/position.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../PositionTracker/src/processData.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../PositionTracker/src/templates/layouts/data_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../PositionTracker/src/templates/layouts/data_form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../PositionTracker/testingKalmanFilter.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../PositionTracker/trilateration.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ScanRSSIThreaded.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PositionTracker/src/detectedDevs_sp0.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../PositionTracker/src/detectedDevs_sp0.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PositionTracker/src/detectedDevs_sp1.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../PositionTracker/src/detectedDevs_sp1.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PositionTracker/src/serialPorts/sp0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PositionTracker/src/serialPorts/sp1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PositionTracker/src/serialPorts/sp2" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/finalapp/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/finalapp/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../detectedDevs_sp0.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../detectedDevs_sp0.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../detectedDevs_sp1.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../detectedDevs_sp1.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../detectedDevs_sp2.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../detectedDevs_sp2.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../serialPorts/sp0" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../serialPorts/sp1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../serialPorts/sp2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sound-ranger-master.iml" beforeDir="false" afterPath="$PROJECT_DIR$/sound-ranger-master.iml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -77,7 +54,7 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_2_API_28" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="123dcd60" />
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
@@ -91,16 +68,45 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/finalapp/MainActivity.java">
+        <entry file="file://$PROJECT_DIR$/../../../interaction-tracker-master/android-app-ultraound/sound-ranger-master/app/src/main/java/com/example/finalapp/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="13446">
-              <caret line="850" lean-forward="true" selection-start-line="850" selection-end-line="850" />
-              <folding>
-                <element signature="e#7476#7735#0" expanded="true" />
-                <element signature="e#7734#7735#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="390">
+              <caret line="119" lean-forward="true" selection-end-line="939" selection-end-column="1" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file:///programs/Sdk/sources/android-29/android/media/MediaPlayer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="55065">
+              <caret line="3772" selection-start-line="3772" selection-end-line="3772" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file:///programs/Sdk/sources/android-29/android/hardware/SensorManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="6915">
+              <caret line="489" column="18" selection-start-line="489" selection-start-column="18" selection-end-line="489" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file:///programs/Sdk/sources/android-29/android/bluetooth/le/BluetoothLeScanner.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1200">
+              <caret line="114" column="16" selection-start-line="114" selection-start-column="16" selection-end-line="114" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../../interaction-tracker-master/android-app-ultraound/sound-ranger-master/app/src/main/AndroidManifest.xml">
+          <provider selected="true" editor-type-id="text-editor" />
+          <provider editor-type-id="android-manifest" />
         </entry>
       </file>
     </leaf>
@@ -115,8 +121,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>is</find>
-      <find>spectrum</find>
       <find>graph</find>
       <find>R.</find>
       <find>detect</find>
@@ -145,6 +149,8 @@
       <find>System.out.prin</find>
       <find>Log.d</find>
       <find>num meas</find>
+      <find>setNam</find>
+      <find>num_meas</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -160,6 +166,7 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/xml/network_security_config.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/finalapp/MainActivity.java" />
+        <option value="$PROJECT_DIR$/../../../interaction-tracker-master/android-app-ultraound/sound-ranger-master/app/src/main/java/com/example/finalapp/MainActivity.java" />
       </list>
     </option>
   </component>
@@ -175,10 +182,20 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
       <pane id="PackagesPane" />
-      <pane id="Scope" />
+      <pane id="AndroidView">
+        <subPane>
+          <expand>
+            <path>
+              <item name="sound-ranger-master" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="ProjectPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -187,11 +204,11 @@
     <property name="DEBUGGABLE_PROCESS" value="com.example.finalapp" />
     <property name="DEBUGGER_ID" value="Auto" />
     <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="123dcd60" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-06-09T09:30:02.352Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-06-10T10:46:56.354Z" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SHOW_ALL_PROCESSES" value="false" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -372,7 +389,7 @@
     <frame x="0" y="-2" width="1920" height="1082" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5462653" weight="0.16214721" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.5462653" visible="true" weight="0.14087513" />
       <window_info id="Captures" order="1" sideWeight="0.45373467" side_tool="true" weight="0.16126418" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" sideWeight="0.37638375" side_tool="true" weight="0.16823465" />
@@ -382,15 +399,15 @@
       <window_info id="simpleUML" order="7" weight="0.21093248" />
       <window_info id="Resources Explorer" order="8" weight="0.32947233" />
       <window_info id="Capture Tool" order="9" />
-      <window_info active="true" anchor="bottom" id="Run" order="0" sideWeight="0.4997233" visible="true" weight="0.27806926" />
+      <window_info anchor="bottom" id="Run" order="0" sideWeight="0.58484524" weight="0.31689402" />
       <window_info anchor="bottom" id="TODO" order="1" weight="0.32721382" />
-      <window_info anchor="bottom" id="Debug" order="2" sideWeight="0.4964029" weight="0.37688985" />
-      <window_info anchor="bottom" x="395" y="154" width="610" height="926" id="Logcat" order="3" sideWeight="0.6458218" weight="0.28961176" />
+      <window_info anchor="bottom" id="Debug" order="2" sideWeight="0.49573106" weight="0.48268625" />
+      <window_info anchor="bottom" x="395" y="154" width="610" height="926" id="Logcat" order="3" sideWeight="0.6458218" weight="0.30115426" />
       <window_info anchor="bottom" id="Terminal" order="4" sideWeight="0.4991699" weight="0.32633787" />
-      <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.3541782" side_tool="true" weight="0.33801296" />
+      <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.50426894" side_tool="true" weight="0.34207764" />
       <window_info anchor="bottom" id="Version Control" order="6" weight="0.32843652" />
-      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.4986165" weight="0.24344176" />
-      <window_info anchor="bottom" id="Android Profiler" order="8" weight="0.32937366" />
+      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.4986165" visible="true" weight="0.24344176" />
+      <window_info anchor="bottom" id="Android Profiler" order="8" show_stripe_button="false" weight="0.32937366" />
       <window_info anchor="bottom" id="Find" order="9" weight="0.52859133" />
       <window_info anchor="bottom" id="Sequence" order="10" weight="0.42222223" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.31938633" />
@@ -427,17 +444,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-29/android/util/Log.java" />
-    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-29/java/io/FileDescriptor.annotated.java" />
-    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-29/java/io/FileInputStream.java" />
-    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-29/java/io/OutputStream.java" />
-    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-29/java/io/InputStream.java" />
-    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-29/android/media/AudioFormat.java" />
-    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-29/android/media/AudioTrack.java" />
-    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-29/android/media/AudioRecord.java" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-29/android/widget/TextView.java" />
     <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-29/android/media/MediaPlayer.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/finalapp/FFT.java">
@@ -462,13 +468,6 @@
             <element signature="e#13442#13443#0" expanded="true" />
             <element signature="e#13489#13490#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///programs/Sdk/sources/android-29/java/lang/ClassLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="311" selection-start-line="311" selection-end-line="311" />
         </state>
       </provider>
     </entry>
@@ -582,13 +581,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///programs/Sdk/sources/android-29/android/os/Looper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="195" selection-start-line="195" selection-end-line="195" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="520">
@@ -619,13 +611,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="29" column="38" lean-forward="true" selection-start-line="29" selection-start-column="38" selection-end-line="29" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///programs/Sdk/sources/android-29/android/bluetooth/le/AdvertisingSetCallback.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="22" column="22" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -728,30 +713,107 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///programs/Sdk/sources/android-29/android/bluetooth/BluetoothAdapter.java">
+    <entry file="file:///programs/Sdk/sources/android-29/android/bluetooth/le/AdvertisingSetCallback.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="583">
-          <caret line="1887" column="15" selection-start-line="1887" selection-start-column="15" selection-end-line="1887" selection-end-column="15" />
+        <state relative-caret-position="-305">
+          <caret line="22" column="22" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file:///programs/Sdk/sources/android-29/android/hardware/SensorManager.java">
+    <entry file="file:///programs/Sdk/sources/android-29/android/bluetooth/BluetoothAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="1474" column="26" selection-start-line="1474" selection-start-column="26" selection-end-line="1474" selection-end-column="26" />
+        <state relative-caret-position="353">
+          <caret line="2905" column="19" selection-start-line="2905" selection-start-column="19" selection-end-line="2905" selection-end-column="19" />
+          <folding>
+            <element signature="e#112728#112729#0" expanded="true" />
+            <element signature="e#112778#112779#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///programs/Sdk/sources/android-29/android/bluetooth/le/ScanFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-396">
+          <caret line="50" column="31" lean-forward="true" selection-start-line="50" selection-start-column="31" selection-end-line="50" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///programs/Sdk/sources/android-29/android/app/Activity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="6633" column="18" selection-start-line="6633" selection-start-column="18" selection-end-line="6633" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///programs/Sdk/sources/android-29/android/os/Looper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="200" selection-start-line="200" selection-end-line="200" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///programs/Sdk/sources/android-29/java/lang/ClassLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="378" column="40" lean-forward="true" selection-start-line="378" selection-start-column="40" selection-end-line="378" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///programs/Sdk/platforms/android-29/android.jar!/dalvik/system/BaseDexClassLoader.class">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file:///programs/Sdk/sources/android-29/android/bluetooth/le/ScanCallback.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="25" column="22" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///programs/Sdk/sources/android-29/android/bluetooth/le/ScanSettings.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="274" column="95" selection-start-line="274" selection-start-column="60" selection-end-line="274" selection-end-column="95" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/finalapp/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13446">
-          <caret line="850" lean-forward="true" selection-start-line="850" selection-end-line="850" />
-          <folding>
-            <element signature="e#7476#7735#0" expanded="true" />
-            <element signature="e#7734#7735#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="694">
+          <caret line="407" selection-start-line="407" selection-end-line="407" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../interaction-tracker-master/android-app-ultraound/sound-ranger-master/app/src/main/java/com/example/finalapp/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="119" lean-forward="true" selection-end-line="939" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///programs/Sdk/sources/android-29/android/media/MediaPlayer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="55065">
+          <caret line="3772" selection-start-line="3772" selection-end-line="3772" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///programs/Sdk/sources/android-29/android/hardware/SensorManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6915">
+          <caret line="489" column="18" selection-start-line="489" selection-start-column="18" selection-end-line="489" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///programs/Sdk/sources/android-29/android/bluetooth/le/BluetoothLeScanner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1200">
+          <caret line="114" column="16" selection-start-line="114" selection-start-column="16" selection-end-line="114" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../interaction-tracker-master/android-app-ultraound/sound-ranger-master/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="android-manifest" />
     </entry>
   </component>
   <component name="simpleUML.UMLToolWindowPlugin">
