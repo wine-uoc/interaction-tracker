@@ -1,5 +1,5 @@
 CREATE TABLE rssianchordata (
-  id SERIAL PRIMARY KEY,
+  id BIGINT PRIMARY KEY,
   launchpadId VARCHAR(32),
   devName VARCHAR(128) NOT NULL,
   rssi VARCHAR(4),
@@ -7,11 +7,11 @@ CREATE TABLE rssianchordata (
 );
 
 CREATE TABLE rssiphonedata (
+  id BIGINT PRIMARY KEY,
   srcdevice VARCHAR(32),
   dstdevice VARCHAR(128),
   rssi VARCHAR(4),
-  ustime VARCHAR(16),
-  PRIMARY KEY (srcdevice, dstdevice)
+  ustime VARCHAR(16)
 );
 
 

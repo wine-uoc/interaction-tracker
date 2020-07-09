@@ -27,11 +27,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="866a644b-5f24-4aa8-b1eb-8a1ca2a7e05b" name="Default Changelist" comment="new version">
-      <change beforePath="$PROJECT_DIR$/../../PositionTracker/src/detectedDevs_sp0.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../PositionTracker/src/detectedDevs_sp0.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../PositionTracker/src/detectedDevs_sp1.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../PositionTracker/src/detectedDevs_sp1.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../PositionTracker/src/serialPorts/sp0" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../PositionTracker/src/serialPorts/sp1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../PositionTracker/src/serialPorts/sp2" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" afterDir="false" />
@@ -43,7 +38,6 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sound-ranger-master.iml" beforeDir="false" afterPath="$PROJECT_DIR$/sound-ranger-master.iml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -70,43 +64,106 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../../../interaction-tracker-master/android-app-ultraound/sound-ranger-master/app/src/main/java/com/example/finalapp/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="119" lean-forward="true" selection-end-line="939" selection-end-column="1" />
+            <state relative-caret-position="188">
+              <caret line="315" lean-forward="true" selection-start-line="315" selection-end-line="315" />
+              <folding>
+                <element signature="e#5334#5549#0" />
+                <element signature="e#5474#5543#1" />
+                <element signature="e#5555#5596#0" />
+                <element signature="e#5555#9083#0" />
+                <element signature="e#5800#5844#1" />
+                <element signature="e#7082#7124#0" />
+                <element signature="e#7156#7200#0" />
+                <element signature="e#7652#7990#0" />
+                <element signature="e#8413#8473#0" />
+                <element signature="e#8496#8556#0" />
+                <element signature="e#9091#9771#0" />
+                <element signature="e#9311#9526#1" />
+                <element signature="e#9539#9600#0" />
+                <element signature="e#9623#9667#0" />
+                <element signature="method#onBatchScanResults#0;class#10321:11505" />
+                <element signature="e#11782#13276#0" />
+                <element signature="method#onAdvertisingSetStarted#0;class#12440:13181" />
+                <element signature="method#onAdvertisingDataSet#0;class#12440:13181" />
+                <element signature="method#onScanResponseDataSet#0;class#12440:13181" />
+                <element signature="method#onAdvertisingSetStopped#0;class#12440:13181" />
+                <element signature="e#13282#13380#0" />
+                <element signature="e#13282#15400#0" />
+                <element signature="e#15296#15363#0" />
+                <element signature="e#15467#16638#0" />
+                <element signature="e#16793#17449#0" />
+                <element signature="e#17593#17890#1" />
+                <element signature="e#19473#19653#0" />
+                <element signature="class#19551:19642" />
+                <element signature="method#run#0;class#19551:19642" />
+                <element signature="e#19659#19985#0" />
+                <element signature="e#19837#19896#1" />
+                <element signature="e#20212#20257#1" />
+                <element signature="e#20348#21683#0" />
+                <element signature="e#20401#21676#1" />
+                <element signature="e#20489#20612#1" />
+                <element signature="e#21165#21666#1" />
+                <element signature="e#21347#21434#1" />
+                <element signature="e#21467#21652#1" />
+                <element signature="e#21689#22405#0" />
+                <element signature="e#21855#21966#1" />
+                <element signature="e#21985#22025#1" />
+                <element signature="e#22040#22397#1" />
+                <element signature="e#22338#22387#1" />
+                <element signature="e#22411#22628#0" />
+                <element signature="e#22543#22579#1" />
+                <element signature="e#22585#22622#1" />
+                <element signature="e#22634#22858#0" />
+                <element signature="e#22765#22801#1" />
+                <element signature="e#22815#22852#1" />
+                <element signature="e#22864#23275#0" />
+                <element signature="e#23157#23239#1" />
+                <element signature="e#23281#24468#0" />
+                <element signature="e#24474#24925#0" />
+                <element signature="e#24931#25452#0" />
+                <element signature="e#25189#25260#1" />
+                <element signature="e#25285#25446#1" />
+                <element signature="e#25457#26086#0" />
+                <element signature="e#25626#26079#0" />
+                <element signature="e#25669#26050#1" />
+                <element signature="e#25770#25893#1" />
+                <element signature="e#25914#26036#1" />
+                <element signature="e#26092#26614#0" />
+                <element signature="e#26158#26379#1" />
+                <element signature="e#26172#26240#0" />
+                <element signature="e#26393#26607#1" />
+                <element signature="e#26407#26436#0" />
+                <element signature="e#26620#26807#0" />
+                <element signature="e#26749#26783#1" />
+                <element signature="e#26813#27170#0" />
+                <element signature="e#26927#26973#1" />
+                <element signature="e#26986#27164#1" />
+                <element signature="e#27176#27479#0" />
+                <element signature="e#27235#27282#1" />
+                <element signature="e#27295#27473#1" />
+                <element signature="e#27485#28245#0" />
+                <element signature="e#27576#27607#0" />
+                <element signature="e#27928#27959#0" />
+                <element signature="e#28251#28329#0" />
+                <element signature="e#28387#29437#0" />
+                <element signature="e#28435#28546#0" />
+                <element signature="e#28672#29366#1" />
+                <element signature="e#29233#29356#0" />
+                <element signature="e#29443#29470#0" />
+                <element signature="e#29443#33487#0" />
+                <element signature="e#29603#29809#1" />
+                <element signature="e#29881#30084#1" />
+                <element signature="e#30161#33480#1" />
+                <element signature="e#30174#31175#0" />
+                <element signature="e#31204#31306#1" />
+                <element signature="e#31323#31514#1" />
+                <element signature="e#32461#32542#0" />
+                <element signature="e#32703#32942#1" />
+                <element signature="e#32956#32990#0" />
+                <element signature="e#33282#33469#1" />
+              </folding>
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file:///programs/Sdk/sources/android-29/android/media/MediaPlayer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="55065">
-              <caret line="3772" selection-start-line="3772" selection-end-line="3772" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file:///programs/Sdk/sources/android-29/android/hardware/SensorManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6915">
-              <caret line="489" column="18" selection-start-line="489" selection-start-column="18" selection-end-line="489" selection-end-column="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file:///programs/Sdk/sources/android-29/android/bluetooth/le/BluetoothLeScanner.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1200">
-              <caret line="114" column="16" selection-start-line="114" selection-start-column="16" selection-end-line="114" selection-end-column="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../interaction-tracker-master/android-app-ultraound/sound-ranger-master/app/src/main/AndroidManifest.xml">
-          <provider selected="true" editor-type-id="text-editor" />
-          <provider editor-type-id="android-manifest" />
         </entry>
       </file>
     </leaf>
@@ -171,10 +228,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="67" />
-    <option name="y" value="25" />
-    <option name="width" value="1853" />
-    <option name="height" value="1055" />
+    <option name="x" value="2186" />
+    <option name="y" value="27" />
+    <option name="width" value="1440" />
+    <option name="height" value="810" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -183,19 +240,9 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="AndroidView">
-        <subPane>
-          <expand>
-            <path>
-              <item name="sound-ranger-master" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="ProjectPane" />
+      <pane id="AndroidView" />
       <pane id="Scope" />
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -208,7 +255,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SHOW_ALL_PROCESSES" value="false" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -235,7 +282,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Android App.app">
+  <component name="RunManager" selected="Android App.MainActivity">
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
       <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
@@ -386,10 +433,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="-2" width="1920" height="1082" extended-state="6" />
+    <frame x="1987" y="25" width="1853" height="1055" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.5462653" visible="true" weight="0.14087513" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5462653" visible="true" weight="0.10459325" />
       <window_info id="Captures" order="1" sideWeight="0.45373467" side_tool="true" weight="0.16126418" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" sideWeight="0.37638375" side_tool="true" weight="0.16823465" />
@@ -399,14 +446,14 @@
       <window_info id="simpleUML" order="7" weight="0.21093248" />
       <window_info id="Resources Explorer" order="8" weight="0.32947233" />
       <window_info id="Capture Tool" order="9" />
-      <window_info anchor="bottom" id="Run" order="0" sideWeight="0.58484524" weight="0.31689402" />
+      <window_info anchor="bottom" id="Run" order="0" sideWeight="0.58484524" weight="0.31641468" />
       <window_info anchor="bottom" id="TODO" order="1" weight="0.32721382" />
-      <window_info anchor="bottom" id="Debug" order="2" sideWeight="0.49573106" weight="0.48268625" />
+      <window_info anchor="bottom" id="Debug" order="2" sideWeight="0.49573106" weight="0.3261339" />
       <window_info anchor="bottom" x="395" y="154" width="610" height="926" id="Logcat" order="3" sideWeight="0.6458218" weight="0.30115426" />
       <window_info anchor="bottom" id="Terminal" order="4" sideWeight="0.4991699" weight="0.32633787" />
       <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.50426894" side_tool="true" weight="0.34207764" />
       <window_info anchor="bottom" id="Version Control" order="6" weight="0.32843652" />
-      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.4986165" visible="true" weight="0.24344176" />
+      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.4986165" visible="true" weight="0.3412527" />
       <window_info anchor="bottom" id="Android Profiler" order="8" show_stripe_button="false" weight="0.32937366" />
       <window_info anchor="bottom" id="Find" order="9" weight="0.52859133" />
       <window_info anchor="bottom" id="Sequence" order="10" weight="0.42222223" />
@@ -432,6 +479,12 @@
           <line>154</line>
           <properties class="com.jjoe64.graphview.series.BarGraphSeries" method="draw" />
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/../../../interaction-tracker-master/android-app-ultraound/sound-ranger-master/app/src/main/java/com/example/finalapp/MainActivity.java</url>
+          <line>344</line>
+          <properties />
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -655,28 +708,28 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/xml/network_security_config.xml">
+      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="54" selection-start-line="4" selection-start-column="54" selection-end-line="4" selection-end-column="54" />
         </state>
       </provider>
-      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="34" selection-start-line="6" selection-start-column="34" selection-end-line="6" selection-end-column="34" />
         </state>
       </provider>
-      <provider selected="true" editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="21" column="39" selection-start-line="21" selection-start-column="39" selection-end-line="21" selection-end-column="39" />
         </state>
       </provider>
-      <provider editor-type-id="android-manifest" />
     </entry>
     <entry file="file:///programs/Sdk/sources/android-29/android/bluetooth/le/BluetoothLeAdvertiser.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -783,13 +836,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../../interaction-tracker-master/android-app-ultraound/sound-ranger-master/app/src/main/java/com/example/finalapp/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="119" lean-forward="true" selection-end-line="939" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///programs/Sdk/sources/android-29/android/media/MediaPlayer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="55065">
@@ -812,8 +858,111 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../../../interaction-tracker-master/android-app-ultraound/sound-ranger-master/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor" />
       <provider editor-type-id="android-manifest" />
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../interaction-tracker-master/android-app-ultraound/sound-ranger-master/app/src/main/java/com/example/finalapp/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="315" lean-forward="true" selection-start-line="315" selection-end-line="315" />
+          <folding>
+            <element signature="e#5334#5549#0" />
+            <element signature="e#5474#5543#1" />
+            <element signature="e#5555#5596#0" />
+            <element signature="e#5555#9083#0" />
+            <element signature="e#5800#5844#1" />
+            <element signature="e#7082#7124#0" />
+            <element signature="e#7156#7200#0" />
+            <element signature="e#7652#7990#0" />
+            <element signature="e#8413#8473#0" />
+            <element signature="e#8496#8556#0" />
+            <element signature="e#9091#9771#0" />
+            <element signature="e#9311#9526#1" />
+            <element signature="e#9539#9600#0" />
+            <element signature="e#9623#9667#0" />
+            <element signature="method#onBatchScanResults#0;class#10321:11505" />
+            <element signature="e#11782#13276#0" />
+            <element signature="method#onAdvertisingSetStarted#0;class#12440:13181" />
+            <element signature="method#onAdvertisingDataSet#0;class#12440:13181" />
+            <element signature="method#onScanResponseDataSet#0;class#12440:13181" />
+            <element signature="method#onAdvertisingSetStopped#0;class#12440:13181" />
+            <element signature="e#13282#13380#0" />
+            <element signature="e#13282#15400#0" />
+            <element signature="e#15296#15363#0" />
+            <element signature="e#15467#16638#0" />
+            <element signature="e#16793#17449#0" />
+            <element signature="e#17593#17890#1" />
+            <element signature="e#19473#19653#0" />
+            <element signature="class#19551:19642" />
+            <element signature="method#run#0;class#19551:19642" />
+            <element signature="e#19659#19985#0" />
+            <element signature="e#19837#19896#1" />
+            <element signature="e#20212#20257#1" />
+            <element signature="e#20348#21683#0" />
+            <element signature="e#20401#21676#1" />
+            <element signature="e#20489#20612#1" />
+            <element signature="e#21165#21666#1" />
+            <element signature="e#21347#21434#1" />
+            <element signature="e#21467#21652#1" />
+            <element signature="e#21689#22405#0" />
+            <element signature="e#21855#21966#1" />
+            <element signature="e#21985#22025#1" />
+            <element signature="e#22040#22397#1" />
+            <element signature="e#22338#22387#1" />
+            <element signature="e#22411#22628#0" />
+            <element signature="e#22543#22579#1" />
+            <element signature="e#22585#22622#1" />
+            <element signature="e#22634#22858#0" />
+            <element signature="e#22765#22801#1" />
+            <element signature="e#22815#22852#1" />
+            <element signature="e#22864#23275#0" />
+            <element signature="e#23157#23239#1" />
+            <element signature="e#23281#24468#0" />
+            <element signature="e#24474#24925#0" />
+            <element signature="e#24931#25452#0" />
+            <element signature="e#25189#25260#1" />
+            <element signature="e#25285#25446#1" />
+            <element signature="e#25457#26086#0" />
+            <element signature="e#25626#26079#0" />
+            <element signature="e#25669#26050#1" />
+            <element signature="e#25770#25893#1" />
+            <element signature="e#25914#26036#1" />
+            <element signature="e#26092#26614#0" />
+            <element signature="e#26158#26379#1" />
+            <element signature="e#26172#26240#0" />
+            <element signature="e#26393#26607#1" />
+            <element signature="e#26407#26436#0" />
+            <element signature="e#26620#26807#0" />
+            <element signature="e#26749#26783#1" />
+            <element signature="e#26813#27170#0" />
+            <element signature="e#26927#26973#1" />
+            <element signature="e#26986#27164#1" />
+            <element signature="e#27176#27479#0" />
+            <element signature="e#27235#27282#1" />
+            <element signature="e#27295#27473#1" />
+            <element signature="e#27485#28245#0" />
+            <element signature="e#27576#27607#0" />
+            <element signature="e#27928#27959#0" />
+            <element signature="e#28251#28329#0" />
+            <element signature="e#28387#29437#0" />
+            <element signature="e#28435#28546#0" />
+            <element signature="e#28672#29366#1" />
+            <element signature="e#29233#29356#0" />
+            <element signature="e#29443#29470#0" />
+            <element signature="e#29443#33487#0" />
+            <element signature="e#29603#29809#1" />
+            <element signature="e#29881#30084#1" />
+            <element signature="e#30161#33480#1" />
+            <element signature="e#30174#31175#0" />
+            <element signature="e#31204#31306#1" />
+            <element signature="e#31323#31514#1" />
+            <element signature="e#32461#32542#0" />
+            <element signature="e#32703#32942#1" />
+            <element signature="e#32956#32990#0" />
+            <element signature="e#33282#33469#1" />
+          </folding>
+        </state>
+      </provider>
     </entry>
   </component>
   <component name="simpleUML.UMLToolWindowPlugin">

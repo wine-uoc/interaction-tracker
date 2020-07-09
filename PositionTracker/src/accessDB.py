@@ -17,7 +17,7 @@ class DB:
         self.cur = self.conn.cursor()
 
         # get the 3 different launchpad identifiers in order to build the queries later
-        self.cur.execute("SELECT DISTINCT launchpadId FROM rssidata")
+        self.cur.execute("SELECT DISTINCT dstdevice FROM rssiphonedata WHERE length(dstdevice) = 4")
         anchor_list_names = self.cur.fetchall()
         self.anchor1_name = anchor_list_names[0][0]
         self.anchor2_name = anchor_list_names[1][0]
@@ -25,13 +25,36 @@ class DB:
 
         # get the devices names and store them in a list
 
-        self.devicesList = []
-        self.cur.execute("SELECT DISTINCT devname FROM rssidata")
+        self.devnamesList = []
+        self.cur.execute("SELECT DISTINCT srcdevice FROM rssiphonedata")
         res = self.cur.fetchall()
         for dev_tup in res:
-            self.devicesList.append(dev_tup[0])
+            self.devnamesList.append(dev_tup[0])
 
-    def getRssiOfDeviceFromAnchor(self, devname, anchor_name, num_results=30):
+    def getRssiOfDeviceFromDevice(self, devname, anchor_name, num_results=30):
+        """
+            gets a list of the last num_results RSSI measures of the device with devname
+            from device anchor_name acting as anchor. By default, num_results is 30.
+        """
+
+        result = dict()
+
+        self.cur.execute(
+            "SELECT rssi FROM rssiphonedata WHERE srcdevice=%(devname)s AND dstdevice=%(anc_name)s ORDER BY id DESC LIMIT %(num_res)s",
+            {'devname': devname, 'anc_name': anchor_name, 'num_res': str(num_results)})
+        aux1 = self.cur.fetchall()
+
+        self.cur.execute(
+            "SELECT rssi FROM rssiphonedata WHERE srcdevice=%(anc_name)s AND dstdevice=%(devname)s ORDER BY id DESC LIMIT %(num_res)s",
+            {'devname': devname, 'anc_name': anchor_name, 'num_res': str(num_results)})
+        aux2 = self.cur.fetchall()
+
+        res_list = list(map(lambda x: int(x[0]), aux1)) + list(map(lambda x: int(x[0]), aux2))
+        result[anchor_name] = res_list
+
+        return result[anchor_name]
+
+    def getRssiOfDeviceFromLaunchpad(self, devname, anchor_name, num_results=30):
         """
             gets a list of the last num_results RSSI measures of the device with devname
             from anchor anchor_name. By default, num_results is 30.
@@ -39,7 +62,7 @@ class DB:
 
         result = dict()
         self.cur.execute(
-            "SELECT rssi FROM rssidata WHERE devname=%(devname)s AND launchpadId=%(anc_name)s ORDER BY id DESC LIMIT %(num_res)s",{'devname':devname, 'anc_name':anchor_name, 'num_res':str(num_results)} )
+            "SELECT rssi FROM rssiphonedata WHERE srcdevice=%(devname)s AND dstdevice=%(anc_name)s ORDER BY id DESC LIMIT %(num_res)s",{'devname':devname, 'anc_name':anchor_name, 'num_res':str(num_results)} )
 
         aux = self.cur.fetchall()
         result[anchor_name] = list(map(lambda x: int(x[0]), aux))
@@ -60,17 +83,17 @@ class DB:
 
         result = dict()
         self.cur.execute(
-            "SELECT rssi FROM rssidata WHERE devname='" + devname + "'AND launchpadId='" + self.anchor1_name + "' ORDER BY id DESC LIMIT " + str(
+            "SELECT rssi FROM rssiphonedata WHERE srcdevice='" + devname + "'AND dstdevice='" + self.anchor1_name + "' ORDER BY id DESC LIMIT " + str(
                 num_results))
         aux = self.cur.fetchall()
         result[self.anchor1_name] = list(map(lambda x: int(x[0]), aux))
         self.cur.execute(
-            "SELECT rssi FROM rssidata WHERE devname='" + devname + "'AND launchpadId='" + self.anchor2_name + "' ORDER BY id DESC LIMIT " + str(
+            "SELECT rssi FROM rssiphonedata WHERE srcdevice='" + devname + "'AND dstdevice='" + self.anchor2_name + "' ORDER BY id DESC LIMIT " + str(
                 num_results))
         aux = self.cur.fetchall()
         result[self.anchor2_name] = list(map(lambda x: int(x[0]), aux))
         self.cur.execute(
-            "SELECT rssi FROM rssidata WHERE devname='" + devname + "'AND launchpadId='" + self.anchor3_name + "' ORDER BY id DESC LIMIT " + str(
+            "SELECT rssi FROM rssiphonedata WHERE srcdevice='" + devname + "'AND dstdevice='" + self.anchor3_name + "' ORDER BY id DESC LIMIT " + str(
                 num_results))
         aux = self.cur.fetchall()
         result[self.anchor3_name] = list(map(lambda x: int(x[0]), aux))
@@ -78,7 +101,7 @@ class DB:
         return result
 
     def getDevicesList(self):
-        return self.devicesList
+        return self.devnamesList
 
     def getAnchorNames(self):
         return [self.anchor1_name, self.anchor2_name, self.anchor3_name]
@@ -87,13 +110,14 @@ class DB:
     def keepLastXResultsInDB(self, keepNRows):
         # Tabla rssidata
 
-        self.cur.execute("SELECT MAX(id) FROM rssidata")
+        self.cur.execute("SELECT MAX(id) FROM rssiphonedata")
         res = self.cur.fetchall()
         res = int(res[0][0]) - keepNRows
-        self.cur.execute("DELETE FROM rssidata WHERE id < %(res)s", {'res': str(res)})
+        self.cur.execute("DELETE FROM rssiphonedata WHERE id < %(res)s", {'res': str(res)})
         self.conn.commit()
 
         # Tabla accelData
+        '''
         self.cur.execute("SELECT MAX(id) FROM acceldata")
         res = self.cur.fetchall()
         res = int(res[0][0]) - keepNRows
@@ -106,7 +130,7 @@ class DB:
         res = int(res[0][0]) - keepNRows
         self.cur.execute("DELETE FROM orientationdata WHERE id < %(res)s", {'res': str(res)})
         self.conn.commit()
-
+        '''
 
     def getAccelerationValues(self, devname, num_results):
         self.cur.execute(

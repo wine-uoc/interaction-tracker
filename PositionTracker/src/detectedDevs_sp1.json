@@ -1,7 +1,17 @@
 [
     {
         "launchpadId": "4acf",
-        "devname": "TARGETDEV-7xdikn",
-        "RSSI": "-68"
+        "devname": "TARGETDEV-mom1qo",
+        "RSSI": "-80"
+    },
+    {
+        "launchpadId": "4acf",
+        "devname": "TARGETDEV-xelc2r",
+        "RSSI": "-55"
+    },
+    {
+        "launchpadId": "4",
+        "devname": "TARGETDEV-xel",
+        "RSSI": ""
     }
 ]

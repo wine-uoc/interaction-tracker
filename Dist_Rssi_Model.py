@@ -87,7 +87,7 @@ def curveFitting():
     # Preparamos los parámetros para crear la función que se
     # adecuará al modelo teórico rssi-distancia
     A = ydata[0]
-    n = 4
+    n = 3
     y = func_model(xdata, A, n)
 
     pyp.plot(xdata, y, 'g-', label='ideal: A - 10*n*log(x)')

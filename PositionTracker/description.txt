@@ -4,7 +4,7 @@ PASOS PARA DESPLEGAR EL PROYECTO
 
 2. Arrancar contenedores de Docker de postgreSQL y NodeRED.
 	sudo su
-	docker start mynodered mypg
+	docker start mynodered mypg2
 
 3. Abrir app en el movil.
 

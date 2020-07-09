@@ -180,20 +180,29 @@ def readingLaunchpadData(port, baud, lp_idx):
         #ser.close()
         time.sleep(SEND_TO_NODERED_INTERVAL)
 
-def signal_handler(signal, frame):
-    os.remove("serialPorts/sp0")
-    os.remove("serialPorts/sp1")
-    os.remove("serialPorts/sp2")
-    sys.exit(0)
+def removeOldFiles():
+    try:
+        os.remove("serialPorts/sp0")
+    except FileNotFoundError:
+        pass
+    try:
+        os.remove("serialPorts/sp1")
+    except FileNotFoundError:
+        pass
+    try:
+        os.remove("serialPorts/sp2")
+    except FileNotFoundError:
+        pass
+
+
 
 def main():
     # initialize DS's
-
+    removeOldFiles()
     set_SerialPorts_ids()
     initialize_DS()
     print(SP_NAMES)
 
-    signal.signal(signal.SIGINT, signal_handler)
     # Create three threads as follows
 
     try:

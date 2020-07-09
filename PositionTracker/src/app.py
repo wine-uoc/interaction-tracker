@@ -8,6 +8,7 @@ import sched, time
 from models import ModelController
 import matplotlib
 import yaml
+import numpy as np
 
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.executors.pool import ThreadPoolExecutor, ProcessPoolExecutor
@@ -99,11 +100,12 @@ def positions_img():
 
     # creamos la imagen. Será un plot de matplotlib con los anchors y los devices. retorna un png
     if request.method == 'GET':
+        TEST_MODEL = True
         dev_pos = ctrl.getDevicesPositions()
-        anchors_pos = ctrl.getAnchorsPositions()
-        print("estimated position RSSI+ACC+ORI: ")
-        print(dev_pos)
-        print()
+        anchors_pos = ctrl.getLaunchpadPositions()
+        #print("estimated position RSSI+ACC+ORI: ")
+        #print(dev_pos)
+        #print()
 
         # imprimimos los anchors (launchpads) primeramente.
 
@@ -131,12 +133,26 @@ def positions_img():
         y_dev = []
         dev_names = []
         try:
+            dot_colors = []
             for d in dev_pos:
                 x_dev.append(float(dev_pos[d]['X']))
                 y_dev.append(float(dev_pos[d]['Y']))
                 dev_names.append(d)
+                dot_colors.append('b')
 
-            ax.scatter(x_dev, y_dev, c='b')
+
+            ax.scatter(x_dev, y_dev, c=dot_colors)
+
+            if TEST_MODEL:
+                x = 1.15
+                y = 0.4
+                devname = "TARGETDEV-mom1qo"
+                ax.scatter(x, y, c='orange')
+                ax.text(x, y, devname, fontsize=14)
+                x_est = dev_pos[devname]['X']
+                y_est = dev_pos[devname]['Y']
+                err = np.sqrt(pow(x_est - x, 2.0) + pow(y_est - y, 2.0))
+                print(f"error: {err}")
 
             for i, txt in enumerate(dev_names):
                 ax.text(x_dev[i], y_dev[i], txt, fontsize=14)
@@ -153,7 +169,7 @@ def positions_img():
                 i = 0
                 for x, y, name in res:
                     ax.add_artist(
-                        plt.Circle((x, y), ctrl.getDistanceFromAnchorToDevice(name, dev_names[0]), color=color_array[i],
+                        plt.Circle((x, y), ctrl.getRadiusFromAnchorToDevice(name, "TARGETDEV-mom1qo"), color=color_array[i],
                                    alpha=0.25))
                     i += 1
 
@@ -161,7 +177,7 @@ def positions_img():
 
                 for devname in dev_names:
                     for i, anc_name in enumerate(anc_names):
-                        rssi = ctrl.getRssiFromAnchorOfDevice(anc_name, devname)
+                        rssi = ctrl.getRssiFromLaunchpadOfDevice(anc_name, devname)
                         ax.text(x_anc[i], y_anc[i] - 0.15, 'RSSI: ' + str(rssi), weight="bold")
 
 
