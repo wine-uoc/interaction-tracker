@@ -7,7 +7,7 @@
         <srcFile name="package/cfg/app_ble_pem3.c"/>
     </sources>
     <configscripts>
-        <srcFile name="/home/aaron/Documentos/Trabajo/interaction-tracker-master/simple_peripheral_cc2640r2lp_app/TOOLS/app_ble.cfg"/>
+        <srcFile name="/home/aaron/Documentos/Trabajo/ccs-workspace/simple_peripheral_cc2640r2lp_app/TOOLS/app_ble.cfg"/>
     </configscripts>
     <makefiles>
         <srcFile name="package.mak" src="package.bld"/>
@@ -44,7 +44,7 @@
         isPartial="false"
         xCfgScript="package/cfg/app_ble_pem3.cfg"
         xCfgPrefix="package/cfg/app_ble_pem3"
-        cfgScript="/home/aaron/Documentos/Trabajo/interaction-tracker-master/simple_peripheral_cc2640r2lp_app/TOOLS/app_ble.cfg"
+        cfgScript="/home/aaron/Documentos/Trabajo/ccs-workspace/simple_peripheral_cc2640r2lp_app/TOOLS/app_ble.cfg"
         cfgArgs="null"
         />
     </configurations>
@@ -56,7 +56,7 @@
         profile="release"
         xCfgScript="package/cfg/app_ble_pem3.cfg"
         xCfgPrefix="package/cfg/app_ble_pem3"
-        cfgScript="/home/aaron/Documentos/Trabajo/interaction-tracker-master/simple_peripheral_cc2640r2lp_app/TOOLS/app_ble.cfg"
+        cfgScript="/home/aaron/Documentos/Trabajo/ccs-workspace/simple_peripheral_cc2640r2lp_app/TOOLS/app_ble.cfg"
         cfgArgs="null"
         />
     </executables>

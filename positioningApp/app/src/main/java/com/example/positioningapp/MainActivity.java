@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
     private static final int RECORDER_SAMPLERATE = 44100;
     private static final int RECORDER_CHANNELS = AudioFormat.CHANNEL_IN_MONO;
     private static final int RECORDER_AUDIO_ENCODING = AudioFormat.ENCODING_PCM_16BIT;
-    private static final String IP_ADDR = "192.168.1.137"; //HAY QUE MODIFICAR LA DIRECCION IP CADA VEZ QUE SE CONECTAN LOS DISPOSITIVOS A LA RED LOCAL!
+    private static final String IP_ADDR = "192.168.1.130"; //HAY QUE MODIFICAR LA DIRECCION IP CADA VEZ QUE SE CONECTAN LOS DISPOSITIVOS A LA RED LOCAL!
     private static final int POST_PERIOD = 100; //in ms
 
     //Ultrasound vars
@@ -109,12 +109,11 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
     private AdvertisingSetParameters parameters;
     private AdvertiseData data;
     private AdvertisingSetCallback callback;
+
     //Scanning
     private BluetoothLeScanner scanner;
     private ScanCallback scanCallback;
     private ScanSettings scanSettings;
-    private ScanFilter scanFilter;
-    private static final long SCAN_PERIOD = 10000;
 
     //file error statement
     final int REQUEST_PERMISSION_CODE = 1000;
@@ -251,6 +250,8 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
         //MyRequestQueue = Volley.newRequestQueue(this);
 
         //accelerometerThread(); //HAY UN BUCLE INFINITO! while(true)
+
+
         t = new Timer();
         t.schedule(new TimerTask() {
             @Override
@@ -262,6 +263,8 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
                 }
             }
         }, 0,POST_PERIOD);
+
+
 // ################# FIN CODIGO NUEVO ##################################
 
         play.setOnClickListener(new View.OnClickListener() {
@@ -294,8 +297,10 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
             e.printStackTrace();
         }
 
-        bleDetectedDevices.put("srcDevice", DEVNAME);
-        bluetoothAdapter.setName(DEVNAME);
+        bleDetectedDevices.put("dstDevice", DEVNAME);
+        boolean a = bluetoothAdapter.setName(DEVNAME);
+        Log.d("ble adapter name set: ", String.valueOf(a));
+
     }
 
     @SuppressLint("NewApi")
@@ -313,18 +318,19 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
             public void onScanResult(int callbackType, ScanResult result) {
                 //super.onScanResult(callbackType, result);
 
-                String dstDevName = result.getDevice().getName();
-                int dstDevRSSI = result.getRssi();
+                String srcDevName = result.getDevice().getName();
 
-                if (dstDevName != null && isValidBLEdevName(dstDevName)/* && timeToUpdateValue(dstDevName, dstDevRSSI)*/){
+
+                if (isValidBLEdevName(srcDevName)/* && timeToUpdateValue(dstDevName, dstDevRSSI)*/){
                     //lo añadimos al Map para ser enviado posteriormente a NodeRED
+                    int srcDevRSSI = result.getRssi();
 
-                    bleDetectedDevices.put("dstDevice", dstDevName);
-                    bleDetectedDevices.put("dstDeviceRSSI", dstDevRSSI);
-                    x_acc_view.setText(dstDevName);
-                    y_acc_view.setText(String.valueOf(dstDevRSSI));
+                    bleDetectedDevices.put("srcDevice", srcDevName);
+                    bleDetectedDevices.put("srcDeviceRSSI", srcDevRSSI);
+                    x_acc_view.setText(srcDevName);
+                    y_acc_view.setText(String.valueOf(srcDevRSSI));
                     z_acc_view.setText("");
-                    Log.d("Scanned results", "Name: "+dstDevName+" RSSI: "+dstDevRSSI);
+                    Log.d("Scanned results", "Name: "+srcDevName+" RSSI: "+srcDevRSSI);
                 }
             }
 
@@ -358,8 +364,9 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
             return true;
         }
     }
-    private boolean isValidBLEdevName(String dstDevName) {
-        return dstDevName.matches("TARGETDEV-\\w{6}|\\w{4}");
+    private boolean isValidBLEdevName(String srcDevName) {
+        if (srcDevName == null) return false;
+        else return srcDevName.matches("TARGETDEV-\\w{6}") || srcDevName.matches("ANC-\\w{4}");
     }
 
     //vars relating to BLE
@@ -367,6 +374,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
     public void setBLEAdvertising(){
 
         advertiser = bluetoothAdapter.getBluetoothLeAdvertiser();
+
         parameters = (new AdvertisingSetParameters.Builder())
                 .setLegacyMode(true) // No cambiar a false! Si no, deja de funcionar.
                 .setConnectable(false)
@@ -490,57 +498,64 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
         MyRequestQueue.add(MyStringRequest);
        */  //HECHO CON VOLLEY
 
-        String targetURL = "http://"+IP_ADDR+":1880/query";
-        HttpURLConnection connection = null;
+        //if there are data to be sent to NodeRED
+        if (bleDetectedDevices.size() == 3) {
+            String targetURL = "http://" + IP_ADDR + ":1880/query";
+            HttpURLConnection connection = null;
 
 
-        try {
+            try {
 
-            StringBuilder postData = new StringBuilder();
-            for (Map.Entry<String,Object> dataPair : bleDetectedDevices.entrySet()) {
-                if (postData.length() != 0) postData.append('&');
-                postData.append(URLEncoder.encode(dataPair.getKey(), "UTF-8"));
-                postData.append('=');
-                postData.append(URLEncoder.encode(String.valueOf(dataPair.getValue()), "UTF-8"));
-            }
+                StringBuilder postData = new StringBuilder();
+                for (Map.Entry<String, Object> dataPair : bleDetectedDevices.entrySet()) {
+                    if (postData.length() != 0) postData.append('&');
+                    postData.append(URLEncoder.encode(dataPair.getKey(), "UTF-8"));
+                    postData.append('=');
+                    postData.append(URLEncoder.encode(String.valueOf(dataPair.getValue()), "UTF-8"));
+                }
 
-            String urlParameters = postData.toString();
-            //Create connection
-            URL url = new URL(targetURL);
-            connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("POST");
-            connection.setRequestProperty("Content-Type",
-                    "application/x-www-form-urlencoded");
-            connection.setRequestProperty("Content-Length",
-                    Integer.toString(urlParameters.getBytes().length));
-            connection.setRequestProperty("Content-Language", "en-US");
+                //Remove data already sent
+              //  bleDetectedDevices.remove("srcDevice");
+              //  bleDetectedDevices.remove("srcDeviceRSSI");
 
-            connection.setUseCaches(false);
-            connection.setDoOutput(true);
+                String urlParameters = postData.toString();
+                //Create connection
+                URL url = new URL(targetURL);
+                connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("POST");
+                connection.setRequestProperty("Content-Type",
+                        "application/x-www-form-urlencoded");
+                connection.setRequestProperty("Content-Length",
+                        Integer.toString(urlParameters.getBytes().length));
+                connection.setRequestProperty("Content-Language", "en-US");
 
-            //Send request
-            DataOutputStream wr = new DataOutputStream(
-                    connection.getOutputStream());
-            wr.writeBytes(urlParameters);
-            wr.close();
+                connection.setUseCaches(false);
+                connection.setDoOutput(true);
 
-            //Get Response
-            InputStream is = connection.getInputStream();
-            BufferedReader rd = new BufferedReader(new InputStreamReader(is));
-            StringBuilder response = new StringBuilder(); // or StringBuffer if Java version 5+
-            String line;
-            while ((line = rd.readLine()) != null) {
-                response.append(line);
-                response.append('\r');
-            }
-            rd.close();
-            // return response.toString();
-        } catch (Exception e) {
-            e.printStackTrace();
-            // return null;
-        } finally {
-            if (connection != null) {
-                connection.disconnect();
+                //Send request
+                DataOutputStream wr = new DataOutputStream(
+                        connection.getOutputStream());
+                wr.writeBytes(urlParameters);
+                wr.close();
+
+                //Get Response
+                InputStream is = connection.getInputStream();
+                BufferedReader rd = new BufferedReader(new InputStreamReader(is));
+                StringBuilder response = new StringBuilder(); // or StringBuffer if Java version 5+
+                String line;
+                while ((line = rd.readLine()) != null) {
+                    response.append(line);
+                    response.append('\r');
+                }
+                rd.close();
+                // return response.toString();
+            } catch (Exception e) {
+                e.printStackTrace();
+                // return null;
+            } finally {
+                if (connection != null) {
+                    connection.disconnect();
+                }
             }
         }
 

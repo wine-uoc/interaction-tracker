@@ -195,7 +195,7 @@ clean:
 	-@echo ' '
 
 pre-build:
-	-/home/aaron/Documentos/Trabajo/CCS9.3.0.00012_linux-x64/ti/simplelink_cc2640r2_sdk_3_40_00_10/source/ti/blestack/../../../tools/blestack/lib_search/lib_search         /home/aaron/Documentos/Trabajo/interaction-tracker-master/simple_peripheral_cc2640r2lp_stack_library/TOOLS/build_config.opt         /home/aaron/Documentos/Trabajo/CCS9.3.0.00012_linux-x64/ti/simplelink_cc2640r2_sdk_3_40_00_10/source/ti/blestack/blelib         /home/aaron/Documentos/Trabajo/ccs-workspace/simple_peripheral_cc2640r2lp_stack_library/FlashROM_Library/lib_linker.cmd         cc2640         /home/aaron/Documentos/Trabajo/CCS9.3.0.00012_linux-x64/ti/simplelink_cc2640r2_sdk_3_40_00_10/source/ti/blestack/../../../tools/blestack/lib_search/lib_search.xml         /home/aaron/Documentos/Trabajo/CCS9.3.0.00012_linux-x64/ti/simplelink_cc2640r2_sdk_3_40_00_10/source/ti/blestack/symbols
+	-/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/../../../tools/blestack/lib_search/lib_search         /home/aaron/Documentos/Trabajo/ccs-workspace/simple_peripheral_cc2640r2lp_stack_library/TOOLS/build_config.opt         /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/blelib         /home/aaron/Documentos/Trabajo/ccs-workspace/simple_peripheral_cc2640r2lp_stack_library/FlashROM_Library/lib_linker.cmd         cc2640         /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/../../../tools/blestack/lib_search/lib_search.xml         /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/symbols
 	-@echo ' '
 
 .PHONY: all clean dependents

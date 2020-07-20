@@ -10,7 +10,7 @@
 
  ******************************************************************************
  
- Copyright (c) 2013-2019, Texas Instruments Incorporated
+ Copyright (c) 2013-2020, Texas Instruments Incorporated
  All rights reserved.
 
  Redistribution and use in source and binary forms, with or without
@@ -49,12 +49,14 @@
  * INCLUDES
  */
 #include <string.h>
+#include <stdio.h>
 
 #include <ti/sysbios/knl/Task.h>
 #include <ti/sysbios/knl/Clock.h>
 #include <ti/sysbios/knl/Event.h>
 #include <ti/sysbios/knl/Queue.h>
 #include <ti/display/Display.h>
+#include <inc/hw_fcfg1.h>
 
 #if defined( USE_FPGA ) || defined( DEBUG_SW_TRACE )
 #include <driverlib/ioc.h>
@@ -70,10 +72,6 @@
 #include "devinfoservice.h"
 #include "simple_gatt_profile.h"
 #include "ll_common.h"
-
-#include "VL6180X_Service.h"
-#include "vl6180x_includes.h"
-
 
 #include "peripheral.h"
 
@@ -120,7 +118,7 @@
 #define DEFAULT_CONN_PAUSE_PERIPHERAL         6
 
 // How often to perform periodic event (in msec)
-#define SBP_PERIODIC_EVT_PERIOD               50
+#define SBP_PERIODIC_EVT_PERIOD               5000
 
 // Application specific event ID for HCI Connection Event End Events
 #define SBP_HCI_CONN_EVT_END_EVT              0x0001
@@ -188,8 +186,7 @@ typedef struct
  */
 
 // Display Interface
-Display_Handle dispHandle;
-extern int32_t data;
+Display_Handle dispHandle = NULL;
 
 /*********************************************************************
  * LOCAL VARIABLES
@@ -214,6 +211,8 @@ Task_Struct sbpTask;
 Char sbpTaskStack[SBP_TASK_STACK_SIZE];
 
 // Scan response data (max size = 31 bytes)
+
+
 static uint8_t scanRspData[] =
 {
   // complete name
@@ -275,6 +274,7 @@ static uint8_t advertData[] =
 // GAP GATT Attributes
 static uint8_t attDeviceName[GAP_DEVICE_NAME_LEN] = "Simple Peripheral";
 
+static int a = 0;
 
 /*********************************************************************
  * LOCAL FUNCTIONS
@@ -483,15 +483,14 @@ static void SimplePeripheral_init(void)
   Util_constructClock(&periodicClock, SimplePeripheral_clockHandler,
                       SBP_PERIODIC_EVT_PERIOD, 0, false, SBP_PERIODIC_EVT);
 
-  //Display_init();
-  //dispHandle = Display_open(SBP_DISPLAY_TYPE, NULL);
+  dispHandle = Display_open(SBP_DISPLAY_TYPE, NULL);
 
   // Set GAP Parameters: After a connection was established, delay in seconds
   // before sending when GAPRole_SetParameter(GAPROLE_PARAM_UPDATE_ENABLE,...)
   // uses GAPROLE_LINK_PARAM_UPDATE_INITIATE_BOTH_PARAMS or
   // GAPROLE_LINK_PARAM_UPDATE_INITIATE_APP_PARAMS
   // For current defaults, this has no effect.
-  // GAP_SetParamValue(TGAP_CONN_PAUSE_PERIPHERAL, DEFAULT_CONN_PAUSE_PERIPHERAL);
+  GAP_SetParamValue(TGAP_CONN_PAUSE_PERIPHERAL, DEFAULT_CONN_PAUSE_PERIPHERAL);
 
   // Start the Device:
   // Please Notice that in case of wanting to use the GAPRole_SetParameter
@@ -504,9 +503,6 @@ static void SimplePeripheral_init(void)
   // Guide:
   // http://software-dl.ti.com/lprf/sdg-latest/html/
   {
-    // Device starts advertising upon initialization of GAP
-    uint8_t initialAdvertEnable = TRUE;
-
     // By setting this to zero, the device will go into the waiting state after
     // being discoverable for 30.72 second, and will not being advertising again
     // until re-enabled by the application
@@ -517,10 +513,9 @@ static void SimplePeripheral_init(void)
     uint16_t desiredMaxInterval = DEFAULT_DESIRED_MAX_CONN_INTERVAL;
     uint16_t desiredSlaveLatency = DEFAULT_DESIRED_SLAVE_LATENCY;
     uint16_t desiredConnTimeout = DEFAULT_DESIRED_CONN_TIMEOUT;
+    uint64_t macAddress = *((uint64_t *)(FCFG1_BASE + FCFG1_O_MAC_BLE_0)) & 0x0000FFFFFFFFFFFF;
 
-    // Set the Peripheral GAPRole Parameters
-    GAPRole_SetParameter(GAPROLE_ADVERT_ENABLED, sizeof(uint8_t),
-                         &initialAdvertEnable);
+
     GAPRole_SetParameter(GAPROLE_ADVERT_OFF_TIME, sizeof(uint16_t),
                          &advertOffTime);
 
@@ -594,10 +589,6 @@ static void SimplePeripheral_init(void)
   DevInfo_AddService();                        // Device Information Service
   SimpleProfile_AddService(GATT_ALL_SERVICES); // Simple GATT Profile
 
-  VL6180X_Service_AddService( selfEntity );
-
-
-
   // Setup the SimpleProfile Characteristic Values
   // For more information, see the sections in the User's Guide:
   // http://software-dl.ti.com/lprf/sdg-latest/html/
@@ -619,11 +610,6 @@ static void SimplePeripheral_init(void)
     SimpleProfile_SetParameter(SIMPLEPROFILE_CHAR5, SIMPLEPROFILE_CHAR5_LEN,
                                charValue5);
   }
-
-  // Initalization of characteristics in VL6180X_Service which are readable.
-     uint8_t VL6180X_Service_distance_initVal[VL6180X_SERVICE_DISTANCE_LEN] = {5};
-     VL6180X_Service_SetParameter(VL6180X_SERVICE_DISTANCE_ID, VL6180X_SERVICE_DISTANCE_LEN, VL6180X_Service_distance_initVal);
-
 
   // Register callback with SimpleGATTprofile
   SimpleProfile_RegisterAppCBs(&SimplePeripheral_simpleProfileCBs);
@@ -659,6 +645,9 @@ static void SimplePeripheral_init(void)
 #endif // !defined (USE_LL_CONN_PARAM_UPDATE)
 
   Display_print0(dispHandle, 0, 0, "BLE Peripheral");
+
+  uint64_t macAddress = *((uint64_t *)(FCFG1_BASE + FCFG1_O_MAC_BLE_0)) & 0x0000FFFFFFFFFFFF;
+  uint16_t addr = (uint16_t) (macAddress & 0x000000000000FFFF);
 }
 
 /*********************************************************************
@@ -693,7 +682,8 @@ static void SimplePeripheral_taskFxn(UArg a0, UArg a1)
       ICall_HciExtEvt *pMsg = NULL;
 
       // Fetch any available messages that might have been sent from the stack
-      if (ICall_fetchServiceMsg(&src, &dest, (void **)&pMsg) == ICALL_ERRNO_SUCCESS)
+      if (ICall_fetchServiceMsg(&src, &dest,
+                                (void **)&pMsg) == ICALL_ERRNO_SUCCESS)
       {
         uint8 safeToDealloc = TRUE;
 
@@ -1020,11 +1010,21 @@ static void SimplePeripheral_processStateChangeEvt(gaprole_States_t newState)
         // Display device address
         Display_print0(dispHandle, 1, 0, Util_convertBdAddr2Str(ownAddress));
         Display_print0(dispHandle, 2, 0, "Initialized");
+
+        // Device starts advertising upon initialization of GAP
+        uint8_t initialAdvertEnable = TRUE;
+        // Set the Peripheral GAPRole Parameters
+        GAPRole_SetParameter(GAPROLE_ADVERT_ENABLED, sizeof(uint8_t),
+                         &initialAdvertEnable);
       }
       break;
 
     case GAPROLE_ADVERTISING:
       Display_print0(dispHandle, 2, 0, "Advertising");
+      ++a;
+      char str[4];
+      sprintf(str, "%d", a);
+      Display_print0(dispHandle, 5, 0, str);
       break;
 
 #ifdef PLUS_BROADCASTER
@@ -1109,13 +1109,18 @@ static void SimplePeripheral_processStateChangeEvt(gaprole_States_t newState)
       break;
 
     case GAPROLE_WAITING:
-      Util_stopClock(&periodicClock);
-      attRsp_freeAttRsp(bleNotConnected);
+      {
+        uint8_t advertReEnable = TRUE;
 
-      Display_print0(dispHandle, 2, 0, "Disconnected");
+        Util_stopClock(&periodicClock);
+        attRsp_freeAttRsp(bleNotConnected);
 
-      // Clear remaining lines
-      Display_clearLines(dispHandle, 3, 5);
+        // Clear remaining lines
+        Display_clearLines(dispHandle, 3, 5);
+        
+        GAPRole_SetParameter(GAPROLE_ADVERT_ENABLED, sizeof(uint8_t), &advertReEnable);
+        Display_print0(dispHandle, 2, 0, "Advertising");
+      }
       break;
 
     case GAPROLE_WAITING_AFTER_TIMEOUT:
@@ -1219,9 +1224,6 @@ static void SimplePeripheral_performPeriodicTask(void)
     SimpleProfile_SetParameter(SIMPLEPROFILE_CHAR4, sizeof(uint8_t),
                                &valueToCopy);
   }
-  VL6180X_Service_SetParameter(VL6180X_SERVICE_DISTANCE_ID, VL6180X_SERVICE_DISTANCE_LEN, &data);
-  //SimpleProfile_SetParameter(SIMPLEPROFILE_CHAR2, sizeof(uint8_t), &data);
-
 }
 
 /*********************************************************************

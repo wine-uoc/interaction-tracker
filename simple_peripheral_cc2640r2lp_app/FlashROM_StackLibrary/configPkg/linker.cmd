@@ -9,10 +9,10 @@
  */
 
 
--l"/home/aaron/Documentos/Trabajo/interaction-tracker-master/simple_peripheral_cc2640r2lp_app/FlashROM_StackLibrary/configPkg/package/cfg/app_ble_pem3.oem3"
--l"/home/aaron/Documentos/Trabajo/interaction-tracker-master/simple_peripheral_cc2640r2lp_app/TOOLS/src/sysbios/rom_sysbios.aem3"
--l"/home/aaron/Documentos/Trabajo/CCS9.3.0.00012_linux-x64/ti/simplelink_cc2640r2_sdk_3_40_00_10/kernel/tirtos/packages/ti/targets/arm/rtsarm/lib/boot.aem3"
--l"/home/aaron/Documentos/Trabajo/CCS9.3.0.00012_linux-x64/ti/simplelink_cc2640r2_sdk_3_40_00_10/kernel/tirtos/packages/ti/targets/arm/rtsarm/lib/auto_init.aem3"
+-l"/home/aaron/Documentos/Trabajo/ccs-workspace/simple_peripheral_cc2640r2lp_app/FlashROM_StackLibrary/configPkg/package/cfg/app_ble_pem3.oem3"
+-l"/home/aaron/Documentos/Trabajo/ccs-workspace/simple_peripheral_cc2640r2lp_app/TOOLS/src/sysbios/rom_sysbios.aem3"
+-l"/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/kernel/tirtos/packages/ti/targets/arm/rtsarm/lib/boot.aem3"
+-l"/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/kernel/tirtos/packages/ti/targets/arm/rtsarm/lib/auto_init.aem3"
 -l"/opt/ti/ccs930/xdctools_3_60_02_34_core/packages/xdc/rov/runtime/lib/xdc.rov.runtime.aem3"
 
 --retain="*(xdc.meta)"
@@ -109,7 +109,7 @@ ti_sysbios_family_arm_m3_Hwi_nvic = 0xe000e000;
 
 /* Content from ti.sysbios.heaps (null): */
 
-/* Content from ti.sysbios.rom.cortexm.cc26xx.r2 (/home/aaron/Documentos/Trabajo/CCS9.3.0.00012_linux-x64/ti/simplelink_cc2640r2_sdk_3_40_00_10/kernel/tirtos/packages/ti/sysbios/rom/cortexm/cc26xx/r2/golden/CC26xx/CC26xx_link_ti.xdt): */
+/* Content from ti.sysbios.rom.cortexm.cc26xx.r2 (/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/kernel/tirtos/packages/ti/sysbios/rom/cortexm/cc26xx/r2/golden/CC26xx/CC26xx_link_ti.xdt): */
 
 -u xdc_runtime_Error_policy__C
 -u xdc_runtime_IModule_Interface__BASE__C

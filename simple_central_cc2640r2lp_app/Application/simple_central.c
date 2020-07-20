@@ -49,6 +49,9 @@
  * INCLUDES
  */
 #include <string.h>
+#include <time.h>
+#include <inc/hw_fcfg1.h>
+#include <stdio.h>
 
 #include <ti/sysbios/knl/Task.h>
 #include <ti/sysbios/knl/Clock.h>
@@ -70,7 +73,7 @@
 
 #include "central.h"
 #include "simple_gatt_profile.h"
-
+#include <inttypes.h>
 #include "board_key.h"
 #include "board.h"
 
@@ -243,7 +246,7 @@ typedef struct
 
 typedef struct
 {
-  uint8_t devName[DEV_NAME_MAX_STR_LEN];
+  uint8_t devName [DEV_NAME_MAX_STR_LEN];
   int8 rssi;
 }bAddr_RSSI_info;
 
@@ -333,6 +336,8 @@ static readRssi_t readRssi[MAX_NUM_BLE_CONNS];
 // Key option state.
 static keyPressConnOpt_t keyPressConnOpt = DISCONNECT;
 
+
+
 static int una_vez = 0; //TODO Eliminar esta variable! es de debug
 
 /*********************************************************************
@@ -376,6 +381,9 @@ void SimpleCentral_startDiscHandler(UArg a0);
 void SimpleCentral_linkEstClockHandler(UArg a0);
 void SimpleCentral_keyChangeHandler(uint8 keys);
 void SimpleCentral_readRssiHandler(UArg a0);
+
+void delay(int number_of_seconds);
+int isMotorolaDevice(gapDeviceInfoEvent_t *devInfo); //data es un puntero a un array de caracteres (advertise data)
 
 static uint8_t SimpleCentral_enqueueMsg(uint8_t event, uint8_t status,
                                            uint8_t *pData);
@@ -866,7 +874,7 @@ static void SimpleCentral_processRoleEvent(gapCentralRoleEvent_t *pEvent)
 
     case GAP_DEVICE_INFO_EVENT:
       {
-
+        //ENTRA CADA VEZ QUE DETECTA UN NUEVO DISPOSITIVO
 
         uint8 bAddDevice = FALSE;
 
@@ -899,7 +907,10 @@ static void SimpleCentral_processRoleEvent(gapCentralRoleEvent_t *pEvent)
          {
 
          } else {
-             addAddrRssiInfo(pEvent->deviceInfo.pEvtData, pEvent->deviceInfo.dataLen, pEvent->deviceInfo.rssi);
+             if (isMotorolaDevice(&pEvent->deviceInfo)){
+                 addAddrRssiInfo(pEvent->deviceInfo.pEvtData, pEvent->deviceInfo.dataLen, pEvent->deviceInfo.rssi);
+             }
+
          }
 
       }
@@ -907,6 +918,7 @@ static void SimpleCentral_processRoleEvent(gapCentralRoleEvent_t *pEvent)
 
     case GAP_DEVICE_DISCOVERY_EVENT:
       {
+          //ENTRA CUANDO HA ACABADO DE ESCANEAR.
         if(pEvent->gap.hdr.status == SUCCESS)
         {
             // discovery complete
@@ -936,8 +948,23 @@ static void SimpleCentral_processRoleEvent(gapCentralRoleEvent_t *pEvent)
 
             int i = 0;
             int line_pr = 0;
+
+            /*
+            uint32_t bleAddressLO = *((uint32_t *)(FCFG1_BASE + FCFG1_O_MAC_BLE_0)) & 0xFFFFFFFF;
+            uint16_t bleAddressHI = *((uint16_t *)(FCFG1_BASE + FCFG1_O_MAC_BLE_1)) & 0xFFFF;
+            Display_print2(dispHandle, line_pr, 0, "%x%x", bleAddressHI,bleAddressLO);
+            */
+            uint64_t macAddress;
+            macAddress = *((uint64_t *)(FCFG1_BASE + FCFG1_O_MAC_BLE_0)) & 0x0000FFFFFFFFFFFF;
+            //Display_print2(dispHandle, line_pr, 0, "%x%x",(uint16_t) ((macAddress >> 32) & 0x000000000000FFFF), (uint32_t) (macAddress & 0x00000000FFFFFFFF));
+
+            //Display_print1(dispHandle, line_pr, 4, "%x\n", bleAddressLO);
+
+            uint16_t addr = (uint16_t) (macAddress & 0x000000000000FFFF);
             for (i = 0; i < scanDevices; ++i){
-                Display_print1(dispHandle, line_pr , 0 ,"%s\n", getDevNameStr(&tupleInfo[i].devName);
+                Display_print1(dispHandle, line_pr, 0, "%x\n", addr);
+                ++line_pr;
+                Display_print1(dispHandle, line_pr , 0 ,"%s\n", tupleInfo[i].devName);
                 ++line_pr;
                 Display_print1(dispHandle, line_pr , 0 ,"%d\n", tupleInfo[i].rssi);
                 ++line_pr;
@@ -946,7 +973,9 @@ static void SimpleCentral_processRoleEvent(gapCentralRoleEvent_t *pEvent)
             scanningStarted = TRUE;
             scanRes = 0;
             scanDevices = 0;
-
+            //delay(2);
+            int j;
+            for (j=0; j < 100000000; ++j){}
             GAPCentralRole_StartDiscovery(DEFAULT_DISCOVERY_MODE,
                                                     DEFAULT_DISCOVERY_ACTIVE_SCAN,
                                                     DEFAULT_DISCOVERY_WHITE_LIST);
@@ -1866,6 +1895,8 @@ static void SimpleCentral_addDeviceInfo(uint8_t *pAddr, uint8_t addrType, int8 r
 static void addAddrRssiInfo (uint8_t *advData, int data_len, int8 rssi){
     uint8_t i;
 
+      //If found device is the target device
+
       // If result count not at max
       if (scanDevices < DEFAULT_MAX_SCAN_RES)
       {
@@ -1879,27 +1910,26 @@ static void addAddrRssiInfo (uint8_t *advData, int data_len, int8 rssi){
           }
         }
 
-        // Add addr to scan result list
+        // Add devName to scan result list
         memcpy(tupleInfo[scanDevices].devName, advData, data_len);
         tupleInfo[scanDevices].rssi = rssi;
 
         // Increment scan result count
         scanDevices++;
+      }
 
 
-            /*
+        /*
         if (una_vez == 0){
-
+                    Display_print1(dispHandle, 0, 0 ,"Device no. %i", 1);
                     int i;
                     for (i = 5; i < data_len; ++i){
 
-                        Display_print1(dispHandle, i-5, 0 ,"%c\n", advData[i]);
+                        Display_print1(dispHandle, i-5, 0 ,"%c", advData[i]);
                     }
                     una_vez=1;
                     while(true){}
-                }
-                */
-      }
+                }*/
 
 }
 
@@ -2056,6 +2086,44 @@ static uint8_t SimpleCentral_enqueueMsg(uint8_t event, uint8_t state,
   }
 
   return FALSE;
+}
+
+void delay(int number_of_seconds)
+{
+    // Converting time into milli_seconds
+    int milli_seconds = 1000 * number_of_seconds;
+
+    // Storing start time
+    clock_t start_time = clock();
+
+    // looping till required time is not achieved
+    while (clock() < start_time + milli_seconds)
+        ;
+}
+
+int isMotorolaDevice(gapDeviceInfoEvent_t *devInfo){
+    char *found = strstr((char*) devInfo->pEvtData, "TARGETDEV-");
+
+    if (found != NULL){
+        int i;
+        char *devname;
+        for (i = 0; i < 16; ++i){
+            devname[i] = *(found+i);
+        }
+        devInfo->pEvtData = (uint8_t*)devname;
+        devInfo->dataLen = 16;
+    }
+    /*
+    if (found2 != NULL){
+        devInfo->pEvtData = "motorola2";
+        devInfo->dataLen = 9;
+    }
+
+    if (found1 != NULL || found2 != NULL){
+        return 1;
+    }*/
+    if (found == NULL) return 0;
+    else return 1;
 }
 
 /*********************************************************************

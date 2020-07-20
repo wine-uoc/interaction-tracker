@@ -108,7 +108,7 @@ class ModelController:
             rssi_list = self.db_manager.getRssiOfDeviceFromLaunchpad(device_name, anchor_name,
                                                                      num_results=NUM_RESULTS_RSSI)
         rssi_list = [int(np.mean(rssi_list))]
-        return self.model.calculateDistanceAnchorToDevice(rssi_list)
+        return self.model.calculateDistanceAnchorToDevice(rssi_list, device_name)
 
     # returns the value of the RSSI from anchor anchor_name of device device_name
     def getRssiFromLaunchpadOfDevice(self, anchor_name, device_name):
@@ -269,6 +269,9 @@ class PositioningComputations:
         self.S = cfg['pythonApp'][
             'sensitivityToRSSIChanges']  # sensitivity to changes in RSSI. Lower values, more sensitivity
 
+        # how much rssi receives the anchor (when scanning) from devices (when advertising).
+        self.rssi_to_dev_at_1m = {'TARGETDEV-mom1qo': -46, 'TARGETDEV-xelc2r': -50}
+
         for anc_name in self.anchor_names:
             self.last_rssi_means[anc_name] = dict()
             self.last_rssi_std[anc_name] = dict()
@@ -359,8 +362,9 @@ class PositioningComputations:
             self.last_rssi_std[anchor_name][device_name] = current_rssi_std
             return np.power(10, (current_rssi_mean - self.A) / (-10 * self.n))
 
-    def calculateDistanceAnchorToDevice(self, rssi_list):
-        return np.mean(list(map(lambda x: np.power(10, (x - self.A) / (-10 * self.n)), rssi_list)))
+    def calculateDistanceAnchorToDevice(self, rssi_list, device_name):
+        A = self.rssi_to_dev_at_1m[device_name]
+        return np.mean(list(map(lambda x: np.power(10, (x - A) / (-10 * self.n)), rssi_list)))
 
     # applies the Kalman Filter. position and acceleration are passed to function (z and u respectively).
     def estimatePosition(self, pos, acc_x, acc_y, curr_orientation, devname):

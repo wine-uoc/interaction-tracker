@@ -26,7 +26,7 @@ class DB:
         # get the devices names and store them in a list
 
         self.devnamesList = []
-        self.cur.execute("SELECT DISTINCT srcdevice FROM rssiphonedata")
+        self.cur.execute("SELECT DISTINCT srcdevice FROM rssiphonedata WHERE length(srcdevice) = 16")
         res = self.cur.fetchall()
         for dev_tup in res:
             self.devnamesList.append(dev_tup[0])

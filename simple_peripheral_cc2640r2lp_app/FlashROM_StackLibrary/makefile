@@ -9,12 +9,8 @@ GEN_CMDS__FLAG := -l"configPkg/linker.cmd"
 
 ORDERED_OBJS += \
 "./Application/att_rsp.obj" \
-"./Application/myThread.obj" \
 "./Application/simple_peripheral.obj" \
 "./Application/util.obj" \
-"./Application/vl6180x_api.obj" \
-"./Application/vl6180x_i2c.obj" \
-"./Application/vl6180x_platform.obj" \
 "./Drivers/ECC/ECCROMCC26XX.obj" \
 "./Drivers/RF/RFCC26XX_singleMode.obj" \
 "./Drivers/TRNG/TRNGCC26XX.obj" \
@@ -23,7 +19,6 @@ ORDERED_OBJS += \
 "./ICall/icall_user_config.obj" \
 "./ICallBLE/ble_user_config.obj" \
 "./ICallBLE/icall_api_lite.obj" \
-"./PROFILES/VL6180X_Service.obj" \
 "./PROFILES/devinfoservice.obj" \
 "./PROFILES/gatt_uuid.obj" \
 "./PROFILES/gattservapp_util.obj" \
@@ -33,15 +28,15 @@ ORDERED_OBJS += \
 "./Startup/ccfg_app_ble.obj" \
 "./Startup/main.obj" \
 $(GEN_CMDS__FLAG) \
--l"/home/aaron/Documentos/Trabajo/CCS9.3.0.00012_linux-x64/ti/simplelink_cc2640r2_sdk_3_40_00_10/source/ti/devices/cc26x0r2/driverlib/bin/ccs/driverlib.lib" \
--l"/home/aaron/Documentos/Trabajo/CCS9.3.0.00012_linux-x64/ti/simplelink_cc2640r2_sdk_3_40_00_10/kernel/tirtos/packages/ti/dpl/lib/dpl_cc26x0r2.aem3" \
--l"/home/aaron/Documentos/Trabajo/CCS9.3.0.00012_linux-x64/ti/simplelink_cc2640r2_sdk_3_40_00_10/source/ti/drivers/lib/drivers_cc26x0r2.aem3" \
--l"/home/aaron/Documentos/Trabajo/CCS9.3.0.00012_linux-x64/ti/simplelink_cc2640r2_sdk_3_40_00_10/source/ti/display/lib/display.aem3" \
--l"/home/aaron/Documentos/Trabajo/CCS9.3.0.00012_linux-x64/ti/simplelink_cc2640r2_sdk_3_40_00_10/source/ti/grlib/lib/ccs/m3/grlib.a" \
--l"/home/aaron/Documentos/Trabajo/interaction-tracker-master/simple_peripheral_cc2640r2lp_stack_library/FlashROM_Library/ble_r2.symbols" \
--l"/home/aaron/Documentos/Trabajo/interaction-tracker-master/simple_peripheral_cc2640r2lp_stack_library/FlashROM_Library/lib_linker.cmd" \
--l"/home/aaron/Documentos/Trabajo/interaction-tracker-master/simple_peripheral_cc2640r2lp_stack_library/FlashROM_Library/simple_peripheral_cc2640r2lp_stack_library.lib" \
--l"/home/aaron/Documentos/Trabajo/CCS9.3.0.00012_linux-x64/ti/simplelink_cc2640r2_sdk_3_40_00_10/source/ti/blestack/common/cc26xx/ccs/cc26xx_app.cmd" \
+-l"/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/devices/cc26x0r2/driverlib/bin/ccs/driverlib.lib" \
+-l"/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/kernel/tirtos/packages/ti/dpl/lib/dpl_cc26x0r2.aem3" \
+-l"/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/drivers/lib/drivers_cc26x0r2.aem3" \
+-l"/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/display/lib/display.aem3" \
+-l"/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/grlib/lib/ccs/m3/grlib.a" \
+-l"/home/aaron/Documentos/Trabajo/ccs-workspace/simple_peripheral_cc2640r2lp_stack_library/FlashROM_Library/ble_r2.symbols" \
+-l"/home/aaron/Documentos/Trabajo/ccs-workspace/simple_peripheral_cc2640r2lp_stack_library/FlashROM_Library/lib_linker.cmd" \
+-l"/home/aaron/Documentos/Trabajo/ccs-workspace/simple_peripheral_cc2640r2lp_stack_library/FlashROM_Library/simple_peripheral_cc2640r2lp_stack_library.lib" \
+-l"/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/common/cc26xx/ccs/cc26xx_app.cmd" \
 -llibc.a \
 
 -include ../makefile.init
@@ -182,13 +177,13 @@ all: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@$(MAKE) --no-print-directory -Onone "simple_peripheral_cc2640r2lp_app.out"
 
 dependents:
-	-cd /home/aaron/Documentos/Trabajo/interaction-tracker-master/simple_peripheral_cc2640r2lp_stack_library/FlashROM_Library && $(MAKE) clean all
+	-cd /home/aaron/Documentos/Trabajo/ccs-workspace/simple_peripheral_cc2640r2lp_stack_library/FlashROM_Library && $(MAKE) all
 
 # Tool invocations
-simple_peripheral_cc2640r2lp_app.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS) /home/aaron/Documentos/Trabajo/interaction-tracker-master/simple_peripheral_cc2640r2lp_stack_library/FlashROM_Library/simple_peripheral_cc2640r2lp_stack_library.lib
+simple_peripheral_cc2640r2lp_app.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS) /home/aaron/Documentos/Trabajo/ccs-workspace/simple_peripheral_cc2640r2lp_stack_library/FlashROM_Library/simple_peripheral_cc2640r2lp_stack_library.lib
 	@echo 'Building target: "$@"'
 	@echo 'Invoking: ARM Linker'
-	"/opt/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/bin/armcl" --cmd_file="/home/aaron/Documentos/Trabajo/CCS9.3.0.00012_linux-x64/ti/simplelink_cc2640r2_sdk_3_40_00_10/source/ti/blestack/config/build_components.opt" --cmd_file="/home/aaron/Documentos/Trabajo/CCS9.3.0.00012_linux-x64/ti/simplelink_cc2640r2_sdk_3_40_00_10/source/ti/blestack/config/factory_config.opt" --cmd_file="/home/aaron/Documentos/Trabajo/interaction-tracker-master/simple_peripheral_cc2640r2lp_stack_library/TOOLS/build_config.opt"  -mv7M3 --code_state=16 -me -O4 --opt_for_speed=1 --define=DeviceFamily_CC26X0R2 --define=BOARD_DISPLAY_USE_LCD=0 --define=BOARD_DISPLAY_USE_UART=1 --define=BOARD_DISPLAY_USE_UART_ANSI=1 --define=CC2640R2_LAUNCHXL --define=CC26XX --define=CC26XX_R2 --define=ICALL_EVENTS --define=ICALL_JT --define=ICALL_LITE --define=ICALL_MAX_NUM_ENTITIES=6 --define=ICALL_MAX_NUM_TASKS=3 --define=ICALL_STACK0_ADDR --define=MAX_NUM_BLE_CONNS=1 --define=POWER_SAVING --define=STACK_LIBRARY --define=USE_ICALL --define=xdc_runtime_Assert_DISABLE_ALL --define=xdc_runtime_Log_DISABLE_ALL -g --c99 --gcc --diag_warning=225 --diag_wrap=off --display_error_number --gen_func_subsections=on --abi=eabi -z -m"simple_peripheral_cc2640r2lp_app.map" --heap_size=0 --stack_size=256 -i"/opt/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/lib" -i"/opt/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include" --reread_libs --define=CC26X0ROM=2 --diag_suppress=16002-D --diag_suppress=10247-D --diag_suppress=10325-D --diag_suppress=10229-D --diag_suppress=16032-D --diag_wrap=off --display_error_number --warn_sections --xml_link_info="simple_peripheral_cc2640r2lp_app_linkInfo.xml" --rom_model -o "simple_peripheral_cc2640r2lp_app.out" $(ORDERED_OBJS)
+	"/opt/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/bin/armcl" --cmd_file="/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/config/build_components.opt" --cmd_file="/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/config/factory_config.opt" --cmd_file="/home/aaron/Documentos/Trabajo/ccs-workspace/simple_peripheral_cc2640r2lp_stack_library/TOOLS/build_config.opt"  -mv7M3 --code_state=16 -me -O4 --opt_for_speed=1 --define=DeviceFamily_CC26X0R2 --define=BOARD_DISPLAY_USE_LCD=0 --define=BOARD_DISPLAY_USE_UART=1 --define=BOARD_DISPLAY_USE_UART_ANSI=1 --define=CC2640R2_LAUNCHXL --define=CC26XX --define=CC26XX_R2 --define=ICALL_EVENTS --define=ICALL_JT --define=ICALL_LITE --define=ICALL_MAX_NUM_ENTITIES=6 --define=ICALL_MAX_NUM_TASKS=3 --define=ICALL_STACK0_ADDR --define=MAX_NUM_BLE_CONNS=1 --define=POWER_SAVING --define=STACK_LIBRARY --define=USE_ICALL --define=xdc_runtime_Assert_DISABLE_ALL --define=xdc_runtime_Log_DISABLE_ALL -g --c99 --gcc --diag_warning=225 --diag_wrap=off --display_error_number --gen_func_subsections=on --abi=eabi -z -m"simple_peripheral_cc2640r2lp_app.map" --heap_size=0 --stack_size=256 -i"/opt/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/lib" -i"/opt/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include" --reread_libs --define=CC26X0ROM=2 --diag_suppress=16002-D --diag_suppress=10247-D --diag_suppress=10325-D --diag_suppress=10229-D --diag_suppress=16032-D --diag_wrap=off --display_error_number --warn_sections --xml_link_info="simple_peripheral_cc2640r2lp_app_linkInfo.xml" --rom_model -o "simple_peripheral_cc2640r2lp_app.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: "$@"'
 	@echo ' '
 	@$(MAKE) --no-print-directory post-build
@@ -204,8 +199,8 @@ simple_peripheral_cc2640r2lp_app.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(GEN_FILES__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "Application/att_rsp.obj" "Application/myThread.obj" "Application/simple_peripheral.obj" "Application/util.obj" "Application/vl6180x_api.obj" "Application/vl6180x_i2c.obj" "Application/vl6180x_platform.obj" "Drivers/ECC/ECCROMCC26XX.obj" "Drivers/RF/RFCC26XX_singleMode.obj" "Drivers/TRNG/TRNGCC26XX.obj" "ICall/icall.obj" "ICall/icall_cc2650.obj" "ICall/icall_user_config.obj" "ICallBLE/ble_user_config.obj" "ICallBLE/icall_api_lite.obj" "PROFILES/VL6180X_Service.obj" "PROFILES/devinfoservice.obj" "PROFILES/gatt_uuid.obj" "PROFILES/gattservapp_util.obj" "PROFILES/peripheral.obj" "PROFILES/simple_gatt_profile.obj" "Startup/board.obj" "Startup/ccfg_app_ble.obj" "Startup/main.obj" 
-	-$(RM) "Application/att_rsp.d" "Application/myThread.d" "Application/simple_peripheral.d" "Application/util.d" "Application/vl6180x_api.d" "Application/vl6180x_i2c.d" "Application/vl6180x_platform.d" "Drivers/ECC/ECCROMCC26XX.d" "Drivers/RF/RFCC26XX_singleMode.d" "Drivers/TRNG/TRNGCC26XX.d" "ICall/icall.d" "ICall/icall_cc2650.d" "ICall/icall_user_config.d" "ICallBLE/ble_user_config.d" "ICallBLE/icall_api_lite.d" "PROFILES/VL6180X_Service.d" "PROFILES/devinfoservice.d" "PROFILES/gatt_uuid.d" "PROFILES/gattservapp_util.d" "PROFILES/peripheral.d" "PROFILES/simple_gatt_profile.d" "Startup/board.d" "Startup/ccfg_app_ble.d" "Startup/main.d" 
+	-$(RM) "Application/att_rsp.obj" "Application/simple_peripheral.obj" "Application/util.obj" "Drivers/ECC/ECCROMCC26XX.obj" "Drivers/RF/RFCC26XX_singleMode.obj" "Drivers/TRNG/TRNGCC26XX.obj" "ICall/icall.obj" "ICall/icall_cc2650.obj" "ICall/icall_user_config.obj" "ICallBLE/ble_user_config.obj" "ICallBLE/icall_api_lite.obj" "PROFILES/devinfoservice.obj" "PROFILES/gatt_uuid.obj" "PROFILES/gattservapp_util.obj" "PROFILES/peripheral.obj" "PROFILES/simple_gatt_profile.obj" "Startup/board.obj" "Startup/ccfg_app_ble.obj" "Startup/main.obj" 
+	-$(RM) "Application/att_rsp.d" "Application/simple_peripheral.d" "Application/util.d" "Drivers/ECC/ECCROMCC26XX.d" "Drivers/RF/RFCC26XX_singleMode.d" "Drivers/TRNG/TRNGCC26XX.d" "ICall/icall.d" "ICall/icall_cc2650.d" "ICall/icall_user_config.d" "ICallBLE/ble_user_config.d" "ICallBLE/icall_api_lite.d" "PROFILES/devinfoservice.d" "PROFILES/gatt_uuid.d" "PROFILES/gattservapp_util.d" "PROFILES/peripheral.d" "PROFILES/simple_gatt_profile.d" "Startup/board.d" "Startup/ccfg_app_ble.d" "Startup/main.d" 
 	-$(RMDIR) $(GEN_MISC_DIRS__QUOTED)
 	-@echo 'Finished clean'
 	-@echo ' '
@@ -216,7 +211,7 @@ post-build:
 
 .PHONY: all clean dependents
 .SECONDARY:
-/home/aaron/Documentos/Trabajo/interaction-tracker-master/simple_peripheral_cc2640r2lp_stack_library/FlashROM_Library/simple_peripheral_cc2640r2lp_stack_library.lib:
+/home/aaron/Documentos/Trabajo/ccs-workspace/simple_peripheral_cc2640r2lp_stack_library/FlashROM_Library/simple_peripheral_cc2640r2lp_stack_library.lib:
 
 -include ../makefile.targets
 

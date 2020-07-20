@@ -144,8 +144,8 @@ def positions_img():
             ax.scatter(x_dev, y_dev, c=dot_colors)
 
             if TEST_MODEL:
-                x = 1.15
-                y = 0.4
+                x = 2.8
+                y = 0
                 devname = "TARGETDEV-mom1qo"
                 ax.scatter(x, y, c='orange')
                 ax.text(x, y, devname, fontsize=14)

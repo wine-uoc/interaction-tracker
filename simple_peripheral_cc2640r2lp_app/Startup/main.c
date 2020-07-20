@@ -1,15 +1,15 @@
 /******************************************************************************
 
- @file  main.c
+ @file       main.c
 
  @brief main entry of the BLE stack sample application.
 
- Group: WCS, BTS
- Target Device: cc2640r2
+ Group: CMCU, SCS
+ Target Device: CC2640R2
 
  ******************************************************************************
  
- Copyright (c) 2013-2019, Texas Instruments Incorporated
+ Copyright (c) 2013-2020, Texas Instruments Incorporated
  All rights reserved.
 
  Redistribution and use in source and binary forms, with or without
@@ -39,9 +39,6 @@
  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
- ******************************************************************************
- 
- 
  *****************************************************************************/
 
 /*******************************************************************************
@@ -59,8 +56,8 @@
 #include <icall.h>
 #include "hal_assert.h"
 #include "bcomdef.h"
-#include "peripheral.h"
-#include "simple_peripheral.h"
+#include "peripheral_observer.h"
+#include "simple_peripheral_observer.h"
 
 /* Header files required to enable instruction fetch cache */
 #include <inc/hw_memmap.h>
@@ -135,9 +132,8 @@ PIN_Handle radCtrlHandle;
  */
 
 extern void AssertHandler(uint8 assertCause, uint8 assertSubcause);
-extern void VL6180X_Thread_create(void);
 
-Display_Handle disp = NULL;
+extern Display_Handle dispHandle;
 
 /*******************************************************************************
  * @fn          Main
@@ -156,7 +152,6 @@ Display_Handle disp = NULL;
  */
 int main()
 {
-
 #if defined( USE_FPGA )
   HWREG(PRCM_BASE + PRCM_O_PDCTL0) &= ~PRCM_PDCTL0_RFC_ON;
   HWREG(PRCM_BASE + PRCM_O_PDCTL1) &= ~PRCM_PDCTL1_RFC_ON;
@@ -165,7 +160,7 @@ int main()
   /* Register Application callback to trap asserts raised in the Stack */
   RegisterAssertCback(AssertHandler);
 
-  Board_initGeneral();
+  PIN_init(BoardGpioInitTable);
 
 #ifdef CC1350_LAUNCHXL
   // Enable 2.4GHz Radio
@@ -207,8 +202,6 @@ int main()
   user0Cfg.appServiceInfo->timerTickPeriod = Clock_tickPeriod;
   user0Cfg.appServiceInfo->timerMaxMillisecond  = ICall_getMaxMSecs();
 #endif  /* ICALL_JT */
-
-  I2C_init();
   /* Initialize ICall module */
   ICall_init();
 
@@ -218,9 +211,7 @@ int main()
   /* Kick off profile - Priority 3 */
   GAPRole_createTask();
 
-  SimplePeripheral_createTask();
-  VL6180X_Thread_create();
-
+  SimpleBLEPeripheralObserver_createTask();
 
   /* enable interrupts and start SYS/BIOS */
   BIOS_start();
@@ -269,12 +260,12 @@ void AssertHandler(uint8 assertCause, uint8 assertSubcause)
 {
 #if !defined(Display_DISABLE_ALL)
   // Open the display if the app has not already done so
-  if ( !disp )
+  if ( !dispHandle )
   {
-    disp = Display_open(Display_Type_LCD, NULL);
+    dispHandle = Display_open(Display_Type_LCD, NULL);
   }
 
-  Display_print0(disp, 0, 0, ">>>STACK ASSERT");
+  Display_print0(dispHandle, 0, 0, ">>>STACK ASSERT");
 #endif // ! Display_DISABLE_ALL
 
   // check the assert cause
@@ -282,8 +273,8 @@ void AssertHandler(uint8 assertCause, uint8 assertSubcause)
   {
     case HAL_ASSERT_CAUSE_OUT_OF_MEMORY:
 #if !defined(Display_DISABLE_ALL)
-      Display_print0(disp, 0, 0, "***ERROR***");
-      Display_print0(disp, 2, 0, ">> OUT OF MEMORY!");
+      Display_print0(dispHandle, 0, 0, "***ERROR***");
+      Display_print0(dispHandle, 2, 0, ">> OUT OF MEMORY!");
 #endif // ! Display_DISABLE_ALL
       break;
 
@@ -292,47 +283,47 @@ void AssertHandler(uint8 assertCause, uint8 assertSubcause)
       if (assertSubcause == HAL_ASSERT_SUBCAUSE_FW_INERNAL_ERROR)
       {
 #if !defined(Display_DISABLE_ALL)
-        Display_print0(disp, 0, 0, "***ERROR***");
-        Display_print0(disp, 2, 0, ">> INTERNAL FW ERROR!");
+        Display_print0(dispHandle, 0, 0, "***ERROR***");
+        Display_print0(dispHandle, 2, 0, ">> INTERNAL FW ERROR!");
 #endif // ! Display_DISABLE_ALL
       }
       else
       {
 #if !defined(Display_DISABLE_ALL)
-        Display_print0(disp, 0, 0, "***ERROR***");
-        Display_print0(disp, 2, 0, ">> INTERNAL ERROR!");
+        Display_print0(dispHandle, 0, 0, "***ERROR***");
+        Display_print0(dispHandle, 2, 0, ">> INTERNAL ERROR!");
 #endif // ! Display_DISABLE_ALL
       }
       break;
 
     case HAL_ASSERT_CAUSE_ICALL_ABORT:
 #if !defined(Display_DISABLE_ALL)
-      Display_print0(disp, 0, 0, "***ERROR***");
-      Display_print0(disp, 2, 0, ">> ICALL ABORT!");
+      Display_print0(dispHandle, 0, 0, "***ERROR***");
+      Display_print0(dispHandle, 2, 0, ">> ICALL ABORT!");
 #endif // ! Display_DISABLE_ALL
       HAL_ASSERT_SPINLOCK;
       break;
 
     case HAL_ASSERT_CAUSE_ICALL_TIMEOUT:
 #if !defined(Display_DISABLE_ALL)
-      Display_print0(disp, 0, 0, "***ERROR***");
-      Display_print0(disp, 2, 0, ">> ICALL TIMEOUT!");
+      Display_print0(dispHandle, 0, 0, "***ERROR***");
+      Display_print0(dispHandle, 2, 0, ">> ICALL TIMEOUT!");
 #endif // ! Display_DISABLE_ALL
       HAL_ASSERT_SPINLOCK;
       break;
 
     case HAL_ASSERT_CAUSE_WRONG_API_CALL:
 #if !defined(Display_DISABLE_ALL)
-      Display_print0(disp, 0, 0, "***ERROR***");
-      Display_print0(disp, 2, 0, ">> WRONG API CALL!");
+      Display_print0(dispHandle, 0, 0, "***ERROR***");
+      Display_print0(dispHandle, 2, 0, ">> WRONG API CALL!");
 #endif // ! Display_DISABLE_ALL
       HAL_ASSERT_SPINLOCK;
       break;
 
   default:
 #if !defined(Display_DISABLE_ALL)
-      Display_print0(disp, 0, 0, "***ERROR***");
-      Display_print0(disp, 2, 0, ">> DEFAULT SPINLOCK!");
+      Display_print0(dispHandle, 0, 0, "***ERROR***");
+      Display_print0(dispHandle, 2, 0, ">> DEFAULT SPINLOCK!");
 #endif // ! Display_DISABLE_ALL
       HAL_ASSERT_SPINLOCK;
   }

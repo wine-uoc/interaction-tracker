@@ -146,7 +146,7 @@ def readingLaunchpadData(port, baud, lp_idx):
         # open serial port
 
         ser = serial.Serial('serialPorts/' + port, baud)
-
+        devName = None
         # get launchpadId, devName and RSSI from serial port
         try:
             launchpadId = ser.readline()
@@ -162,14 +162,13 @@ def readingLaunchpadData(port, baud, lp_idx):
             pass
 
 
-        if (len(devName) > 11):  # lectura valida
+        if (devName is not None and len(devName) > 11):  # lectura valida
 
 
             # clean data from serial port
             launchpadId = cleanLaunchpadId(launchpadId)
             devName = cleanAddr(devName)
             rssiRaw = cleanRssi(rssiRaw)
-
 
 
             if "TARGETDEV-" in devName:  # if devName is clean and it's logical
