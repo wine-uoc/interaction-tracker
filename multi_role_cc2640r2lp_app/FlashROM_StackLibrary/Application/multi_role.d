@@ -156,6 +156,23 @@ Application/multi_role.obj: /home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/so
 Application/multi_role.obj: /home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/source/ti/drivers/SPI.h
 Application/multi_role.obj: /opt/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/stdbool.h
 Application/multi_role.obj: /home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/source/ti/drivers/dpl/SemaphoreP.h
+Application/multi_role.obj: /opt/ti/ccs930/xdctools_3_60_02_34_core/packages/xdc/runtime/System.h
+Application/multi_role.obj: /opt/ti/ccs930/xdctools_3_60_02_34_core/packages/xdc/runtime/Types.h
+Application/multi_role.obj: /opt/ti/ccs930/xdctools_3_60_02_34_core/packages/xdc/runtime/IModule.h
+Application/multi_role.obj: /opt/ti/ccs930/xdctools_3_60_02_34_core/packages/xdc/runtime/Assert.h
+Application/multi_role.obj: /opt/ti/ccs930/xdctools_3_60_02_34_core/packages/xdc/runtime/ISystemSupport.h
+Application/multi_role.obj: /opt/ti/ccs930/xdctools_3_60_02_34_core/packages/xdc/runtime/Types.h
+Application/multi_role.obj: /opt/ti/ccs930/xdctools_3_60_02_34_core/packages/xdc/runtime/IModule.h
+Application/multi_role.obj: /opt/ti/ccs930/xdctools_3_60_02_34_core/packages/xdc/runtime/IGateProvider.h
+Application/multi_role.obj: /opt/ti/ccs930/xdctools_3_60_02_34_core/packages/xdc/runtime/package/System_SupportProxy.h
+Application/multi_role.obj: /opt/ti/ccs930/xdctools_3_60_02_34_core/packages/xdc/runtime/Types.h
+Application/multi_role.obj: /opt/ti/ccs930/xdctools_3_60_02_34_core/packages/xdc/runtime/ISystemSupport.h
+Application/multi_role.obj: /opt/ti/ccs930/xdctools_3_60_02_34_core/packages/xdc/runtime/package/System_Module_GateProxy.h
+Application/multi_role.obj: /opt/ti/ccs930/xdctools_3_60_02_34_core/packages/xdc/runtime/Types.h
+Application/multi_role.obj: /opt/ti/ccs930/xdctools_3_60_02_34_core/packages/xdc/runtime/IInstance.h
+Application/multi_role.obj: /opt/ti/ccs930/xdctools_3_60_02_34_core/packages/xdc/runtime/IGateProvider.h
+Application/multi_role.obj: /opt/ti/ccs930/xdctools_3_60_02_34_core/packages/xdc/runtime/package/System_SupportProxy.h
+Application/multi_role.obj: /opt/ti/ccs930/xdctools_3_60_02_34_core/packages/xdc/runtime/package/System_Module_GateProxy.h
 Application/multi_role.obj: /home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/source/ti/devices/cc26x0r2/inc/hw_fcfg1.h
 Application/multi_role.obj: /home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/source/ti/blestack/icall/src/inc/icall.h
 Application/multi_role.obj: /opt/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/stdlib.h
@@ -403,6 +420,23 @@ Application/multi_role.obj: ../Application/multi_role.h
 /home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/source/ti/drivers/SPI.h: 
 /opt/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/stdbool.h: 
 /home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/source/ti/drivers/dpl/SemaphoreP.h: 
+/opt/ti/ccs930/xdctools_3_60_02_34_core/packages/xdc/runtime/System.h: 
+/opt/ti/ccs930/xdctools_3_60_02_34_core/packages/xdc/runtime/Types.h: 
+/opt/ti/ccs930/xdctools_3_60_02_34_core/packages/xdc/runtime/IModule.h: 
+/opt/ti/ccs930/xdctools_3_60_02_34_core/packages/xdc/runtime/Assert.h: 
+/opt/ti/ccs930/xdctools_3_60_02_34_core/packages/xdc/runtime/ISystemSupport.h: 
+/opt/ti/ccs930/xdctools_3_60_02_34_core/packages/xdc/runtime/Types.h: 
+/opt/ti/ccs930/xdctools_3_60_02_34_core/packages/xdc/runtime/IModule.h: 
+/opt/ti/ccs930/xdctools_3_60_02_34_core/packages/xdc/runtime/IGateProvider.h: 
+/opt/ti/ccs930/xdctools_3_60_02_34_core/packages/xdc/runtime/package/System_SupportProxy.h: 
+/opt/ti/ccs930/xdctools_3_60_02_34_core/packages/xdc/runtime/Types.h: 
+/opt/ti/ccs930/xdctools_3_60_02_34_core/packages/xdc/runtime/ISystemSupport.h: 
+/opt/ti/ccs930/xdctools_3_60_02_34_core/packages/xdc/runtime/package/System_Module_GateProxy.h: 
+/opt/ti/ccs930/xdctools_3_60_02_34_core/packages/xdc/runtime/Types.h: 
+/opt/ti/ccs930/xdctools_3_60_02_34_core/packages/xdc/runtime/IInstance.h: 
+/opt/ti/ccs930/xdctools_3_60_02_34_core/packages/xdc/runtime/IGateProvider.h: 
+/opt/ti/ccs930/xdctools_3_60_02_34_core/packages/xdc/runtime/package/System_SupportProxy.h: 
+/opt/ti/ccs930/xdctools_3_60_02_34_core/packages/xdc/runtime/package/System_Module_GateProxy.h: 
 /home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/source/ti/devices/cc26x0r2/inc/hw_fcfg1.h: 
 /home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/source/ti/blestack/icall/src/inc/icall.h: 
 /opt/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/stdlib.h: 

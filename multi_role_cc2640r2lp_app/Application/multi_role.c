@@ -56,7 +56,9 @@ Target Device: cc2640r2
 #include <ti/sysbios/knl/Queue.h>
 #include <ti/display/Display.h>
 #include <ti/display/lcd/LCDDogm1286.h>
+#include <xdc/runtime/System.h>
 #include <inc/hw_fcfg1.h>
+#include <stdint.h>
 
 #if defined( USE_FPGA ) || defined( DEBUG_SW_TRACE )
 #include <driverlib/ioc.h>
@@ -93,7 +95,7 @@ Target Device: cc2640r2
 #define DEV_NAME_MAX_STR_LEN                  128
 
 // Advertising interval when device is discoverable (units of 625us, 160=100ms)
-#define DEFAULT_ADVERTISING_INTERVAL          160
+#define DEFAULT_ADVERTISING_INTERVAL          800
 
 // Limited discoverable mode advertises for 30.72s, and then stops
 // General discoverable mode advertises indefinitely
@@ -108,9 +110,9 @@ Target Device: cc2640r2
 #define DEFAULT_SVC_DISCOVERY_DELAY           1000
 
 // Scan parameters
-#define DEFAULT_SCAN_DURATION                 100
-#define DEFAULT_SCAN_WIND                     80
-#define DEFAULT_SCAN_INT                      90
+#define DEFAULT_SCAN_DURATION                 500
+#define DEFAULT_SCAN_WIND                     160
+#define DEFAULT_SCAN_INT                      160
 
 // Discovey mode (limited, general, all)
 #define DEFAULT_DISCOVERY_MODE                DEVDISC_MODE_ALL
@@ -192,7 +194,7 @@ typedef enum {
 #define B_STR_ADDR_LEN       ((B_ADDR_LEN*2) + 3)
 
 // How often to perform periodic event (in msec)
-#define MR_PERIODIC_EVT_PERIOD               5000
+#define MR_PERIODIC_EVT_PERIOD               1000
 
 // Set the register cause to the registration bit-mask
 #define CONNECTION_EVENT_REGISTER_BIT_SET(RegisterCause) (connectionEventRegisterCauseBitMap |= RegisterCause )
@@ -275,6 +277,7 @@ static ICall_SyncHandle syncEvent;
 
 // Clock instances for internal periodic events.
 static Clock_Struct periodicClock;
+static Clock_Struct periodicClockRoles;
 
 // Queue object used for app messages
 static Queue_Struct appMsg;
@@ -377,10 +380,12 @@ static void multi_role_pairStateCB(uint16_t connHandle, uint8_t state,
                                    uint8_t status);
 static void multi_role_performPeriodicTask(void);
 static void multi_role_clockHandler(UArg arg);
+static void multi_role_clockHandlerRoles(UArg arg);
 static void multi_role_connEvtCB(Gap_ConnEventRpt_t *pReport);
 static void multi_role_addDeviceInfo(uint8_t *pAddr, uint8_t addrType, int8 rssi);
 
 int isValidDevice(gapDeviceInfoEvent_t *devInfo); //data es un puntero a un array de caracteres (advertise data)
+void printScannedDevicesInfo();
 static void addAddrRssiInfo (uint8_t *advData, int data_len, int8 rssi);
 /*********************************************************************
  * EXTERN FUNCTIONS
@@ -768,6 +773,7 @@ static void multi_role_init(void)
   HCI_LE_ReadLocalSupportedFeaturesCmd();
 #endif // !defined (USE_LL_CONN_PARAM_UPDATE)
 
+ Display_print0(dispHandle, 0, 0, "Init done correctly!");
 }
 
 /*********************************************************************
@@ -783,6 +789,7 @@ static void multi_role_taskFxn(UArg a0, UArg a1)
 {
   // Initialize application
   multi_role_init();
+  Util_startClock(&periodicClock);
 
   // Application main loop
   for (;;)
@@ -842,10 +849,10 @@ static void multi_role_taskFxn(UArg a0, UArg a1)
 
       if (events & MR_PERIODIC_EVT)
       {
+
+        multi_role_performPeriodicTask();
         Util_startClock(&periodicClock);
 
-        // Perform periodic application task
-        multi_role_performPeriodicTask();
       }
     }
   }
@@ -1253,10 +1260,13 @@ static void multi_role_processRoleEvent(gapMultiRoleEvent_t *pEvent)
 
       Display_clear(dispHandle);
 
+      /*
       scanningStarted = TRUE;
       scanRes = 0;
       scanDevices = 0;
-      GAPRole_StartDiscovery(DEFAULT_DISCOVERY_MODE, DEFAULT_DISCOVERY_ACTIVE_SCAN, DEFAULT_DISCOVERY_WHITE_LIST);
+      GAPRole_StartDiscovery(DEFAULT_DISCOVERY_MODE, DEFAULT_DISCOVERY_ACTIVE_SCAN, DEFAULT_DISCOVERY_WHITE_LIST);*/
+
+     // Util_startClock(&periodicClockRoles);
       //Display_print0(dispHandle, MR_ROW_DEV_ADDR, 0, Util_convertBdAddr2Str(pEvent->initDone.devAddr));
      // Display_print0(dispHandle, MR_ROW_CONN_STATUS, 0, "Connected to 0");
      // Display_print0(dispHandle, MR_ROW_STATUS1, 0, "Initialized");
@@ -1270,7 +1280,6 @@ static void multi_role_processRoleEvent(gapMultiRoleEvent_t *pEvent)
     // Advertising started
     case GAP_MAKE_DISCOVERABLE_DONE_EVENT:
     {
-      scanningStarted = FALSE;
       scanRes = 0;
       scanDevices = 0;
       Display_print0(dispHandle, 5, 0, "Advertising");
@@ -1289,18 +1298,6 @@ static void multi_role_processRoleEvent(gapMultiRoleEvent_t *pEvent)
       {
         Display_print0(dispHandle, MR_ROW_ADV, 0, "Can't Adv : Max conns reached");
       }
-
-
-
-
-      //Desactivamos advertising y activamos scan
-      uint8_t advertNonConnEnable = FALSE;
-      GAPRole_SetParameter(GAPROLE_ADV_NONCONN_ENABLED, sizeof(uint8_t), &advertNonConnEnable, NULL);
-
-      scanningStarted = TRUE;
-      scanRes = 0;
-      scanDevices = 0;
-      GAPRole_StartDiscovery(DEFAULT_DISCOVERY_MODE, DEFAULT_DISCOVERY_ACTIVE_SCAN, DEFAULT_DISCOVERY_WHITE_LIST);
     }
     break;
 
@@ -1334,17 +1331,16 @@ static void multi_role_processRoleEvent(gapMultiRoleEvent_t *pEvent)
        if(pEvent->gap.hdr.status == SUCCESS)
        {
            // discovery complete
-           scanningStarted = FALSE;
-           Display_clear(dispHandle);
+
 
            // if not filtering device discovery results based on service UUID
-           if ((DEFAULT_DEV_DISC_BY_SVC_UUID == FALSE) && (ENABLE_UNLIMITED_SCAN_RES == FALSE))
+           /*if ((DEFAULT_DEV_DISC_BY_SVC_UUID == FALSE) && (ENABLE_UNLIMITED_SCAN_RES == FALSE))
            {
              // Copy results
              scanRes = pEvent->discCmpl.numDevs;
              memcpy(devList, pEvent->discCmpl.pDevList,
                     (sizeof(gapDevRec_t) * scanRes));
-           }
+           }*/
 
 
            if (scanRes > 0)
@@ -1358,37 +1354,13 @@ static void multi_role_processRoleEvent(gapMultiRoleEvent_t *pEvent)
 
            // Prompt user that re-performing scanning at this state is possible.
 
-           int i = 0;
-           int line_pr = 0;
 
-
-           uint64_t macAddress;
-           macAddress = *((uint64_t *)(FCFG1_BASE + FCFG1_O_MAC_BLE_0)) & 0x0000FFFFFFFFFFFF;
-
-
-           uint16_t addr = (uint16_t) (macAddress & 0x000000000000FFFF);
-           for (i = 0; i < scanDevices; ++i){
-               line_pr = 0;
-               Display_print1(dispHandle, line_pr, 0, "ANC-%x\n", addr);
-               ++line_pr;
-               Display_print1(dispHandle, line_pr , 0 ,"%s\n", tupleInfo[i].devName);
-               ++line_pr;
-               Display_print1(dispHandle, line_pr , 0 ,"%d\n", tupleInfo[i].rssi);
-               ++line_pr;
-
-           }
-
-           scanningStarted = FALSE;
-           scanRes = 0;
-           scanDevices = 0;
            //delay(2);
 
            //GAPRole_StartDiscovery(DEFAULT_DISCOVERY_MODE,
            //                                        DEFAULT_DISCOVERY_ACTIVE_SCAN,
            //                                        DEFAULT_DISCOVERY_WHITE_LIST);
 
-           uint8_t advertNonConnEnable = TRUE;
-           GAPRole_SetParameter(GAPROLE_ADV_NONCONN_ENABLED, sizeof(uint8_t), &advertNonConnEnable, NULL);
 
 #else // FPGA_AUTO_CONNECT
 
@@ -1947,6 +1919,38 @@ static void multi_role_processPasscode(gapPasskeyNeededEvent_t *pData)
   GAPBondMgr_PasscodeRsp(pData->connectionHandle, SUCCESS, passcode);
 }
 
+void printScannedDevicesInfo(){
+
+   Display_clear(dispHandle);
+
+   int i = 0;
+   int line_pr = 0;
+
+   uint64_t macAddress;
+   macAddress = *((uint64_t *)(FCFG1_BASE + FCFG1_O_MAC_BLE_0)) & 0x0000FFFFFFFFFFFF;
+
+
+   uint16_t addr = (uint16_t) (macAddress & 0x000000000000FFFF);
+   for (i = 0; i < scanDevices; ++i){
+       line_pr = 0;
+       Display_print1(dispHandle, line_pr, 0, "ANC-%x\n", addr);
+       ++line_pr;
+       Display_print1(dispHandle, line_pr , 0 ,"%s\n", tupleInfo[i].devName);
+       ++line_pr;
+       Display_print1(dispHandle, line_pr , 0 ,"%d\n", tupleInfo[i].rssi);
+       ++line_pr;
+
+   }
+
+   scanRes = 0;
+   scanDevices = 0;
+
+}
+static void multi_role_clockHandler(UArg arg){
+
+    //Wake up the application.
+    Event_post(syncEvent, arg);
+}
 /*********************************************************************
  * @fn      multi_role_clockHandler
  *
@@ -1954,10 +1958,10 @@ static void multi_role_processPasscode(gapPasskeyNeededEvent_t *pData)
  *
  * @param   arg - event type
  */
-static void multi_role_clockHandler(UArg arg)
+static void multi_role_clockHandlerRoles(UArg arg)
 {
-  // Wake up the application.
-  Event_post(syncEvent, arg);
+
+
 }
 
 
@@ -1989,19 +1993,87 @@ static void multi_role_connEvtCB(Gap_ConnEventRpt_t *pReport)
  */
 static void multi_role_performPeriodicTask(void)
 {
-  uint8_t valueToCopy;
 
-  // Call to retrieve the value of the third characteristic in the profile
-  if (SimpleProfile_GetParameter(SIMPLEPROFILE_CHAR3, &valueToCopy) == SUCCESS)
-  {
-    // Call to set that value of the fourth characteristic in the profile.
-    // Note that if notifications of the fourth characteristic have been
-    // enabled by a GATT client device, then a notification will be sent
-    // every time this function is called. Also note that this will
-    // send a notification to each connected device.
-    SimpleProfile_SetParameter(SIMPLEPROFILE_CHAR4, sizeof(uint8_t),
-                               &valueToCopy);
-  }
+      ++scanIdx;
+      Display_print1(dispHandle,1,0,"%d",scanIdx);
+      uint8_t adv_status;
+      uint8_t adv;
+      //If it's currently scanning
+      if (scanningStarted){
+          //Disable scanning
+          GAPRole_CancelDiscovery(); //TODO: PUEDE DAR PROBLEMAS YA QUE QUIZAS CUANDO ENTRA AQUI, YA HA ACABADO DE ESCANEAR.
+          printScannedDevicesInfo();
+          scanningStarted = FALSE;
+
+          //and enable advertising
+          adv = TRUE;
+          bStatus_t ret = GAPRole_SetParameter(GAPROLE_ADV_NONCONN_ENABLED, sizeof(uint8_t), &adv, NULL);
+          if (ret == SUCCESS){
+              Display_print0(dispHandle, 2, 0, "SetParameter CORRECTO!");
+          } else if (ret == INVALIDPARAMETER){
+              Display_print0(dispHandle, 2, 0, "SetParameter INVALID PARAMETER!");
+          }
+          else if (ret == bleInvalidRange){
+              Display_print0(dispHandle, 2, 0, "SetParameter BLE INVALID RANGE!");
+          }
+          else {
+              Display_print0(dispHandle, 3, 0, "SetParameter OTRO ERROR!");
+          }
+      }
+      //If it's not currently scanning
+      else {
+
+          //Get the advertising status
+          GAPRole_GetParameter(GAPROLE_ADV_NONCONN_ENABLED, &adv_status, NULL);
+
+          //If it's currently advertising
+          if (adv_status){
+
+              //Disable advertising
+              adv = FALSE;
+              bStatus_t ret = GAPRole_SetParameter(GAPROLE_ADV_NONCONN_ENABLED, sizeof(uint8_t), &adv, NULL);
+              if (ret == SUCCESS){
+                Display_print0(dispHandle, 3, 0, "SetParameter CORRECTO!");
+              } else if (ret == INVALIDPARAMETER){
+                Display_print0(dispHandle, 3, 0, "SetParameter INVALID PARAMETER!");
+              }
+              else if (ret == bleInvalidRange){
+                Display_print0(dispHandle, 3, 0, "SetParameter BLE INVALID RANGE!");
+              }
+              else {
+                  Display_print0(dispHandle, 3, 0, "SetParameter OTRO ERROR!");
+              }
+
+              //Enable scanning
+              scanningStarted = TRUE;
+              GAPRole_StartDiscovery(DEFAULT_DISCOVERY_MODE,
+                                                    DEFAULT_DISCOVERY_ACTIVE_SCAN,
+                                                    DEFAULT_DISCOVERY_WHITE_LIST);
+          }
+
+          //If it's neither scanning nor advertising
+          else {
+              //Let's start advertising first
+              adv = TRUE;
+              bStatus_t ret = GAPRole_SetParameter(GAPROLE_ADV_NONCONN_ENABLED, sizeof(uint8_t), &adv, NULL);
+              if (ret == SUCCESS){
+                  Display_print0(dispHandle, 3, 0, "SetParameter CORRECTO!");
+              } else if (ret == INVALIDPARAMETER){
+                  Display_print0(dispHandle, 3, 0, "SetParameter INVALID PARAMETER!");
+              }
+              else if (ret == bleInvalidRange){
+                  Display_print0(dispHandle, 3, 0, "SetParameter BLE INVALID RANGE!");
+              }
+              else {
+                  Display_print0(dispHandle, 3, 0, "SetParameter OTRO ERROR!");
+              }
+
+          }
+
+      }
+
+
+
 }
 
 /*********************************************************************
