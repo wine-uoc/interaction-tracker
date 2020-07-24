@@ -92,10 +92,10 @@ Target Device: cc2640r2
 // amount of item actions the menu module supports
 #define DEFAULT_MAX_SCAN_RES                  15
 
-#define DEV_NAME_MAX_STR_LEN                  128
+#define DEV_NAME_MAX_STR_LEN                  16
 
 // Advertising interval when device is discoverable (units of 625us, 160=100ms)
-#define DEFAULT_ADVERTISING_INTERVAL          800
+#define DEFAULT_ADVERTISING_INTERVAL          320
 
 // Limited discoverable mode advertises for 30.72s, and then stops
 // General discoverable mode advertises indefinitely
@@ -110,9 +110,9 @@ Target Device: cc2640r2
 #define DEFAULT_SVC_DISCOVERY_DELAY           1000
 
 // Scan parameters
-#define DEFAULT_SCAN_DURATION                 500
-#define DEFAULT_SCAN_WIND                     160
-#define DEFAULT_SCAN_INT                      160
+#define DEFAULT_SCAN_DURATION                 200
+#define DEFAULT_SCAN_WIND                     66
+#define DEFAULT_SCAN_INT                      66
 
 // Discovey mode (limited, general, all)
 #define DEFAULT_DISCOVERY_MODE                DEVDISC_MODE_ALL
@@ -194,7 +194,7 @@ typedef enum {
 #define B_STR_ADDR_LEN       ((B_ADDR_LEN*2) + 3)
 
 // How often to perform periodic event (in msec)
-#define MR_PERIODIC_EVT_PERIOD               1000
+#define MR_PERIODIC_EVT_PERIOD               200
 
 // Set the register cause to the registration bit-mask
 #define CONNECTION_EVENT_REGISTER_BIT_SET(RegisterCause) (connectionEventRegisterCauseBitMap |= RegisterCause )
@@ -250,9 +250,9 @@ typedef struct
 
 typedef struct
 {
-  uint8_t devName [DEV_NAME_MAX_STR_LEN];
+  char devName [DEV_NAME_MAX_STR_LEN];
   int8 rssi;
-}bAddr_RSSI_info;
+} devnameRSSIinfo;
 /*********************************************************************
 * GLOBAL VARIABLES
 */
@@ -291,7 +291,7 @@ static uint8_t scanRspData[13];
 
 // GAP - Advertisement data (max size = 31 bytes, though this is
 // best kept short to conserve power while advertisting)
-static uint8_t advertData[14];
+static uint8_t advertData[16];
 
 // pointer to allocate the connection handle map
 static connHandleMapEntry_t *connHandleMap;
@@ -301,9 +301,9 @@ static uint8_t attDeviceName[GAP_DEVICE_NAME_LEN] = "Multi Role :)";
 
 static uint8_t scanRes = 0;
 static uint8_t scanDevices = 0;
-static int8_t scanIdx = -1;
+static uint16_t scanIdx = -1;
 
-static bAddr_RSSI_info tupleInfo[DEFAULT_MAX_SCAN_RES];
+static devnameRSSIinfo tupleInfo[DEFAULT_MAX_SCAN_RES];
 
 
 // Globals used for ATT Response retransmission
@@ -347,6 +347,8 @@ static uint16_t connIndex = INVALID_CONNHANDLE;
 // Maximum number of connected devices
 static uint8_t maxNumBleConns = MAX_NUM_BLE_CONNS;
 
+static uint8_t advertConnEnable;
+
 /*********************************************************************
 * LOCAL FUNCTIONS
 */
@@ -380,13 +382,12 @@ static void multi_role_pairStateCB(uint16_t connHandle, uint8_t state,
                                    uint8_t status);
 static void multi_role_performPeriodicTask(void);
 static void multi_role_clockHandler(UArg arg);
-static void multi_role_clockHandlerRoles(UArg arg);
 static void multi_role_connEvtCB(Gap_ConnEventRpt_t *pReport);
 static void multi_role_addDeviceInfo(uint8_t *pAddr, uint8_t addrType, int8 rssi);
 
-int isValidDevice(gapDeviceInfoEvent_t *devInfo); //data es un puntero a un array de caracteres (advertise data)
+int isValidDevice(gapDeviceInfoEvent_t *devInfo, char* devname, uint8_t* dataLen); //data es un puntero a un array de caracteres (advertise data)
 void printScannedDevicesInfo();
-static void addAddrRssiInfo (uint8_t *advData, int data_len, int8 rssi);
+static void addAddrRssiInfo (char *devname, uint8_t data_len, int8 rssi);
 /*********************************************************************
  * EXTERN FUNCTIONS
 */
@@ -595,8 +596,7 @@ static void multi_role_init(void)
   // Setup the GAP Role Profile
   {
     /*--------PERIPHERAL-------------*/
-    uint8_t advertConnEnable = FALSE;
-    uint8_t advertNonConnEnable = TRUE;
+    advertConnEnable = TRUE;
     uint16_t advertOffTime = 0;
 
     //uint64_t macAddress = *((uint64_t *)(FCFG1_BASE + FCFG1_O_MAC_BLE_0)) & 0x0000FFFFFFFFFFFF;
@@ -626,19 +626,20 @@ static void multi_role_init(void)
     advertData[4] = GAP_ADTYPE_16BIT_MORE;
     advertData[5] = LO_UINT16(SIMPLEPROFILE_SERV_UUID);
     advertData[6] = HI_UINT16(SIMPLEPROFILE_SERV_UUID);
-    advertData[7] = 'A';
-    advertData[8] = 'N';
-    advertData[9] = 'C';
-    advertData[10] = macAddrstr[10];
-    advertData[11] = macAddrstr[10];
+    advertData[7] = 0x08; //size of name
+    advertData[8] = 'A';
+    advertData[9] = 'N';
+    advertData[10] ='C';
+    advertData[11] ='-';
     advertData[12] = macAddrstr[10];
-    advertData[13] = macAddrstr[10];
+    advertData[13] = macAddrstr[11];
+    advertData[14] = macAddrstr[12];
+    advertData[15] = macAddrstr[13];
 
 
-    // device starts advertising upon initialization (non connectable advertising)
-    GAPRole_SetParameter(GAPROLE_ADVERT_ENABLED, sizeof(uint8_t), &advertConnEnable, NULL);
 
-    GAPRole_SetParameter(GAPROLE_ADV_NONCONN_ENABLED, sizeof(uint8_t), &advertNonConnEnable, NULL);
+  //
+
 
     // By setting this to zero, the device will go into the waiting state after
     // being discoverable for 30.72 second, and will not being advertising again
@@ -652,6 +653,8 @@ static void multi_role_init(void)
 
     // Set advertising data
     GAPRole_SetParameter(GAPROLE_ADVERT_DATA, sizeof(advertData), advertData, NULL);
+
+    GAPRole_SetParameter(GAPROLE_ADVERT_ENABLED, sizeof(uint8_t), &advertConnEnable, NULL);
 
     // set max amount of scan responses
     uint8_t scanRes = 0;
@@ -773,7 +776,7 @@ static void multi_role_init(void)
   HCI_LE_ReadLocalSupportedFeaturesCmd();
 #endif // !defined (USE_LL_CONN_PARAM_UPDATE)
 
- Display_print0(dispHandle, 0, 0, "Init done correctly!");
+ //Display_print0(dispHandle, 0, 0, "Init done correctly!");
 }
 
 /*********************************************************************
@@ -1282,7 +1285,7 @@ static void multi_role_processRoleEvent(gapMultiRoleEvent_t *pEvent)
     {
       scanRes = 0;
       scanDevices = 0;
-      Display_print0(dispHandle, 5, 0, "Advertising");
+     // Display_print0(dispHandle, 5, 0, "Advertising");
     }
     break;
 
@@ -1292,7 +1295,7 @@ static void multi_role_processRoleEvent(gapMultiRoleEvent_t *pEvent)
       // Display advertising info depending on whether there are any connections
       if (linkDB_NumActive() < maxNumBleConns)
       {
-        Display_print0(dispHandle, MR_ROW_ADV, 0, "Ready to Advertise");
+        //Display_print0(dispHandle, MR_ROW_ADV, 0, "Ready to Advertise");
       }
       else
       {
@@ -1304,22 +1307,23 @@ static void multi_role_processRoleEvent(gapMultiRoleEvent_t *pEvent)
     // A discovered device report
     case GAP_DEVICE_INFO_EVENT:
     {
-        Display_print0(dispHandle,6,0,"Device discovered!");
+       // Display_print0(dispHandle,6,0,"Device discovered!");
       if(ENABLE_UNLIMITED_SCAN_RES == TRUE)
       {
         multi_role_addDeviceInfo(pEvent->deviceInfo.addr, pEvent->deviceInfo.addrType, pEvent->deviceInfo.rssi);
       }
       if(pEvent->deviceInfo.eventType == GAP_ADRPT_SCAN_RSP)
       {
-         /*Display_print0(dispHandle,4,0,"Scan Response received!");
-         if (isValidDevice(&pEvent->deviceInfo)){
-            addAddrRssiInfo(pEvent->deviceInfo.pEvtData, pEvent->deviceInfo.dataLen, pEvent->deviceInfo.rssi);
-         }*/
+
       }
       else {
-         if (isValidDevice(&pEvent->deviceInfo)){
-            addAddrRssiInfo(pEvent->deviceInfo.pEvtData, pEvent->deviceInfo.dataLen, pEvent->deviceInfo.rssi);
+         char* devname = calloc(16, sizeof(char));
+         uint8 dataLen;
+         if (isValidDevice(&pEvent->deviceInfo, devname, &dataLen)){
+            addAddrRssiInfo(devname, dataLen, pEvent->deviceInfo.rssi);
+            memset(pEvent->deviceInfo.pEvtData, 0, pEvent->deviceInfo.dataLen);
          }
+         free(devname);
       }
     }
     break;
@@ -1350,7 +1354,7 @@ static void multi_role_processRoleEvent(gapMultiRoleEvent_t *pEvent)
            }
 
            // Initialize scan index.
-           scanIdx = -1;
+           //scanIdx = -1;
 
            // Prompt user that re-performing scanning at this state is possible.
 
@@ -1385,7 +1389,7 @@ static void multi_role_processRoleEvent(gapMultiRoleEvent_t *pEvent)
     }
 
     break;
-
+    /*
   case GAP_LINK_ESTABLISHED_EVENT:
      {
        // If succesfully established
@@ -1479,7 +1483,7 @@ static void multi_role_processRoleEvent(gapMultiRoleEvent_t *pEvent)
          }
        }
      }
-     break;
+     break;*/
 
     // A parameter update has occurred
     case GAP_LINK_PARAM_UPDATE_EVENT:
@@ -1932,16 +1936,20 @@ void printScannedDevicesInfo(){
 
    uint16_t addr = (uint16_t) (macAddress & 0x000000000000FFFF);
    for (i = 0; i < scanDevices; ++i){
+       Display_clear(dispHandle);
        line_pr = 0;
        Display_print1(dispHandle, line_pr, 0, "ANC-%x\n", addr);
        ++line_pr;
-       Display_print1(dispHandle, line_pr , 0 ,"%s\n", tupleInfo[i].devName);
+       char devname[16];
+       memcpy(devname, tupleInfo[i].devName, 16);
+       Display_print1(dispHandle, line_pr , 0 ,"%s\n", devname);
        ++line_pr;
        Display_print1(dispHandle, line_pr , 0 ,"%d\n", tupleInfo[i].rssi);
        ++line_pr;
 
    }
 
+   memset(tupleInfo, '\0', sizeof(devnameRSSIinfo)*scanDevices);
    scanRes = 0;
    scanDevices = 0;
 
@@ -1950,18 +1958,6 @@ static void multi_role_clockHandler(UArg arg){
 
     //Wake up the application.
     Event_post(syncEvent, arg);
-}
-/*********************************************************************
- * @fn      multi_role_clockHandler
- *
- * @brief   Handler function for clock timeouts.
- *
- * @param   arg - event type
- */
-static void multi_role_clockHandlerRoles(UArg arg)
-{
-
-
 }
 
 
@@ -1994,10 +1990,10 @@ static void multi_role_connEvtCB(Gap_ConnEventRpt_t *pReport)
 static void multi_role_performPeriodicTask(void)
 {
 
+
+      //Display_print1(dispHandle,5,0,"peiodicTask counter: %d",scanIdx);
       ++scanIdx;
-      Display_print1(dispHandle,1,0,"%d",scanIdx);
       uint8_t adv_status;
-      uint8_t adv;
       //If it's currently scanning
       if (scanningStarted){
           //Disable scanning
@@ -2006,43 +2002,45 @@ static void multi_role_performPeriodicTask(void)
           scanningStarted = FALSE;
 
           //and enable advertising
-          adv = TRUE;
-          bStatus_t ret = GAPRole_SetParameter(GAPROLE_ADV_NONCONN_ENABLED, sizeof(uint8_t), &adv, NULL);
+          //advertNonConnEnable = TRUE;
+          advertConnEnable = TRUE;
+          bStatus_t ret = GAPRole_SetParameter(GAPROLE_ADVERT_ENABLED, sizeof(uint8_t), &advertConnEnable, NULL);
+          /*
           if (ret == SUCCESS){
-              Display_print0(dispHandle, 2, 0, "SetParameter CORRECTO!");
+              Display_print0(dispHandle, 3, 0, "SetParameter CORRECTO!");
           } else if (ret == INVALIDPARAMETER){
-              Display_print0(dispHandle, 2, 0, "SetParameter INVALID PARAMETER!");
+              Display_print0(dispHandle, 3, 0, "SetParameter INVALID PARAMETER!");
           }
           else if (ret == bleInvalidRange){
-              Display_print0(dispHandle, 2, 0, "SetParameter BLE INVALID RANGE!");
+              Display_print0(dispHandle, 3, 0, "SetParameter BLE INVALID RANGE!");
           }
           else {
-              Display_print0(dispHandle, 3, 0, "SetParameter OTRO ERROR!");
-          }
+              Display_print1(dispHandle, 3, 0, "SetParameter OTRO ERROR: %d!",ret);
+          }*/
       }
       //If it's not currently scanning
       else {
 
           //Get the advertising status
-          GAPRole_GetParameter(GAPROLE_ADV_NONCONN_ENABLED, &adv_status, NULL);
+          GAPRole_GetParameter(GAPROLE_ADVERT_ENABLED, &adv_status, NULL);
 
           //If it's currently advertising
           if (adv_status){
 
               //Disable advertising
-              adv = FALSE;
-              bStatus_t ret = GAPRole_SetParameter(GAPROLE_ADV_NONCONN_ENABLED, sizeof(uint8_t), &adv, NULL);
-              if (ret == SUCCESS){
-                Display_print0(dispHandle, 3, 0, "SetParameter CORRECTO!");
+              advertConnEnable = FALSE;
+              bStatus_t ret = GAPRole_SetParameter(GAPROLE_ADVERT_ENABLED, sizeof(uint8_t), &advertConnEnable, NULL);
+              /*if (ret == SUCCESS){
+                Display_print0(dispHandle, 4, 0, "SetParameter CORRECTO!");
               } else if (ret == INVALIDPARAMETER){
-                Display_print0(dispHandle, 3, 0, "SetParameter INVALID PARAMETER!");
+                Display_print0(dispHandle, 4, 0, "SetParameter INVALID PARAMETER!");
               }
               else if (ret == bleInvalidRange){
-                Display_print0(dispHandle, 3, 0, "SetParameter BLE INVALID RANGE!");
+                Display_print0(dispHandle, 4, 0, "SetParameter BLE INVALID RANGE!");
               }
               else {
-                  Display_print0(dispHandle, 3, 0, "SetParameter OTRO ERROR!");
-              }
+                  Display_print1(dispHandle, 4, 0, "SetParameter OTRO ERROR: %d!",ret);
+              }*/
 
               //Enable scanning
               scanningStarted = TRUE;
@@ -2054,19 +2052,20 @@ static void multi_role_performPeriodicTask(void)
           //If it's neither scanning nor advertising
           else {
               //Let's start advertising first
-              adv = TRUE;
-              bStatus_t ret = GAPRole_SetParameter(GAPROLE_ADV_NONCONN_ENABLED, sizeof(uint8_t), &adv, NULL);
+              advertConnEnable = TRUE;
+              bStatus_t ret = GAPRole_SetParameter(GAPROLE_ADVERT_ENABLED, sizeof(uint8_t), &advertConnEnable, NULL);
+              /*
               if (ret == SUCCESS){
-                  Display_print0(dispHandle, 3, 0, "SetParameter CORRECTO!");
+                  Display_print0(dispHandle, 4, 0, "SetParameter CORRECTO!");
               } else if (ret == INVALIDPARAMETER){
-                  Display_print0(dispHandle, 3, 0, "SetParameter INVALID PARAMETER!");
+                  Display_print0(dispHandle, 4, 0, "SetParameter INVALID PARAMETER!");
               }
               else if (ret == bleInvalidRange){
-                  Display_print0(dispHandle, 3, 0, "SetParameter BLE INVALID RANGE!");
+                  Display_print0(dispHandle, 4, 0, "SetParameter BLE INVALID RANGE!");
               }
               else {
-                  Display_print0(dispHandle, 3, 0, "SetParameter OTRO ERROR!");
-              }
+                  Display_print1(dispHandle, 4, 0, "SetParameter OTRO ERROR %d!", ret);
+              }*/
 
           }
 
@@ -2382,8 +2381,8 @@ bool mr_doAdvertise(uint8_t index)
   return TRUE;
 }
 
-static void addAddrRssiInfo (uint8_t *advData, int data_len, int8 rssi){
-    uint8_t i;
+static void addAddrRssiInfo (char *devname, uint8_t data_len, int8 rssi){
+      uint8_t i;
 
       //If found device is the target device
 
@@ -2393,7 +2392,7 @@ static void addAddrRssiInfo (uint8_t *advData, int data_len, int8 rssi){
         // Check if device is already in scan results
         for (i = 0; i < scanDevices; i++)
         {
-           if (memcmp(advData, tupleInfo[i].devName , data_len) == 0)
+           if (memcmp(devname, tupleInfo[i].devName , data_len) == 0)
           {
              tupleInfo[i].rssi = rssi;
              return;
@@ -2401,11 +2400,11 @@ static void addAddrRssiInfo (uint8_t *advData, int data_len, int8 rssi){
         }
 
         // Add devName to scan result list
-        memcpy(tupleInfo[scanDevices].devName, advData, data_len);
+        memcpy(tupleInfo[scanDevices].devName, devname, data_len);
         tupleInfo[scanDevices].rssi = rssi;
 
         // Increment scan result count
-        scanDevices++;
+        ++scanDevices;
       }
 
 
@@ -2427,32 +2426,28 @@ static void addAddrRssiInfo (uint8_t *advData, int data_len, int8 rssi){
  * isValidDevice returns true when the detected device is either a target mobile or a launchpad.
  * Otherwise returns false.
  */
-int isValidDevice(gapDeviceInfoEvent_t *devInfo){
+int isValidDevice(gapDeviceInfoEvent_t *devInfo, char* devname, uint8_t* dataLen){
     char *found_mob = strstr((char*) devInfo->pEvtData, "TARGETDEV-");
     char *found_anc = strstr((char*) devInfo->pEvtData, "ANC-");
 
     if (found_mob != 0){
         int i;
-        char *devname;
         for (i = 0; i < 16; ++i){
             devname[i] = *(found_mob+i);
         }
 
-        devInfo->pEvtData = (uint8_t*)devname;
-        devInfo->dataLen = 16;
+        *dataLen = 16;
 
         return 1;
     }
     else if (found_anc != 0){
 
         int i;
-        char *devname;
         for (i = 0; i < 8; ++i){
             devname[i] = *(found_anc+i);
         }
 
-        devInfo->pEvtData = (uint8_t*)devname;
-        devInfo->dataLen = 8;
+        *dataLen = 8;
 
         return 1;
     }
