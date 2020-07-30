@@ -84,9 +84,13 @@ def sendToNodeRed():
     threading.Timer(SEND_TO_NODERED_INTERVAL, sendToNodeRed).start()
 
 
-def cleanAddr(addr):
-    addr = str(addr).rpartition('TARGETDEV-')[1]+str(addr).rpartition('TARGETDEV-')[2]
-    addr = addr[:len(addr) - 3]
+def cleanDevName(addr, is_smartphone):
+    if is_smartphone:
+        addr = str(addr).rpartition('TARGETDEV-')[1]+str(addr).rpartition('TARGETDEV-')[2]
+        addr = addr[:len(addr) - 5]
+    else:
+        addr = str(addr).rpartition('ANC-')[1] + str(addr).rpartition('ANC-')[2]
+        #addr = addr[:len(addr) - 5]
     return addr
 
 
@@ -146,34 +150,38 @@ def readingLaunchpadData(port, baud, lp_idx):
         # open serial port
 
         ser = serial.Serial('serialPorts/' + port, baud)
-        devName = None
         # get launchpadId, devName and RSSI from serial port
         try:
             launchpadId = ser.readline()
         except SerialException:
-            pass
+            print("SERIAL EXCEPTION!")
         try:
             devName = ser.readline()
         except SerialException:
-            pass
+            print("SERIAL EXCEPTION!")
         try:
             rssiRaw = ser.readline()
         except SerialException:
-            pass
+            print("SERIAL EXCEPTION!")
 
+        launchpadId = launchpadId.decode('utf-8')
+        devName = devName.decode('utf-8')
+        rssiRaw = rssiRaw.decode('utf-8')
 
-        if (devName is not None and len(devName) > 11):  # lectura valida
+        if (devName is not None and len(devName) >= 8):  # lectura valida
 
 
             # clean data from serial port
             launchpadId = cleanLaunchpadId(launchpadId)
-            devName = cleanAddr(devName)
             rssiRaw = cleanRssi(rssiRaw)
 
+            if "TARGETDEV-" in devName.__str__(): # device is a mobile phone
+                devName = cleanDevName(devName, True)
+            elif "ANC-" in devName.__str__():  # device is a launchpad
+                devName = cleanDevName(devName, False)
 
-            if "TARGETDEV-" in devName:  # if devName is clean and it's logical
-                # add read data to JSON
-                addDataToJSON(launchpadId, devName, rssiRaw, lp_idx)
+            # add read data to JSON
+            addDataToJSON(launchpadId.__str__(), devName.__str__(), rssiRaw.__str__(), lp_idx)
 
         # close serial port
         #ser.close()

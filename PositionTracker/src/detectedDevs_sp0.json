@@ -1,1 +1,107 @@
-[]
+[
+    {
+        "launchpadId": "\u001b7\u001b[10\u001b[1;1H\u001b[2AN",
+        "devname": "\u001b81\u001b[KN-CF\n",
+        "RSSI": "AC-8\u001b8\u001b7\u001b1\u001b21\u001b2TRGTEVmo"
+    },
+    {
+        "launchpadId": "T[2J\u001b[2J\u001brK4278\u001b7\u001b[0r2;1H\u001b[2AC4A\u001b[\u001b",
+        "devname": "8\u001b[2\u001b7\u001b10r\u001b;N427\n",
+        "RSSI": "[0r[;H[KAED-mo\b\u0002\u001b8\u001b7\u001b[10r\u001b[3;1H\u001b\u001b[2J\u001b[2J\u001b7\u001b0"
+    },
+    {
+        "launchpadId": "-",
+        "devname": "ANC-4278\n",
+        "RSSI": "ANC-4A"
+    },
+    {
+        "launchpadId": "ANC-42",
+        "devname": "ANC-4ACF\n",
+        "RSSI": "-"
+    },
+    {
+        "launchpadId": "TARGETDEV-mom1qo",
+        "devname": "\u001b8\u001b7\u001b[10r\u001b[3;1H\u001b[2K-45\n",
+        "RSSI": "ANC-42"
+    },
+    {
+        "launchpadId": "ANC-42",
+        "devname": "TARGETDEV-mom1",
+        "RSSI": "-"
+    },
+    {
+        "launchpadId": "ANC-4A",
+        "devname": "\u001b8\u001b7\u001b[10r\u001b[3;1H\u001b[2K-39\n",
+        "RSSI": "ANC-42"
+    },
+    {
+        "launchpadId": "EV-mom1qo",
+        "devname": "\u001b8\u001b7\u001b[10r\u001b[3;1H\u001b[2K-49\n",
+        "RSSI": "ANC-42"
+    },
+    {
+        "launchpadId": "KANC-4A",
+        "devname": "\u001b8\u001b7\u001b[10r\u001b[3;1H\u001b[2K-51\n",
+        "RSSI": "ANC-42"
+    },
+    {
+        "launchpadId": "F",
+        "devname": "\u001b8\u001b7\u001b[10r\u001b[3;1H\u001b[2K-43\n",
+        "RSSI": "ANC-42"
+    },
+    {
+        "launchpadId": "ANC-4A",
+        "devname": "\u001b8\u001b7\u001b[10r\u001b[3;1H\u001b[2K-42\n",
+        "RSSI": "ANC-42"
+    },
+    {
+        "launchpadId": "EV-mom1qo",
+        "devname": "\u001b8\u001b7\u001b[10r\u001b[3;1H\u001b[2K-48\n",
+        "RSSI": "ANC-42"
+    },
+    {
+        "launchpadId": "F",
+        "devname": "\u001b8\u001b7\u001b[10r\u001b[3;1H\u001b[2K-36\n",
+        "RSSI": "ANC-42"
+    },
+    {
+        "launchpadId": "TARGETDEV-mom1qo",
+        "devname": "\u001b8\u001b7\u001b[10r\u001b[3;1H\u001b[2K-46\n",
+        "RSSI": "ANC-42"
+    },
+    {
+        "launchpadId": "ANC-4A",
+        "devname": "\u001b8\u001b7\u001b[10r\u001b[3;1H\u001b[2K-40\n",
+        "RSSI": "ANC-42"
+    },
+    {
+        "launchpadId": "KANC-4A",
+        "devname": "\u001b8\u001b7\u001b[10r\u001b[3;1H\u001b[2K-38\n",
+        "RSSI": "ANC-42"
+    },
+    {
+        "launchpadId": "ANC-42",
+        "devname": "ANC-4ACFV-mom1qo\b\u0002\n",
+        "RSSI": "-"
+    },
+    {
+        "launchpadId": "F",
+        "devname": "\u001b8\u001b7\u001b[10r\u001b[3;1H\u001b[2K-32\n",
+        "RSSI": "ANC-42"
+    },
+    {
+        "launchpadId": "EV-mom1qo",
+        "devname": "\u001b8\u001b7\u001b[10r\u001b[3;1H\u001b[2K-47\n",
+        "RSSI": "ANC-42"
+    },
+    {
+        "launchpadId": "EV-mom1qo",
+        "devname": "\u001b8\u001b7\u001b[10r\u001b[3;1H\u001b[2K-44\n",
+        "RSSI": "ANC-42"
+    },
+    {
+        "launchpadId": "ANC-4A",
+        "devname": "\u001b8\u001b7\u001b[10r\u001b[3;1H\u001b[2K-37\n",
+        "RSSI": "ANC-42"
+    }
+]
