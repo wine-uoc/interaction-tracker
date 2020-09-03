@@ -18,7 +18,7 @@ pythonApp:
   numResultsDBaccel: 1
   numResultsDBorient: 1
   #LOG-DISTANCE PATH LOSS MODEL PARAMETERS
-  A: -42 #-47.697
+  A: -47.697
   n: 3 # Con 3 da buenos resultados. #-0.827
   sensitivityToRSSIChanges: 1 # 0<x<inf. 0 = no sensitivity
   #KALMAN FILTER PARAMETERS
@@ -26,3 +26,7 @@ pythonApp:
   u_noise: 0.018
   z_noise: 0.48940446
   accThreshold: 0.2
+  #TESTING PARAMETERS (ERROR QUANTITY AT POSITIONING)
+  deviceName: TARGETDEV-g5mpwl
+  x_pos: 1.10
+  y_pos: 1.05

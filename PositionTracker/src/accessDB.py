@@ -17,7 +17,7 @@ class DB:
         self.cur = self.conn.cursor()
 
         # get the 3 different launchpad identifiers in order to build the queries later
-        self.cur.execute("SELECT DISTINCT dstdevice FROM rssiphonedata WHERE length(dstdevice) = 4")
+        self.cur.execute("SELECT DISTINCT dstdevice FROM rssiphonedata WHERE length(dstdevice) = 8")
         anchor_list_names = self.cur.fetchall()
         self.anchor1_name = anchor_list_names[0][0]
         self.anchor2_name = anchor_list_names[1][0]

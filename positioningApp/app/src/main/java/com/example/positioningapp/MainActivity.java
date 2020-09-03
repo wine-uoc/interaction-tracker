@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
     private static final int RECORDER_SAMPLERATE = 44100;
     private static final int RECORDER_CHANNELS = AudioFormat.CHANNEL_IN_MONO;
     private static final int RECORDER_AUDIO_ENCODING = AudioFormat.ENCODING_PCM_16BIT;
-    private static final String IP_ADDR = "192.168.1.130"; //HAY QUE MODIFICAR LA DIRECCION IP CADA VEZ QUE SE CONECTAN LOS DISPOSITIVOS A LA RED LOCAL!
+    private static final String IP_ADDR = "192.168.1.132"; //HAY QUE MODIFICAR LA DIRECCION IP CADA VEZ QUE SE CONECTAN LOS DISPOSITIVOS A LA RED LOCAL!
     private static final int POST_PERIOD = 100; //in ms
 
     //Ultrasound vars

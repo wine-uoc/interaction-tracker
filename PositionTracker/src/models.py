@@ -101,7 +101,7 @@ class ModelController:
     # returns the value of the distance from anchor (launchpad or device) anchor_name to device device_name
     def getRadiusFromAnchorToDevice(self, anchor_name, device_name):
 
-        if len(anchor_name) != 4:  # Anchor is a cell
+        if len(anchor_name) != 8:  # Anchor is a cell
             rssi_list = self.db_manager.getRssiOfDeviceFromDevice(device_name, anchor_name,
                                                                   num_results=NUM_RESULTS_RSSI)
         else:  # Anchor is a launchpad
@@ -157,7 +157,7 @@ class ModelController:
         # using the anchors position and the radius for each circle they describe,
         # we can compute the position of the device devname
 
-        # weight for position estimations
+        # weight for devices positions estimations (using only the 3 launchpads)
         W = 1.0
 
         # first of all, devices positions must be computed using ONLY the 3 real anchors
@@ -193,7 +193,7 @@ class ModelController:
                 # calcularemos las posiciones estimadas para "dev". Una estimacion para cada terna de "comb"
 
                 for c in comb:
-                    if not all(map(lambda x: len(x) == 4,c)):
+                    if not all(map(lambda x: len(x) == 8,c)):
                         count += 1
                         radius_dict = self.getRadiiToTargetDevice(dev.getDevName(), c)
                         anchors_positions_dict = self.getAnchorsPositions(c, est_init_dev_pos[non_target_devname])
@@ -269,8 +269,8 @@ class PositioningComputations:
         self.S = cfg['pythonApp'][
             'sensitivityToRSSIChanges']  # sensitivity to changes in RSSI. Lower values, more sensitivity
 
-        # how much rssi receives the anchor (when scanning) from devices (when advertising).
-        self.rssi_to_dev_at_1m = {'TARGETDEV-mom1qo': -46, 'TARGETDEV-xelc2r': -50}
+        # how much rssi receives the anchor (when scanning) from devices (when advertising) at 1 meter.
+        self.rssi_to_dev_at_1m = {'TARGETDEV-g5mpwl': -50} #'TARGETDEV-mom1qo': -46
 
         for anc_name in self.anchor_names:
             self.last_rssi_means[anc_name] = dict()
@@ -491,7 +491,7 @@ class PositioningComputations:
         y3 = anchors_positions[anchor_names[2]]['Y']
         r3 = anchors_radius[anchor_names[2]]
 
-        # Computing position using NumPy
+        # Computing position using NumPy (doing the trilateration)
 
         def mse(x, locations, distances):
             mse = 0.0
@@ -503,11 +503,8 @@ class PositioningComputations:
         locations = [(x1, y1), (x2, y2), (x3, y3)]
         distances = [r1, r2, r3]
         init_guess = np.array([0, 0])
-        t_ini = time.time() * 1000
         res = minimize(mse, init_guess, args=(locations, distances), method='L-BFGS-B',
                        options={'ftol': 1e-5, 'maxiter': 1e9})
-        t_fin = time.time() * 1000
-        #print("estimated position RSSI: " + str(res.x))
 
         return tuple((res.x[0], res.x[1]))
 
@@ -531,17 +528,6 @@ class Anchor:
     def getY(self):
         return self.Y
 
-
-class Launchpad(Anchor):
-
-    def __init__(self, name, X, Y):
-        super(Launchpad, self).__init__(name, X, Y)
-
-
-class Cell(Anchor):
-
-    def __init__(self, name, X, Y):
-        super(Cell, self).__init__(name, X, Y)
 
 
 class Device:

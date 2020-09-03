@@ -65,6 +65,9 @@ def initialize_DS():
         i += 1
 
 
+def deleteContent(fName):
+    with open(fName, "w"):
+        pass
 
 def sendToNodeRed():
     i = 0
@@ -80,10 +83,15 @@ def sendToNodeRed():
                     t = req.post("http://"+IP_ADDR+":1880/query", data=obj)
             except UnboundLocalError:
                 pass
+
+        with open(launchpadsInfo[i]['json_filename'], "w") as file:
+           # deleteContent(launchpadsInfo[i]['json_filename'])
+            json.dump([], file, indent=4)
+
         i += 1
     threading.Timer(SEND_TO_NODERED_INTERVAL, sendToNodeRed).start()
 
-
+'''
 def cleanDevName(addr, is_smartphone):
     if is_smartphone:
         addr = str(addr).rpartition('TARGETDEV-')[1]+str(addr).rpartition('TARGETDEV-')[2]
@@ -103,7 +111,7 @@ def cleanLaunchpadId(lp_id):
     lp_id = str(lp_id).rpartition('2K')[2]
     lp_id = lp_id[:len(lp_id) - 3]
     return lp_id
-
+'''
 
 # checks if addrRaw is already in dataJS.
 def addrAlreadyAdded(devName, dataJS):
@@ -121,7 +129,13 @@ def updateRssi(devName, rssiRaw, dataJS):
 
 def addDataToJSON(launchpadId, devName, rssiRaw, lp_idx):
     with open(launchpadsInfo[lp_idx]['json_filename'], mode='r') as file:
-        dataJS = json.load(file)
+        try:
+            dataJS = json.load(file)
+        except json.decoder.JSONDecodeError:
+            with open(launchpadsInfo[lp_idx]['json_filename'], "w") as file2:
+                # deleteContent(launchpadsInfo[i]['json_filename'])
+                json.dump([], file2, indent=4)
+            dataJS = json.load(file)
 
         # check if addr is already in dataJS. If not, add it
         if not addrAlreadyAdded(devName, dataJS):
@@ -142,6 +156,17 @@ def addDataToJSON(launchpadId, devName, rssiRaw, lp_idx):
 
     print(dataJS)
 
+def validData(launchpadId, devName, rssiRaw):
+    if re.fullmatch("ANC(\-)[a-z0-9]{4}", launchpadId) is None:
+        return False
+    elif re.fullmatch("(\-)[0-9]{2}", rssiRaw) is None:
+        return False
+    elif (re.fullmatch("TARGETDEV(\-)[a-z0-9]{6}", devName) is None) and (re.fullmatch("ANC(\-)[a-zA-Z0-9]{4}", devName) is None):
+        return False
+    else:
+        return True
+
+
 def readingLaunchpadData(port, baud, lp_idx):
 
     # LOOP READING RSSI OF LAUNCHPADS' DETECTED DEVICES AND PREPARING TO SEND THEM TO NODERED
@@ -151,37 +176,28 @@ def readingLaunchpadData(port, baud, lp_idx):
 
         ser = serial.Serial('serialPorts/' + port, baud)
         # get launchpadId, devName and RSSI from serial port
+
         try:
-            launchpadId = ser.readline()
+            #All the data are only in 1 line
+            serialData = ser.readline().decode()
+
+            #split the data into 3 parts (launchpadId, devname, rssi)
+            splittedData = serialData.split()
+            if len(splittedData) == 3:
+
+                # clean data from serial port
+                launchpadId = splittedData[0].partition('2K')[2]
+                devName = splittedData[1][0:16]
+                rssiRaw = splittedData[2]
+
+                #check if each element fits the formatting and naming rules (using regex)
+                if validData(launchpadId, devName, rssiRaw):
+                    # add read data to JSON
+                    addDataToJSON(launchpadId, devName, rssiRaw, lp_idx)
+
         except SerialException:
             print("SERIAL EXCEPTION!")
-        try:
-            devName = ser.readline()
-        except SerialException:
-            print("SERIAL EXCEPTION!")
-        try:
-            rssiRaw = ser.readline()
-        except SerialException:
-            print("SERIAL EXCEPTION!")
 
-        launchpadId = launchpadId.decode('utf-8')
-        devName = devName.decode('utf-8')
-        rssiRaw = rssiRaw.decode('utf-8')
-
-        if (devName is not None and len(devName) >= 8):  # lectura valida
-
-
-            # clean data from serial port
-            launchpadId = cleanLaunchpadId(launchpadId)
-            rssiRaw = cleanRssi(rssiRaw)
-
-            if "TARGETDEV-" in devName.__str__(): # device is a mobile phone
-                devName = cleanDevName(devName, True)
-            elif "ANC-" in devName.__str__():  # device is a launchpad
-                devName = cleanDevName(devName, False)
-
-            # add read data to JSON
-            addDataToJSON(launchpadId.__str__(), devName.__str__(), rssiRaw.__str__(), lp_idx)
 
         # close serial port
         #ser.close()

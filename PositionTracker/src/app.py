@@ -30,11 +30,12 @@ cfg = yaml.load(file)
 def computeDevicesPositions():
     ctrl.computeDevicesPositions()
 
+# this function is called periodically in order to delete the oldest DB data
 def triggerDeleteOldestDBdata():
     ctrl.triggerDeleteFromDBoldestData()
 
 
-#Inicializa el scheduler para que compute el valor de la posicion cada 100ms
+#Inicializa el scheduler para que compute el valor de la posicion cada X ms (definido en config.yml -> cfg['pythonApp']['TComputePositions'] )
 executors = {
     'default': ThreadPoolExecutor(16),
     'processpool': ProcessPoolExecutor(4)
@@ -43,6 +44,7 @@ schedu = BackgroundScheduler(executors=executors)
 schedu.add_job(computeDevicesPositions, 'interval', seconds=cfg['pythonApp']['TComputePositions']) #Thread que computa la posicion del dispositivo
 schedu.add_job(triggerDeleteOldestDBdata, 'interval', seconds=cfg['pythonApp']['TDeleteDB']) #Thread que elimina datos antiguos de la BBDD.
 
+# retrieve form data from 0.0.0.0:5000/
 def extract_form_data():
     position_data = dict()
     position_data['anchorsInfo'] = dict()
@@ -144,9 +146,10 @@ def positions_img():
             ax.scatter(x_dev, y_dev, c=dot_colors)
 
             if TEST_MODEL:
-                x = 2.8
-                y = 0
-                devname = "TARGETDEV-mom1qo"
+                x = cfg['pythonApp']['x_pos']
+                y = cfg['pythonApp']['y_pos']
+                devname = cfg['pythonApp']['deviceName']
+
                 ax.scatter(x, y, c='orange')
                 ax.text(x, y, devname, fontsize=14)
                 x_est = dev_pos[devname]['X']
