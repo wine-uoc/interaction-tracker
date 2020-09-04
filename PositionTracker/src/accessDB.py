@@ -132,6 +132,10 @@ class DB:
         self.conn.commit()
         '''
 
+    def deleteDatabaseContent(self):
+        self.cur.execute("DELETE FROM rssiphonedata WHERE true")
+        return
+
     def getAccelerationValues(self, devname, num_results):
         self.cur.execute(
             "SELECT x_acc, y_acc FROM acceldata WHERE devname=%(devname)s ORDER BY id DESC LIMIT %(num_results)s",{'devname':devname, 'num_results':num_results})

@@ -11,16 +11,16 @@ anchorsToNodeRED:
 pythonApp:
   appHost: 0.0.0.0
   appPort: 5000
-  TDeleteDB: 60 #time between DB deletions (s)
-  lastMillisDBKept: 2000 #when old DB values are deleted, keep the results from the last X milliseconds.
+  TDeleteDB: 6000 #time between DB deletions (s)
+  lastMillisDBKept: 10000 #when old DB values are deleted, keep the results from the last X milliseconds.
   TComputePositions: 0.5 #time between position computations (s)
-  numResultsDBrssi: 10
+  numResultsDBrssi: 1
   numResultsDBaccel: 1
   numResultsDBorient: 1
   #LOG-DISTANCE PATH LOSS MODEL PARAMETERS
   A: -47.697
   n: 3 # Con 3 da buenos resultados. #-0.827
-  sensitivityToRSSIChanges: 1 # 0<x<inf. 0 = no sensitivity
+  sensitivityToRSSIChanges: 0 # 0<x<inf. 0 = no sensitivity
   #KALMAN FILTER PARAMETERS
   delta_t: 0.1
   u_noise: 0.018

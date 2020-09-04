@@ -69,6 +69,7 @@ def deleteContent(fName):
     with open(fName, "w"):
         pass
 
+''' 
 def sendToNodeRed():
     i = 0
     while i < len(SP_NAMES):
@@ -84,12 +85,35 @@ def sendToNodeRed():
             except UnboundLocalError:
                 pass
 
+        ### PROBABLEMENTE HAY QUE ELIMINARLO PARA QUE NO DEJE DE LEER LOS PUERTOS ###
         with open(launchpadsInfo[i]['json_filename'], "w") as file:
            # deleteContent(launchpadsInfo[i]['json_filename'])
             json.dump([], file, indent=4)
+        ### FIN PARTE A ELIMINAR ###
 
         i += 1
     threading.Timer(SEND_TO_NODERED_INTERVAL, sendToNodeRed).start()
+
+'''
+
+def sendToNodeRed(lp_idx):
+
+    with open(launchpadsInfo[lp_idx]['json_filename'], "r") as file:
+        try:
+            dataJS = json.load(file)
+        except json.decoder.JSONDecodeError:
+            pass
+
+        try:
+            for obj in dataJS:
+                t = req.post("http://"+IP_ADDR+":1880/query", data=obj)
+        except UnboundLocalError:
+            pass
+
+    with open(launchpadsInfo[lp_idx]['json_filename'], "w") as file:
+       # deleteContent(launchpadsInfo[i]['json_filename'])
+        json.dump([], file, indent=4)
+
 
 '''
 def cleanDevName(addr, is_smartphone):
@@ -194,7 +218,7 @@ def readingLaunchpadData(port, baud, lp_idx):
                 if validData(launchpadId, devName, rssiRaw):
                     # add read data to JSON
                     addDataToJSON(launchpadId, devName, rssiRaw, lp_idx)
-
+                    sendToNodeRed(lp_idx)
         except SerialException:
             print("SERIAL EXCEPTION!")
 
@@ -245,7 +269,7 @@ def main():
         print("Error: unable to start thread")
 
     # set a timer for sending data to NodeRED periodically
-    threading.Timer(SEND_TO_NODERED_INTERVAL, sendToNodeRed).start()
+    #threading.Timer(SEND_TO_NODERED_INTERVAL, sendToNodeRed).start()
 
     while True:
         pass

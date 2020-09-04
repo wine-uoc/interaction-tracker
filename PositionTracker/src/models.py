@@ -68,6 +68,9 @@ class ModelController:
 
         self.model.setDevicesInitialOrientation(devs_orientation)
         """
+    def deleteDatabaseContent(self):
+        self.db_manager.deleteDatabaseContent()
+        return
 
     # returns launchpads positions (dictionary of anchors with dictionary of positions for each one)
     def getLaunchpadPositions(self):
@@ -270,7 +273,7 @@ class PositioningComputations:
             'sensitivityToRSSIChanges']  # sensitivity to changes in RSSI. Lower values, more sensitivity
 
         # how much rssi receives the anchor (when scanning) from devices (when advertising) at 1 meter.
-        self.rssi_to_dev_at_1m = {'TARGETDEV-g5mpwl': -50} #'TARGETDEV-mom1qo': -46
+        self.rssi_to_dev_at_1m = {'TARGETDEV-g5mpwl': -50 }#,'TARGETDEV-mom1qo': -46}
 
         for anc_name in self.anchor_names:
             self.last_rssi_means[anc_name] = dict()

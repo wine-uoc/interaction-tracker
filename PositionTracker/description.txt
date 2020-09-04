@@ -15,3 +15,8 @@ PASOS PARA DESPLEGAR EL PROYECTO
 6. Introducir los datos de la habitacion y de los anchors.
 
 
+NOTAS DE LA VERSION
+
+Cuando se usa cambia del escenario en el que usamos 1 solo movil al que usamos mas de 1, hay que añadir en el array self.rssi_to_dev_at_1m de models.py, la rssi a 1 metro del movil a un launchpad.
+
+

@@ -9,10 +9,10 @@ from models import ModelController
 import matplotlib
 import yaml
 import numpy as np
+import signal, os
 
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.executors.pool import ThreadPoolExecutor, ProcessPoolExecutor
-
 
 matplotlib.use('Agg')
 app = Flask(__name__)
@@ -23,26 +23,35 @@ ctrl = ModelController()
 show_circles = False
 show_rssi = False
 
-file = open('config.yml','r')
+file = open('config.yml', 'r')
 cfg = yaml.load(file)
+
 
 # funcion que calcula la posicion de los dispositivos (target)
 def computeDevicesPositions():
-    ctrl.computeDevicesPositions()
+    try:
+        ctrl.computeDevicesPositions()
+    except ValueError:
+        print(
+            "ValueError!, seguramente es porque al borrarse datos antiguos de la BD, los distintos dispositivos (moviles o launchpads) que habian no son los mismos que los que hay despues de borrarla.")
+
 
 # this function is called periodically in order to delete the oldest DB data
 def triggerDeleteOldestDBdata():
     ctrl.triggerDeleteFromDBoldestData()
 
 
-#Inicializa el scheduler para que compute el valor de la posicion cada X ms (definido en config.yml -> cfg['pythonApp']['TComputePositions'] )
+# Inicializa el scheduler para que compute el valor de la posicion cada X ms (definido en config.yml -> cfg['pythonApp']['TComputePositions'] )
 executors = {
     'default': ThreadPoolExecutor(16),
     'processpool': ProcessPoolExecutor(4)
 }
 schedu = BackgroundScheduler(executors=executors)
-schedu.add_job(computeDevicesPositions, 'interval', seconds=cfg['pythonApp']['TComputePositions']) #Thread que computa la posicion del dispositivo
-schedu.add_job(triggerDeleteOldestDBdata, 'interval', seconds=cfg['pythonApp']['TDeleteDB']) #Thread que elimina datos antiguos de la BBDD.
+schedu.add_job(computeDevicesPositions, 'interval',
+               seconds=cfg['pythonApp']['TComputePositions'])  # Thread que computa la posicion del dispositivo
+schedu.add_job(triggerDeleteOldestDBdata, 'interval',
+               seconds=cfg['pythonApp']['TDeleteDB'])  # Thread que elimina datos antiguos de la BBDD.
+
 
 # retrieve form data from 0.0.0.0:5000/
 def extract_form_data():
@@ -69,7 +78,7 @@ def extract_form_data():
     position_data['roomInfo']['X_max'] = request.form['room-x-max']
     position_data['roomInfo']['Y_min'] = request.form['room-y-min']
     position_data['roomInfo']['Y_max'] = request.form['room-y-max']
-    position_data['roomInfo']['orientation'] = float(request.form['degree-north'])*(3.141592/180) #degrees to rad.
+    position_data['roomInfo']['orientation'] = float(request.form['degree-north']) * (3.141592 / 180)  # degrees to rad.
 
     return position_data
 
@@ -105,9 +114,9 @@ def positions_img():
         TEST_MODEL = True
         dev_pos = ctrl.getDevicesPositions()
         anchors_pos = ctrl.getLaunchpadPositions()
-        #print("estimated position RSSI+ACC+ORI: ")
-        #print(dev_pos)
-        #print()
+        # print("estimated position RSSI+ACC+ORI: ")
+        # print(dev_pos)
+        # print()
 
         # imprimimos los anchors (launchpads) primeramente.
 
@@ -142,7 +151,6 @@ def positions_img():
                 dev_names.append(d)
                 dot_colors.append('b')
 
-
             ax.scatter(x_dev, y_dev, c=dot_colors)
 
             if TEST_MODEL:
@@ -172,7 +180,8 @@ def positions_img():
                 i = 0
                 for x, y, name in res:
                     ax.add_artist(
-                        plt.Circle((x, y), ctrl.getRadiusFromAnchorToDevice(name, "TARGETDEV-mom1qo"), color=color_array[i],
+                        plt.Circle((x, y), ctrl.getRadiusFromAnchorToDevice(name, "TARGETDEV-mom1qo"),
+                                   color=color_array[i],
                                    alpha=0.25))
                     i += 1
 
@@ -217,18 +226,14 @@ def post_data_form():
 ###
 
 
-
 def main():
+    # t1 = threading.Thread(target=ThreadDeleteDBdata)
+    # t1.daemon = True  # thread dies when main thread (only non-daemon thread) exits.
+    # t1.start()
 
-    #t1 = threading.Thread(target=ThreadDeleteDBdata)
-    #t1.daemon = True  # thread dies when main thread (only non-daemon thread) exits.
-    #t1.start()
-
-
-    #t2 = threading.Thread(target=ThreadComputeDevicesPositions)
-    #t2.daemon = True  # thread dies when main thread (only non-daemon thread) exits.
-    #t2.start()
-
+    # t2 = threading.Thread(target=ThreadComputeDevicesPositions)
+    # t2.daemon = True  # thread dies when main thread (only non-daemon thread) exits.
+    # t2.start()
 
     app.run(host=cfg['pythonApp']['appHost'], port=int(cfg['pythonApp']['appPort']), debug=True)
 
