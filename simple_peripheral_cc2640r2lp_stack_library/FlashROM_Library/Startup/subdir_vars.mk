@@ -6,7 +6,7 @@
 C_SRCS += \
 /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/icall/stack/ble_user_config.c \
 /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/common/cc26xx/icall_startup.c \
-/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/examples/rtos/CC2640R2_LAUNCHXL/blestack/simple_peripheral/src/stack/osal_icall_ble.c 
+/home/aaron/Documentos/Trabajo/ble_examples-master/examples/rtos/CC2640R2_LAUNCHXL/bleapps/simple_peripheral_observer/src/stack/osal_icall_ble.c 
 
 C_DEPS += \
 ./Startup/ble_user_config.d \
@@ -31,6 +31,6 @@ C_DEPS__QUOTED += \
 C_SRCS__QUOTED += \
 "/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/icall/stack/ble_user_config.c" \
 "/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/common/cc26xx/icall_startup.c" \
-"/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/examples/rtos/CC2640R2_LAUNCHXL/blestack/simple_peripheral/src/stack/osal_icall_ble.c" 
+"/home/aaron/Documentos/Trabajo/ble_examples-master/examples/rtos/CC2640R2_LAUNCHXL/bleapps/simple_peripheral_observer/src/stack/osal_icall_ble.c" 
 
 

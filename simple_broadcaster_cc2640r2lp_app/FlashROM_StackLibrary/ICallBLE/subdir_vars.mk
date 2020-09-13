@@ -4,8 +4,8 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/icall/app/ble_user_config.c \
-/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/icall/app/icall_api_lite.c 
+/home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/source/ti/blestack/icall/app/ble_user_config.c \
+/home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/source/ti/blestack/icall/app/icall_api_lite.c 
 
 C_DEPS += \
 ./ICallBLE/ble_user_config.d \
@@ -24,7 +24,7 @@ C_DEPS__QUOTED += \
 "ICallBLE/icall_api_lite.d" 
 
 C_SRCS__QUOTED += \
-"/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/icall/app/ble_user_config.c" \
-"/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/icall/app/icall_api_lite.c" 
+"/home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/source/ti/blestack/icall/app/ble_user_config.c" \
+"/home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/source/ti/blestack/icall/app/icall_api_lite.c" 
 
 

@@ -54,7 +54,6 @@
 #include <ti/sysbios/knl/Event.h>
 #include <ti/sysbios/knl/Queue.h>
 #include <ti/display/Display.h>
-#include <inc/hw_fcfg1.h>
 #include <icall.h>
 #include "util.h"
 /* This Header file contains all BLE API and icall structure definition */
@@ -80,7 +79,7 @@
 
 // What is the advertising interval when device is discoverable (units of 625us, 160=100ms)
 #define DEFAULT_ADVERTISING_INTERVAL          160
-//#define BEACON_FEATURE 1
+
 // Type of Display to open
 #if !defined(Display_DISABLE_ALL)
   #if defined(BOARD_DISPLAY_USE_LCD) && (BOARD_DISPLAY_USE_LCD!=0)
@@ -155,7 +154,37 @@ Task_Struct sbbTask;
 Char sbbTaskStack[SBB_TASK_STACK_SIZE];
 
 // GAP - SCAN RSP data (max size = 31 bytes)
-static uint8 scanRspData[9];
+static uint8 scanRspData[] =
+{
+  // complete name
+  0x15,   // length of this data
+  GAP_ADTYPE_LOCAL_NAME_COMPLETE,
+  'S',
+  'i',
+  'm',
+  'p',
+  'l',
+  'e',
+  'B',
+  'L',
+  'E',
+  'B',
+  'r',
+  'o',
+  'a',
+  'd',
+  'c',
+  'a',
+  's',
+  't',
+  'e',
+  'r',
+
+  // Tx power level
+  0x02,   // length of this data
+  GAP_ADTYPE_POWER_LEVEL,
+  0       // 0dBm
+};
 
 // GAP - Advertisement data (max size = 31 bytes, though this is
 // best kept short to conserve power while advertisting)
@@ -171,11 +200,16 @@ static uint8 advertData[] =
 #ifndef BEACON_FEATURE
 
   // three-byte broadcast of the data "1 2 3"
-  0x04,   // length of this data including the data type byte
+  0x09,   // length of this data including the data type byte
   GAP_ADTYPE_MANUFACTURER_SPECIFIC, // manufacturer specific adv data type
-  1,
-  2,
-  3
+  'A',
+  'N',
+  'C',
+  '-',
+  '4',
+  '2',
+  '7',
+  '8',
 
 #else
 
@@ -303,8 +337,6 @@ static void SimpleBroadcaster_init(void)
   // Open LCD
   dispHandle = Display_open(SBB_DISPLAY_TYPE, NULL);
 
-  HCI_EXT_SetTxPowerCmd(HCI_EXT_TX_POWER_5_DBM);
-
   // Setup the GAP Broadcaster Role Profile
   {
     // For all hardware platforms, device starts advertising upon initialization
@@ -320,23 +352,6 @@ static void SimpleBroadcaster_init(void)
 #else
     uint8_t advType = GAP_ADTYPE_ADV_NONCONN_IND; // use non-connectable adv
 #endif // !BEACON_FEATURE
-
-    //uint64_t macAddress = *((uint64_t *)(FCFG1_BASE + FCFG1_O_MAC_BLE_0)) & 0x0000FFFFFFFFFFFF;
-    uint8_t* pAddr =  (uint8_t *)(FCFG1_BASE + FCFG1_O_MAC_BLE_0);
-    char* macAddrstr = Util_convertBdAddr2Str(pAddr);
-
-    //PARA MODIFICAR EL NOMBRE DEL DISPOSITIVO, HACER MAS GRANDE EL ARRAY scanRspData y añadir, por cada caracter,un elemento mas a partir de scanRspData[5]
-    scanRspData[0] = 0x05;
-    scanRspData[1] = GAP_ADTYPE_LOCAL_NAME_COMPLETE;
-    scanRspData[2] = macAddrstr[10];
-    scanRspData[3] = macAddrstr[11];
-    scanRspData[4] = macAddrstr[12];
-    scanRspData[5] = macAddrstr[13];
-    scanRspData[6] = 0x02;
-    scanRspData[7] = GAP_ADTYPE_POWER_LEVEL;
-    scanRspData[8] = 0;
-
-
 
     // Set the GAP Role Parameters
     GAPRole_SetParameter(GAPROLE_ADVERT_ENABLED, sizeof(uint8_t),

@@ -3,13 +3,13 @@
  *                step by the lib_search utility
  */
 
-"/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/blelib/ctrlll/cc2640_ctrlll_xxbx.a"
-"/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/blelib/ctrlhci/cc2640_ctrlhci_xxbx.a"
-"/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/blelib/hci_tl/cc26xx_hci_tl_none.a"
-"/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/blelib/host/cc26xx_l2cap_xxbx.a"
-"/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/blelib/host/cc26xx_sm_xxbx.a"
-"/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/blelib/host/cc26xx_gap_xxbx.a"
-"/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/blelib/host/cc26xx_profiles_xxbx.a"
-"/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/blelib/host/cc26xx_gatt_xxbx.a"
-"/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/blelib/host/cc26xx_att_xxbx.a"
-"/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/blelib/host/cc26xx_smp_xxbx.a"
+"/home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/source/ti/blestack/blelib/ctrlll/cc2640_ctrlll_xxbx.a"
+"/home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/source/ti/blestack/blelib/ctrlhci/cc2640_ctrlhci_xxbx.a"
+"/home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/source/ti/blestack/blelib/hci_tl/cc26xx_hci_tl_none.a"
+"/home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/source/ti/blestack/blelib/host/cc26xx_l2cap_xxbx.a"
+"/home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/source/ti/blestack/blelib/host/cc26xx_sm_xxbx.a"
+"/home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/source/ti/blestack/blelib/host/cc26xx_gap_xxbx.a"
+"/home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/source/ti/blestack/blelib/host/cc26xx_profiles_xxbx.a"
+"/home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/source/ti/blestack/blelib/host/cc26xx_gatt_xxbx.a"
+"/home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/source/ti/blestack/blelib/host/cc26xx_att_xxbx.a"
+"/home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/source/ti/blestack/blelib/host/cc26xx_smp_xxbx.a"

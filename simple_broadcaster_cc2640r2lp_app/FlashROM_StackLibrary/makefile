@@ -23,15 +23,15 @@ ORDERED_OBJS += \
 "./Startup/ccfg_app_ble.obj" \
 "./Startup/main.obj" \
 $(GEN_CMDS__FLAG) \
--l"/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/devices/cc26x0r2/driverlib/bin/ccs/driverlib.lib" \
--l"/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/kernel/tirtos/packages/ti/dpl/lib/dpl_cc26x0r2.aem3" \
--l"/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/drivers/lib/drivers_cc26x0r2.aem3" \
--l"/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/display/lib/display.aem3" \
--l"/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/grlib/lib/ccs/m3/grlib.a" \
+-l"/home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/source/ti/devices/cc26x0r2/driverlib/bin/ccs/driverlib.lib" \
+-l"/home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/kernel/tirtos/packages/ti/dpl/lib/dpl_cc26x0r2.aem3" \
+-l"/home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/source/ti/drivers/lib/drivers_cc26x0r2.aem3" \
+-l"/home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/source/ti/display/lib/display.aem3" \
+-l"/home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/source/ti/grlib/lib/ccs/m3/grlib.a" \
 -l"/home/aaron/Documentos/Trabajo/ccs-workspace/simple_broadcaster_cc2640r2lp_stack_library/FlashROM_Library/ble_r2.symbols" \
 -l"/home/aaron/Documentos/Trabajo/ccs-workspace/simple_broadcaster_cc2640r2lp_stack_library/FlashROM_Library/lib_linker.cmd" \
 -l"/home/aaron/Documentos/Trabajo/ccs-workspace/simple_broadcaster_cc2640r2lp_stack_library/FlashROM_Library/simple_broadcaster_cc2640r2lp_stack_library.lib" \
--l"/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/common/cc26xx/ccs/cc26xx_app.cmd" \
+-l"/home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/source/ti/blestack/common/cc26xx/ccs/cc26xx_app.cmd" \
 -llibc.a \
 
 -include ../makefile.init
@@ -178,7 +178,7 @@ dependents:
 simple_broadcaster_cc2640r2lp_app.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS) /home/aaron/Documentos/Trabajo/ccs-workspace/simple_broadcaster_cc2640r2lp_stack_library/FlashROM_Library/simple_broadcaster_cc2640r2lp_stack_library.lib
 	@echo 'Building target: "$@"'
 	@echo 'Invoking: ARM Linker'
-	"/opt/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/bin/armcl" --cmd_file="/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/config/build_components.opt" --cmd_file="/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/config/factory_config.opt" --cmd_file="/home/aaron/Documentos/Trabajo/ccs-workspace/simple_broadcaster_cc2640r2lp_stack_library/TOOLS/build_config.opt"  -mv7M3 --code_state=16 -me -O4 --opt_for_speed=0 --define=DeviceFamily_CC26X0R2 --define=BOARD_DISPLAY_USE_LCD=0 --define=BOARD_DISPLAY_USE_UART=1 --define=BOARD_DISPLAY_USE_UART_ANSI=1 --define=CC2640R2_LAUNCHXL --define=CC26XX --define=CC26XX_R2 --define=ICALL_EVENTS --define=ICALL_JT --define=ICALL_LITE --define=ICALL_MAX_NUM_ENTITIES=6 --define=ICALL_MAX_NUM_TASKS=3 --define=ICALL_STACK0_ADDR --define=POWER_SAVING --define=STACK_LIBRARY --define=USE_ICALL --define=xdc_runtime_Assert_DISABLE_ALL --define=xdc_runtime_Log_DISABLE_ALL -g --c99 --gcc --diag_warning=225 --diag_wrap=off --display_error_number --gen_func_subsections=on --abi=eabi -z -m"simple_broadcaster_cc2640r2lp_app.map" --heap_size=0 --stack_size=256 -i"/opt/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/lib" -i"/opt/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include" --reread_libs --define=CC26X0ROM=2 --diag_suppress=16002-D --diag_suppress=10247-D --diag_suppress=10325-D --diag_suppress=10229-D --diag_suppress=16032-D --diag_suppress=10189-D --diag_wrap=off --display_error_number --warn_sections --xml_link_info="simple_broadcaster_cc2640r2lp_app_linkInfo.xml" --rom_model -o "simple_broadcaster_cc2640r2lp_app.out" $(ORDERED_OBJS)
+	"/opt/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/bin/armcl" --cmd_file="/home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/source/ti/blestack/config/build_components.opt" --cmd_file="/home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/source/ti/blestack/config/factory_config.opt" --cmd_file="/home/aaron/Documentos/Trabajo/ccs-workspace/simple_broadcaster_cc2640r2lp_stack_library/TOOLS/build_config.opt"  -mv7M3 --code_state=16 -me -O4 --opt_for_speed=0 --define=DeviceFamily_CC26X0R2 --define=BOARD_DISPLAY_USE_LCD=0 --define=BOARD_DISPLAY_USE_UART=1 --define=BOARD_DISPLAY_USE_UART_ANSI=1 --define=CC2640R2_LAUNCHXL --define=CC26XX --define=CC26XX_R2 --define=ICALL_EVENTS --define=ICALL_JT --define=ICALL_LITE --define=ICALL_MAX_NUM_ENTITIES=6 --define=ICALL_MAX_NUM_TASKS=3 --define=ICALL_STACK0_ADDR --define=POWER_SAVING --define=STACK_LIBRARY --define=USE_ICALL --define=xdc_runtime_Assert_DISABLE_ALL --define=xdc_runtime_Log_DISABLE_ALL -g --c99 --gcc --diag_warning=225 --diag_wrap=off --display_error_number --gen_func_subsections=on --abi=eabi -z -m"simple_broadcaster_cc2640r2lp_app.map" --heap_size=0 --stack_size=256 -i"/opt/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/lib" -i"/opt/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include" --reread_libs --define=CC26X0ROM=2 --diag_suppress=16002-D --diag_suppress=10247-D --diag_suppress=10325-D --diag_suppress=10229-D --diag_suppress=16032-D --diag_suppress=10189-D --diag_wrap=off --display_error_number --warn_sections --xml_link_info="simple_broadcaster_cc2640r2lp_app_linkInfo.xml" --rom_model -o "simple_broadcaster_cc2640r2lp_app.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: "$@"'
 	@echo ' '
 	@$(MAKE) --no-print-directory post-build

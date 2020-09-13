@@ -192,7 +192,7 @@ clean:
 	-@echo ' '
 
 pre-build:
-	-/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/../../../tools/blestack/lib_search/lib_search         /home/aaron/Documentos/Trabajo/ccs-workspace/simple_broadcaster_cc2640r2lp_stack_library/TOOLS/build_config.opt         /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/blelib         /home/aaron/Documentos/Trabajo/ccs-workspace/simple_broadcaster_cc2640r2lp_stack_library/FlashROM_Library/lib_linker.cmd         cc2640         /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/../../../tools/blestack/lib_search/lib_search.xml         /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/symbols
+	-/home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/source/ti/blestack/../../../tools/blestack/lib_search/lib_search         /home/aaron/Documentos/Trabajo/ccs-workspace/simple_broadcaster_cc2640r2lp_stack_library/TOOLS/build_config.opt         /home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/source/ti/blestack/blelib         /home/aaron/Documentos/Trabajo/ccs-workspace/simple_broadcaster_cc2640r2lp_stack_library/FlashROM_Library/lib_linker.cmd         cc2640         /home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/source/ti/blestack/../../../tools/blestack/lib_search/lib_search.xml         /home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/source/ti/blestack/symbols
 	-@echo ' '
 
 .PHONY: all clean dependents

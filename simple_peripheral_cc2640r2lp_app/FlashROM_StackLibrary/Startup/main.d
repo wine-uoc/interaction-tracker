@@ -147,8 +147,28 @@ Startup/main.obj: /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/bl
 Startup/main.obj: /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/inc/bcomdef.h
 Startup/main.obj: /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/osal/src/inc/comdef.h
 Startup/main.obj: /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/hal/src/target/_common/hal_types.h
-Startup/main.obj: /home/aaron/Documentos/Trabajo/ccs-workspace/simple_peripheral_cc2640r2lp_app/PROFILES/peripheral.h
-Startup/main.obj: /home/aaron/Documentos/Trabajo/ccs-workspace/simple_peripheral_cc2640r2lp_app/Application/simple_peripheral.h
+Startup/main.obj: /home/aaron/Documentos/Trabajo/ccs-workspace/simple_peripheral_cc2640r2lp_app/PROFILES/peripheral_observer.h
+Startup/main.obj: /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/inc/gap.h
+Startup/main.obj: /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/osal/src/inc/osal.h
+Startup/main.obj: /opt/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/limits.h
+Startup/main.obj: /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/osal/src/inc/osal_memory.h
+Startup/main.obj: /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/osal/src/inc/osal_timers.h
+Startup/main.obj: /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/inc/sm.h
+Startup/main.obj: /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/inc/hci.h
+Startup/main.obj: /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/controller/cc26xx_r2/inc/ll_common.h
+Startup/main.obj: /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/drivers/rf/RF.h
+Startup/main.obj: /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/drivers/dpl/SemaphoreP.h
+Startup/main.obj: /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/devices/DeviceFamily.h
+Startup/main.obj: /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/devices/cc26x0r2/driverlib/rf_common_cmd.h
+Startup/main.obj: /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/devices/cc26x0r2/driverlib/rf_mailbox.h
+Startup/main.obj: /opt/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/string.h
+Startup/main.obj: /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/devices/cc26x0r2/driverlib/rf_prop_cmd.h
+Startup/main.obj: /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/devices/cc26x0r2/driverlib/rf_ble_cmd.h
+Startup/main.obj: /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/hal/src/target/_common/cc26xx/rf_hal.h
+Startup/main.obj: /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/hal/src/target/_common/hal_types.h
+Startup/main.obj: /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/controller/cc26xx_r2/inc/ll.h
+Startup/main.obj: /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/controller/cc26xx_r2/inc/ll_scheduler.h
+Startup/main.obj: /home/aaron/Documentos/Trabajo/ccs-workspace/simple_peripheral_cc2640r2lp_app/Application/simple_peripheral_observer.h
 Startup/main.obj: /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/devices/cc26x0r2/inc/hw_memmap.h
 Startup/main.obj: /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/devices/cc26x0r2/driverlib/vims.h
 Startup/main.obj: /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/devices/cc26x0r2/driverlib/../inc/hw_types.h
@@ -158,16 +178,6 @@ Startup/main.obj: /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/de
 Startup/main.obj: /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/devices/cc26x0r2/driverlib/../driverlib/rom.h
 Startup/main.obj: /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/icall/inc/ble_user_config.h
 Startup/main.obj: /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/icall/src/inc/icall_user_config.h
-Startup/main.obj: /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/hal/src/target/_common/cc26xx/rf_hal.h
-Startup/main.obj: /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/hal/src/target/_common/hal_types.h
-Startup/main.obj: /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/drivers/rf/RF.h
-Startup/main.obj: /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/drivers/dpl/SemaphoreP.h
-Startup/main.obj: /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/devices/DeviceFamily.h
-Startup/main.obj: /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/devices/cc26x0r2/driverlib/rf_common_cmd.h
-Startup/main.obj: /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/devices/cc26x0r2/driverlib/rf_mailbox.h
-Startup/main.obj: /opt/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/string.h
-Startup/main.obj: /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/devices/cc26x0r2/driverlib/rf_prop_cmd.h
-Startup/main.obj: /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/devices/cc26x0r2/driverlib/rf_ble_cmd.h
 Startup/main.obj: /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/icall/inc/ble_dispatch.h
 Startup/main.obj: /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/target/board.h
 Startup/main.obj: /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/target/./cc2640r2lp/cc2640r2lp_board.h
@@ -338,8 +348,28 @@ Startup/main.obj: /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/de
 /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/inc/bcomdef.h: 
 /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/osal/src/inc/comdef.h: 
 /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/hal/src/target/_common/hal_types.h: 
-/home/aaron/Documentos/Trabajo/ccs-workspace/simple_peripheral_cc2640r2lp_app/PROFILES/peripheral.h: 
-/home/aaron/Documentos/Trabajo/ccs-workspace/simple_peripheral_cc2640r2lp_app/Application/simple_peripheral.h: 
+/home/aaron/Documentos/Trabajo/ccs-workspace/simple_peripheral_cc2640r2lp_app/PROFILES/peripheral_observer.h: 
+/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/inc/gap.h: 
+/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/osal/src/inc/osal.h: 
+/opt/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/limits.h: 
+/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/osal/src/inc/osal_memory.h: 
+/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/osal/src/inc/osal_timers.h: 
+/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/inc/sm.h: 
+/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/inc/hci.h: 
+/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/controller/cc26xx_r2/inc/ll_common.h: 
+/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/drivers/rf/RF.h: 
+/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/drivers/dpl/SemaphoreP.h: 
+/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/devices/DeviceFamily.h: 
+/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/devices/cc26x0r2/driverlib/rf_common_cmd.h: 
+/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/devices/cc26x0r2/driverlib/rf_mailbox.h: 
+/opt/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/string.h: 
+/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/devices/cc26x0r2/driverlib/rf_prop_cmd.h: 
+/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/devices/cc26x0r2/driverlib/rf_ble_cmd.h: 
+/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/hal/src/target/_common/cc26xx/rf_hal.h: 
+/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/hal/src/target/_common/hal_types.h: 
+/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/controller/cc26xx_r2/inc/ll.h: 
+/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/controller/cc26xx_r2/inc/ll_scheduler.h: 
+/home/aaron/Documentos/Trabajo/ccs-workspace/simple_peripheral_cc2640r2lp_app/Application/simple_peripheral_observer.h: 
 /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/devices/cc26x0r2/inc/hw_memmap.h: 
 /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/devices/cc26x0r2/driverlib/vims.h: 
 /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/devices/cc26x0r2/driverlib/../inc/hw_types.h: 
@@ -349,16 +379,6 @@ Startup/main.obj: /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/de
 /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/devices/cc26x0r2/driverlib/../driverlib/rom.h: 
 /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/icall/inc/ble_user_config.h: 
 /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/icall/src/inc/icall_user_config.h: 
-/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/hal/src/target/_common/cc26xx/rf_hal.h: 
-/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/hal/src/target/_common/hal_types.h: 
-/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/drivers/rf/RF.h: 
-/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/drivers/dpl/SemaphoreP.h: 
-/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/devices/DeviceFamily.h: 
-/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/devices/cc26x0r2/driverlib/rf_common_cmd.h: 
-/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/devices/cc26x0r2/driverlib/rf_mailbox.h: 
-/opt/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/string.h: 
-/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/devices/cc26x0r2/driverlib/rf_prop_cmd.h: 
-/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/devices/cc26x0r2/driverlib/rf_ble_cmd.h: 
 /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/icall/inc/ble_dispatch.h: 
 /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/target/board.h: 
 /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/target/./cc2640r2lp/cc2640r2lp_board.h: 

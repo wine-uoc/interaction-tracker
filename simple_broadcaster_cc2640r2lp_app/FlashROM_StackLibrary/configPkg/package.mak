@@ -70,18 +70,18 @@ package.mak: /opt/ti/ccs930/xdctools_3_60_02_34_core/packages/xdc/bld/ITargetFil
 /opt/ti/ccs930/xdctools_3_60_02_34_core/packages/xdc/bld/package.xs:
 package.mak: /opt/ti/ccs930/xdctools_3_60_02_34_core/packages/xdc/bld/package.xs
 package.mak: config.bld
-/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/kernel/tirtos/packages/ti/targets/ITarget.xs:
-package.mak: /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/kernel/tirtos/packages/ti/targets/ITarget.xs
-/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/kernel/tirtos/packages/ti/targets/C28_large.xs:
-package.mak: /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/kernel/tirtos/packages/ti/targets/C28_large.xs
-/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/kernel/tirtos/packages/ti/targets/C28_float.xs:
-package.mak: /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/kernel/tirtos/packages/ti/targets/C28_float.xs
-/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/kernel/tirtos/packages/ti/targets/package.xs:
-package.mak: /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/kernel/tirtos/packages/ti/targets/package.xs
-/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/kernel/tirtos/packages/ti/targets/arm/elf/IArm.xs:
-package.mak: /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/kernel/tirtos/packages/ti/targets/arm/elf/IArm.xs
-/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/kernel/tirtos/packages/ti/targets/arm/elf/package.xs:
-package.mak: /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/kernel/tirtos/packages/ti/targets/arm/elf/package.xs
+/home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/kernel/tirtos/packages/ti/targets/ITarget.xs:
+package.mak: /home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/kernel/tirtos/packages/ti/targets/ITarget.xs
+/home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/kernel/tirtos/packages/ti/targets/C28_large.xs:
+package.mak: /home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/kernel/tirtos/packages/ti/targets/C28_large.xs
+/home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/kernel/tirtos/packages/ti/targets/C28_float.xs:
+package.mak: /home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/kernel/tirtos/packages/ti/targets/C28_float.xs
+/home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/kernel/tirtos/packages/ti/targets/package.xs:
+package.mak: /home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/kernel/tirtos/packages/ti/targets/package.xs
+/home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/kernel/tirtos/packages/ti/targets/arm/elf/IArm.xs:
+package.mak: /home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/kernel/tirtos/packages/ti/targets/arm/elf/IArm.xs
+/home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/kernel/tirtos/packages/ti/targets/arm/elf/package.xs:
+package.mak: /home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/kernel/tirtos/packages/ti/targets/arm/elf/package.xs
 package.mak: package.bld
 /opt/ti/ccs930/xdctools_3_60_02_34_core/packages/xdc/tools/configuro/template/compiler.opt.xdt:
 package.mak: /opt/ti/ccs930/xdctools_3_60_02_34_core/packages/xdc/tools/configuro/template/compiler.opt.xdt
@@ -98,7 +98,7 @@ package.mak: /opt/ti/ccs930/xdctools_3_60_02_34_core/packages/xdc/tools/configur
 endif
 
 ti.targets.arm.elf.M3.rootDir ?= /opt/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS
-ti.targets.arm.elf.packageBase ?= /home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/kernel/tirtos/packages/ti/targets/arm/elf/
+ti.targets.arm.elf.packageBase ?= /home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/kernel/tirtos/packages/ti/targets/arm/elf/
 .PRECIOUS: $(XDCCFGDIR)/%.oem3
 .PHONY: all,em3 .dlls,em3 .executables,em3 test,em3
 all,em3: .executables,em3

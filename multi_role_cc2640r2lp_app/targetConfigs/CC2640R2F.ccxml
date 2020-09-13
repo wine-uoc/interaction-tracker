@@ -17,7 +17,7 @@
                     <property Type="choicelist" Value="1" id="XDS110 Aux Port"/>
                 </choice>
             </property>
-            <property Type="choicelist" Value="0" id="Debug Probe Selection">
+            <property Type="choicelist" Value="1" id="Debug Probe Selection">
                 <choice Name="Select by serial number" value="0">
                     <property Type="stringfield" Value="LAUNCH3" id="-- Enter the serial number"/>
                 </choice>

@@ -313,7 +313,7 @@
 		<link>
 			<name>Startup/osal_icall_ble.c</name>
 			<type>1</type>
-			<locationURI>EXAMPLE_BLE_ROOT/src/stack/osal_icall_ble.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/ble_examples-master/examples/rtos/CC2640R2_LAUNCHXL/bleapps/simple_peripheral_observer/src/stack/osal_icall_ble.c</locationURI>
 		</link>
 		<link>
 			<name>TOOLS/build_components.opt</name>

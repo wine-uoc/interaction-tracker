@@ -4,9 +4,9 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/icall/stack/ble_user_config.c \
-/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/common/cc26xx/icall_startup.c \
-/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/examples/rtos/CC2640R2_LAUNCHXL/blestack/simple_broadcaster/src/stack/osal_icall_ble.c 
+/home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/source/ti/blestack/icall/stack/ble_user_config.c \
+/home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/source/ti/blestack/common/cc26xx/icall_startup.c \
+/home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/examples/rtos/CC2640R2_LAUNCHXL/blestack/simple_broadcaster/src/stack/osal_icall_ble.c 
 
 C_DEPS += \
 ./Startup/ble_user_config.d \
@@ -29,8 +29,8 @@ C_DEPS__QUOTED += \
 "Startup/osal_icall_ble.d" 
 
 C_SRCS__QUOTED += \
-"/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/icall/stack/ble_user_config.c" \
-"/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/source/ti/blestack/common/cc26xx/icall_startup.c" \
-"/home/aaron/ti/simplelink_cc2640r2_sdk_4_10_00_10/examples/rtos/CC2640R2_LAUNCHXL/blestack/simple_broadcaster/src/stack/osal_icall_ble.c" 
+"/home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/source/ti/blestack/icall/stack/ble_user_config.c" \
+"/home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/source/ti/blestack/common/cc26xx/icall_startup.c" \
+"/home/aaron/ti/simplelink_cc2640r2_sdk_4_20_00_04/examples/rtos/CC2640R2_LAUNCHXL/blestack/simple_broadcaster/src/stack/osal_icall_ble.c" 
 
 

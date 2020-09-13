@@ -989,12 +989,12 @@ static uint8_t multi_role_processGATTMsg(gattMsgEvent_t *pMsg)
     // The app is informed in case it wants to drop the connection.
 
     // Display the opcode of the message that caused the violation.
-    Display_print1(dispHandle, MR_ROW_STATUS1, 0, "FC Violated: %d", pMsg->msg.flowCtrlEvt.opcode);
+    //Display_print1(dispHandle, MR_ROW_STATUS1, 0, "FC Violated: %d", pMsg->msg.flowCtrlEvt.opcode);
   }
   else if (pMsg->method == ATT_MTU_UPDATED_EVENT)
   {
     // MTU size updated
-    Display_print1(dispHandle, MR_ROW_STATUS1, 0, "MTU Size: %d", pMsg->msg.mtuEvt.MTU);
+    //Display_print1(dispHandle, MR_ROW_STATUS1, 0, "MTU Size: %d", pMsg->msg.mtuEvt.MTU);
   }
 
   // Messages from GATT server
@@ -1008,12 +1008,12 @@ static uint8_t multi_role_processGATTMsg(gattMsgEvent_t *pMsg)
     {
       if (pMsg->method == ATT_ERROR_RSP)
       {
-        Display_print1(dispHandle, MR_ROW_STATUS2, 0, "Read Error %d", pMsg->msg.errorRsp.errCode);
+        //Display_print1(dispHandle, MR_ROW_STATUS2, 0, "Read Error %d", pMsg->msg.errorRsp.errCode);
       }
       else
       {
         // After a successful read, display the read value
-        Display_print1(dispHandle, MR_ROW_STATUS2, 0, "Read rsp: %d", pMsg->msg.readRsp.pValue[0]);
+        //Display_print1(dispHandle, MR_ROW_STATUS2, 0, "Read rsp: %d", pMsg->msg.readRsp.pValue[0]);
       }
 
     }
@@ -1024,13 +1024,13 @@ static uint8_t multi_role_processGATTMsg(gattMsgEvent_t *pMsg)
 
       if (pMsg->method == ATT_ERROR_RSP == ATT_ERROR_RSP)
       {
-        Display_print1(dispHandle, MR_ROW_STATUS2, 0, "Write Error %d", pMsg->msg.errorRsp.errCode);
+        //Display_print1(dispHandle, MR_ROW_STATUS2, 0, "Write Error %d", pMsg->msg.errorRsp.errCode);
       }
       else
       {
         // After a succesful write, display the value that was written and
         // increment value
-        Display_print1(dispHandle, MR_ROW_STATUS2, 0, "Write sent: %d", charVal++);
+        //Display_print1(dispHandle, MR_ROW_STATUS2, 0, "Write sent: %d", charVal++);
       }
     }
     else if (discInfo[connIndex].discState != BLE_DISC_STATE_IDLE)
@@ -1079,7 +1079,7 @@ static void multi_role_sendAttRsp(void)
     else
     {
       // Continue retrying
-      Display_print1(dispHandle, MR_ROW_STATUS2, 0, "Rsp send retry:", rspTxRetry);
+      //Display_print1(dispHandle, MR_ROW_STATUS2, 0, "Rsp send retry:", rspTxRetry);
     }
   }
 }
@@ -1101,14 +1101,14 @@ static void multi_role_freeAttRsp(uint8_t status)
     // See if the response was sent out successfully
     if (status == SUCCESS)
     {
-      Display_print1(dispHandle, MR_ROW_STATUS2, 0, "Rsp sent, retry: %d", rspTxRetry);
+      //Display_print1(dispHandle, MR_ROW_STATUS2, 0, "Rsp sent, retry: %d", rspTxRetry);
     }
     else
     {
       // Free response payload
       GATT_bm_free(&pAttRsp->msg, pAttRsp->method);
 
-      Display_print1(dispHandle, MR_ROW_STATUS2, 0, "Rsp retry failed: %d", rspTxRetry);
+      //Display_print1(dispHandle, MR_ROW_STATUS2, 0, "Rsp retry failed: %d", rspTxRetry);
     }
 
     // Free response message
@@ -1299,7 +1299,7 @@ static void multi_role_processRoleEvent(gapMultiRoleEvent_t *pEvent)
       }
       else
       {
-        Display_print0(dispHandle, MR_ROW_ADV, 0, "Can't Adv : Max conns reached");
+        //Display_print0(dispHandle, MR_ROW_ADV, 0, "Can't Adv : Max conns reached");
       }
     }
     break;
@@ -1375,15 +1375,15 @@ static void multi_role_processRoleEvent(gapMultiRoleEvent_t *pEvent)
         {
             if(pEvent->gap.hdr.status == GAP_LLERROR_INVALID_PARAMETERS)
             {
-                Display_print0(dispHandle, 3, 0, "INVALID PARAMETERS");
+                //Display_print0(dispHandle, 3, 0, "INVALID PARAMETERS");
             }
             else if(pEvent->gap.hdr.status == GAP_LLERROR_COMMAND_DISALLOWED)
             {
-                Display_print0(dispHandle, 3, 0, "COMMAND DISALLOWED");
+                //Display_print0(dispHandle, 3, 0, "COMMAND DISALLOWED");
             }
             else
             {
-                Display_print0(dispHandle, 3, 0, "ERROR");
+                //Display_print0(dispHandle, 3, 0, "ERROR");
             }
         }
     }
@@ -1488,7 +1488,7 @@ static void multi_role_processRoleEvent(gapMultiRoleEvent_t *pEvent)
     // A parameter update has occurred
     case GAP_LINK_PARAM_UPDATE_EVENT:
     {
-      Display_print1(dispHandle, MR_ROW_STATUS1, 0, "Param Update %d", pEvent->linkUpdate.status);
+      //Display_print1(dispHandle, MR_ROW_STATUS1, 0, "Param Update %d", pEvent->linkUpdate.status);
     }
     break;
 
@@ -1543,14 +1543,14 @@ static void multi_role_processCharValueChangeEvt(uint8_t paramID)
     // Get new value
     SimpleProfile_GetParameter(SIMPLEPROFILE_CHAR1, &newValue);
 
-    Display_print1(dispHandle, MR_ROW_STATUS2, 0, "Char 1: %d", (uint16_t)newValue);
+    //Display_print1(dispHandle, MR_ROW_STATUS2, 0, "Char 1: %d", (uint16_t)newValue);
     break;
 
   case SIMPLEPROFILE_CHAR3:
     // Get new value
     SimpleProfile_GetParameter(SIMPLEPROFILE_CHAR3, &newValue);
 
-    Display_print1(dispHandle, MR_ROW_STATUS2, 0, "Char 3: %d", (uint16_t)newValue);
+    //Display_print1(dispHandle, MR_ROW_STATUS2, 0, "Char 3: %d", (uint16_t)newValue);
     break;
 
   default:
@@ -1698,7 +1698,7 @@ static void multi_role_processGATTDiscEvent(gattMsgEvent_t *pMsg)
     if (pMsg->method == ATT_MTU_UPDATED_EVENT)
     {
       // MTU size updated
-      Display_print1(dispHandle, MR_ROW_STATUS1, 0, "MTU Size: %d", pMsg->msg.mtuEvt.MTU);
+      //Display_print1(dispHandle, MR_ROW_STATUS1, 0, "MTU Size: %d", pMsg->msg.mtuEvt.MTU);
     }
     // If we've updated the MTU size
     else if (discInfo[connIndex].discState == BLE_DISC_STATE_MTU)
@@ -1762,7 +1762,7 @@ static void multi_role_processGATTDiscEvent(gattMsgEvent_t *pMsg)
         discInfo[connIndex].charHdl = BUILD_UINT16(pMsg->msg.readByTypeRsp.pDataList[3],
                                                    pMsg->msg.readByTypeRsp.pDataList[4]);
 
-        Display_print0(dispHandle, MR_ROW_STATUS1, 0, "Simple Svc Found");
+        //Display_print0(dispHandle, MR_ROW_STATUS1, 0, "Simple Svc Found");
       }
     }
   }
@@ -1871,18 +1871,18 @@ static void multi_role_processPairState(gapPairStateEvent_t* pairingEvent)
   // If we've started pairing
   if (pairingEvent->state == GAPBOND_PAIRING_STATE_STARTED)
   {
-    Display_print1(dispHandle, MR_ROW_SECURITY, 0,"connHandle %d pairing", pairingEvent->connectionHandle);
+    //Display_print1(dispHandle, MR_ROW_SECURITY, 0,"connHandle %d pairing", pairingEvent->connectionHandle);
   }
   // If pairing is finished
   else if (pairingEvent->state == GAPBOND_PAIRING_STATE_COMPLETE)
   {
     if (pairingEvent->status == SUCCESS)
     {
-      Display_print1(dispHandle, MR_ROW_SECURITY, 0,"connHandle %d paired", pairingEvent->connectionHandle);
+      //Display_print1(dispHandle, MR_ROW_SECURITY, 0,"connHandle %d paired", pairingEvent->connectionHandle);
     }
     else
     {
-      Display_print2(dispHandle, MR_ROW_SECURITY, 0, "pairing failed: %d", pairingEvent->connectionHandle, pairingEvent->status);
+      //Display_print2(dispHandle, MR_ROW_SECURITY, 0, "pairing failed: %d", pairingEvent->connectionHandle, pairingEvent->status);
     }
   }
   // If a bond has happened
@@ -1890,7 +1890,7 @@ static void multi_role_processPairState(gapPairStateEvent_t* pairingEvent)
   {
     if (pairingEvent->status == SUCCESS)
     {
-      Display_print1(dispHandle, MR_ROW_SECURITY, 0, "Cxn %d bonding success", pairingEvent->connectionHandle);
+      //Display_print1(dispHandle, MR_ROW_SECURITY, 0, "Cxn %d bonding success", pairingEvent->connectionHandle);
     }
   }
   // If a bond has been saved
@@ -1898,11 +1898,11 @@ static void multi_role_processPairState(gapPairStateEvent_t* pairingEvent)
   {
     if (pairingEvent->status == SUCCESS)
     {
-      Display_print1(dispHandle, MR_ROW_SECURITY, 0, "Cxn %d bond save success", pairingEvent->connectionHandle);
+      //Display_print1(dispHandle, MR_ROW_SECURITY, 0, "Cxn %d bond save success", pairingEvent->connectionHandle);
     }
     else
     {
-      Display_print2(dispHandle, MR_ROW_SECURITY, 0, "Cxn %d bond save failed: %d", pairingEvent->connectionHandle, pairingEvent->status);
+      //Display_print2(dispHandle, MR_ROW_SECURITY, 0, "Cxn %d bond save failed: %d", pairingEvent->connectionHandle, pairingEvent->status);
     }
   }
 }
@@ -1918,7 +1918,7 @@ static void multi_role_processPasscode(gapPasskeyNeededEvent_t *pData)
 {
   // Use static passcode
   uint32_t passcode = 123456;
-  Display_print1(dispHandle, MR_ROW_SECURITY, 0, "Passcode: %d", passcode);
+  //Display_print1(dispHandle, MR_ROW_SECURITY, 0, "Passcode: %d", passcode);
   // Send passcode to GAPBondMgr
   GAPBondMgr_PasscodeRsp(pData->connectionHandle, SUCCESS, passcode);
 }
@@ -1936,16 +1936,15 @@ void printScannedDevicesInfo(){
 
    uint16_t addr = (uint16_t) (macAddress & 0x000000000000FFFF);
    for (i = 0; i < scanDevices; ++i){
-       Display_clear(dispHandle);
+       //Display_clear(dispHandle);
        line_pr = 0;
-       Display_print1(dispHandle, line_pr, 0, "ANC-%x\n", addr);
-       ++line_pr;
+       //Display_print1(dispHandle, line_pr, 0, "ANC-%x\n", addr);
        char devname[16];
+       memset(devname, '\0', 16);
        memcpy(devname, tupleInfo[i].devName, 16);
-       Display_print1(dispHandle, line_pr , 0 ,"%s\n", devname);
-       ++line_pr;
-       Display_print1(dispHandle, line_pr , 0 ,"%d\n", tupleInfo[i].rssi);
-       ++line_pr;
+       //Display_print1(dispHandle, line_pr , 0 ,"%s\n", devname);
+       //Display_print1(dispHandle, line_pr , 0 ,"%d\n", tupleInfo[i].rssi);
+      Display_print3(dispHandle, line_pr , 0 ,"ANC-%x %s %d\n", addr, devname, tupleInfo[i].rssi);
 
    }
 
@@ -2189,7 +2188,7 @@ bool mr_doScan(uint8_t index)
       bStatus_t ret = GAPRole_StartDiscovery(DEFAULT_DISCOVERY_MODE,
                              DEFAULT_DISCOVERY_ACTIVE_SCAN, DEFAULT_DISCOVERY_WHITE_LIST);
 
-      Display_print0(dispHandle, MR_ROW_STATUS1, 0, "Discovering...");
+      //Display_print0(dispHandle, MR_ROW_STATUS1, 0, "Discovering...");
     }
     // We're already scanning...so do nothing    
   }
@@ -2212,7 +2211,7 @@ bool mr_doConnect(uint8_t index)
   {
     // Cancel connection request
     GAPRole_TerminateConnection(GAP_CONNHANDLE_INIT);
-    Display_print0(dispHandle, MR_ROW_STATUS1, 0, "Connecting Cancelled");
+    //Display_print0(dispHandle, MR_ROW_STATUS1, 0, "Connecting Cancelled");
 
     // Clear connecting flag
     connecting = FALSE;
@@ -2227,8 +2226,8 @@ bool mr_doConnect(uint8_t index)
 
     // Set connecting state flag
     connecting = TRUE;
-    Display_print0(dispHandle, MR_ROW_STATUS1, 0, "Connecting to:");
-    Display_print0(dispHandle, MR_ROW_STATUS2, 0, (char*)devList[index].strAddr);
+    //Display_print0(dispHandle, MR_ROW_STATUS1, 0, "Connecting to:");
+    //Display_print0(dispHandle, MR_ROW_STATUS2, 0, (char*)devList[index].strAddr);
   }
 
   return TRUE;
@@ -2324,12 +2323,12 @@ bool mr_doConnUpdate(uint8_t index)
   // If successfully sent to controller
   if (status == SUCCESS)
   {
-    Display_print0(dispHandle, MR_ROW_STATUS1, 0, "Updating");
+    //Display_print0(dispHandle, MR_ROW_STATUS1, 0, "Updating");
   }
   // If there is already an ongoing update
   else if (status == blePending)
   {
-    Display_print0(dispHandle, MR_ROW_STATUS1, 0, "Already Updating");
+    //Display_print0(dispHandle, MR_ROW_STATUS1, 0, "Already Updating");
   }
 
   return TRUE;
@@ -2348,7 +2347,7 @@ bool mr_doDisconnect(uint8_t index)
 {
   // Disconnect
   GAPRole_TerminateConnection(connHandleMap[index].connHandle);
-  Display_print0(dispHandle, MR_ROW_STATUS1, 0, "Disconnecting");
+  //Display_print0(dispHandle, MR_ROW_STATUS1, 0, "Disconnecting");
 
   return TRUE;
 }
@@ -2414,7 +2413,7 @@ static void addAddrRssiInfo (char *devname, uint8_t data_len, int8 rssi){
                     int i;
                     for (i = 5; i < data_len; ++i){
 
-                        Display_print1(dispHandle, i-5, 0 ,"%c", advData[i]);
+     Display_print1(dispHandle, i-5, 0 ,"%c", advData[i]);
                     }
                     una_vez=1;
                     while(true){}

@@ -206,7 +206,7 @@ void tbm_goTo(tbmMenuObj_t* pMenuObj)
 
 #ifndef Display_DISABLE_ALL
   /* Display the title prefixed with '*' */
-  Display_print1(tbmDispHandle, TBM_ROW_TITLE, 0, "*%s", ptbmMenuObj->pTitle);
+  //Display_print1(tbmDispHandle, TBM_ROW_TITLE, 0, "*%s", ptbmMenuObj->pTitle);
 
   tbm_displayItemPage();
 #endif /* !Display_DISABLE_ALL */
@@ -381,7 +381,7 @@ void tbm_displayItem(uint8 itemIndex, uint8 row)
   }
 
   /* Display the description with the prefix and the postfix */
-  Display_print3(tbmDispHandle, row, 1, "%s%s%s", pPrefix, pDesc, pPostfix);
+  //Display_print3(tbmDispHandle, row, 1, "%s%s%s", pPrefix, pDesc, pPostfix);
 }
 
 /* Display one page of the item list */
@@ -395,7 +395,7 @@ void tbm_displayItemPage(void)
   /* Display "< Next Item" if there are more than 1 item */
   if (tbm_getNumDisplayItem() > 1)
   {
-    Display_print0(tbmDispHandle, TBM_ROW_NEXT, 0, "< Next Item");
+    //Display_print0(tbmDispHandle, TBM_ROW_NEXT, 0, "< Next Item");
   }
   else
   {

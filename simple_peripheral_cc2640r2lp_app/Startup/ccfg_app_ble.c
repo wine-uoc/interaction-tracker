@@ -1,11 +1,11 @@
 /******************************************************************************
 
- @file  ccfg_app_ble.c
+ @file       ccfg_app_ble.c
 
  @brief Customer Configuration CC26xx PG2 device family.
 
- Group: WCS, BTS
- Target Device: cc2640r2
+ Group: CMCU, SCS
+ Target Device: CC2640R2
 
  ******************************************************************************
  
@@ -67,7 +67,4 @@
 
 // ==> KEEP IN MIND that if you do so, be sure that any further update of the
 // driverlib must be align with your modified version of ccfg area.
-#ifdef CACHE_AS_RAM
-#define SET_CCFG_SIZE_AND_DIS_FLAGS_DIS_GPRAM  0x0 /* Enable GPRAM */
-#endif //CACHE_AS_RAM
 #include <startup_files/ccfg.c>
