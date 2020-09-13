@@ -35,7 +35,7 @@ class ModelController:
         Initialize all the DS used in this class: launchpads and devices lists
         """
         self.launchpads = []
-        self.devices = []
+        self.cells = []
         self.target_devices = []
         self.plot_settings = PlotSettings(float(form_data['roomInfo']['X_min']),
                                           float(form_data['roomInfo']['X_max']),
@@ -53,11 +53,11 @@ class ModelController:
         # retrieve Devices data from DB
         for devname in self.db_manager.getDevicesList():
             d = Device(devname)
-            self.devices.append(d)
+            self.cells.append(d)
 
         # Initializes PositioningComputations object. This will do all positions and distance computations.
         self.model = PositioningComputations([anc.getName() for anc in self.launchpads],
-                                             [dev.getDevName() for dev in self.devices],
+                                             [cell.getDevName() for cell in self.cells],
                                              form_data['roomInfo']['orientation'])
         # Get devices initial orientation.
         """
@@ -72,90 +72,6 @@ class ModelController:
         self.db_manager.deleteDatabaseContent()
         return
 
-    # returns launchpads positions (dictionary of anchors with dictionary of positions for each one)
-    def getLaunchpadPositions(self):
-        result = dict()
-        for anc in self.launchpads:
-            result[anc.getName()] = dict()
-            result[anc.getName()]['X'] = anc.getX()
-            result[anc.getName()]['Y'] = anc.getY()
-        return result
-
-    def getAnchorsPositions(self, anchors, non_target_pos):
-        result = dict()
-        for anc in anchors:
-            result[anc] = dict()
-            if len(anc) != 4:  # Anchor is a cell
-                result[anc]['X'] = non_target_pos[0]
-                result[anc]['Y'] = non_target_pos[1]
-            else:  # Anchor is a launchpad
-                x, y = self.getLaunchpadPosition(anc)
-                result[anc]['X'] = x
-                result[anc]['Y'] = y
-
-        return result
-
-    # returns a 2-tuple (X, Y) representing the position of anchor anchor_name
-    def getLaunchpadPosition(self, anchor_name):
-        for anc in self.launchpads:
-            if anc.getName() == anchor_name:
-                return anc.getX(), anc.getY()
-
-    # returns the value of the distance from anchor (launchpad or device) anchor_name to device device_name
-    def getRadiusFromAnchorToDevice(self, anchor_name, device_name):
-
-        if len(anchor_name) != 8:  # Anchor is a cell
-            rssi_list = self.db_manager.getRssiOfDeviceFromDevice(device_name, anchor_name,
-                                                                  num_results=NUM_RESULTS_RSSI)
-        else:  # Anchor is a launchpad
-            rssi_list = self.db_manager.getRssiOfDeviceFromLaunchpad(device_name, anchor_name,
-                                                                     num_results=NUM_RESULTS_RSSI)
-        rssi_list = [int(np.mean(rssi_list))]
-        return self.model.calculateDistanceAnchorToDevice(rssi_list, device_name)
-
-    # returns the value of the RSSI from anchor anchor_name of device device_name
-    def getRssiFromLaunchpadOfDevice(self, anchor_name, device_name):
-        rssi_list = self.db_manager.getRssiOfDeviceFromLaunchpad(device_name, anchor_name, num_results=NUM_RESULTS_RSSI)
-        rssi_mean = np.mean(rssi_list)
-        return int(rssi_mean)
-
-    # returns a dictionary with 3 keys. Keys are anchor names and values are the distances from this anchor to the device.
-    def getRadiiFromLaunchpadsToDevice(self, devname):
-        result = dict()
-        for anc in self.launchpads:
-            result[anc.getName()] = self.getRadiusFromAnchorToDevice(anc.getName(), devname)
-        return result
-
-    def getRadiiToTargetDevice(self, target_devname, anchors_names):
-        result = dict()
-        for anc in anchors_names:
-            result[anc] = self.getRadiusFromAnchorToDevice(anc, target_devname)
-        return result
-
-    def getDevicePosition(self, dev):
-        return dev.getPosition()
-
-    def getDevicesPositions(self):
-        result = dict()
-
-        for dev in self.devices:
-            self.getDevicePosition(dev)
-            result[dev.getDevName()] = dict()
-            pos = dev.getPosition()
-            result[dev.getDevName()]['X'] = pos[0]
-            result[dev.getDevName()]['Y'] = pos[1]
-
-        return result
-
-    def getDevicesList(self):
-        return [self.devices[i].devname for i in self.devices]
-
-    def isTarget(self, devname):
-        for d in self.devices:
-            if d.getDevName() == devname:
-                return d.isTarget()
-        return False
-
     def computeDevicesPositions(self):
         # using the anchors position and the radius for each circle they describe,
         # we can compute the position of the device devname
@@ -163,19 +79,19 @@ class ModelController:
         # weight for devices positions estimations (using only the 3 launchpads)
         W = 1.0
 
-        # first of all, devices positions must be computed using ONLY the 3 real anchors
+        # first of all, cells positions must be computed using ONLY the 3 real anchors
         est_init_dev_pos = dict()  #est_init_dev_pos contains a dictionary whose keys are device names and values are 2-tuples (x,y)
-        for dev in self.devices:
-            radii_to_dev = self.getRadiiFromLaunchpadsToDevice(dev.getDevName())
+        for cell in self.cells:
+            radii_to_dev = self.getRadiiBetweenLaunchpadsAndDevice(cell.getDevName())
             launchpads_pos = self.getLaunchpadPositions()
             pos = self.model.calculatePosition(launchpads_pos, radii_to_dev)
-            est_init_dev_pos[dev.getDevName()] = pos
+            est_init_dev_pos[cell.getDevName()] = pos
 
-        # create a set and fill it with the launchpads
+        # create a set and fill it with the launchpads names
         S = set([lp.getName() for lp in self.launchpads])
 
         # for each device to position (target)
-        for dev in self.devices:
+        for cell in self.cells:
 
             # est_pos takes position estimations of "dev".
             est_pos = [0, 0]
@@ -186,11 +102,11 @@ class ModelController:
             #variable contador de numero de posiciones estimadas para cada "dev" (target)
             count = 0
 
-            #for each device different from the target
-            for non_target_devname in [d.getDevName() for d in self.devices if d.getDevName() != dev.getDevName()]:
+            #for each cell different from the target
+            for non_target_cellname in [d.getDevName() for d in self.cells if d.getDevName() != cell.getDevName()]:
 
                 # add to S one of the non target devices,
-                S.add(non_target_devname)
+                S.add(non_target_cellname)
                 # get the combination of anchor-anchor-non_target_dev
                 comb = list(list(combinations(S, 3)))
                 # calcularemos las posiciones estimadas para "dev". Una estimacion para cada terna de "comb"
@@ -198,13 +114,13 @@ class ModelController:
                 for c in comb:
                     if not all(map(lambda x: len(x) == 8,c)):
                         count += 1
-                        radius_dict = self.getRadiiToTargetDevice(dev.getDevName(), c)
-                        anchors_positions_dict = self.getAnchorsPositions(c, est_init_dev_pos[non_target_devname])
+                        radius_dict = self.getRadiiToTargetDevice(cell.getDevName(), c)
+                        anchors_positions_dict = self.getAnchorsPositions(c, est_init_dev_pos[non_target_cellname])
                         target_pos = self.model.calculatePosition(anchors_positions_dict, radius_dict)
                         est_pos[0] += target_pos[0]
                         est_pos[1] += target_pos[1]
 
-                S.discard(non_target_devname)
+                S.discard(non_target_cellname)
 
                 #dividiremos est_pos entre el numero de posiciones estimadas para sacar la posicion media.
             if count != 0:
@@ -214,16 +130,104 @@ class ModelController:
 
             #final estimated position of device "dev"
             pos = []
-            pos.append(W*est_init_dev_pos[dev.getDevName()][0] + (1-W)*est_pos[0])
-            pos.append(W*est_init_dev_pos[dev.getDevName()][1] + (1-W)*est_pos[1])
-            dev.setPosition(pos)
+            pos.append(W*est_init_dev_pos[cell.getDevName()][0] + (1-W)*est_pos[0])
+            pos.append(W*est_init_dev_pos[cell.getDevName()][1] + (1-W)*est_pos[1])
+            cell.setPosition(pos)
 
+    # returns the value of the RSSI from anchor anchor_name of device device_name
+    def getRssiFromLaunchpadOfDevice(self, anchor_name, device_name):
+        rssi_list = self.db_manager.getRssiBetweenDevices(device_name, anchor_name, num_results=NUM_RESULTS_RSSI)
+        rssi_mean = np.mean(rssi_list)
+        return int(rssi_mean)
+
+    # returns the value of the distance from launchpad lp_name to cell cell_name
+    def getRadiusBetweenLaunchpadAndCell(self, lp_name, cell_name):
+
+        # rssi list where launchpad is ADV and cell is SCANNER
+        rssi_list_lp_cell = self.db_manager.getRssiBetweenDevices(lp_name, cell_name,
+                                                          num_results=NUM_RESULTS_RSSI)
+
+        # rssi list where cell is ADV and launchpad is SCANNER
+        rssi_list_cell_lp = self.db_manager.getRssiBetweenDevices(cell_name, lp_name,
+                                                          num_results=NUM_RESULTS_RSSI)
+
+        # average the estimated distances (when lp is advertising and when cell is advertising)
+        return 0.5*(self.model.computeDistanceFromRssi(rssi_list_lp_cell, lp_name) + self.model.computeDistanceFromRssi(rssi_list_cell_lp, cell_name))
+
+
+
+    # returns a dictionary with 3 keys. Keys are anchor names and values are the distances from this anchor to the device.
+    def getRadiiBetweenLaunchpadsAndDevice(self, devname):
+        result = dict()
+        for lp in self.launchpads:
+            result[lp.getName()] = self.getRadiusBetweenLaunchpadAndCell(lp.getName(), devname)
+        return result
+
+    def getRadiiToTargetDevice(self, target_devname, anchors_names):
+        result = dict()
+        for anc in anchors_names:
+            result[anc] = self.getRadiusFromAnchorToDevice(anc, target_devname)
+        return result
 
     def getDevice(self, devname):
         for dev in self.devices:
             if dev.getDevName() == devname:
                 return dev
         return None
+
+    def getDevicePosition(self, dev):
+        return dev.getPosition()
+
+    def getDevicesPositions(self):
+        result = dict()
+
+        for cell in self.cells:
+            self.getDevicePosition(cell)
+            result[cell.getDevName()] = dict()
+            pos = cell.getPosition()
+            result[cell.getDevName()]['X'] = pos[0]
+            result[cell.getDevName()]['Y'] = pos[1]
+
+        return result
+
+    def getDevicesList(self):
+        return [self.cells[i].devname for i in self.cells]
+
+    def isTarget(self, cellname):
+        for c in self.cells:
+            if c.getDevName() == cellname:
+                return c.isTarget()
+        return False
+
+    def getAnchorsPositions(self, anchors, non_target_pos):
+        result = dict()
+        for anc in anchors:
+            result[anc] = dict()
+            if len(anc) != 8:  # Anchor is a cell
+                result[anc]['X'] = non_target_pos[0]
+                result[anc]['Y'] = non_target_pos[1]
+            else:  # Anchor is a launchpad
+                x, y = self.getLaunchpadPosition(anc)
+                result[anc]['X'] = x
+                result[anc]['Y'] = y
+
+        return result
+
+    # returns launchpads positions (dictionary of anchors with dictionary of positions for each one)
+
+    def getLaunchpadPositions(self):
+        result = dict()
+        for anc in self.launchpads:
+            result[anc.getName()] = dict()
+            result[anc.getName()]['X'] = anc.getX()
+            result[anc.getName()]['Y'] = anc.getY()
+        return result
+
+    # returns a 2-tuple (X, Y) representing the position of anchor anchor_name
+    def getLaunchpadPosition(self, anchor_name):
+        for anc in self.launchpads:
+            if anc.getName() == anchor_name:
+                return anc.getX(), anc.getY()
 
     def getRoomXMin(self):
         return self.plot_settings.getXMin()
@@ -273,7 +277,8 @@ class PositioningComputations:
             'sensitivityToRSSIChanges']  # sensitivity to changes in RSSI. Lower values, more sensitivity
 
         # how much rssi receives the anchor (when scanning) from devices (when advertising) at 1 meter.
-        self.rssi_to_dev_at_1m = {'TARGETDEV-g5mpwl': -50 }#,'TARGETDEV-mom1qo': -46}
+        self.rssi_to_dev_at_1m = {'TARGETDEV-g5mpwl': -53,
+                                  'ANC-*': -53} #,'TARGETDEV-mom1qo': -46}
 
         for anc_name in self.anchor_names:
             self.last_rssi_means[anc_name] = dict()
@@ -365,8 +370,18 @@ class PositioningComputations:
             self.last_rssi_std[anchor_name][device_name] = current_rssi_std
             return np.power(10, (current_rssi_mean - self.A) / (-10 * self.n))
 
-    def calculateDistanceAnchorToDevice(self, rssi_list, device_name):
-        A = self.rssi_to_dev_at_1m[device_name]
+    def computeDistanceFromRssi(self, rssi_list, advertiser):
+        """
+        :param rssi_list: list of rssi values
+        :param advertiser: name of the device which is advertising.
+                           This info is needed in order to choose the correct A parameter value in path-loss distance model.
+        :return: the average distance.
+        """
+        if len(advertiser) == 8: # advertiser is a launchpad
+            A = self.rssi_to_dev_at_1m["ANC-*"]
+        else:
+            A = self.rssi_to_dev_at_1m[advertiser]
+
         return np.mean(list(map(lambda x: np.power(10, (x - A) / (-10 * self.n)), rssi_list)))
 
     # applies the Kalman Filter. position and acceleration are passed to function (z and u respectively).

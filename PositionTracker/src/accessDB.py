@@ -54,20 +54,21 @@ class DB:
 
         return result[anchor_name]
 
-    def getRssiOfDeviceFromLaunchpad(self, devname, anchor_name, num_results=30):
+    def getRssiBetweenDevices(self, dev1, dev2, num_results=30):
         """
-            gets a list of the last num_results RSSI measures of the device with devname
-            from anchor anchor_name. By default, num_results is 30.
+            gets a list of the last num_results RSSI measures between dev1 and dev2.
+            dev1 acts as advertiser whereas dev2 acts as scanner.
+            By default, num_results is 30.
         """
 
         result = dict()
         self.cur.execute(
-            "SELECT rssi FROM rssiphonedata WHERE srcdevice=%(devname)s AND dstdevice=%(anc_name)s ORDER BY id DESC LIMIT %(num_res)s",{'devname':devname, 'anc_name':anchor_name, 'num_res':str(num_results)} )
+            "SELECT rssi FROM rssiphonedata WHERE srcdevice=%(advertiser)s AND dstdevice=%(scanner)s ORDER BY id DESC LIMIT %(num_res)s",{'advertiser':dev1, 'scanner':dev2, 'num_res':str(num_results)} )
 
         aux = self.cur.fetchall()
-        result[anchor_name] = list(map(lambda x: int(x[0]), aux))
+        result[dev2] = list(map(lambda x: int(x[0]), aux))
 
-        return result[anchor_name]
+        return result[dev2]
 
 
 

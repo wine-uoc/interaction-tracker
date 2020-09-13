@@ -27,6 +27,7 @@ pythonApp:
   z_noise: 0.48940446
   accThreshold: 0.2
   #TESTING PARAMETERS (ERROR QUANTITY AT POSITIONING)
+  testing: True
   deviceName: TARGETDEV-g5mpwl
-  x_pos: 1.10
-  y_pos: 1.05
+  x_pos: 360 #cm
+  y_pos: 250 #cm

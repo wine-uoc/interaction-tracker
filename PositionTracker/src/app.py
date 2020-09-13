@@ -26,6 +26,10 @@ show_rssi = False
 file = open('config.yml', 'r')
 cfg = yaml.load(file)
 
+TEST_MODEL = cfg['pythonApp']['testing']
+num_samples = 0
+MAX_SAMPLES = 100
+
 
 # funcion que calcula la posicion de los dispositivos (target)
 def computeDevicesPositions():
@@ -90,7 +94,7 @@ def plot_positions():
 
 @app.route("/positions_img", methods=["GET", "POST"])
 def positions_img():
-    global last_img
+    global last_img, num_samples
     global show_circles
     global show_rssi
 
@@ -111,7 +115,6 @@ def positions_img():
 
     # creamos la imagen. Será un plot de matplotlib con los anchors y los devices. retorna un png
     if request.method == 'GET':
-        TEST_MODEL = True
         dev_pos = ctrl.getDevicesPositions()
         anchors_pos = ctrl.getLaunchpadPositions()
         # print("estimated position RSSI+ACC+ORI: ")
@@ -154,8 +157,8 @@ def positions_img():
             ax.scatter(x_dev, y_dev, c=dot_colors)
 
             if TEST_MODEL:
-                x = cfg['pythonApp']['x_pos']
-                y = cfg['pythonApp']['y_pos']
+                x = cfg['pythonApp']['x_pos'] / 100
+                y = cfg['pythonApp']['y_pos'] / 100
                 devname = cfg['pythonApp']['deviceName']
 
                 ax.scatter(x, y, c='orange')
@@ -164,6 +167,14 @@ def positions_img():
                 y_est = dev_pos[devname]['Y']
                 err = np.sqrt(pow(x_est - x, 2.0) + pow(y_est - y, 2.0))
                 print(f"error: {err}")
+
+                # insert the estimation error data into a file.
+                if num_samples < MAX_SAMPLES:
+                    with open("errorTest_x_" + str(cfg['pythonApp']['x_pos']) + "_y_" + str(cfg['pythonApp']['y_pos']) + ".txt", "a+") as file:
+                        file.write(str(err) + '\n')
+                        num_samples += 1
+                else:
+                    print("MAX_SAMPLES REACHED!!!")
 
             for i, txt in enumerate(dev_names):
                 ax.text(x_dev[i], y_dev[i], txt, fontsize=14)
