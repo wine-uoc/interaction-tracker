@@ -1,0 +1,21 @@
+-Ir a Universidad/TFG/Software-v2/Node-RED
+
+-Abrir una terminal
+
+-Ejecutar node-red
+    $> node-red -u . 
+    (para que corra node-red en este directorio)
+
+-Ejecutar postgres
+    $> sudo -u postgres psql
+    $> \c tracker
+    
+-Abrir CCS
+    -ir a /ti/ccs1020/ccs/eclipse
+    -abrir una terminal
+    $> sudo su
+    $> ./ccstudio
+
+-Abrir ScanRSSIThreaded.py (PyCharm IDE)
+-Ejecutar ScanRSSIThreaded.py 
+    -Comienza a leer los datos de los launchpads

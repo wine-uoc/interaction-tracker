@@ -1,0 +1,29 @@
+
+CONFIGURAR POTENCIA TRANSIMISION DEL TAG.
+	-Abrir CCS
+	    -ir a /ti/ccs1020/ccs/eclipse
+	    -abrir una terminal
+	    $> sudo su
+	    $> ./ccstudio
+	
+	-Abrir simple_broadcaster_ccXXX_app
+	-abrir simple_broadcaster.c
+	-ir a linea 326 y cambiar parametro:
+		- 7 = 0 dBm
+		- 8 = 1 dBm
+		- 9 = 2 dBm
+		- 10 = 3 dBm
+		- 11 = 4 dBm
+		- 12 = 5 dBm
+	-recompilar y grabar el TAG.
+
+RECOGER DATOS CON SCRIPT recollectForDataset_fingerprint.py (datos en la carpeta ./dataCollected
+
+	-Ir a linea 37 
+	-Poner la coordenada X e Y del TAG.
+	-Poner cuántos samples queremos recoger por ejecución
+	-Ejecutar
+	-Cuando suenen 3 sonidos o salgan por terminal 3 End LAUNCHX!, ya ha terminado la ejecucion
+	
+	
+	

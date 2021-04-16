@@ -1,0 +1,1506 @@
+[
+  {
+    "time": 1615796261773,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-57"
+  },
+  {
+    "time": 1615796261443,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-65"
+  },
+  {
+    "time": 1615796261113,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-64"
+  },
+  {
+    "time": 1615796260783,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-57"
+  },
+  {
+    "time": 1615796260455,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-57"
+  },
+  {
+    "time": 1615796259790,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-57"
+  },
+  {
+    "time": 1615796259460,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-64"
+  },
+  {
+    "time": 1615796258801,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-64"
+  },
+  {
+    "time": 1615796258138,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-58"
+  },
+  {
+    "time": 1615796257809,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-58"
+  },
+  {
+    "time": 1615796257487,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-57"
+  },
+  {
+    "time": 1615796256837,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-58"
+  },
+  {
+    "time": 1615796256514,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-64"
+  },
+  {
+    "time": 1615796255847,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-64"
+  },
+  {
+    "time": 1615796254541,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-57"
+  },
+  {
+    "time": 1615796253893,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-64"
+  },
+  {
+    "time": 1615796253571,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-58"
+  },
+  {
+    "time": 1615796253247,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-64"
+  },
+  {
+    "time": 1615796252917,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-57"
+  },
+  {
+    "time": 1615796252588,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-57"
+  },
+  {
+    "time": 1615796251611,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-64"
+  },
+  {
+    "time": 1615796251285,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-57"
+  },
+  {
+    "time": 1615796250962,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-64"
+  },
+  {
+    "time": 1615796250637,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-58"
+  },
+  {
+    "time": 1615796250312,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-57"
+  },
+  {
+    "time": 1615796249986,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-58"
+  },
+  {
+    "time": 1615796249665,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-58"
+  },
+  {
+    "time": 1615796249340,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-58"
+  },
+  {
+    "time": 1615796249014,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-57"
+  },
+  {
+    "time": 1615796248688,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-64"
+  },
+  {
+    "time": 1615796248039,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-58"
+  },
+  {
+    "time": 1615796247715,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-64"
+  },
+  {
+    "time": 1615796247378,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-58"
+  },
+  {
+    "time": 1615796247052,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-64"
+  },
+  {
+    "time": 1615796246724,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-58"
+  },
+  {
+    "time": 1615796246402,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-64"
+  },
+  {
+    "time": 1615796245744,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-58"
+  },
+  {
+    "time": 1615796245422,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-64"
+  },
+  {
+    "time": 1615796245089,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-57"
+  },
+  {
+    "time": 1615796244115,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-57"
+  },
+  {
+    "time": 1615796243129,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-58"
+  },
+  {
+    "time": 1615796242803,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-64"
+  },
+  {
+    "time": 1615796242152,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-57"
+  },
+  {
+    "time": 1615796241826,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-58"
+  },
+  {
+    "time": 1615796241496,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-57"
+  },
+  {
+    "time": 1615796241174,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-64"
+  },
+  {
+    "time": 1615796240851,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-58"
+  },
+  {
+    "time": 1615796240524,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-58"
+  },
+  {
+    "time": 1615796239870,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-64"
+  },
+  {
+    "time": 1615796239546,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-58"
+  }
+,
+  {
+    "time": 1615796756120,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615796755145,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615796754820,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615796754488,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-60"
+  },
+  {
+    "time": 1615796753837,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-71"
+  },
+  {
+    "time": 1615796753511,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615796752866,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615796752212,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615796751881,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615796751558,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-71"
+  },
+  {
+    "time": 1615796751233,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615796750585,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615796750263,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-71"
+  },
+  {
+    "time": 1615796749934,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-60"
+  },
+  {
+    "time": 1615796749609,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-71"
+  },
+  {
+    "time": 1615796748957,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-70"
+  },
+  {
+    "time": 1615796748634,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-71"
+  },
+  {
+    "time": 1615796747986,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615796747663,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615796747339,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-60"
+  },
+  {
+    "time": 1615796747011,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615796746683,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-60"
+  },
+  {
+    "time": 1615796746360,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-70"
+  },
+  {
+    "time": 1615796746029,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-70"
+  },
+  {
+    "time": 1615796745702,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-60"
+  },
+  {
+    "time": 1615796745374,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615796745047,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-70"
+  },
+  {
+    "time": 1615796744400,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-60"
+  },
+  {
+    "time": 1615796744077,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-60"
+  },
+  {
+    "time": 1615796743751,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615796743429,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-60"
+  },
+  {
+    "time": 1615796743107,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-70"
+  },
+  {
+    "time": 1615796742786,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-71"
+  },
+  {
+    "time": 1615796742462,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615796742130,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-60"
+  },
+  {
+    "time": 1615796741808,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-70"
+  },
+  {
+    "time": 1615796741484,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-60"
+  },
+  {
+    "time": 1615796741160,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615796740834,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615796740509,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-71"
+  },
+  {
+    "time": 1615796740185,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615796739530,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-60"
+  },
+  {
+    "time": 1615796739206,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-71"
+  },
+  {
+    "time": 1615796738876,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-60"
+  },
+  {
+    "time": 1615796738550,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-70"
+  },
+  {
+    "time": 1615796738225,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615796737904,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-60"
+  },
+  {
+    "time": 1615796737257,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615796736606,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615796736284,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  }
+,
+  {
+    "time": 1615797204919,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-70"
+  },
+  {
+    "time": 1615797204267,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-70"
+  },
+  {
+    "time": 1615797203941,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615797203613,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-63"
+  },
+  {
+    "time": 1615797203289,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-70"
+  },
+  {
+    "time": 1615797202964,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615797202633,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615797202297,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-63"
+  },
+  {
+    "time": 1615797201321,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-70"
+  },
+  {
+    "time": 1615797200990,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-70"
+  },
+  {
+    "time": 1615797200340,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-70"
+  },
+  {
+    "time": 1615797200012,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-62"
+  },
+  {
+    "time": 1615797199684,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-70"
+  },
+  {
+    "time": 1615797199344,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-70"
+  },
+  {
+    "time": 1615797199018,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-62"
+  },
+  {
+    "time": 1615797198689,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-70"
+  },
+  {
+    "time": 1615797198365,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-70"
+  },
+  {
+    "time": 1615797198039,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615797197710,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-62"
+  },
+  {
+    "time": 1615797197056,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-62"
+  },
+  {
+    "time": 1615797196726,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-70"
+  },
+  {
+    "time": 1615797196395,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-70"
+  },
+  {
+    "time": 1615797195737,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-70"
+  },
+  {
+    "time": 1615797195407,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615797195079,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615797194425,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-71"
+  },
+  {
+    "time": 1615797194093,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-62"
+  },
+  {
+    "time": 1615797193763,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615797193436,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-62"
+  },
+  {
+    "time": 1615797193107,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-62"
+  },
+  {
+    "time": 1615797192783,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-70"
+  },
+  {
+    "time": 1615797192457,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-62"
+  },
+  {
+    "time": 1615797192134,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615797191807,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-70"
+  },
+  {
+    "time": 1615797191485,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-70"
+  },
+  {
+    "time": 1615797191161,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-62"
+  },
+  {
+    "time": 1615797190835,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-70"
+  },
+  {
+    "time": 1615797190510,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-62"
+  },
+  {
+    "time": 1615797190187,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-70"
+  },
+  {
+    "time": 1615797189859,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-62"
+  },
+  {
+    "time": 1615797189519,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-71"
+  },
+  {
+    "time": 1615797189184,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-63"
+  },
+  {
+    "time": 1615797188859,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-71"
+  },
+  {
+    "time": 1615797188531,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-70"
+  },
+  {
+    "time": 1615797188202,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-62"
+  },
+  {
+    "time": 1615797187879,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-62"
+  },
+  {
+    "time": 1615797187552,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615797187227,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615797186252,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-70"
+  },
+  {
+    "time": 1615797185927,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-70"
+  }
+,
+  {
+    "time": 1615798227657,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-74"
+  },
+  {
+    "time": 1615798227335,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615798227008,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615798226677,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-63"
+  },
+  {
+    "time": 1615798226022,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615798225361,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-73"
+  },
+  {
+    "time": 1615798224710,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615798224049,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-73"
+  },
+  {
+    "time": 1615798223723,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-74"
+  },
+  {
+    "time": 1615798223397,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-63"
+  },
+  {
+    "time": 1615798223070,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-63"
+  },
+  {
+    "time": 1615798222741,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-74"
+  },
+  {
+    "time": 1615798222408,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-74"
+  },
+  {
+    "time": 1615798222080,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-74"
+  },
+  {
+    "time": 1615798221748,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-74"
+  },
+  {
+    "time": 1615798221425,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-74"
+  },
+  {
+    "time": 1615798221095,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-63"
+  },
+  {
+    "time": 1615798220768,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615798220109,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615798219451,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-63"
+  },
+  {
+    "time": 1615798219125,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-63"
+  },
+  {
+    "time": 1615798218794,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615798218138,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-63"
+  },
+  {
+    "time": 1615798217809,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-63"
+  },
+  {
+    "time": 1615798217486,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-63"
+  },
+  {
+    "time": 1615798217160,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-63"
+  },
+  {
+    "time": 1615798216833,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-63"
+  },
+  {
+    "time": 1615798215856,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615798215525,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615798215200,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-74"
+  },
+  {
+    "time": 1615798214545,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-74"
+  },
+  {
+    "time": 1615798214210,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-63"
+  },
+  {
+    "time": 1615798213557,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-63"
+  },
+  {
+    "time": 1615798213233,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-74"
+  },
+  {
+    "time": 1615798212247,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-63"
+  },
+  {
+    "time": 1615798211919,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615798211595,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-63"
+  },
+  {
+    "time": 1615798210627,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-74"
+  },
+  {
+    "time": 1615798210299,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-63"
+  },
+  {
+    "time": 1615798209970,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-74"
+  },
+  {
+    "time": 1615798209645,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-74"
+  },
+  {
+    "time": 1615798209315,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615798208990,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-63"
+  },
+  {
+    "time": 1615798208661,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-63"
+  },
+  {
+    "time": 1615798207692,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-74"
+  },
+  {
+    "time": 1615798207036,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615798206711,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-74"
+  },
+  {
+    "time": 1615798206386,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615798206058,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-73"
+  },
+  {
+    "time": 1615798205731,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-63"
+  }
+,
+  {
+    "time": 1615798782904,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-72"
+  },
+  {
+    "time": 1615798782577,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615798782254,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-72"
+  },
+  {
+    "time": 1615798781927,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615798781597,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-72"
+  },
+  {
+    "time": 1615798780297,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-72"
+  },
+  {
+    "time": 1615798779966,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-64"
+  },
+  {
+    "time": 1615798779315,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-72"
+  },
+  {
+    "time": 1615798778655,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-72"
+  },
+  {
+    "time": 1615798778006,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615798777677,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-64"
+  },
+  {
+    "time": 1615798777345,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-62"
+  },
+  {
+    "time": 1615798776690,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-72"
+  },
+  {
+    "time": 1615798776366,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615798775715,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-64"
+  },
+  {
+    "time": 1615798775387,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-72"
+  },
+  {
+    "time": 1615798774735,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-62"
+  },
+  {
+    "time": 1615798774409,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615798774084,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-72"
+  },
+  {
+    "time": 1615798773756,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-72"
+  },
+  {
+    "time": 1615798773432,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615798772455,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-72"
+  },
+  {
+    "time": 1615798772132,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-64"
+  },
+  {
+    "time": 1615798771800,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-62"
+  },
+  {
+    "time": 1615798771147,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615798770491,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-62"
+  },
+  {
+    "time": 1615798770159,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-64"
+  },
+  {
+    "time": 1615798769832,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-64"
+  },
+  {
+    "time": 1615798769183,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615798768859,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-64"
+  },
+  {
+    "time": 1615798768526,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615798767876,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-72"
+  },
+  {
+    "time": 1615798767227,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615798766901,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-73"
+  },
+  {
+    "time": 1615798766576,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-62"
+  },
+  {
+    "time": 1615798766246,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-62"
+  },
+  {
+    "time": 1615798765823,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-72"
+  },
+  {
+    "time": 1615798765498,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-64"
+  },
+  {
+    "time": 1615798765175,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-62"
+  },
+  {
+    "time": 1615798764848,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-64"
+  },
+  {
+    "time": 1615798764419,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-64"
+  },
+  {
+    "time": 1615798764091,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-73"
+  },
+  {
+    "time": 1615798763121,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-73"
+  },
+  {
+    "time": 1615798762797,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-73"
+  },
+  {
+    "time": 1615798762468,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-64"
+  },
+  {
+    "time": 1615798761817,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-65"
+  },
+  {
+    "time": 1615798761485,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-72"
+  },
+  {
+    "time": 1615798760836,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-61"
+  },
+  {
+    "time": 1615798760509,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-73"
+  },
+  {
+    "time": 1615798759856,
+    "scandevice": "TARGETDEV-r7v5wv",
+    "advdevice": "TARGETDEV-z9412b",
+    "advdevicerssi": "-62"
+  }
+]

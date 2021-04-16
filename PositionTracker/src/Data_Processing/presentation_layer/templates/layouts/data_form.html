@@ -1,0 +1,75 @@
+<!doctype html>
+
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/static/css/style.css">
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script src="/static/js/script.js"></script>
+
+        <p>Type in the following form:</p>
+        <p style = "text-indent : 2em;">-anchors identifications ANC-[4 alphanumeric characters].</p>
+        <p style = "text-indent : 2em;">-their positions on the 2D plane (X, Y).</p>
+        <p style = "text-indent : 2em;">-the room size (height, width).</p>
+        <br>
+    </head>
+    <body>
+        <form action="" method="POST">
+            
+            <label for="name">ID anchor 1: </label>
+            <input type="text" id="id-a1" name="id-a1" /><br>
+            
+            <label for="name">X: </label>
+            <input type="number" step=".01" id="a1-x" name="a1-x" /><br>
+            
+            <label for="name">Y: </label>
+            <input type="number" step=".01" id="a1-y" name="a1-y" /><br><br>
+            
+            
+            
+            <label for="name">ID anchor 2: </label>
+            <input type="text" id="id-a2" name="id-a2" /><br>
+            
+            <label for="name">X: </label>
+            <input type="number" step=".01" id="a2-x" name="a2-x" /><br>
+            
+            <label for="name">Y: </label>
+            <input type="number" step=".01" id="a2-y" name="a2-y" /><br><br>
+            
+            
+            
+            <label for="name">ID anchor 3: </label>
+            <input type="text" id="id-a3" name="id-a3" /><br>
+            
+            <label for="name">X: </label>
+            <input type="number" step=".01" id="a3-x" name="a3-x" /><br>
+            
+            <label for="name">Y: </label>
+            <input type="number" step=".01" id="a3-y" name="a3-y" /><br><br>
+            
+            
+            
+           <b> Room size </b><br><br>
+            
+            <label for="name">X min: </label>
+            <input type="number" step=".01" id="room-x-min" name="room-x-min" /><br>
+            
+            <label for="name">X MAX: </label>
+            <input type="number" step=".01" id="room-x-max" name="room-x-max" /><br>
+            
+            <label for="name">Y min: </label>
+            <input type="number" step=".01" id="room-y-min" name="room-y-min" /><br>
+            
+            <label for="name">Y MAX: </label>
+            <input type="number" step=".01" id="room-y-max" name="room-y-max" /><br><br>
+            
+            <b> Room orientation </b><br><br>
+            
+            <label for="name">DEGREES TO NORTH: </label>
+            <input type="number" step=".01" id="degree-north" name="degree-north" /><br><br>
+
+            <input type="submit" id="send-signup" name="signup" value="Done" />
+            
+        </form>
+    </body>
+</html>

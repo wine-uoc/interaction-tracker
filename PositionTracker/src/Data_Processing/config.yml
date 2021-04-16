@@ -1,0 +1,33 @@
+postgreSQL:
+  dbname: tracker
+  user: postgres
+  pass: postgres
+  host: 127.0.0.1
+  port: 5432
+
+anchorsToNodeRED:
+  sending_period: 0.1
+
+pythonApp:
+  appHost: 0.0.0.0
+  appPort: 5000
+  TDeleteDB: 6000 #time between DB deletions (s)
+  lastMillisDBKept: 10000 #when old DB values are deleted, keep the results from the last X milliseconds.
+  TComputePositions: 0.5 #time between position computations (s)
+  numResultsDBrssi: 1
+  numResultsDBaccel: 1
+  numResultsDBorient: 1
+  #LOG-DISTANCE PATH LOSS MODEL PARAMETERS
+  A: -47.697
+  n: 3 # Con 3 da buenos resultados. #-0.827
+  sensitivityToRSSIChanges: 0 # 0<x<inf. 0 = no sensitivity
+  #KALMAN FILTER PARAMETERS
+  delta_t: 0.1
+  u_noise: 0.018
+  z_noise: 0.48940446
+  accThreshold: 0.2
+  #TESTING PARAMETERS (ERROR QUANTITY AT POSITIONING)
+  testing: False
+  deviceName: TARGETDEV-g5mpwl
+  x_pos: 360 #cm
+  y_pos: 250 #cm

@@ -1,0 +1,26 @@
+Pasos instalacion TFG
+
+-instalar npm
+$> sudo apt install npm
+
+-instalar Node-RED
+$> sudo npm install -g --unsafe-perm node-red
+
+-ir a TFG/Software-v2/Node-RED
+
+-Abrir una terminal aquí
+
+-instalar modulo postgreSQL en Node-RED 
+$> sudo npm install node-red-contrib-postgres-multi
+
+-Instalar PostgreSQL en el PC
+$> sudo apt install postgresql postgresql-contrib
+
+-Entrar en PostgreSQL y ejecutar psql
+$> sudo -u postgres psql
+
+-poner contraseña al usuario por defecto 'postgres'
+$> alter user postgres with encrypted password 'postgres';
+
+
+

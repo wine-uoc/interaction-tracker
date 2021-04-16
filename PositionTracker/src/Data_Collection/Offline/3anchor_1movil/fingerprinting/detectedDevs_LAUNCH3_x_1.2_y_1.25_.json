@@ -1,0 +1,3032 @@
+[
+    {
+        "timestamp": 1617189076141,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-57"
+    },
+    {
+        "timestamp": 1617189076294,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-75"
+    },
+    {
+        "timestamp": 1617189076432,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-75"
+    },
+    {
+        "timestamp": 1617189077393,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-75"
+    },
+    {
+        "timestamp": 1617189077546,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-57"
+    },
+    {
+        "timestamp": 1617189077815,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-57"
+    },
+    {
+        "timestamp": 1617189077971,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-75"
+    },
+    {
+        "timestamp": 1617189078112,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-57"
+    },
+    {
+        "timestamp": 1617189078379,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-57"
+    },
+    {
+        "timestamp": 1617189078514,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-75"
+    },
+    {
+        "timestamp": 1617189079227,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-75"
+    },
+    {
+        "timestamp": 1617189079380,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617189079525,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-57"
+    },
+    {
+        "timestamp": 1617189079944,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-75"
+    },
+    {
+        "timestamp": 1617189080092,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617189128596,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617189128735,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617189128865,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-68"
+    },
+    {
+        "timestamp": 1617189129001,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617189129301,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617189129439,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-68"
+    },
+    {
+        "timestamp": 1617189129595,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-68"
+    },
+    {
+        "timestamp": 1617189130152,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-68"
+    },
+    {
+        "timestamp": 1617189130306,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617189130449,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617189130578,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617189130711,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-68"
+    },
+    {
+        "timestamp": 1617189130855,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617189131000,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617189131145,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617189131270,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617189131404,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617189131555,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617189131983,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617189132271,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617189132425,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-68"
+    },
+    {
+        "timestamp": 1617189132560,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617189132703,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617189132996,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617189133134,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617189133568,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617189133835,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-68"
+    },
+    {
+        "timestamp": 1617189133990,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617189134131,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617189134279,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-68"
+    },
+    {
+        "timestamp": 1617189134412,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617189134706,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617189135265,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617189135419,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617189135559,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-68"
+    },
+    {
+        "timestamp": 1617189135712,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617189135855,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617189136272,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617189137096,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617189137249,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617189137387,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617189137681,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-68"
+    },
+    {
+        "timestamp": 1617189137825,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617189138108,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617189138684,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617189138817,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617189139101,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-68"
+    },
+    {
+        "timestamp": 1617189139229,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617189139482,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617189139609,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-68"
+    },
+    {
+        "timestamp": 1617189139872,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617189139995,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617189140144,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617189140285,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617189140439,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617189140571,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617189140725,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617189140873,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617189141468,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-68"
+    },
+    {
+        "timestamp": 1617189141614,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617189141770,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617189142061,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-68"
+    },
+    {
+        "timestamp": 1617189142195,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617189142320,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617189142447,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617189142600,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617189142754,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617189143146,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-68"
+    },
+    {
+        "timestamp": 1617189143302,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617189143444,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-68"
+    },
+    {
+        "timestamp": 1617189143581,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617189143728,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-68"
+    },
+    {
+        "timestamp": 1617189144022,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617189144154,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-68"
+    },
+    {
+        "timestamp": 1617189144581,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617189145112,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617189145264,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-68"
+    },
+    {
+        "timestamp": 1617189145395,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617189145681,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617189145821,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617189145965,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617189146247,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-68"
+    },
+    {
+        "timestamp": 1617189146385,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617189146812,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617189146960,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617189147108,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617190226912,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617190227051,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617190227206,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617190227348,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617190227483,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617190228054,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617190228210,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617190228496,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617190228628,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617190228755,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617190229319,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617190229470,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617190229922,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617190230079,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617190230218,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617190230368,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617190230516,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617190230947,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617190231222,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617190231369,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617190231523,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617190231663,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617190231802,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617190231936,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617190232072,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617190232225,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617190232367,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617190232792,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617190232946,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617190233083,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617190233221,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-59"
+    },
+    {
+        "timestamp": 1617190233375,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617190233517,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617190233643,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617190233774,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617190233916,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617190234630,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617190234781,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617190234918,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-59"
+    },
+    {
+        "timestamp": 1617190235053,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617190235206,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617190235345,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617190235484,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617190235630,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617190236619,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617190236769,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617190236910,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617190237042,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617190237181,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617190237330,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617190237455,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617190237591,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617190238038,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617190238183,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617190238325,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617190238476,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617190238612,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-59"
+    },
+    {
+        "timestamp": 1617190238898,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617190239035,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617190239741,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617190239934,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617190240787,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617190241070,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617190241326,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617190241476,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617190241906,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617190242051,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617190242345,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-59"
+    },
+    {
+        "timestamp": 1617190242762,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617190242910,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617190243206,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-59"
+    },
+    {
+        "timestamp": 1617190243343,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617190243496,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617190243629,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617190244205,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617190244345,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617190244481,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617190244621,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617190244765,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617190245335,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617190245473,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617190245604,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617190245897,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617190246225,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617190246378,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617190246524,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617190246669,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617190247108,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617190247255,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617190247387,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617190247667,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617190247823,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617190247953,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617190248670,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617190248821,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617190248963,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617190249102,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617190249235,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617190249375,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617190249531,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617190249668,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-59"
+    },
+    {
+        "timestamp": 1617191208281,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617191208427,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617191208564,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617191208697,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617191208851,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617191208982,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617191209112,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617191209232,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617191209353,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617191209475,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617191209612,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617191209742,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617191209868,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617191210005,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617191210299,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617191210733,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617191210886,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617191211013,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617191211148,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617191211303,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617191211447,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617191211595,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617191211735,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617191212035,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617191212447,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617191212855,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617191212994,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617191213149,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-59"
+    },
+    {
+        "timestamp": 1617191213292,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617191213430,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617191213563,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617191214277,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617191214422,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-59"
+    },
+    {
+        "timestamp": 1617191214570,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617191214702,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617191214850,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-59"
+    },
+    {
+        "timestamp": 1617191215134,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617191215276,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617191215574,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617191215983,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617191216118,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617191216417,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-59"
+    },
+    {
+        "timestamp": 1617191216553,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617191216708,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617191216855,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-59"
+    },
+    {
+        "timestamp": 1617191217419,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617191217563,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617191217970,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617191218102,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-59"
+    },
+    {
+        "timestamp": 1617191218245,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617191218372,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617191218503,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617191218652,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617191218950,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617191219079,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617191219212,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617191219651,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617191219942,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617191220213,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617191220343,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617191220499,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617191220643,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617191220783,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617191220908,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617191221042,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617191221172,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617191221316,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617191221463,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617191221884,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617191222038,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617191222176,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617191222329,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617191222481,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617191222624,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-59"
+    },
+    {
+        "timestamp": 1617191222764,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617191223203,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617191223761,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617191223913,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617191224045,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617191224177,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617191224322,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617191224461,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617191224600,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617191224728,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617191225033,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617191225180,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617191225308,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617191225455,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617191225611,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617191225757,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617191225884,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617191226018,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617191226165,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617191226303,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617191226454,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617191226882,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617191227034,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617191227175,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617191227458,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617191227605,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617191227741,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617194969259,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617194969403,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617194969556,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-59"
+    },
+    {
+        "timestamp": 1617194969988,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617194970144,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617194970275,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-59"
+    },
+    {
+        "timestamp": 1617194970402,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617194970526,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617194970671,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-59"
+    },
+    {
+        "timestamp": 1617194970809,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617194970959,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617194971082,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-59"
+    },
+    {
+        "timestamp": 1617194971213,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617194971363,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617194971501,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617194971746,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-59"
+    },
+    {
+        "timestamp": 1617194971898,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617194972030,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617194972315,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617194972446,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617194972862,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617194973140,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617194973294,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617194973439,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-59"
+    },
+    {
+        "timestamp": 1617194973565,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617194973703,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617194973851,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-59"
+    },
+    {
+        "timestamp": 1617194974147,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-59"
+    },
+    {
+        "timestamp": 1617194974404,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617194974689,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-59"
+    },
+    {
+        "timestamp": 1617194974829,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617194974955,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617194975520,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617194975671,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617194975811,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-59"
+    },
+    {
+        "timestamp": 1617194975956,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-59"
+    },
+    {
+        "timestamp": 1617194976079,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617194976217,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-59"
+    },
+    {
+        "timestamp": 1617194976516,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617194976952,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617194977103,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-59"
+    },
+    {
+        "timestamp": 1617194977374,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617194977512,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-59"
+    },
+    {
+        "timestamp": 1617194977654,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-60"
+    },
+    {
+        "timestamp": 1617194977810,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617194977953,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617194978082,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-59"
+    },
+    {
+        "timestamp": 1617194978232,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617194978520,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617194978666,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-59"
+    },
+    {
+        "timestamp": 1617194978815,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617194978967,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617194979099,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-59"
+    },
+    {
+        "timestamp": 1617194979252,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-59"
+    },
+    {
+        "timestamp": 1617194979391,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617194979541,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-59"
+    },
+    {
+        "timestamp": 1617194979671,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-59"
+    },
+    {
+        "timestamp": 1617194979962,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617194980106,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-59"
+    },
+    {
+        "timestamp": 1617194980243,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617194980633,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617194980780,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-59"
+    },
+    {
+        "timestamp": 1617194980909,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617194981067,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617194981219,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617194981354,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-59"
+    },
+    {
+        "timestamp": 1617194981618,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617194981738,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-59"
+    },
+    {
+        "timestamp": 1617194981878,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-59"
+    },
+    {
+        "timestamp": 1617194982024,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617194982151,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617194982290,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-59"
+    },
+    {
+        "timestamp": 1617194982856,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617194982991,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-59"
+    },
+    {
+        "timestamp": 1617194983140,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617194983274,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617194983405,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617194983560,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-59"
+    },
+    {
+        "timestamp": 1617194983700,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617194983988,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617194984827,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617194984964,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-59"
+    },
+    {
+        "timestamp": 1617194985109,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-59"
+    },
+    {
+        "timestamp": 1617194985241,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617194985531,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-59"
+    },
+    {
+        "timestamp": 1617194985680,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617194985822,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617194985953,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-59"
+    },
+    {
+        "timestamp": 1617194986104,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-59"
+    },
+    {
+        "timestamp": 1617194986665,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617194986819,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-59"
+    },
+    {
+        "timestamp": 1617194987191,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617194987346,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-58"
+    },
+    {
+        "timestamp": 1617194987485,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-59"
+    },
+    {
+        "timestamp": 1617194987774,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617194987927,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617194988638,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617194988790,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617194988926,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-59"
+    },
+    {
+        "timestamp": 1617194989061,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-67"
+    },
+    {
+        "timestamp": 1617194989209,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-56"
+    },
+    {
+        "timestamp": 1617196133854,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-60"
+    },
+    {
+        "timestamp": 1617196133994,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-70"
+    },
+    {
+        "timestamp": 1617196134149,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-57"
+    },
+    {
+        "timestamp": 1617196134287,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-60"
+    },
+    {
+        "timestamp": 1617196134575,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-70"
+    },
+    {
+        "timestamp": 1617196134729,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-57"
+    },
+    {
+        "timestamp": 1617196135008,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-60"
+    },
+    {
+        "timestamp": 1617196135154,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-70"
+    },
+    {
+        "timestamp": 1617196135292,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-57"
+    },
+    {
+        "timestamp": 1617196135423,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-61"
+    },
+    {
+        "timestamp": 1617196135549,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-70"
+    },
+    {
+        "timestamp": 1617196135680,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-57"
+    },
+    {
+        "timestamp": 1617196135823,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-57"
+    },
+    {
+        "timestamp": 1617196135977,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-70"
+    },
+    {
+        "timestamp": 1617196136244,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-57"
+    },
+    {
+        "timestamp": 1617196136548,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-60"
+    },
+    {
+        "timestamp": 1617196136690,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-57"
+    },
+    {
+        "timestamp": 1617196137209,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-60"
+    },
+    {
+        "timestamp": 1617196137473,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-71"
+    },
+    {
+        "timestamp": 1617196137623,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-57"
+    },
+    {
+        "timestamp": 1617196137759,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-60"
+    },
+    {
+        "timestamp": 1617196137907,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-60"
+    },
+    {
+        "timestamp": 1617196138034,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-57"
+    },
+    {
+        "timestamp": 1617196138165,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-57"
+    },
+    {
+        "timestamp": 1617196138450,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-70"
+    },
+    {
+        "timestamp": 1617196138595,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-69"
+    },
+    {
+        "timestamp": 1617196138717,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-57"
+    },
+    {
+        "timestamp": 1617196138850,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-57"
+    },
+    {
+        "timestamp": 1617196139282,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-71"
+    },
+    {
+        "timestamp": 1617196139568,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-60"
+    },
+    {
+        "timestamp": 1617196139704,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-70"
+    },
+    {
+        "timestamp": 1617196139844,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-57"
+    },
+    {
+        "timestamp": 1617196139967,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-61"
+    },
+    {
+        "timestamp": 1617196140748,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-70"
+    },
+    {
+        "timestamp": 1617196140894,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-60"
+    },
+    {
+        "timestamp": 1617196141025,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-70"
+    },
+    {
+        "timestamp": 1617196141541,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-57"
+    },
+    {
+        "timestamp": 1617196141693,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-57"
+    },
+    {
+        "timestamp": 1617196141973,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-70"
+    },
+    {
+        "timestamp": 1617196142130,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-57"
+    },
+    {
+        "timestamp": 1617196142265,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-57"
+    },
+    {
+        "timestamp": 1617196142395,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-60"
+    },
+    {
+        "timestamp": 1617196142524,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-57"
+    },
+    {
+        "timestamp": 1617196142656,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-60"
+    },
+    {
+        "timestamp": 1617196142944,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-70"
+    },
+    {
+        "timestamp": 1617196143071,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-57"
+    },
+    {
+        "timestamp": 1617196143203,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-57"
+    },
+    {
+        "timestamp": 1617196143908,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-57"
+    },
+    {
+        "timestamp": 1617196144057,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-60"
+    },
+    {
+        "timestamp": 1617196144205,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-57"
+    },
+    {
+        "timestamp": 1617196144339,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-70"
+    },
+    {
+        "timestamp": 1617196144491,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-57"
+    },
+    {
+        "timestamp": 1617196144781,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-60"
+    },
+    {
+        "timestamp": 1617196145349,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-57"
+    },
+    {
+        "timestamp": 1617196145490,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-60"
+    },
+    {
+        "timestamp": 1617196145614,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-70"
+    },
+    {
+        "timestamp": 1617196145760,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-70"
+    },
+    {
+        "timestamp": 1617196145916,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-60"
+    },
+    {
+        "timestamp": 1617196146057,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-60"
+    },
+    {
+        "timestamp": 1617196146193,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-70"
+    },
+    {
+        "timestamp": 1617196146326,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-57"
+    },
+    {
+        "timestamp": 1617196146470,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-60"
+    },
+    {
+        "timestamp": 1617196146619,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-70"
+    },
+    {
+        "timestamp": 1617196146753,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-57"
+    },
+    {
+        "timestamp": 1617196147575,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-70"
+    },
+    {
+        "timestamp": 1617196147727,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-57"
+    },
+    {
+        "timestamp": 1617196147881,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-60"
+    },
+    {
+        "timestamp": 1617196148298,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-69"
+    },
+    {
+        "timestamp": 1617196148452,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-60"
+    },
+    {
+        "timestamp": 1617196148593,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-60"
+    },
+    {
+        "timestamp": 1617196149017,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-69"
+    },
+    {
+        "timestamp": 1617196149165,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-60"
+    },
+    {
+        "timestamp": 1617196149294,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-61"
+    },
+    {
+        "timestamp": 1617196149434,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-69"
+    },
+    {
+        "timestamp": 1617196149587,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-57"
+    },
+    {
+        "timestamp": 1617196149729,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-57"
+    },
+    {
+        "timestamp": 1617196150013,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-70"
+    },
+    {
+        "timestamp": 1617196150151,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-57"
+    },
+    {
+        "timestamp": 1617196150855,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-69"
+    },
+    {
+        "timestamp": 1617196150992,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-60"
+    },
+    {
+        "timestamp": 1617196151119,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-60"
+    },
+    {
+        "timestamp": 1617196151265,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-69"
+    },
+    {
+        "timestamp": 1617196151402,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-57"
+    },
+    {
+        "timestamp": 1617196151547,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-60"
+    },
+    {
+        "timestamp": 1617196151690,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-57"
+    },
+    {
+        "timestamp": 1617196151820,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-69"
+    },
+    {
+        "timestamp": 1617196152106,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-60"
+    },
+    {
+        "timestamp": 1617196152255,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-57"
+    },
+    {
+        "timestamp": 1617196152692,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-57"
+    },
+    {
+        "timestamp": 1617196152840,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-60"
+    },
+    {
+        "timestamp": 1617196152965,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-69"
+    },
+    {
+        "timestamp": 1617196153101,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-57"
+    },
+    {
+        "timestamp": 1617196153254,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-60"
+    },
+    {
+        "timestamp": 1617196153408,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-60"
+    },
+    {
+        "timestamp": 1617196153668,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-57"
+    },
+    {
+        "timestamp": 1617196153806,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-60"
+    },
+    {
+        "timestamp": 1617196153948,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-60"
+    },
+    {
+        "timestamp": 1617196154099,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-70"
+    },
+    {
+        "timestamp": 1617196154382,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-60"
+    },
+    {
+        "timestamp": 1617196154534,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-60"
+    },
+    {
+        "timestamp": 1617196154671,
+        "launchpadId": "ANC-3b6c",
+        "devname": "TARGETDEV-z9412b",
+        "RSSI": "-70"
+    }
+]
