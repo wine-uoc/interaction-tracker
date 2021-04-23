@@ -21,11 +21,12 @@ pythonApp:
   A: -47.697
   n: 3 # Con 3 da buenos resultados. #-0.827
   sensitivityToRSSIChanges: 0 # 0<x<inf. 0 = no sensitivity
-  #KALMAN FILTER PARAMETERS
-  delta_t: 0.1
-  u_noise: 0.018
-  z_noise: 0.48940446
-  accThreshold: 0.2
+   #MODELS & SCALERS
+  pathSVRmodel: "../persistence_layer/svr_model.sav"
+  pathSVRscaler: "../persistence_layer/svr_scaler.sav"
+  pathMLP: "../persistence_layer/mlp_model.sav"
+  pathMLPscaler: "../persistence_layer/mlp_scaler.sav"
+  #...
   #TESTING PARAMETERS (ERROR QUANTITY AT POSITIONING)
   testing: False
   deviceName: TARGETDEV-g5mpwl

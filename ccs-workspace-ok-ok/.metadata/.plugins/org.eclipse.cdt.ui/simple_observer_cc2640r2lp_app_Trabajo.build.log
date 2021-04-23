@@ -1,8 +1,0 @@
-
-**** Build of configuration FlashROM_StackLibrary for project simple_observer_cc2640r2lp_app_Trabajo ****
-
-/home/aaron/ti/ccs1020/ccs/utils/bin/gmake -k -j 4 all -O 
- 
-gmake[1]: 'simple_observer_cc2640r2lp_app_Trabajo.out' está actualizado.
-
-**** Build Finished ****

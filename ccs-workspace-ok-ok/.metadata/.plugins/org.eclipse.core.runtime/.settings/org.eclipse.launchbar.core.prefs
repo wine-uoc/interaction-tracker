@@ -1,9 +1,0 @@
-LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/arch=x86_64
-LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/name=Local
-LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/os=linux
-configDescList=org.eclipse.launchbar.core.descriptorType.default\:multi_role_cc2640r2lp_app,org.eclipse.launchbar.core.descriptorType.default\:simple_broadcaster_cc2640r2lp_app,org.eclipse.launchbar.core.descriptorType.default\:simple_observer_cc2640r2lp_app_timestamp,org.eclipse.launchbar.core.descriptorType.default\:simple_observer_cc2640r2lp_app,org.eclipse.launchbar.core.descriptorType.default\:simple_observer_cc2640r2lp_app_Trabajo
-eclipse.preferences.version=1
-org.eclipse.launchbar.core.descriptorType.default\:multi_role_cc2640r2lp_app/activeLaunchMode=run
-org.eclipse.launchbar.core.descriptorType.default\:multi_role_cc2640r2lp_app/activeLaunchTarget=org.eclipse.launchbar.core.launchTargetType.local\:Local
-org.eclipse.launchbar.core.descriptorType.default\:simple_observer_cc2640r2lp_app/activeLaunchMode=debug
-org.eclipse.launchbar.core.descriptorType.default\:simple_observer_cc2640r2lp_app/activeLaunchTarget=org.eclipse.launchbar.core.launchTargetType.local\:Local

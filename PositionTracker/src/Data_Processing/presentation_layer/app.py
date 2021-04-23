@@ -6,6 +6,9 @@ from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 import io
 import sched, time
 import sys
+
+from src.Data_Processing.domain_layer.models import ModelController
+
 sys.path.insert(1,'../domain_layer')
 from models import *
 import matplotlib

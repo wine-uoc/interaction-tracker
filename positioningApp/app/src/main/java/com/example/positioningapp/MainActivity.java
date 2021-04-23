@@ -74,9 +74,6 @@ public class MainActivity extends AppCompatActivity
     private Button play;
     private TextView problem;
     private TextView time;
-    private TextView x_acc_view;
-    private TextView y_acc_view;
-    private TextView z_acc_view;
 
     //Node-RED vars
     private Thread noderedThread;
@@ -115,8 +112,8 @@ public class MainActivity extends AppCompatActivity
     private static final int RECORDER_CHANNELS = AudioFormat.CHANNEL_IN_MONO;
     private static final int RECORDER_AUDIO_ENCODING = AudioFormat.ENCODING_PCM_8BIT;
     public static Queue<Map<String, Object>> recordingData;
-    private static final int RECORDING_INTERVAL = 5000; //ms
-    private static final long RECORDING_DURATION = 250; //ms
+    private static final int RECORDING_INTERVAL = 1000; //ms
+    private static final long RECORDING_DURATION = 500; //ms
     File audioFile;
 
 
@@ -145,9 +142,6 @@ public class MainActivity extends AppCompatActivity
         problem = findViewById(R.id.problem);
         play = findViewById(R.id.play);
         time = findViewById(R.id.time);
-        x_acc_view = findViewById(R.id.x_acc_view);
-        y_acc_view = findViewById(R.id.y_acc_view);
-        z_acc_view = findViewById(R.id.z_acc_view);
 
         problem.setText("problem");
         detect.setText("detect");
@@ -385,11 +379,11 @@ public class MainActivity extends AppCompatActivity
                 .setTxPowerLevel(AdvertisingSetParameters.TX_POWER_MAX)
                 .build();
 
-       /* byte[] productionDate = new byte[4];
+        byte[] productionDate = new byte[4];
 
-        productionDate = getCurrentTimestampByteArray();*/
+        productionDate = getCurrentTimestampByteArray();
 
-        data = (new AdvertiseData.Builder()).setIncludeDeviceName(true).setIncludeTxPowerLevel(true).build();//addManufacturerData(MANUFACTURER_ID, productionDate).build();
+        data = (new AdvertiseData.Builder()).setIncludeDeviceName(true).setIncludeTxPowerLevel(true).addManufacturerData(MANUFACTURER_ID, productionDate).build();
 
         callback = new AdvertisingSetCallback() {
 
@@ -399,10 +393,10 @@ public class MainActivity extends AppCompatActivity
                 Log.i("test", "onAdvertisingSetStarted(): txPower:" + txPower + " , status: "
                         + status);
 
-               /* byte[] timestamp;
-                timestamp = getCurrentTimestampByteArray();*/
+                byte[] timestamp;
+                timestamp = getCurrentTimestampByteArray();
 
-                data = (new AdvertiseData.Builder()).setIncludeDeviceName(true).setIncludeTxPowerLevel(true).build();//addManufacturerData(MANUFACTURER_ID, timestamp).build();
+                data = (new AdvertiseData.Builder()).setIncludeDeviceName(true).setIncludeTxPowerLevel(true).addManufacturerData(MANUFACTURER_ID, timestamp).build();
                 advertisingSet.setAdvertisingData(data);
             }
 
@@ -411,9 +405,9 @@ public class MainActivity extends AppCompatActivity
             public void onAdvertisingEnabled(AdvertisingSet advertisingSet, boolean enable, int status) {
                 Log.i("test", "onAdvertisingEnabled(): enable:" + enable + " , status: " + status);
                 if (!enable){
-                    /*byte[] timestamp;
-                    timestamp = getCurrentTimestampByteArray();*/
-                    data = (new AdvertiseData.Builder()).setIncludeDeviceName(true).setIncludeTxPowerLevel(true).build();//addManufacturerData(MANUFACTURER_ID, timestamp).build();
+                    byte[] timestamp;
+                    timestamp = getCurrentTimestampByteArray();
+                    data = (new AdvertiseData.Builder()).setIncludeDeviceName(true).setIncludeTxPowerLevel(true).addManufacturerData(MANUFACTURER_ID, timestamp).build();
                     advertisingSet.setAdvertisingData(data);
                 }
             }
@@ -473,9 +467,6 @@ public class MainActivity extends AppCompatActivity
                         bleDetectedDevices.add(packet);
                     }
 
-                   /* x_acc_view.setText(advDevname);
-                    y_acc_view.setText(String.valueOf(advDeviceRSSI));
-                    z_acc_view.setText("");*/
                     Log.d("Scanned results", "time: "+long_timestamp+ " Name: "+advDevname+" RSSI: "+advDeviceRSSI);
                 }
             }

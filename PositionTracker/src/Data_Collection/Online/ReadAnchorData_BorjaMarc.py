@@ -39,12 +39,12 @@ SERIAL_PORTS_DIR = '../serialPorts'
 # Indicates the (x,y,z) positions of each anchor LAUNCH1, LAUNCH2 and LAUNCH3.
 ANCHORS_POSITIONS = {
     "LAUNCH1": (1.25, 2.5, 0.5),
-    "LAUNCH2": (1.25, 2.5, 0.5),
-    "LAUNCH3": (1.25, 2.5, 0.5)
+    "LAUNCH2": (2.0, 1.5, 0.5),
+    "LAUNCH3": (3.25, 3.5, 0.5)
 }
 
 #Indicates the RSSI threshold from which greater values means <= 1m distance and lesser values means >1m distance.
-THRESHOLD_RSSI = -55
+THRESHOLD_RSSI = -100
 
 def set_SerialPorts_ids():
     global SP_NAMES
@@ -70,11 +70,10 @@ def initialize_DS():
     while i < len(SP_NAMES):
         lp_info = dict()
         lp_info['sp_name'] = SP_NAMES[i]
-        lp_info['json_filename'] = 'detectedDevs_' + SP_NAMES[i] + '.json'
+        lp_info['json_filename'] = 'output.json'#'detectedDevs_' + SP_NAMES[i] + '.json'
         lp_info['anchor_position'] = (ANCHORS_POSITIONS[SP_NAMES[i]][0], ANCHORS_POSITIONS[SP_NAMES[i]][1], ANCHORS_POSITIONS[SP_NAMES[i]][2])
 
         with open(lp_info['json_filename'], "w") as file:
-        #    json.dump([], file, indent=4)
             pass
 
         launchpadsInfo.append(lp_info)
@@ -121,27 +120,17 @@ def updateRssi(devName, rssiRaw, dataJS):
             i["RSSI"] = rssiRaw
 
 
-def addPacketToJSON(packet, lp_idx):
-    '''
-    with open(launchpadsInfo[lp_idx]['json_filename'], mode='r') as file:
-        try:
-            dataJS = json.load(file)
-        except json.decoder.JSONDecodeError:
-            with open(launchpadsInfo[lp_idx]['json_filename'], "a") as file2:
-                #deleteContent(launchpadsInfo[i]['json_filename'])
-                json.dump([], file2, indent=4)
-                file2.write(packet)
-            dataJS = json.load(file)
+def addPacketToJSON(packet):#, lp_idx):
 
-        dataJS.append(packet)
+    with open('output.json', 'a') as file:
+        file.write(json.dumps(packet))
+        file.write('\n')
 
-    #with open(launchpadsInfo[lp_idx]['json_filename'], "w") as file:
-     #   json.dump(dataJS, file, indent=4)
     '''
     with open(launchpadsInfo[lp_idx]['json_filename'], "a") as file:
         file.write(json.dumps(packet))
         file.write('\n')
-
+    '''
 
 def validData(anchorMAC, beaconId, beaconMAC, RSSI):
     if re.fullmatch("[a-f0-9]{12}", anchorMAC) is None:
@@ -229,7 +218,7 @@ def readingLaunchpadData(port, baud, lp_idx):
                         # add read data to JSON
                         packet = buildPacket(anchorMAC, beaconId, beaconMAC, RSSI, lp_idx)
                         print(packet)
-                        addPacketToJSON(packet, lp_idx)
+                        addPacketToJSON(packet)#, lp_idx)
                         sendToNodeRed(lp_idx)
 
         except SerialException:
@@ -265,7 +254,7 @@ def main():
 
     # Create three threads as follows
 
-    #TODO: Descomentar todo lo del try y cambiar a 1 SP_NAMES[0] y el ultimo 0 de los argumentos de t2
+    
     try:
         t1 = threading.Thread(target=readingLaunchpadData, args=(SP_NAMES[0],115200,0))
         t1.daemon = True  # thread dies when main thread (only non-daemon thread) exits.
