@@ -10,7 +10,7 @@
 - Ejecutan el proyecto **simple_observer_cc2640r2lp_app_Trabajo_BorjaMarc**
 
 ### Tags
-- Ejecutan la aplicación **positioningApp**
+- Ejecutan la aplicación **positioningApp_BorjaMarc**
 
 ### Script lectura puertos serie
 - Ejecutan script **ReadAnchorData_BorjaMarc.py**
