@@ -13,7 +13,7 @@
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_PROGRAM.CC2640R2F.ccxml.Texas Instruments XDS110 USB Debug Probe/Cortex_M3_0" value="${build_artifact:simple_observer_cc2640r2lp_app_Trabajo}"/>
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_PROJECT.CC2640R2F.ccxml.Texas Instruments XDS110 USB Debug Probe/Cortex_M3_0" value="simple_observer_cc2640r2lp_app_Trabajo"/>
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_TARGET_CONFIG" value="${target_config_active_default:simple_observer_cc2640r2lp_app_Trabajo}"/>
-<stringAttribute key="com.ti.ccstudio.debug.debugModel.MRU_PROGRAM.CC2640R2F.ccxml.Texas Instruments XDS110 USB Debug Probe/Cortex_M3_0" value="/home/aaron/Trabajo/interaction-tracker-updated/ccs-workspace-ok-ok/simple_observer_cc2640r2lp_app_Trabajo/FlashROM_StackLibrary/simple_observer_cc2640r2lp_app_Trabajo.out"/>
+<stringAttribute key="com.ti.ccstudio.debug.debugModel.MRU_PROGRAM.CC2640R2F.ccxml.Texas Instruments XDS110 USB Debug Probe/Cortex_M3_0" value="/home/aaron/Universidad/TFG/Software-v2/ccs-workspace-TFG/simple_observer_cc2640r2lp_app_TFG/FlashROM_StackLibrary/simple_observer_cc2640r2lp_app_Trabajo.out"/>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
 <listEntry value="/simple_observer_cc2640r2lp_app_Trabajo"/>
 </listAttribute>

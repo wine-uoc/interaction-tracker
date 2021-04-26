@@ -23,7 +23,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.util.Base64;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,6 +51,7 @@ import java.net.SocketException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -70,8 +70,10 @@ public class MainActivity extends AppCompatActivity
     private static String MAC_ADDR = null;
 
     //xml init
-    private TextView tagname;
-    private Button record;
+    private TextView detect;
+    private Button play;
+    private TextView problem;
+    private TextView time;
 
     //Node-RED vars
     private Thread noderedThread;
@@ -101,32 +103,18 @@ public class MainActivity extends AppCompatActivity
     final int REQUEST_PERMISSION_CODE = 1000;
     String extStore = Environment.getExternalStorageDirectory().getPath();
 
-    //Periodic Audio Recording
+    //Audio Recording
     private Thread recorderThread;
-    private AudioRecord periodicRecorder;
-    private int periodicBufferSize;
-    private byte[] periodicRecordData;
-    private static final int PERIODIC_RECORDER_SAMPLERATE = 32000;
-    private static final int PERIODIC_RECORDER_CHANNELS = AudioFormat.CHANNEL_IN_MONO;
-    private static final int PERIODIC_RECORDER_AUDIO_ENCODING = AudioFormat.ENCODING_PCM_8BIT;
-    public static Queue<Map<String, Object>> queuePeriodicAudioData;
-    private static final int PERIODIC_RECORDING_INTERVAL = 1000; //ms
-    private static final int PERIODIC_RECORDING_DURATION = 500; //ms
-    private final String periodicAudioFileName = "periodicAudioRecording";
-    File periodicAudioFile;
-
-    //Audio recording for voice recognition
-    private AudioRecord voicerecRecorder;
-    private int voicerecBufferSize;
-    private byte[] voicerecRecordData;
-    private static final int VOICEREC_RECORDER_SAMPLERATE = 32000;
-    private static final int VOICEREC_RECORDER_CHANNELS = AudioFormat.CHANNEL_IN_MONO;
-    private static final int VOICEREC_RECORDER_AUDIO_ENCODING = AudioFormat.ENCODING_PCM_8BIT;
-    public static  Queue<Map<String, Object>> queueVoicerecAudioData;
-    private static final int VOICEREC_RECORDING_DURATION = 3000; //ms
-    private final String voicerecAudioFileName = "voiceAudioRecording";
-    File voicerecAudioFile;
-
+    private AudioRecord recorder;
+    private int bufferSize;
+    private byte[] recordData;
+    private static final int RECORDER_SAMPLERATE = 32000;
+    private static final int RECORDER_CHANNELS = AudioFormat.CHANNEL_IN_MONO;
+    private static final int RECORDER_AUDIO_ENCODING = AudioFormat.ENCODING_PCM_8BIT;
+    public static Queue<Map<String, Object>> recordingData;
+    private static final int RECORDING_INTERVAL = 1000; //ms
+    private static final long RECORDING_DURATION = 500; //ms
+    File audioFile;
 
 
     @Override
@@ -148,8 +136,16 @@ public class MainActivity extends AppCompatActivity
         }
 
         bleDetectedDevices = new LinkedList<Map<String, Object>>();
-        queuePeriodicAudioData = new LinkedList<Map<String, Object>>();
-        queueVoicerecAudioData = new LinkedList<Map<String, Object>>();
+        recordingData = new LinkedList<Map<String, Object>>();
+
+        detect = findViewById(R.id.detection);
+        problem = findViewById(R.id.problem);
+        play = findViewById(R.id.play);
+        time = findViewById(R.id.time);
+
+        problem.setText("problem");
+        detect.setText("detect");
+        time.setText("time");
 
         AudioRecorderThread();
 
@@ -157,22 +153,6 @@ public class MainActivity extends AppCompatActivity
         BLEAdvertisingThread();
         BLEScanningThread();
         nodeREDThread();
-
-        tagname = findViewById(R.id.tagname);
-        record = findViewById(R.id.record);
-        tagname.setText(DEVNAME);
-
-        record.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                initializeAudioRecorder(voicerecAudioFileName, VOICEREC_RECORDING_DURATION, VOICEREC_RECORDER_AUDIO_ENCODING,VOICEREC_RECORDER_SAMPLERATE,VOICEREC_RECORDER_CHANNELS);
-                voicerecAudioFile = new File(extStore, voicerecAudioFileName);
-                String encodedAudio = encodeAudioDataFromFile(voicerecAudioFile);
-                addEncodedAudioToQueue(encodedAudio, queueVoicerecAudioData, false);
-                deleteAudioFile(voicerecAudioFile);
-            }
-        });
-
 
         try {
             Thread.sleep(100);
@@ -191,39 +171,34 @@ public class MainActivity extends AppCompatActivity
                     @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
                     public void run() {
-                        initializeAudioRecorder(periodicAudioFileName, PERIODIC_RECORDING_DURATION, PERIODIC_RECORDER_AUDIO_ENCODING, PERIODIC_RECORDER_SAMPLERATE, PERIODIC_RECORDER_CHANNELS);
-                        periodicAudioFile = new File(extStore, periodicAudioFileName);
-                        String encodedAudio = encodeAudioDataFromFile(periodicAudioFile);
-                        addEncodedAudioToQueue(encodedAudio, queuePeriodicAudioData, false);
-                        deleteAudioFile(periodicAudioFile);
+                        initializeAudioRecorder();
                     }
-                }, 0, (long) PERIODIC_RECORDING_INTERVAL);
+                }, 0, RECORDING_INTERVAL);
             }
         }, "Media recording thread");
         recorderThread.start();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private void initializeAudioRecorder(String audioFileName, int duration, int audioEncoding, int samplerate, int channels) {
+    private void initializeAudioRecorder() {
+        audioFile = new File(extStore, "audioRecorded");
 
-        File audioFile = new File(extStore, audioFileName);
+        bufferSize = AudioRecord.getMinBufferSize(RECORDER_SAMPLERATE, RECORDER_CHANNELS, RECORDER_AUDIO_ENCODING);
 
-        int bufferSize = AudioRecord.getMinBufferSize(samplerate, channels, audioEncoding);
-
-        AudioRecord recorder = new AudioRecord.Builder()
+        recorder = new AudioRecord.Builder()
                 .setAudioSource(MediaRecorder.AudioSource.MIC)
                 .setAudioFormat(new AudioFormat.Builder()
-                        .setEncoding(audioEncoding)
-                        .setSampleRate(samplerate)
-                        .setChannelMask(channels)
+                        .setEncoding(RECORDER_AUDIO_ENCODING)
+                        .setSampleRate(RECORDER_SAMPLERATE)
+                        .setChannelMask(RECORDER_CHANNELS)
                         .build())
-                .setBufferSizeInBytes(samplerate * 2)
+                .setBufferSizeInBytes(RECORDER_SAMPLERATE * 2)
                 .build();
 
-        startRecording(audioFile, recorder, bufferSize, duration);
+        startRecording();
     }
 
-    private void startRecording(File audioFile, AudioRecord recorder, int bufferSize, int duration) {
+    private void startRecording() {
 
         if (recorder.getState() == AudioRecord.STATE_INITIALIZED) {
             recorder.startRecording();
@@ -233,19 +208,27 @@ public class MainActivity extends AppCompatActivity
             long init_time = System.currentTimeMillis();
             while (isRecording){
                 long curr_time = System.currentTimeMillis();
-                if (curr_time - init_time > duration){
+                if (curr_time - init_time > RECORDING_DURATION){
                     isRecording = false;
                 }
                 byte[] audioData = new byte[bufferSize];
                 int read_bytes = recorder.read(audioData, 0, bufferSize);
                 Log.i("test", "read bytes from audioData: "+read_bytes);
-                writeAudioDataToFile(audioFile, audioData, read_bytes);
+                writeAudioDataToFile(audioData, read_bytes);
+                audioData = null;
             }
-            stopRecording(recorder, audioFile);
+            stopRecording();
         }
+        /*Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                stopRecording();
+            }
+        }, RECORDING_DURATION);*/
     }
 
-    private void writeAudioDataToFile(File audioFile, byte[] audioData, int length) {
+    private void writeAudioDataToFile(byte[] audioData, int length) {
         FileOutputStream fos = null;
         try {
             fos = new FileOutputStream(audioFile, true);
@@ -256,13 +239,15 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    private void stopRecording(AudioRecord recorder, File audioFile) {
+    private void stopRecording() {
         recorder.stop();
         recorder.release();
         recorder = null;
+
+        encodeAudioDataFromFile();
     }
 
-    private String encodeAudioDataFromFile(File audioFile) {
+    private void encodeAudioDataFromFile() {
         //Encode audio data from file and store into recordingData
 
         int file_size = (int) audioFile.length();
@@ -271,43 +256,24 @@ public class MainActivity extends AppCompatActivity
         FileInputStream fis = null;
         try {
             fis = new FileInputStream(audioFile);
-            fis.read(buff, 0, file_size);
+            fis.read(buff,0,file_size);
         } catch (IOException e) {
             e.printStackTrace();
         }
         String b64 = Base64.encodeToString(buff, Base64.DEFAULT);
-        return b64;
-    }
 
-    /**
-     * @param encodedAudio Encoded audio
-     * @param queue queue in which the audio and other attributes have to be added to
-     * @param isPeriodicAudio true if audio recording is periodic; false if audio recording is used to identify the tag's owner.
-     */
-    private void addEncodedAudioToQueue(String encodedAudio, Queue<Map<String, Object>> queue, boolean isPeriodicAudio){
-        //insert encoded audio data in a queue to be sent to Node-RED later
-
+        //insert raw audio data in a queue to be sent to Node-RED later
         HashMap<String, Object> element = new HashMap<>();
-
         element.put("timestamp", System.currentTimeMillis());
         element.put("recorderDevice", DEVNAME);
-        element.put("audioData", encodedAudio);
+        element.put("audioData", b64);
+        recordingData.add(element);
 
-        if (isPeriodicAudio) {
-            //Audio purpose is to check whether the tag's owner is speaking or not.
-            element.put("identification", 0);
-        }
-        else {
-            //Audio purpose is to identify the tag's owner by analyzing the audio features.
-            element.put("identification", 1);
-        }
-        queue.add(element);
+        Log.d("test", "file size: "+String.valueOf(file_size));
 
-        //Log.d("test", "file size: "+ file_size);
-    }
-
-    private void deleteAudioFile (File audioFile){
-        audioFile.delete();
+        //Delete audio file
+        boolean ret = audioFile.delete();
+        Log.i("test", "audioFile deleted?: "+ret);
     }
 
     private void nodeREDThread() {
@@ -647,52 +613,8 @@ public class MainActivity extends AppCompatActivity
             }
         }
 
-        while (!queuePeriodicAudioData.isEmpty()){
-            Map<String, Object> audioClip = queuePeriodicAudioData.poll();
-
-            //Build the HTTP request parameters
-            StringBuilder postData = new StringBuilder();
-            for (Map.Entry<String, Object> dataPair : audioClip.entrySet()) {
-                if (postData.length() != 0) postData.append('&');
-                postData.append(URLEncoder.encode(dataPair.getKey(), "UTF-8"));
-                postData.append('=');
-                postData.append(URLEncoder.encode(String.valueOf(dataPair.getValue()), "UTF-8"));
-            }
-
-            String urlParameters = postData.toString();
-            //Create connection
-            URL url = new URL(targetURL);
-            connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("POST");
-            connection.setRequestProperty("Content-Type",
-                    "application/x-www-form-urlencoded");
-            connection.setRequestProperty("Content-Length",
-                    Integer.toString(urlParameters.getBytes().length));
-            connection.setRequestProperty("Content-Language", "en-US");
-
-            connection.setUseCaches(false);
-            connection.setDoOutput(true);
-
-            //Send request
-            DataOutputStream wr = new DataOutputStream(
-                    connection.getOutputStream());
-            wr.writeBytes(urlParameters);
-            wr.close();
-
-            //Get Response
-            InputStream is = connection.getInputStream();
-            BufferedReader rd = new BufferedReader(new InputStreamReader(is));
-            StringBuilder response = new StringBuilder(); // or StringBuffer if Java version 5+
-            String line;
-            while ((line = rd.readLine()) != null) {
-                response.append(line);
-                response.append('\r');
-            }
-            rd.close();
-            // return response.toString();
-        }
-        while (!queueVoicerecAudioData.isEmpty()){
-            Map<String, Object> audioClip = queueVoicerecAudioData.poll();
+        while (!recordingData.isEmpty()){
+            Map<String, Object> audioClip = recordingData.poll();
 
             //Build the HTTP request parameters
             StringBuilder postData = new StringBuilder();
