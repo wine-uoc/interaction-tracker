@@ -1,4 +1,4 @@
-package com.example.beaconjob_borjamarc;
+package com.example.positioningapp;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -29,6 +29,8 @@ import androidx.core.content.ContextCompat;
 
 //import com.android.volley.RequestQueue;
 //import com.android.volley.toolbox.Volley;
+
+import com.example.beaconjob_borjamarc.QuuppaManufacturerData;
 
 import java.io.BufferedReader;
 import java.io.File;
