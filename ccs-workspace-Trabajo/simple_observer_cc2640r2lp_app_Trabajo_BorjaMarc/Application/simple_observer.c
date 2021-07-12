@@ -87,7 +87,7 @@
 #define DEFAULT_SCAN_DURATION                 100
 
 //Maximum device name length
-#define DEV_NAME_MAX_STR_LEN                  16
+#define DEV_NAME_MAX_STR_LEN                  12
 
 
 #define MAC_ADDRESS_LEN                       6
@@ -144,14 +144,15 @@ typedef struct
 typedef struct
 {
   uint8 addr [MAC_ADDRESS_LEN];
-  char devName [DEV_NAME_MAX_STR_LEN];
   int8 rssi;
-} devnameRSSIinfo;
+} beaconInfo_t;
 
-/*********************
+
 /*********************************************************************
  * GLOBAL VARIABLES
  */
+
+uint64_t macAddrNetId = 0xC1116E622D;
 
 // Display Interface
 Display_Handle dispHandle = NULL;
@@ -169,7 +170,7 @@ Display_Handle dispHandle = NULL;
  *
  */
 
-static devnameRSSIinfo tupleInfo[DEFAULT_MAX_SCAN_RES];
+static beaconInfo_t beaconInfo[DEFAULT_MAX_SCAN_RES];
 
 // Entity ID globally used to check for source and/or destination of messages
 static ICall_EntityID selfEntity;
@@ -189,13 +190,11 @@ Char sboTaskStack[SBO_TASK_STACK_SIZE];
 
 // Number of scan results and scan result index
 static uint8 scanRes = 0 ;
-static int8 scanIdx = -1;
 static uint8_t scanDevices = 0;
 // Scan result list
 static gapDevRec_t devList[DEFAULT_MAX_SCAN_RES];
 
 // Scanning state
-static uint8 scanning = FALSE;
 
 static uint32_t line_pr = 0;
 /*********************************************************************
@@ -208,16 +207,17 @@ static void SimpleObserver_processStackMsg(ICall_Hdr *pMsg);
 static void SimpleObserver_processAppMsg(sboEvt_t *pMsg);
 static void SimpleObserver_processRoleEvent(gapObserverRoleEvent_t *pEvent);
 static void SimpleObserver_addDeviceInfo(uint8 *pAddr, uint8 addrType);
-int isValidDevice(gapDeviceInfoEvent_t *devInfo, char* devname, uint8_t* dataLen);
 
 static uint8_t SimpleObserver_eventCB(gapObserverRoleEvent_t *pEvent);
 
 static uint8_t SimpleObserver_enqueueMsg(uint8_t event, uint8_t status,
                                             uint8_t *pData);
-static void addAddrDeviceRssiInfo (char *devname, uint8_t data_len, int8 rssi, uint8* addr);
-void SimpleObserver_initKeys(void);
-//void SimpleObserver_keyChangeHandler(uint8 keys);
+void saveBeacon (gapDeviceInfoEvent_t *devInfo);
+int isValidDevice(gapDeviceInfoEvent_t *devInfo);
 void printScannedDevicesInfo();
+
+void SimpleObserver_initKeys(void);
+
 /*********************************************************************
  * PROFILE CALLBACKS
  */
@@ -305,6 +305,9 @@ void SimpleObserver_init(void)
   // Setup GAP
   GAP_SetParamValue(TGAP_GEN_DISC_SCAN, DEFAULT_SCAN_DURATION);
   GAP_SetParamValue(TGAP_LIM_DISC_SCAN, DEFAULT_SCAN_DURATION);
+
+  //only channel 37
+  GAP_SetParamValue(TGAP_SET_SCAN_CHAN, GAP_ADV_CHAN_37);
 
   // Start the Device
   VOID GAPObserverRole_StartDevice((gapObserverRoleCB_t *)&simpleRoleCB);
@@ -457,16 +460,12 @@ static void SimpleObserver_processRoleEvent(gapObserverRoleEvent_t *pEvent)
 
         }
         else {
-           char* devname = calloc(16, sizeof(char));
-           uint8* macAddr = calloc(MAC_ADDRESS_LEN, sizeof(uint8));
-           uint8 dataLen;
-           if (isValidDevice(&pEvent->deviceInfo, devname, &dataLen)){
-              memcpy(macAddr, pEvent->deviceInfo.addr, MAC_ADDRESS_LEN);
-              addAddrDeviceRssiInfo(devname, dataLen, pEvent->deviceInfo.rssi, macAddr);
+
+           if (isValidDevice(&pEvent->deviceInfo)){
+              //memcpy(macAddr, pEvent->deviceInfo.addr, MAC_ADDRESS_LEN);
+              saveBeacon(&pEvent->deviceInfo);
               memset(pEvent->deviceInfo.pEvtData, 0, pEvent->deviceInfo.dataLen);
            }
-           free(devname);
-           free(macAddr);
         }
       }
       break;
@@ -587,31 +586,26 @@ void printScannedDevicesInfo(){
                                                       anchorMAC_LO >> 24, (anchorMAC_LO >> 16) & 0x000000FF,
                                                       (anchorMAC_LO >> 8) & 0x000000FF, anchorMAC_LO & 0x000000FF);
 
-
    for (i = 0; i < scanDevices; ++i){
        Display_clear(dispHandle);
 
        uint32_t beaconMAC_LO;
        uint16_t beaconMAC_HI;
 
-       char devname[16];
-
-       memset(devname, '\0', 16);
-       memcpy(devname, tupleInfo[i].devName, 16);
-
        memset(&beaconMAC_LO, '\0', sizeof(uint32_t));
-       memcpy(&beaconMAC_LO, tupleInfo[i].addr, 4);
+       memcpy(&beaconMAC_LO, beaconInfo[i].addr, 4);
 
        memset(&beaconMAC_HI, '\0', sizeof(uint16_t));
-       memcpy(&beaconMAC_HI, &tupleInfo[i].addr[4], 2);
+       memcpy(&beaconMAC_HI, &beaconInfo[i].addr[4], 2);
 
 
       //Display the anchorMAC, beaconId (TARGETDEV-...), beaconMAC and RSSI
-      Display_print5(dispHandle, line_pr , 0 ,"%s %s %02x%02x %d \n", anchorMAC_str, devname, beaconMAC_HI, beaconMAC_LO, tupleInfo[i].rssi);
+       //Display_print4(dispHandle, line_pr , 0 ,"%s %02x%02x %d \n", anchorMAC_str, beaconMAC_HI, beaconMAC_LO, beaconInfo[i].rssi);
+      Display_doPrintf(dispHandle, line_pr , 0 ,"%s %02x%02x %02x%02x %d \n", anchorMAC_str, beaconMAC_HI, beaconMAC_LO, beaconMAC_HI, beaconMAC_LO, beaconInfo[i].rssi);
 
    }
 
-   memset(tupleInfo, '\0', sizeof(devnameRSSIinfo)*scanDevices);
+   memset(beaconInfo, '\0', sizeof(beaconInfo_t)*scanDevices);
    scanRes = 0;
    scanDevices = 0;
 
@@ -623,7 +617,7 @@ static void SimpleObserver_clockHandler(UArg arg){
     Event_post(syncEvent, arg);
 }
 
-static void addAddrDeviceRssiInfo (char *devname, uint8_t data_len, int8 rssi, uint8 *addr){
+void saveBeacon (gapDeviceInfoEvent_t *devInfo){
       uint8_t i;
 
       //If found device is the target device
@@ -634,17 +628,16 @@ static void addAddrDeviceRssiInfo (char *devname, uint8_t data_len, int8 rssi, u
         // Check if device is already in scan results
         for (i = 0; i < scanDevices; i++)
         {
-           if (memcmp(devname, tupleInfo[i].devName , data_len) == 0)
+           if (memcmp(devInfo->addr, beaconInfo[i].addr, MAC_ADDRESS_LEN) == 0)
           {
-             tupleInfo[i].rssi = rssi;
+             beaconInfo[i].rssi = devInfo->rssi;
              return;
           }
         }
 
         // Add devName to scan result list
-        memcpy(tupleInfo[scanDevices].devName, devname, data_len);
-        tupleInfo[scanDevices].rssi = rssi;
-        memcpy(tupleInfo[scanDevices].addr, addr, MAC_ADDRESS_LEN);
+        beaconInfo[scanDevices].rssi = devInfo->rssi;
+        memcpy(beaconInfo[scanDevices].addr, devInfo->addr, MAC_ADDRESS_LEN);
 
         // Increment scan result count
         ++scanDevices;
@@ -655,32 +648,28 @@ static void addAddrDeviceRssiInfo (char *devname, uint8_t data_len, int8 rssi, u
  * isValidDevice returns true when the detected device is either a target mobile or a launchpad.
  * Otherwise returns false.
  */
-int isValidDevice(gapDeviceInfoEvent_t *devInfo, char* devname, uint8_t* dataLen){
-    char *found_mob = strstr((char*) devInfo->pEvtData, "TARGETDEV-");
-    char *found_anc = strstr((char*) devInfo->pEvtData, "ANC-");
+int isValidDevice(gapDeviceInfoEvent_t *devInfo){
 
-    if (found_mob != 0){
-        int i;
-        for (i = 0; i < 16; ++i){
-            devname[i] = *(found_mob+i);
-        }
-
-        *dataLen = 16;
+    int valid = 1;
+    int i;
+    for (i = 5; i >= 1; --i){
+        //printf("macAddrNetId: %x, addr: %x\n", (macAddrNetId >> 8*(i-1)) & 0xff, devInfo->addr[i]);
+        valid *= (devInfo->addr[i] == (uint8)(macAddrNetId >> 8*(i-1)) & 0xff);
+    }
+    return valid;
+    /*
+    if (devInfo->addr[5] == 0xC1 && devInfo->addr[4] == 0x11 && devInfo->addr[3] == 0x6E && devInfo->addr[2] == 0x62 && devInfo->addr[1] == 0x2D){
+        //devname = "a4da22e1ea";
+        char var_byte[1];
+        sprintf(var_byte, "%x", devInfo->addr[5]);
+        //strcat(devname, var_byte);
 
         return 1;
     }
-    else if (found_anc != 0){
-
-        int i;
-        for (i = 0; i < 8; ++i){
-            devname[i] = *(found_anc+i);
-        }
-
-        *dataLen = 8;
-
-        return 1;
-    }
-    else return 0;
+    else{
+        return 0;
+    }*/
+    //return 1;
 }
 /*********************************************************************
 *********************************************************************/

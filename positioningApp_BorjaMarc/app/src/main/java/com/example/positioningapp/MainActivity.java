@@ -1,4 +1,4 @@
-package com.example.positioningapp;
+package com.example.beaconjob_borjamarc;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -8,20 +8,13 @@ import android.bluetooth.le.AdvertisingSet;
 import android.bluetooth.le.AdvertisingSetCallback;
 import android.bluetooth.le.AdvertisingSetParameters;
 import android.bluetooth.le.BluetoothLeAdvertiser;
-import android.bluetooth.le.BluetoothLeScanner;
-import android.bluetooth.le.ScanCallback;
-import android.bluetooth.le.ScanResult;
-import android.bluetooth.le.ScanSettings;
+import android.bluetooth.le.PeriodicAdvertisingParameters;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.media.AudioFormat;
-import android.media.AudioRecord;
-import android.media.MediaRecorder;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.util.Base64;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
@@ -38,84 +31,43 @@ import androidx.core.content.ContextCompat;
 //import com.android.volley.toolbox.Volley;
 
 import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.NetworkInterface;
-import java.net.SocketException;
-import java.net.URL;
-import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Queue;
 import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
 
 
 public class MainActivity extends AppCompatActivity
 {
 
-    private static String DEVNAME = null;
-    private static String MAC_ADDR = null;
 
+    private static String DEVNAME = null;
     //xml init
     private TextView detect;
     private Button play;
     private TextView problem;
     private TextView time;
-
-    //Node-RED vars
-    private Thread noderedThread;
-    private String IP_ADDR = "192.168.1.134";
-    private Timer t;
-    private static final long POST_INTERVAL = 1000; //ms
+    private TextView x_acc_view;
+    private TextView y_acc_view;
+    private TextView z_acc_view;
 
     //BLE vars
     BluetoothAdapter bluetoothAdapter;
-    private Queue<Map<String, Object>> bleDetectedDevices;
-    private int MANUFACTURER_ID = 15;
 
     //Advertising
-    private Thread advertisingThread;
     private BluetoothLeAdvertiser advertiser;
     private AdvertisingSetParameters parameters;
+    private PeriodicAdvertisingParameters periodic_parameters;
     private AdvertiseData data;
+    private AdvertiseData periodic_data;
     private AdvertisingSetCallback callback;
 
-    //Scanning
-    private Thread scanningThread;
-    private BluetoothLeScanner scanner;
-    private ScanCallback scanCallback;
-    private ScanSettings scanSettings;
-
-    //file vars
+    //file error statement
     final int REQUEST_PERMISSION_CODE = 1000;
     String extStore = Environment.getExternalStorageDirectory().getPath();
-
-    //Audio Recording
-    private Thread recorderThread;
-    private AudioRecord recorder;
-    private int bufferSize;
-    private byte[] recordData;
-    private static final int RECORDER_SAMPLERATE = 32000;
-    private static final int RECORDER_CHANNELS = AudioFormat.CHANNEL_IN_MONO;
-    private static final int RECORDER_AUDIO_ENCODING = AudioFormat.ENCODING_PCM_8BIT;
-    public static Queue<Map<String, Object>> recordingData;
-    private static final int RECORDING_INTERVAL = 1000; //ms
-    private static final long RECORDING_DURATION = 500; //ms
-    File audioFile;
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -135,24 +87,23 @@ public class MainActivity extends AppCompatActivity
             RequestPermission();
         }
 
-        bleDetectedDevices = new LinkedList<Map<String, Object>>();
-        recordingData = new LinkedList<Map<String, Object>>();
+
+        initializeBluetoothConfig();
+        setBLEAdvertising();
 
         detect = findViewById(R.id.detection);
         problem = findViewById(R.id.problem);
         play = findViewById(R.id.play);
         time = findViewById(R.id.time);
+        x_acc_view = findViewById(R.id.x_acc_view);
+        y_acc_view = findViewById(R.id.y_acc_view);
+        z_acc_view = findViewById(R.id.z_acc_view);
 
         problem.setText("problem");
         detect.setText("detect");
         time.setText("time");
 
-        AudioRecorderThread();
 
-        initializeBluetoothConfig();
-        BLEAdvertisingThread();
-        BLEScanningThread();
-        nodeREDThread();
 
         try {
             Thread.sleep(100);
@@ -162,141 +113,7 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    private void AudioRecorderThread() {
-        recorderThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                t = new Timer();
-                t.schedule(new TimerTask() {
-                    @RequiresApi(api = Build.VERSION_CODES.O)
-                    @Override
-                    public void run() {
-                        initializeAudioRecorder();
-                    }
-                }, 0, RECORDING_INTERVAL);
-            }
-        }, "Media recording thread");
-        recorderThread.start();
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    private void initializeAudioRecorder() {
-        audioFile = new File(extStore, "audioRecorded");
-
-        bufferSize = AudioRecord.getMinBufferSize(RECORDER_SAMPLERATE, RECORDER_CHANNELS, RECORDER_AUDIO_ENCODING);
-
-        recorder = new AudioRecord.Builder()
-                .setAudioSource(MediaRecorder.AudioSource.MIC)
-                .setAudioFormat(new AudioFormat.Builder()
-                        .setEncoding(RECORDER_AUDIO_ENCODING)
-                        .setSampleRate(RECORDER_SAMPLERATE)
-                        .setChannelMask(RECORDER_CHANNELS)
-                        .build())
-                .setBufferSizeInBytes(RECORDER_SAMPLERATE * 2)
-                .build();
-
-        startRecording();
-    }
-
-    private void startRecording() {
-
-        if (recorder.getState() == AudioRecord.STATE_INITIALIZED) {
-            recorder.startRecording();
-            Log.i("info", "recording started!");
-
-            boolean isRecording = true;
-            long init_time = System.currentTimeMillis();
-            while (isRecording){
-                long curr_time = System.currentTimeMillis();
-                if (curr_time - init_time > RECORDING_DURATION){
-                    isRecording = false;
-                }
-                byte[] audioData = new byte[bufferSize];
-                int read_bytes = recorder.read(audioData, 0, bufferSize);
-                Log.i("test", "read bytes from audioData: "+read_bytes);
-                writeAudioDataToFile(audioData, read_bytes);
-                audioData = null;
-            }
-            stopRecording();
-        }
-        /*Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                stopRecording();
-            }
-        }, RECORDING_DURATION);*/
-    }
-
-    private void writeAudioDataToFile(byte[] audioData, int length) {
-        FileOutputStream fos = null;
-        try {
-            fos = new FileOutputStream(audioFile, true);
-            fos.write(audioData, 0, length);
-            fos.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void stopRecording() {
-        recorder.stop();
-        recorder.release();
-        recorder = null;
-
-        encodeAudioDataFromFile();
-    }
-
-    private void encodeAudioDataFromFile() {
-        //Encode audio data from file and store into recordingData
-
-        int file_size = (int) audioFile.length();
-        byte[] buff = new byte[file_size];
-
-        FileInputStream fis = null;
-        try {
-            fis = new FileInputStream(audioFile);
-            fis.read(buff,0,file_size);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        String b64 = Base64.encodeToString(buff, Base64.DEFAULT);
-
-        //insert raw audio data in a queue to be sent to Node-RED later
-        HashMap<String, Object> element = new HashMap<>();
-        element.put("timestamp", System.currentTimeMillis());
-        element.put("recorderDevice", DEVNAME);
-        element.put("audioData", b64);
-        recordingData.add(element);
-
-        Log.d("test", "file size: "+String.valueOf(file_size));
-
-        //Delete audio file
-        boolean ret = audioFile.delete();
-        Log.i("test", "audioFile deleted?: "+ret);
-    }
-
-    private void nodeREDThread() {
-        noderedThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                t = new Timer();
-                t.schedule(new TimerTask() {
-                    @Override
-                    public void run() {
-                        try {
-                            sendDataToNodeRED();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, 0, POST_INTERVAL);
-            }
-        }, "BLE advertising thread");
-        noderedThread.start();
-    }
-
-    private byte[] getCurrentTimestampByteArray(){
+    private byte[] getCurrentTimestamp (){
         long unixTime = System.currentTimeMillis();
 
         byte[] productionDate = new byte[]{
@@ -311,23 +128,20 @@ public class MainActivity extends AppCompatActivity
         return productionDate;
     }
 
-    private long getCurrentTimestampLong (byte[] ts_b){
-        if (ts_b == null){
-            return -1;
-        }
-        else {
-            return ((long) (ts_b[0] & 0xFF) << 40) |
-                    ((long) (ts_b[1] & 0xFF) << 32) |
-                    ((long) (ts_b[2] & 0xFF) << 24) |
-                    ((long) (ts_b[3] & 0xFF) << 16) |
-                    ((long) (ts_b[4] & 0xFF) << 8) |
-                    ((long) (ts_b[5] & 0xFF));
-        }
-    }
 
     @SuppressLint("NewApi")
     private void initializeBluetoothConfig() {
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+
+        // Check if all features are supported
+        if (!bluetoothAdapter.isLe2MPhySupported()) {
+            Log.e("error", "2M PHY not supported!");
+            return;
+        }
+        if (!bluetoothAdapter.isLeExtendedAdvertisingSupported()) {
+            Log.e("error", "LE Extended Advertising not supported!");
+            return;
+        }
 
         //Enables bluetooth if disabled
         if (!bluetoothAdapter.isEnabled()) {
@@ -337,163 +151,87 @@ public class MainActivity extends AppCompatActivity
         }
         try {
             DEVNAME = getAdvertisingDeviceName();
-            MAC_ADDR = getMacAddress();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        bluetoothAdapter.setName(DEVNAME);
+        boolean a = bluetoothAdapter.setName(DEVNAME);
+        Log.d("ble adapter name set: ", String.valueOf(a));
+
     }
 
-    private void BLEAdvertisingThread() {
-        advertisingThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                setBLEAdvertising();
-            }
-        }, "BLE advertising thread");
-
-        advertisingThread.start();
-    }
-
-    private void BLEScanningThread() {
-        scanningThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                setBLEScanning();
-            }
-        }, "BLE scanning thread");
-
-        scanningThread.start();
-    }
-
-    @SuppressLint("NewApi")
-    private void setBLEAdvertising(){
+    //vars relating to BLE
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void setBLEAdvertising(){
 
         advertiser = bluetoothAdapter.getBluetoothLeAdvertiser();
+
 
         parameters = (new AdvertisingSetParameters.Builder())
                 .setLegacyMode(true) // No cambiar a false! Si no, deja de funcionar.
                 .setConnectable(false)
-                .setInterval(160) //Advertising interval: 160 = 100ms
+                .setInterval(160) //Advertising interval ~ 100ms
                 .setTxPowerLevel(AdvertisingSetParameters.TX_POWER_MAX)
                 .build();
 
-        byte[] productionDate = new byte[4];
+        /*periodic_parameters = (new PeriodicAdvertisingParameters.Builder())
+                .setIncludeTxPower(true)
+                .setInterval(80)
+                .build();*/
 
-        productionDate = getCurrentTimestampByteArray();
+        byte[] manufacturerData;
+        QuuppaManufacturerData quuppa = new QuuppaManufacturerData();
+        manufacturerData = quuppa.toBytes();
 
-        data = (new AdvertiseData.Builder()).setIncludeDeviceName(true).setIncludeTxPowerLevel(true).addManufacturerData(MANUFACTURER_ID, productionDate).build();
+        //productionDate = getCurrentTimestamp();
 
+        data = (new AdvertiseData.Builder()).setIncludeDeviceName(false).setIncludeTxPowerLevel(false).addManufacturerData(quuppa.getCompanyId(), manufacturerData).build();
         callback = new AdvertisingSetCallback() {
 
             @Override
             //AdvertisingSet started
             public void onAdvertisingSetStarted(AdvertisingSet advertisingSet, int txPower, int status) {
-                Log.i("test", "onAdvertisingSetStarted(): txPower:" + txPower + " , status: "
-                        + status);
+                //Log.i("test", "onAdvertisingSetStarted(): txPower:" + txPower + " , status: "
+                 //       + status);
 
-                byte[] timestamp;
-                timestamp = getCurrentTimestampByteArray();
+                //byte[] timestamp = new byte[4];
+                //timestamp = getCurrentTimestamp();
 
-                data = (new AdvertiseData.Builder()).setIncludeDeviceName(true).setIncludeTxPowerLevel(true).addManufacturerData(MANUFACTURER_ID, timestamp).build();
-                advertisingSet.setAdvertisingData(data);
+                //data = (new AdvertiseData.Builder()).setIncludeDeviceName(true).setIncludeTxPowerLevel(true).addManufacturerData(0x00C7, timestamp).build();
+                //advertisingSet.setAdvertisingData(data);
             }
 
             @Override
             //advertising changed to enable or disable
             public void onAdvertisingEnabled(AdvertisingSet advertisingSet, boolean enable, int status) {
-                Log.i("test", "onAdvertisingEnabled(): enable:" + enable + " , status: " + status);
-                if (!enable){
-                    byte[] timestamp;
-                    timestamp = getCurrentTimestampByteArray();
-                    data = (new AdvertiseData.Builder()).setIncludeDeviceName(true).setIncludeTxPowerLevel(true).addManufacturerData(MANUFACTURER_ID, timestamp).build();
+                //Log.i("test", "onAdvertisingEnabled(): enable:" + enable + " , status: "
+                //        + status);
+                /*if (!enable){
+                    byte[] timestamp = new byte[4];
+                    timestamp = getCurrentTimestamp();
+                    data = (new AdvertiseData.Builder()).setIncludeDeviceName(true).setIncludeTxPowerLevel(true).addManufacturerData(0x00C7, timestamp).build();
                     advertisingSet.setAdvertisingData(data);
-                }
+                }*/
             }
 
             @Override
             //Advertising data has been set
             public void onAdvertisingDataSet(AdvertisingSet advertisingSet, int status) {
-                Log.i("test", "onAdvertisingDataSet(): status:"
-                        + status);
-                advertisingSet.enableAdvertising(true,30,0);
+                //Log.i("test", "onAdvertisingDataSet(): status:"
+                //        + status);
+                //advertisingSet.enableAdvertising(true,10,0);
             }
 
 
             @Override
             public void onAdvertisingSetStopped(AdvertisingSet advertisingSet) {
-               Log.i("test", "onAdvertisingSetStopped()");
+               // Log.i("test", "onAdvertisingSetStopped()");
             }
         };
-        advertiser.startAdvertisingSet(parameters, data, null, null, null, 30, 0, callback);
+        //periodic_data = (new AdvertiseData.Builder()).addManufacturerData(15, productionDate).build();
+        //advertiser.startAdvertising(parameters, data, null, null, data, callback);
+        advertiser.startAdvertisingSet(parameters, data, null, null, null, 0, 0, callback);
 
-    }
-
-    @SuppressLint("NewApi")
-    private void setBLEScanning() {
-        scanner = bluetoothAdapter.getBluetoothLeScanner();
-        scanSettings = (new ScanSettings.Builder())
-                .setCallbackType(ScanSettings.CALLBACK_TYPE_ALL_MATCHES)
-                .setMatchMode(ScanSettings.MATCH_MODE_AGGRESSIVE)
-                .setScanMode( ScanSettings.SCAN_MODE_LOW_LATENCY)
-                .setNumOfMatches(ScanSettings.MATCH_NUM_ONE_ADVERTISEMENT)
-                .build();
-        scanCallback = new ScanCallback() {
-            @SuppressLint("LongLogTag")
-            @Override
-            public void onScanResult(int callbackType, ScanResult result) {
-                //super.onScanResult(callbackType, result);
-
-                String advDevname = result.getDevice().getName();
-
-
-                if (isValidBLEdevName(advDevname)/* && timeToUpdateValue(dstDevName, dstDevRSSI)*/){
-                    //lo añadimos al Map para ser enviado posteriormente a NodeRED
-                    int advDeviceRSSI = result.getRssi();
-                    byte[] timestamp = result.getScanRecord().getManufacturerSpecificData(MANUFACTURER_ID);
-                    long long_timestamp = getCurrentTimestampLong(timestamp);
-
-                    //If packet contains a "timestamp" field in data, add it to detected devices.
-                    if (long_timestamp != -1) {
-
-                        HashMap<String, Object> packet = new HashMap<>();
-
-                        packet.put("scanDevice", DEVNAME);
-                        packet.put("timestamp", long_timestamp);
-                        packet.put("advDevice", advDevname);
-                        packet.put("advDeviceRSSI", advDeviceRSSI);
-
-                        bleDetectedDevices.add(packet);
-                    }
-
-                    Log.d("Scanned results", "time: "+long_timestamp+ " Name: "+advDevname+" RSSI: "+advDeviceRSSI);
-                }
-            }
-
-            @Override
-            public void onBatchScanResults(List<ScanResult> results) {
-                super.onBatchScanResults(results);
-            }
-
-            @Override
-            public void onScanFailed(int errorCode) {
-                super.onScanFailed(errorCode);
-            }
-        };
-
-        scanner.startScan(null,  scanSettings, scanCallback);
-        Log.d("startScan!", "OK!");
-    }
-
-    /** Checks if the scanned device is a valid one
-     * 
-     * @param srcDevName
-     * @return whether the device is valid or not
-     */
-    private boolean isValidBLEdevName(String srcDevName) {
-        if (srcDevName == null) return false;
-        else return srcDevName.matches("TARGETDEV-\\w{6}"); //|| srcDevName.matches("ANC-\\w{4}");
     }
 
     /** Gets or generates a device name for advertising
@@ -511,7 +249,8 @@ public class MainActivity extends AppCompatActivity
                     new InputStreamReader(fis, StandardCharsets.UTF_8);
             StringBuilder stringBuilder = new StringBuilder();
             try (BufferedReader reader = new BufferedReader(inputStreamReader)) {
-                return reader.readLine();
+                String line = reader.readLine();
+                return line;
             } catch (IOException e) {
                 // Error occurred when opening raw file for reading.
             } finally {
@@ -549,143 +288,6 @@ public class MainActivity extends AppCompatActivity
         }
         return null;
     }
-
-    public void sendDataToNodeRED() throws IOException {
-
-        String targetURL = "http://" + IP_ADDR + ":1880/posts";
-        HttpURLConnection connection = null;
-
-        //if there are data to be sent to NodeRED
-        while (!bleDetectedDevices.isEmpty()) {
-
-            try {
-                //Get the head element of the queue
-                Map<String, Object> packet = bleDetectedDevices.poll();
-
-                //Build the HTTP request parameters
-                StringBuilder postData = new StringBuilder();
-                for (Map.Entry<String, Object> dataPair : packet.entrySet()) {
-                    if (postData.length() != 0) postData.append('&');
-                    postData.append(URLEncoder.encode(dataPair.getKey(), "UTF-8"));
-                    postData.append('=');
-                    postData.append(URLEncoder.encode(String.valueOf(dataPair.getValue()), "UTF-8"));
-                }
-
-                String urlParameters = postData.toString();
-                //Create connection
-                URL url = new URL(targetURL);
-                connection = (HttpURLConnection) url.openConnection();
-                connection.setRequestMethod("POST");
-                connection.setRequestProperty("Content-Type",
-                        "application/x-www-form-urlencoded");
-                connection.setRequestProperty("Content-Length",
-                        Integer.toString(urlParameters.getBytes().length));
-                connection.setRequestProperty("Content-Language", "en-US");
-
-                connection.setUseCaches(false);
-                connection.setDoOutput(true);
-
-                //Send request
-                DataOutputStream wr = new DataOutputStream(
-                        connection.getOutputStream());
-                wr.writeBytes(urlParameters);
-                wr.close();
-
-                //Get Response
-                InputStream is = connection.getInputStream();
-                BufferedReader rd = new BufferedReader(new InputStreamReader(is));
-                StringBuilder response = new StringBuilder(); // or StringBuffer if Java version 5+
-                String line;
-                while ((line = rd.readLine()) != null) {
-                    response.append(line);
-                    response.append('\r');
-                }
-                rd.close();
-                // return response.toString();
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                // return null;
-            } finally {
-                if (connection != null) {
-                    connection.disconnect();
-                }
-            }
-        }
-
-        while (!recordingData.isEmpty()){
-            Map<String, Object> audioClip = recordingData.poll();
-
-            //Build the HTTP request parameters
-            StringBuilder postData = new StringBuilder();
-            for (Map.Entry<String, Object> dataPair : audioClip.entrySet()) {
-                if (postData.length() != 0) postData.append('&');
-                postData.append(URLEncoder.encode(dataPair.getKey(), "UTF-8"));
-                postData.append('=');
-                postData.append(URLEncoder.encode(String.valueOf(dataPair.getValue()), "UTF-8"));
-            }
-
-            String urlParameters = postData.toString();
-            //Create connection
-            URL url = new URL(targetURL);
-            connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("POST");
-            connection.setRequestProperty("Content-Type",
-                    "application/x-www-form-urlencoded");
-            connection.setRequestProperty("Content-Length",
-                    Integer.toString(urlParameters.getBytes().length));
-            connection.setRequestProperty("Content-Language", "en-US");
-
-            connection.setUseCaches(false);
-            connection.setDoOutput(true);
-
-            //Send request
-            DataOutputStream wr = new DataOutputStream(
-                    connection.getOutputStream());
-            wr.writeBytes(urlParameters);
-            wr.close();
-
-            //Get Response
-            InputStream is = connection.getInputStream();
-            BufferedReader rd = new BufferedReader(new InputStreamReader(is));
-            StringBuilder response = new StringBuilder(); // or StringBuffer if Java version 5+
-            String line;
-            while ((line = rd.readLine()) != null) {
-                response.append(line);
-                response.append('\r');
-            }
-            rd.close();
-            // return response.toString();
-        }
-    }
-
-    public String getMacAddress(){
-        try{
-            List<NetworkInterface> networkInterfaceList = Collections.list(NetworkInterface.getNetworkInterfaces());
-            String stringMac = "";
-            for(NetworkInterface networkInterface : networkInterfaceList)
-            {
-                if(networkInterface.getName().equalsIgnoreCase("wlan0"));
-                {
-                    for(int i = 0 ;i <networkInterface.getHardwareAddress().length; i++){
-                        String stringMacByte = Integer.toHexString(networkInterface.getHardwareAddress()[i]& 0xFF);
-                        if(stringMacByte.length() == 1)
-                        {
-                            stringMacByte = "0" + stringMacByte;
-                        }
-                        stringMac = stringMac + stringMacByte.toUpperCase() + ":";
-                    }
-                    break;
-                }
-            }
-            return stringMac;
-        }catch (SocketException e)
-        {
-            e.printStackTrace();
-        }
-        return  "0";
-    }
-
 
     private boolean checkPermissionFromDevice() {
         int result_from_storage_permission = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
