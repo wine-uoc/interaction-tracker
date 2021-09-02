@@ -16,8 +16,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -29,8 +30,6 @@ import androidx.core.content.ContextCompat;
 
 //import com.android.volley.RequestQueue;
 //import com.android.volley.toolbox.Volley;
-
-import com.example.beaconjob_borjamarc.QuuppaManufacturerData;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -47,14 +46,8 @@ public class MainActivity extends AppCompatActivity
 
 
     private static String DEVNAME = null;
-    //xml init
-    private TextView detect;
-    private Button play;
-    private TextView problem;
-    private TextView time;
-    private TextView x_acc_view;
-    private TextView y_acc_view;
-    private TextView z_acc_view;
+    private Button update;
+    private EditText advInterval;
 
     //BLE vars
     BluetoothAdapter bluetoothAdapter;
@@ -89,23 +82,11 @@ public class MainActivity extends AppCompatActivity
             RequestPermission();
         }
 
+        update = findViewById(R.id.update);
+        advInterval = findViewById(R.id.advInt_textNumber);
 
         initializeBluetoothConfig();
         setBLEAdvertising();
-
-        detect = findViewById(R.id.detection);
-        problem = findViewById(R.id.problem);
-        play = findViewById(R.id.play);
-        time = findViewById(R.id.time);
-        x_acc_view = findViewById(R.id.x_acc_view);
-        y_acc_view = findViewById(R.id.y_acc_view);
-        z_acc_view = findViewById(R.id.z_acc_view);
-
-        problem.setText("problem");
-        detect.setText("detect");
-        time.setText("time");
-
-
 
         try {
             Thread.sleep(100);
@@ -171,7 +152,8 @@ public class MainActivity extends AppCompatActivity
 
         parameters = (new AdvertisingSetParameters.Builder())
                 .setLegacyMode(true) // No cambiar a false! Si no, deja de funcionar.
-                .setConnectable(false)
+                .setScannable(true)
+                .setConnectable(true)
                 .setInterval(160) //Advertising interval ~ 100ms
                 .setTxPowerLevel(AdvertisingSetParameters.TX_POWER_MAX)
                 .build();
@@ -186,8 +168,12 @@ public class MainActivity extends AppCompatActivity
         manufacturerData = quuppa.toBytes();
 
         //productionDate = getCurrentTimestamp();
+        data = (new AdvertiseData.Builder())
+                .setIncludeDeviceName(false)
+                .setIncludeTxPowerLevel(false)
+                .addManufacturerData(quuppa.getCompanyId(), manufacturerData)
+                .build();
 
-        data = (new AdvertiseData.Builder()).setIncludeDeviceName(false).setIncludeTxPowerLevel(false).addManufacturerData(quuppa.getCompanyId(), manufacturerData).build();
         callback = new AdvertisingSetCallback() {
 
             @Override
@@ -234,6 +220,21 @@ public class MainActivity extends AppCompatActivity
         //advertiser.startAdvertising(parameters, data, null, null, data, callback);
         advertiser.startAdvertisingSet(parameters, data, null, null, null, 0, 0, callback);
 
+        update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int newAdvInt = Integer.parseInt(advInterval.getText().toString());
+                advertiser.stopAdvertisingSet(callback);
+                parameters = (new AdvertisingSetParameters.Builder())
+                        .setLegacyMode(true) // No cambiar a false! Si no, deja de funcionar.
+                        .setScannable(true)
+                        .setConnectable(true)
+                        .setInterval((int) (newAdvInt / 0.625)) //Advertising interval 160 = 100ms
+                        .setTxPowerLevel(AdvertisingSetParameters.TX_POWER_MAX)
+                        .build();
+                advertiser.startAdvertisingSet(parameters, data, null, null, null, 0, 0, callback);
+            }
+        });
     }
 
     /** Gets or generates a device name for advertising

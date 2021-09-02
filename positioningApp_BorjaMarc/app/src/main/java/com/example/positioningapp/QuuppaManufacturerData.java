@@ -1,4 +1,4 @@
-package com.example.beaconjob_borjamarc;
+package com.example.positioningapp;
 
 import android.os.Build;
 
