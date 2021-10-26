@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Beacon Trabajo BorjaMarc</string>
+    <string name="app_name">Angular beacons</string>
     <string name="update">Update</string>
     <string name="stop">Stop</string>
     <string name="stop_record">Stop record</string>

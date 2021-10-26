@@ -41,13 +41,14 @@ import java.nio.charset.StandardCharsets;
 import java.util.Random;
 
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends AppCompatActivity implements View.OnClickListener
 {
 
 
     private static String DEVNAME = null;
     private Button update;
     private EditText advInterval;
+    private EditText tagId;
 
     //BLE vars
     BluetoothAdapter bluetoothAdapter;
@@ -84,9 +85,12 @@ public class MainActivity extends AppCompatActivity
 
         update = findViewById(R.id.update);
         advInterval = findViewById(R.id.advInt_textNumber);
+        tagId = findViewById(R.id.tagId_editText);
 
         initializeBluetoothConfig();
         setBLEAdvertising();
+
+        update.setOnClickListener(this);
 
         try {
             Thread.sleep(100);
@@ -96,35 +100,20 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    private byte[] getCurrentTimestamp (){
-        long unixTime = System.currentTimeMillis();
-
-        byte[] productionDate = new byte[]{
-                (byte) (unixTime >> 40),
-                (byte) (unixTime >> 32),
-                (byte) (unixTime >> 24),
-                (byte) (unixTime >> 16),
-                (byte) (unixTime >> 8),
-                (byte) unixTime
-
-        };
-        return productionDate;
-    }
-
 
     @SuppressLint("NewApi")
     private void initializeBluetoothConfig() {
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
         // Check if all features are supported
-        if (!bluetoothAdapter.isLe2MPhySupported()) {
+       /* if (!bluetoothAdapter.isLe2MPhySupported()) {
             Log.e("error", "2M PHY not supported!");
             return;
         }
         if (!bluetoothAdapter.isLeExtendedAdvertisingSupported()) {
             Log.e("error", "LE Extended Advertising not supported!");
             return;
-        }
+        }*/
 
         //Enables bluetooth if disabled
         if (!bluetoothAdapter.isEnabled()) {
@@ -137,9 +126,9 @@ public class MainActivity extends AppCompatActivity
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         boolean a = bluetoothAdapter.setName(DEVNAME);
         Log.d("ble adapter name set: ", String.valueOf(a));
+        advertiser = bluetoothAdapter.getBluetoothLeAdvertiser();
 
     }
 
@@ -147,95 +136,74 @@ public class MainActivity extends AppCompatActivity
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void setBLEAdvertising(){
 
-        advertiser = bluetoothAdapter.getBluetoothLeAdvertiser();
+        String newAdvStr = advInterval.getText().toString();
+        String tagID = tagId.getText().toString();
 
+        if (tagID.isEmpty()){
+            tagID = tagId.getHint().toString();
+        }
+        if (newAdvStr.isEmpty()){
+            newAdvStr = advInterval.getHint().toString();
+        }
 
-        parameters = (new AdvertisingSetParameters.Builder())
-                .setLegacyMode(true) // No cambiar a false! Si no, deja de funcionar.
-                .setScannable(true)
-                .setConnectable(true)
-                .setInterval(160) //Advertising interval ~ 100ms
-                .setTxPowerLevel(AdvertisingSetParameters.TX_POWER_MAX)
-                .build();
-
-        /*periodic_parameters = (new PeriodicAdvertisingParameters.Builder())
-                .setIncludeTxPower(true)
-                .setInterval(80)
-                .build();*/
-
-        byte[] manufacturerData;
         QuuppaManufacturerData quuppa = new QuuppaManufacturerData();
-        manufacturerData = quuppa.toBytes();
+        quuppa.setTagID(tagID);
+        byte[] manufacturerData = quuppa.toBytes();
 
-        //productionDate = getCurrentTimestamp();
         data = (new AdvertiseData.Builder())
                 .setIncludeDeviceName(false)
                 .setIncludeTxPowerLevel(false)
                 .addManufacturerData(quuppa.getCompanyId(), manufacturerData)
                 .build();
 
-        callback = new AdvertisingSetCallback() {
 
+        int newAdvInt = Integer.parseInt(newAdvStr);
+        parameters = (new AdvertisingSetParameters.Builder())
+                .setLegacyMode(true) // No cambiar a false! Si no, deja de funcionar.
+                .setScannable(true)
+                .setConnectable(true)
+                .setInterval((int) (newAdvInt / 0.625)) //Advertising interval 160 = 100ms
+                .setTxPowerLevel(AdvertisingSetParameters.TX_POWER_MAX)
+                .build();
+
+
+        callback = new AdvertisingSetCallback() {
             @Override
             //AdvertisingSet started
             public void onAdvertisingSetStarted(AdvertisingSet advertisingSet, int txPower, int status) {
-                //Log.i("test", "onAdvertisingSetStarted(): txPower:" + txPower + " , status: "
-                 //       + status);
-
-                //byte[] timestamp = new byte[4];
-                //timestamp = getCurrentTimestamp();
-
-                //data = (new AdvertiseData.Builder()).setIncludeDeviceName(true).setIncludeTxPowerLevel(true).addManufacturerData(0x00C7, timestamp).build();
-                //advertisingSet.setAdvertisingData(data);
+                Log.i("BLE_connection", "advertising set started!");
             }
 
             @Override
             //advertising changed to enable or disable
             public void onAdvertisingEnabled(AdvertisingSet advertisingSet, boolean enable, int status) {
-                //Log.i("test", "onAdvertisingEnabled(): enable:" + enable + " , status: "
-                //        + status);
-                /*if (!enable){
-                    byte[] timestamp = new byte[4];
-                    timestamp = getCurrentTimestamp();
-                    data = (new AdvertiseData.Builder()).setIncludeDeviceName(true).setIncludeTxPowerLevel(true).addManufacturerData(0x00C7, timestamp).build();
-                    advertisingSet.setAdvertisingData(data);
-                }*/
+                Log.i("BLE_connection", "advertising enabled!");
+
             }
 
             @Override
             //Advertising data has been set
             public void onAdvertisingDataSet(AdvertisingSet advertisingSet, int status) {
-                //Log.i("test", "onAdvertisingDataSet(): status:"
-                //        + status);
-                //advertisingSet.enableAdvertising(true,10,0);
+                Log.i("BLE_connection", "advertising data set!");
             }
-
 
             @Override
             public void onAdvertisingSetStopped(AdvertisingSet advertisingSet) {
-               // Log.i("test", "onAdvertisingSetStopped()");
+                Log.i("BLE_connection", "advertising set stopped!");
+                //advertisingSet.setAdvertisingData(data);
+                //advertisingSet.setAdvertisingParameters(parameters);
             }
         };
+
+        //stop advertising beacons
+        //advertiser.stopAdvertisingSet(callback);
         //periodic_data = (new AdvertiseData.Builder()).addManufacturerData(15, productionDate).build();
         //advertiser.startAdvertising(parameters, data, null, null, data, callback);
         advertiser.startAdvertisingSet(parameters, data, null, null, null, 0, 0, callback);
 
-        update.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int newAdvInt = Integer.parseInt(advInterval.getText().toString());
-                advertiser.stopAdvertisingSet(callback);
-                parameters = (new AdvertisingSetParameters.Builder())
-                        .setLegacyMode(true) // No cambiar a false! Si no, deja de funcionar.
-                        .setScannable(true)
-                        .setConnectable(true)
-                        .setInterval((int) (newAdvInt / 0.625)) //Advertising interval 160 = 100ms
-                        .setTxPowerLevel(AdvertisingSetParameters.TX_POWER_MAX)
-                        .build();
-                advertiser.startAdvertisingSet(parameters, data, null, null, null, 0, 0, callback);
-            }
-        });
     }
+
+
 
     /** Gets or generates a device name for advertising
      *
@@ -333,5 +301,13 @@ public class MainActivity extends AppCompatActivity
             break;
         }
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == update.getId()){
+            advertiser.stopAdvertisingSet(callback);
+            setBLEAdvertising();
+        }
     }
 }
