@@ -92,11 +92,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         update.setOnClickListener(this);
 
-        try {
+        /*try {
             Thread.sleep(100);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
+        }*/
 
     }
 
@@ -162,7 +162,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .setLegacyMode(true) // No cambiar a false! Si no, deja de funcionar.
                 .setScannable(true)
                 .setConnectable(true)
-                .setInterval((int) (newAdvInt / 0.625)) //Advertising interval 160 = 100ms
+                .setInterval(AdvertisingSetParameters.INTERVAL_MEDIUM) //Advertising interval 160 = 100ms
                 .setTxPowerLevel(AdvertisingSetParameters.TX_POWER_MAX)
                 .build();
 
@@ -200,7 +200,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //periodic_data = (new AdvertiseData.Builder()).addManufacturerData(15, productionDate).build();
         //advertiser.startAdvertising(parameters, data, null, null, data, callback);
         advertiser.startAdvertisingSet(parameters, data, null, null, null, 0, 0, callback);
-
     }
 
 
